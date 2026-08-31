@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>MAC645 - Login</title>
 
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -30,12 +32,12 @@
       background: #11182b;
       border: 1px solid #263352;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 8px;
+      margin: 0 0 8px;
     }
 
     h1 span {
@@ -57,6 +59,7 @@
       background: #0b1020;
       color: white;
       outline: none;
+      font-size: 15px;
     }
 
     input:focus {
@@ -73,10 +76,16 @@
       font-weight: bold;
       cursor: pointer;
       margin-bottom: 12px;
+      font-size: 15px;
     }
 
     button:hover {
-      opacity: .9;
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .register {
@@ -90,6 +99,8 @@
       margin-top: 15px;
       color: #aab3c5;
       font-size: 14px;
+      min-height: 20px;
+      line-height: 1.5;
     }
 
     .back {
@@ -100,6 +111,10 @@
       text-decoration: none;
       font-size: 14px;
     }
+
+    .back:hover {
+      color: #00e5ff;
+    }
   </style>
 </head>
 
@@ -109,23 +124,33 @@
 
     <h1>MAC<span>645</span></h1>
 
-    <div class="subtitle">Login ke akun kamu</div>
+    <div class="subtitle">
+      Login ke akun kamu
+    </div>
 
     <input
       type="email"
       id="email"
       placeholder="Email"
+      autocomplete="email"
     >
 
     <input
       type="password"
       id="password"
       placeholder="Password"
+      autocomplete="current-password"
     >
 
-    <button onclick="login()">LOGIN</button>
+    <button id="loginBtn" onclick="login()">
+      LOGIN
+    </button>
 
-    <button class="register" onclick="register()">
+    <button
+      id="registerBtn"
+      class="register"
+      onclick="register()"
+    >
       DAFTAR AKUN BARU
     </button>
 
@@ -137,247 +162,293 @@
 
   </div>
 
+
   <script>
 
-    // ==============================
-    // SUPABASE MAC645
-    // ==============================
+    // ==================================================
+    // KONFIGURASI SUPABASE MAC645
+    // ==================================================
 
-    const SUPABASE_URL = "https://jblilyzqozodjslgylso.supabase.co/rest/v1/;
+    const SUPABASE_URL =
+      "https://jblilyzqozodjslgylso.supabase.co";
 
-    const SUPABASE_KEY = "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL
- ";
-
-    const { createClient } =
-      supabase;
-
-    const db = createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+    const SUPABASE_KEY =
+      "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
 
-    // ==============================
-    // REGISTER
-    // ==============================
+    // ==================================================
+    // MEMBUAT KONEKSI SUPABASE
+    // ==================================================
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    // ==================================================
+    // ELEMENT
+    // ==================================================
+
+    const emailInput =
+      document.getElementById("email");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const pesan =
+      document.getElementById("pesan");
+
+    const loginBtn =
+      document.getElementById("loginBtn");
+
+    const registerBtn =
+      document.getElementById("registerBtn");
+
+
+    // ==================================================
+    // FUNGSI PESAN
+    // ==================================================
+
+    function tampilPesan(text) {
+      pesan.innerText = text;
+    }
+
+
+    // ==================================================
+    // REGISTER / DAFTAR
+    // ==================================================
 
     async function register() {
 
       const email =
-        document.getElementById("email").value.trim();
+        emailInput.value.trim();
 
       const password =
-        document.getElementById("password").value;
+        passwordInput.value;
 
-      const pesan =
-        document.getElementById("pesan");
 
+      // Cek email dan password
 
       if (!email || !password) {
-
-        pesan.innerText =
-          "Email dan password wajib diisi.";
-
+        tampilPesan(
+          "Email dan password wajib diisi."
+        );
         return;
       }
 
+
+      // Cek format email
+
+      if (!email.includes("@")) {
+        tampilPesan(
+          "Masukkan email yang benar."
+        );
+        return;
+      }
+
+
+      // Cek password
 
       if (password.length < 6) {
-
-        pesan.innerText =
-          "Password minimal 6 karakter.";
-
+        tampilPesan(
+          "Password minimal 6 karakter."
+        );
         return;
       }
 
 
-      pesan.innerText =
-        "Mendaftarkan akun...";
+      // Loading
+
+      registerBtn.disabled = true;
+
+      loginBtn.disabled = true;
+
+      tampilPesan(
+        "Mendaftarkan akun..."
+      );
 
 
-      const { data, error } =
-        await db.auth.signUp({
-          email: email,
-          password: password
-        });
+      try {
+
+        const { data, error } =
+          await supabaseClient.auth.signUp({
+            email: email,
+            password: password
+          });
 
 
-      if (error) {
+        if (error) {
 
-        pesan.innerText =
-          "Gagal daftar: " + error.message;
+          tampilPesan(
+            "Gagal daftar: " + error.message
+          );
 
-        return;
+          return;
+        }
+
+
+        // Jika email confirmation aktif
+
+        if (
+          data.user &&
+          data.user.identities &&
+          data.user.identities.length === 0
+        ) {
+
+          tampilPesan(
+            "Email tersebut sudah terdaftar."
+          );
+
+          return;
+        }
+
+
+        tampilPesan(
+          "Akun berhasil dibuat! Silakan login."
+        );
+
+      } catch (error) {
+
+        tampilPesan(
+          "Terjadi kesalahan: " + error.message
+        );
+
+      } finally {
+
+        registerBtn.disabled = false;
+
+        loginBtn.disabled = false;
+
       }
-
-
-      pesan.innerText =
-        "Registrasi berhasil! Silakan login.";
     }
 
 
-    // ==============================
+    // ==================================================
     // LOGIN
-    // ==============================
+    // ==================================================
 
     async function login() {
 
       const email =
-        document.getElementById("email").value.trim();
+        emailInput.value.trim();
 
       const password =
-        document.getElementById("password").value;
+        passwordInput.value;
 
-      const pesan =
-        document.getElementById("pesan");
 
+      // Cek input
 
       if (!email || !password) {
 
-        pesan.innerText =
-          "Email dan password wajib diisi.";
+        tampilPesan(
+          "Email dan password wajib diisi."
+        );
 
         return;
       }
 
 
-      pesan.innerText =
-        "Sedang login...";
+      // Cek email
 
+      if (!email.includes("@")) {
 
-      const { data, error } =
-        await db.auth.signInWithPassword({
-          email: email,
-          password: password
-        });
-
-
-      if (error) {
-
-        pesan.innerText =
-          "Login gagal: " + error.message;
+        tampilPesan(
+          "Masukkan email yang benar."
+        );
 
         return;
       }
 
 
-      pesan.innerText =
-        "Login berhasil!";
+      // Loading
+
+      loginBtn.disabled = true;
+
+      registerBtn.disabled = true;
+
+      tampilPesan(
+        "Sedang login..."
+      );
 
 
-      // Untuk sementara
-      // nanti kita arahkan ke dashboard
+      try {
 
-      setTimeout(() => {
+        const { data, error } =
+          await supabaseClient.auth.signInWithPassword({
 
-        window.location.href =
-          "index.html";
+            email: email,
 
-      }, 1000);
+            password: password
+
+          });
+
+
+        // Jika login gagal
+
+        if (error) {
+
+          tampilPesan(
+            "Login gagal: " + error.message
+          );
+
+          return;
+        }
+
+
+        // Login berhasil
+
+        tampilPesan(
+          "Login berhasil!"
+        );
+
+
+        // Tunggu sebentar lalu masuk halaman utama
+
+        setTimeout(function () {
+
+          window.location.href =
+            "index.html";
+
+        }, 1000);
+
+
+      } catch (error) {
+
+        tampilPesan(
+          "Terjadi kesalahan: " + error.message
+        );
+
+      } finally {
+
+        loginBtn.disabled = false;
+
+        registerBtn.disabled = false;
+
+      }
 
     }
+
+
+    // ==================================================
+    // ENTER UNTUK LOGIN
+    // ==================================================
+
+    passwordInput.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+
+          login();
+
+        }
+
+      }
+    );
 
   </script>
-<script>
-(function () {
 
-  // =========================
-  // SUPABASE MAC645
-  // =========================
-
-  const MAC645_URL = "https://jblilyzqozodjslgylso.supabase.co";
-  const MAC645_KEY = "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
-
-  const client = window.supabase.createClient(
-    MAC645_URL,
-    MAC645_KEY
-  );
-
-  // =========================
-  // LOGIN
-  // =========================
-
-  window.login = async function () {
-
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const pesan = document.getElementById("pesan");
-
-    if (!email || !password) {
-      pesan.innerText = "Email dan password wajib diisi.";
-      return;
-    }
-
-    if (!email.includes("@")) {
-      pesan.innerText = "Masukkan email yang benar.";
-      return;
-    }
-
-    pesan.innerText = "Sedang login...";
-
-    const { data, error } =
-      await client.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
-    if (error) {
-      pesan.innerText = "Login gagal: " + error.message;
-      return;
-    }
-
-    pesan.innerText = "Login berhasil!";
-
-    setTimeout(function () {
-      window.location.href = "index.html";
-    }, 1000);
-  };
-
-
-  // =========================
-  // REGISTER
-  // =========================
-
-  window.register = async function () {
-
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const pesan = document.getElementById("pesan");
-
-    if (!email || !password) {
-      pesan.innerText = "Email dan password wajib diisi.";
-      return;
-    }
-
-    if (!email.includes("@")) {
-      pesan.innerText = "Masukkan email yang benar.";
-      return;
-    }
-
-    if (password.length < 6) {
-      pesan.innerText = "Password minimal 6 karakter.";
-      return;
-    }
-
-    pesan.innerText = "Mendaftarkan akun...";
-
-    const { data, error } =
-      await client.auth.signUp({
-        email: email,
-        password: password
-      });
-
-    if (error) {
-      pesan.innerText = "Gagal daftar: " + error.message;
-      return;
-    }
-
-    pesan.innerText =
-      "Akun berhasil dibuat! Silakan login.";
-
-  };
-
-})();
-</script>
 </body>
 </html>
