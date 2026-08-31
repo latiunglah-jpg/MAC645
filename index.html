@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAC645</title>
+  <title>MAC645 - Marketplace Digital</title>
 
   <style>
     * {
@@ -14,194 +15,464 @@
     }
 
     body {
-      background: #0b1020;
-      color: white;
+      background: #f5f6f8;
+      color: #202124;
       min-height: 100vh;
     }
 
+    a {
+      text-decoration: none;
+    }
+
+    /* HEADER */
     header {
       width: 100%;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 15, 35, 0.95);
-      border-bottom: 1px solid #222a45;
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
+    }
+
+    .header-main {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 70px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
     .logo {
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: 2px;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #087cff;
+      white-space: nowrap;
     }
 
     .logo span {
-      color: #00e5ff;
+      color: #ff8a00;
     }
 
-    nav a {
-      color: #ddd;
-      text-decoration: none;
-      margin-left: 25px;
+    .search {
+      flex: 1;
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      height: 43px;
+      padding: 0 45px 0 16px;
+      border: 1px solid #d7dce3;
+      border-radius: 8px;
+      outline: none;
+      background: #f8f9fb;
       font-size: 14px;
     }
 
-    nav a:hover {
-      color: #00e5ff;
+    .search input:focus {
+      border-color: #087cff;
+      background: white;
     }
 
-    .hero {
-      min-height: 75vh;
+    .search-icon {
+      position: absolute;
+      right: 15px;
+      top: 11px;
+      font-size: 18px;
+    }
+
+    .header-menu {
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px;
+      gap: 15px;
+      white-space: nowrap;
+    }
+
+    .header-menu a {
+      color: #333;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .login-btn {
+      border: 1px solid #087cff;
+      color: #087cff !important;
+      padding: 10px 16px;
+      border-radius: 7px;
+    }
+
+    .cart {
+      font-size: 23px !important;
+    }
+
+    /* CATEGORY */
+    .category {
+      background: white;
+      border-bottom: 1px solid #e7e9ed;
+    }
+
+    .category-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 12px 20px;
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .category-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-inner a {
+      color: #444;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .category-inner a:hover {
+      color: #087cff;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 20px 50px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 285px;
+      border-radius: 16px;
+      padding: 40px 55px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      color: white;
       background:
-        radial-gradient(circle at top, #172554 0%, #0b1020 55%);
+        radial-gradient(circle at 85% 20%, #39c9ff 0%, transparent 25%),
+        linear-gradient(135deg, #087cff, #0054c9);
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 650px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid #00e5ff;
-      border-radius: 30px;
-      color: #00e5ff;
+    .hero-small {
       font-size: 13px;
-      margin-bottom: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      opacity: .9;
     }
 
-    h1 {
-      font-size: 64px;
-      margin-bottom: 20px;
-      letter-spacing: 4px;
-    }
-
-    h1 span {
-      color: #00e5ff;
+    .hero h1 {
+      font-size: 40px;
+      margin: 12px 0;
+      line-height: 1.15;
     }
 
     .hero p {
-      color: #aab3c5;
-      font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 35px;
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: .9;
+      margin-bottom: 23px;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 10px;
-      text-decoration: none;
+    .hero-button {
+      display: inline-block;
+      background: white;
+      color: #087cff;
+      padding: 12px 22px;
+      border-radius: 8px;
       font-weight: bold;
-      transition: 0.3s;
+      font-size: 14px;
     }
 
-    .primary {
-      background: #00e5ff;
-      color: #061018;
+    .hero-icon {
+      font-size: 130px;
     }
 
-    .primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.25);
-    }
-
-    .secondary {
-      border: 1px solid #34405f;
-      color: white;
-    }
-
-    .secondary:hover {
-      border-color: #00e5ff;
-      color: #00e5ff;
-    }
-
-    .features {
-      padding: 70px 7%;
-      background: #090d1a;
+    /* SECTION */
+    .section {
+      margin-top: 28px;
     }
 
     .section-title {
-      text-align: center;
-      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
     .section-title h2 {
-      font-size: 32px;
+      font-size: 22px;
+    }
+
+    .see-all {
+      color: #087cff;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* CATEGORY CARDS */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .category-card {
+      background: white;
+      border: 1px solid #e7e9ed;
+      border-radius: 12px;
+      padding: 20px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      border-color: #087cff;
+      box-shadow: 0 8px 22px rgba(0,0,0,.07);
+    }
+
+    .category-icon {
+      font-size: 36px;
       margin-bottom: 10px;
     }
 
-    .section-title p {
-      color: #8993a8;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .card {
-      background: #11182b;
-      border: 1px solid #222c48;
-      border-radius: 18px;
-      padding: 30px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      border-color: #00e5ff;
-    }
-
-    .icon {
-      font-size: 35px;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      color: #8f9ab0;
-      line-height: 1.6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: #060914;
-      color: #68738a;
+    .category-card p {
       font-size: 13px;
+      font-weight: bold;
     }
 
-    @media (max-width: 700px) {
-      h1 {
-        font-size: 42px;
+    /* PROMO */
+    .promo-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .promo {
+      min-height: 145px;
+      border-radius: 13px;
+      padding: 23px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .promo-1 {
+      background: linear-gradient(135deg, #ff7a00, #ffad00);
+    }
+
+    .promo-2 {
+      background: linear-gradient(135deg, #7650ff, #a56cff);
+    }
+
+    .promo-3 {
+      background: linear-gradient(135deg, #00a878, #00c897);
+    }
+
+    .promo h3 {
+      font-size: 19px;
+      margin-bottom: 7px;
+    }
+
+    .promo p {
+      font-size: 13px;
+      opacity: .9;
+    }
+
+    /* PRODUCTS */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid #e7e9ed;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: .2s;
+      cursor: pointer;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px rgba(0,0,0,.08);
+    }
+
+    .product-image {
+      height: 145px;
+      background: #edf5ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 58px;
+    }
+
+    .product-info {
+      padding: 13px;
+    }
+
+    .product-info h3 {
+      font-size: 14px;
+      margin-bottom: 9px;
+    }
+
+    .price {
+      color: #087cff;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .product-info small {
+      display: block;
+      margin-top: 6px;
+      color: #777;
+      font-size: 11px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #101828;
+      color: white;
+      padding: 38px 20px;
+      margin-top: 20px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    footer h3 {
+      margin-bottom: 13px;
+    }
+
+    footer p,
+    footer a {
+      display: block;
+      color: #aeb7c6;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      nav {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .promo-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .promo-1 {
+        grid-column: 1 / -1;
+      }
+
+      .hero-icon {
+        font-size: 90px;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .header-main {
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+
+      .search {
+        order: 3;
+        flex-basis: 100%;
+      }
+
+      .header-menu a:not(.login-btn) {
         display: none;
       }
 
-      .cards {
+      .hero {
+        padding: 30px;
+        min-height: 240px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .hero-icon {
+        display: none;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .promo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .promo-1 {
+        grid-column: auto;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 430px) {
+
+      .container {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .category-grid {
+        gap: 8px;
+      }
+
+      .category-card {
+        padding: 15px 5px;
+      }
+
+      .category-icon {
+        font-size: 28px;
+      }
+
+      .product-image {
+        height: 120px;
+      }
+
+      .footer-inner {
         grid-template-columns: 1fr;
       }
     }
@@ -210,79 +481,436 @@
 
 <body>
 
-  <header>
-    <div class="logo">MAC<span>645</span></div>
+  <!-- HEADER -->
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#fitur">Fitur</a>
-      <a href="mac.html">Login</a>
-    </nav>
+  <header>
+
+    <div class="header-main">
+
+      <div class="logo">
+        MAC<span>645</span>
+      </div>
+
+      <div class="search">
+
+        <input
+          type="text"
+          placeholder="Cari pulsa, voucher game, e-wallet..."
+        >
+
+        <span class="search-icon">🔍</span>
+
+      </div>
+
+      <div class="header-menu">
+
+        <a href="#">
+          📦 Pesanan
+        </a>
+
+        <a href="#" class="cart">
+          🛒
+        </a>
+
+        <a href="mac.html" class="login-btn">
+          LOGIN
+        </a>
+
+      </div>
+
+    </div>
+
   </header>
 
-  <section class="hero" id="home">
-    <div class="hero-content">
 
-      <div class="badge">WELCOME TO MAC645</div>
+  <!-- CATEGORY -->
 
-      <h1>MAC<span>645</span></h1>
+  <div class="category">
 
-      <p>
-        Platform digital modern dengan tampilan cepat,
-        sederhana, dan nyaman digunakan.
-      </p>
+    <div class="category-inner">
 
-      <div class="buttons">
-        <a href="mac.html" class="btn primary">MULAI SEKARANG</a>
-        <a href="#fitur" class="btn secondary">LIHAT FITUR</a>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="features" id="fitur">
-
-    <div class="section-title">
-      <h2>Kenapa MAC645?</h2>
-      <p>Dibuat sederhana, cepat, dan mudah digunakan.</p>
-    </div>
-
-    <div class="cards">
-
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Cepat</h3>
-        <p>
-          Tampilan ringan dan responsif sehingga nyaman
-          digunakan melalui komputer maupun HP.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🔐</div>
-        <h3>Aman</h3>
-        <p>
-          Sistem dapat dikembangkan dengan login,
-          database, dan sistem keamanan.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="icon">📱</div>
-        <h3>Responsive</h3>
-        <p>
-          Tampilan otomatis menyesuaikan ukuran layar
-          perangkat yang digunakan.
-        </p>
-      </div>
+      <a href="#kategori">Kategori</a>
+      <a href="#pulsa">Pulsa</a>
+      <a href="#data">Paket Data</a>
+      <a href="#pln">Token PLN</a>
+      <a href="#ewallet">E-Wallet</a>
+      <a href="#game">Voucher Game</a>
+      <a href="#promo">Promo</a>
 
     </div>
 
-  </section>
+  </div>
+
+
+  <main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="hero-small">
+          WELCOME TO MAC645
+        </div>
+
+        <h1>
+          Semua kebutuhan digital
+          dalam satu tempat.
+        </h1>
+
+        <p>
+          Pulsa, paket data, voucher game,
+          e-wallet dan produk digital lainnya
+          dengan proses cepat dan mudah.
+        </p>
+
+        <a href="#produk" class="hero-button">
+          BELANJA SEKARANG
+        </a>
+
+      </div>
+
+      <div class="hero-icon">
+        🛍️
+      </div>
+
+    </section>
+
+
+    <!-- KATEGORI -->
+
+    <section class="section" id="kategori">
+
+      <div class="section-title">
+
+        <h2>
+          Kategori Pilihan
+        </h2>
+
+        <a href="#" class="see-all">
+          Lihat Semua
+        </a>
+
+      </div>
+
+      <div class="category-grid">
+
+        <div class="category-card" id="pulsa">
+          <div class="category-icon">📱</div>
+          <p>Pulsa</p>
+        </div>
+
+        <div class="category-card" id="data">
+          <div class="category-icon">🌐</div>
+          <p>Paket Data</p>
+        </div>
+
+        <div class="category-card" id="pln">
+          <div class="category-icon">⚡</div>
+          <p>Token PLN</p>
+        </div>
+
+        <div class="category-card" id="ewallet">
+          <div class="category-icon">💳</div>
+          <p>E-Wallet</p>
+        </div>
+
+        <div class="category-card" id="game">
+          <div class="category-icon">🎮</div>
+          <p>Voucher Game</p>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon">🎬</div>
+          <p>Streaming</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROMO -->
+
+    <section class="section" id="promo">
+
+      <div class="section-title">
+
+        <h2>
+          🔥 Promo MAC645
+        </h2>
+
+        <a href="#" class="see-all">
+          Lihat Semua
+        </a>
+
+      </div>
+
+      <div class="promo-grid">
+
+        <div class="promo promo-1">
+
+          <h3>
+            Promo Pulsa Hemat
+          </h3>
+
+          <p>
+            Dapatkan harga spesial untuk
+            pengguna MAC645.
+          </p>
+
+        </div>
+
+        <div class="promo promo-2">
+
+          <h3>
+            Voucher Game
+          </h3>
+
+          <p>
+            Top up game favorit kamu.
+          </p>
+
+        </div>
+
+        <div class="promo promo-3">
+
+          <h3>
+            E-Wallet
+          </h3>
+
+          <p>
+            Top up lebih mudah.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRODUK -->
+
+    <section class="section" id="produk">
+
+      <div class="section-title">
+
+        <h2>
+          ⭐ Produk Populer
+        </h2>
+
+        <a href="#" class="see-all">
+          Lihat Semua
+        </a>
+
+      </div>
+
+      <div class="product-grid">
+
+
+        <div class="product">
+
+          <div class="product-image">
+            📱
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Pulsa 10.000
+            </h3>
+
+            <div class="price">
+              Rp10.500
+            </div>
+
+            <small>
+              Semua operator
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="product">
+
+          <div class="product-image">
+            🌐
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Paket Data 10GB
+            </h3>
+
+            <div class="price">
+              Rp25.000
+            </div>
+
+            <small>
+              Masa aktif 30 hari
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="product">
+
+          <div class="product-image">
+            🎮
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Voucher Game
+            </h3>
+
+            <div class="price">
+              Rp20.000
+            </div>
+
+            <small>
+              Proses cepat
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="product">
+
+          <div class="product-image">
+            💳
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              E-Wallet 50.000
+            </h3>
+
+            <div class="price">
+              Rp50.000
+            </div>
+
+            <small>
+              Proses otomatis
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="product">
+
+          <div class="product-image">
+            ⚡
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Token PLN 50.000
+            </h3>
+
+            <div class="price">
+              Rp50.000
+            </div>
+
+            <small>
+              Tersedia 24 jam
+            </small>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
 
   <footer>
-    © 2026 MAC645 — All Rights Reserved
+
+    <div class="footer-inner">
+
+      <div>
+
+        <h3>
+          MAC645
+        </h3>
+
+        <p>
+          Marketplace produk digital
+          yang cepat dan mudah digunakan.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>
+          Produk
+        </h3>
+
+        <a href="#pulsa">Pulsa</a>
+        <a href="#data">Paket Data</a>
+        <a href="#game">Voucher Game</a>
+        <a href="#ewallet">E-Wallet</a>
+
+      </div>
+
+      <div>
+
+        <h3>
+          Bantuan
+        </h3>
+
+        <a href="#">Cara Belanja</a>
+        <a href="#">Pembayaran</a>
+        <a href="#">Hubungi Kami</a>
+
+      </div>
+
+      <div>
+
+        <h3>
+          Akun
+        </h3>
+
+        <a href="mac.html">
+          Login
+        </a>
+
+        <a href="mac.html">
+          Daftar
+        </a>
+
+        <a href="#">
+          Pesanan Saya
+        </a>
+
+      </div>
+
+    </div>
+
   </footer>
 
 </body>
 </html>
+```
