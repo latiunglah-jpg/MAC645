@@ -1,0 +1,575 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MAC645 - Deposit</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f6f8;
+      color: #202124;
+      min-height: 100vh;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e4e7eb;
+    }
+
+    .header {
+      max-width: 1100px;
+      margin: auto;
+      min-height: 68px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      color: #087cff;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #ff8a00;
+    }
+
+    .back {
+      color: #087cff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .title h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .title p {
+      color: #7a8290;
+      font-size: 13px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e4e7eb;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+
+    .label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 7px;
+      color: #555d69;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d9dde4;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    input:focus {
+      border-color: #087cff;
+    }
+
+    .payment {
+      background: #edf6ff;
+      border: 1px solid #cfe5ff;
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 10px;
+    }
+
+    .payment-name {
+      color: #087cff;
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .number {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .owner {
+      color: #697382;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    .copy {
+      border: 0;
+      background: #087cff;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .copy:hover {
+      opacity: .9;
+    }
+
+    .pay-info {
+      background: #fff8e6;
+      border: 1px solid #ffe0a3;
+      color: #735500;
+      border-radius: 9px;
+      padding: 13px;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    .submit {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 9px;
+      background: #087cff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .submit:hover {
+      opacity: .9;
+    }
+
+    .submit:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    #pesan {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 20px;
+    }
+
+    .warning {
+      color: #c47d00;
+    }
+
+    .success {
+      color: #0b9d63;
+    }
+
+    footer {
+      text-align: center;
+      background: #101828;
+      color: #aeb7c6;
+      padding: 25px;
+      font-size: 12px;
+    }
+
+    @media(max-width: 600px) {
+      .container {
+        padding: 20px 12px 40px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .number {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header">
+
+      <div class="logo">
+        MAC<span>645</span>
+      </div>
+
+      <a href="dashboard.html" class="back">
+        ← Kembali ke Dashboard
+      </a>
+
+    </div>
+  </header>
+
+
+  <main class="container">
+
+    <div class="title">
+
+      <h1>💰 Deposit Saldo</h1>
+
+      <p>
+        Isi saldo akun MAC645 dengan melakukan pembayaran melalui BCA.
+      </p>
+
+    </div>
+
+
+    <!-- NOMINAL -->
+
+    <div class="card">
+
+      <h2>1. Masukkan Nominal Deposit</h2>
+
+      <label class="label">
+        Jumlah Deposit
+      </label>
+
+      <input
+        type="number"
+        id="amount"
+        placeholder="Contoh: 50000"
+        min="1000"
+      >
+
+      <div class="pay-info">
+        Minimal deposit Rp1.000.
+        Pastikan nominal pembayaran sesuai dengan nominal deposit yang kamu masukkan.
+      </div>
+
+    </div>
+
+
+    <!-- PEMBAYARAN -->
+
+    <div class="card">
+
+      <h2>2. Lakukan Pembayaran</h2>
+
+      <div class="payment">
+
+        <div class="payment-name">
+          🏦 BCA
+        </div>
+
+        <div class="number" id="bcaNumber">
+          8115446297
+        </div>
+
+        <div class="owner">
+          A/N ADITYA RAHMADANI
+        </div>
+
+        <button
+          class="copy"
+          onclick="copyNumber()"
+        >
+          📋 SALIN NOMOR REKENING
+        </button>
+
+      </div>
+
+      <div class="pay-info">
+        Transfer sesuai nominal deposit ke rekening BCA di atas.
+        Setelah pembayaran berhasil, klik tombol
+        <b>SAYA SUDAH BAYAR</b>.
+      </div>
+
+    </div>
+
+
+    <!-- KONFIRMASI -->
+
+    <div class="card">
+
+      <h2>3. Konfirmasi Pembayaran</h2>
+
+      <label class="label">
+        Nomor Referensi / Catatan Pembayaran
+      </label>
+
+      <input
+        type="text"
+        id="note"
+        placeholder="Opsional"
+      >
+
+      <button
+        class="submit"
+        id="submitBtn"
+        onclick="submitDeposit()"
+      >
+        SAYA SUDAH BAYAR
+      </button>
+
+      <div id="pesan"></div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    © 2026 MAC645 — Sistem Deposit
+  </footer>
+
+
+  <script>
+
+    // ==========================================
+    // SUPABASE MAC645
+    // ==========================================
+
+    const SUPABASE_URL =
+      "https://jblilyzqozodjslgylso.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+
+
+    const client =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    // ==========================================
+    // ELEMENT
+    // ==========================================
+
+    const amountInput =
+      document.getElementById("amount");
+
+    const noteInput =
+      document.getElementById("note");
+
+    const pesan =
+      document.getElementById("pesan");
+
+    const submitBtn =
+      document.getElementById("submitBtn");
+
+
+    // ==========================================
+    // CEK LOGIN
+    // ==========================================
+
+    async function checkLogin() {
+
+      const {
+        data,
+        error
+      } = await client.auth.getSession();
+
+      if (error || !data.session) {
+
+        window.location.href = "mac.html";
+
+        return null;
+      }
+
+      return data.session;
+
+    }
+
+
+    // ==========================================
+    // SALIN NOMOR REKENING
+    // ==========================================
+
+    async function copyNumber() {
+
+      const number =
+        "8115446297";
+
+      try {
+
+        await navigator.clipboard.writeText(number);
+
+        alert(
+          "Nomor rekening BCA berhasil disalin!"
+        );
+
+      } catch (error) {
+
+        alert(
+          "Nomor rekening BCA: " + number
+        );
+
+      }
+
+    }
+
+
+    // ==========================================
+    // SUBMIT DEPOSIT
+    // ==========================================
+
+    async function submitDeposit() {
+
+      const amount =
+        Number(amountInput.value);
+
+      if (!amount || amount < 1000) {
+
+        pesan.className = "warning";
+
+        pesan.innerText =
+          "Masukkan nominal deposit minimal Rp1.000.";
+
+        return;
+
+      }
+
+
+      submitBtn.disabled = true;
+
+      pesan.className = "";
+
+      pesan.innerText =
+        "Mengirim konfirmasi deposit...";
+
+
+      try {
+
+        // Ambil session user
+
+        const {
+          data: sessionData,
+          error: sessionError
+        } = await client.auth.getSession();
+
+
+        if (
+          sessionError ||
+          !sessionData.session
+        ) {
+
+          window.location.href =
+            "mac.html";
+
+          return;
+
+        }
+
+
+        const user =
+          sessionData.session.user;
+
+
+        // Simpan data deposit
+
+        const {
+          data,
+          error
+        } = await client
+          .from("deposits")
+          .insert({
+
+            user_id: user.id,
+
+            amount: amount,
+
+            status: "pending"
+
+          })
+          .select();
+
+
+        if (error) {
+
+          console.error(error);
+
+          pesan.className = "warning";
+
+          pesan.innerText =
+            "Gagal menyimpan deposit: " +
+            error.message;
+
+          return;
+
+        }
+
+
+        pesan.className = "success";
+
+        pesan.innerText =
+          "Konfirmasi deposit berhasil dikirim. Menunggu verifikasi admin.";
+
+        amountInput.value = "";
+        noteInput.value = "";
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        pesan.className = "warning";
+
+        pesan.innerText =
+          "Terjadi kesalahan: " +
+          error.message;
+
+      } finally {
+
+        submitBtn.disabled = false;
+
+      }
+
+    }
+
+
+    // ==========================================
+    // MULAI
+    // ==========================================
+
+    checkLogin();
+
+  </script>
+
+</body>
+</html>
+```
