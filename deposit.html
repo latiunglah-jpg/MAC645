@@ -11,9 +11,9 @@
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
 
@@ -244,266 +244,313 @@
 
 <body>
 
-  <header>
-    <div class="header">
+<header>
+  <div class="header">
 
-      <div class="logo">
-        MAC<span>645</span>
-      </div>
-
-      <a href="dashboard.html" class="back">
-        ← Kembali
-      </a>
-
-    </div>
-  </header>
-
-
-  <main class="container">
-
-    <div class="title">
-      <h1>💰 Deposit Saldo</h1>
-
-      <p>
-        Transfer sesuai nominal lalu konfirmasi pembayaran kamu.
-      </p>
+    <div class="logo">
+      MAC<span>645</span>
     </div>
 
+    <a href="dashboard.html" class="back">
+      ← Kembali
+    </a>
 
-    <div class="card">
+  </div>
+</header>
 
-      <h2>🏦 Rekening Pembayaran</h2>
 
-      <div class="bank">
+<main class="container">
 
-        <div class="bank-label">
-          BANK
-        </div>
+  <div class="title">
 
-        <div class="bank-name">
-          BCA
-        </div>
+    <h1>💰 Deposit Saldo</h1>
 
-        <div class="bank-label">
-          NOMOR REKENING
-        </div>
+    <p>
+      Isi nominal deposit lalu lakukan transfer ke rekening MAC645.
+    </p>
 
-        <div class="rekening">
-          8115446297
-        </div>
+  </div>
 
-        <div class="pemilik">
-          A/N ADITYA RAHMADANI
-        </div>
 
+  <div class="card">
+
+    <h2>🏦 Rekening Pembayaran</h2>
+
+    <div class="bank">
+
+      <div class="bank-label">
+        BANK
       </div>
 
-
-      <label for="nominal">
-        Nominal Deposit
-      </label>
-
-      <input
-        type="number"
-        id="nominal"
-        placeholder="Contoh: 50000"
-        min="25000"
-        step="25000"
-      >
-
-      <div class="hint">
-        Minimal deposit Rp10.000
+      <div class="bank-name">
+        BCA
       </div>
 
-
-      <div class="total">
-        Total Transfer:
-        <span id="total">
-          Rp0
-        </span>
+      <div class="bank-label">
+        NOMOR REKENING
       </div>
 
+      <div class="rekening">
+        8115446297
+      </div>
 
-      <button
-        class="button"
-        id="transferBtn"
-        onclick="konfirmasiDeposit()"
-      >
-        SAYA SUDAH TRANSFER
-      </button>
-
-
-      <div id="pesan"></div>
-
-
-      <div class="warning">
-        ⚠️ <strong>Penting:</strong><br>
-        Pastikan nama rekening dan nominal transfer sudah benar.
-        Jangan melakukan transfer sebelum memastikan informasi
-        pembayaran pada halaman ini.
+      <div class="pemilik">
+        A/N ADITYA RAHMADANI
       </div>
 
     </div>
 
 
-    <div class="card">
+    <label for="nominal">
+      Nominal Deposit
+    </label>
 
-      <h2>📋 Cara Deposit</h2>
+    <input
+      type="number"
+      id="nominal"
+      placeholder="Minimal Rp25.000"
+      min="25000"
+      step="1000"
+    >
 
-      <p style="font-size:13px; line-height:1.8; color:#626b78;">
-        1. Masukkan nominal deposit.<br>
-        2. Transfer ke rekening BCA di atas.<br>
-        3. Pastikan nominal transfer sesuai.<br>
-        4. Setelah transfer berhasil, tekan tombol
-        <strong>Saya Sudah Transfer</strong>.<br>
-        5. Pengajuan akan tercatat dan menunggu verifikasi.
-      </p>
-
+    <div class="hint">
+      Minimal deposit Rp25.000
     </div>
 
-  </main>
+
+    <div class="total">
+      Total Transfer:
+      <span id="total">
+        Rp0
+      </span>
+    </div>
 
 
-  <footer>
-    MAC645 © 2026 — Deposit
-  </footer>
+    <button
+      class="button"
+      id="transferBtn"
+      onclick="konfirmasiDeposit()"
+    >
+      SAYA SUDAH TRANSFER
+    </button>
 
 
-  <script>
-
-    // ==========================================
-    // SUPABASE MAC645
-    // ==========================================
-
-    const SUPABASE_URL =
-      "https://jblilyzqozodjslgylso.supabase.co";
-
-    const SUPABASE_KEY =
-      "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
-
-    const client =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+    <div id="pesan"></div>
 
 
-    // ==========================================
-    // ELEMENT
-    // ==========================================
+    <div class="warning">
+      ⚠️ <strong>Penting:</strong><br>
+      Pastikan nomor rekening dan nominal transfer
+      sudah benar sebelum melakukan pembayaran.
+      Setelah transfer berhasil, tekan tombol
+      "SAYA SUDAH TRANSFER".
+    </div>
 
-    const nominalInput =
-      document.getElementById("nominal");
-
-    const total =
-      document.getElementById("total");
-
-    const pesan =
-      document.getElementById("pesan");
-
-    const transferBtn =
-      document.getElementById("transferBtn");
+  </div>
 
 
-    // ==========================================
-    // FORMAT RUPIAH
-    // ==========================================
+  <div class="card">
 
-    function formatRupiah(angka) {
+    <h2>📋 Cara Deposit</h2>
 
-      return new Intl.NumberFormat(
-        "id-ID",
-        {
-          style: "currency",
-          currency: "IDR",
-          maximumFractionDigits: 0
-        }
-      ).format(angka);
+    <p style="font-size:13px; line-height:1.8; color:#626b78;">
 
-    }
+      1. Masukkan nominal deposit minimal Rp25.000.<br>
+
+      2. Transfer ke rekening BCA
+      <strong>8115446297</strong>.<br>
+
+      3. Nama rekening:
+      <strong>ADITYA RAHMADANI</strong>.<br>
+
+      4. Setelah transfer berhasil,
+      tekan tombol <strong>SAYA SUDAH TRANSFER</strong>.<br>
+
+      5. Pengajuan deposit akan masuk ke sistem
+      untuk menunggu verifikasi.
+
+    </p>
+
+  </div>
+
+</main>
 
 
-    // ==========================================
-    // UPDATE NOMINAL
-    // ==========================================
+<footer>
+  MAC645 © 2026 — Deposit
+</footer>
 
-    nominalInput.addEventListener(
-      "input",
-      function() {
 
-        const nominal =
-          Number(nominalInput.value) || 0;
+<script>
 
-        total.innerText =
-          formatRupiah(nominal);
+  // ==========================================
+  // SUPABASE MAC645
+  // ==========================================
 
-      }
+  const SUPABASE_URL =
+    "https://jblilyzqozodjslgylso.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+
+
+  const client =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
     );
 
 
-    // ==========================================
-    // PESAN
-    // ==========================================
+  // ==========================================
+  // ELEMENT
+  // ==========================================
 
-    function tampilPesan(text, type) {
+  const nominalInput =
+    document.getElementById("nominal");
 
-      pesan.innerText = text;
+  const total =
+    document.getElementById("total");
 
-      pesan.className = type || "";
+  const pesan =
+    document.getElementById("pesan");
 
-    }
-
-
-    // ==========================================
-    // CEK LOGIN
-    // ==========================================
-
-    async function checkLogin() {
-
-      const {
-        data,
-        error
-      } = await client.auth.getSession();
+  const transferBtn =
+    document.getElementById("transferBtn");
 
 
-      if (error || !data.session) {
+  // ==========================================
+  // FORMAT RUPIAH
+  // ==========================================
 
-        window.location.href =
-          "mac.html";
+  function formatRupiah(angka) {
 
-        return false;
-
+    return new Intl.NumberFormat(
+      "id-ID",
+      {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0
       }
+    ).format(angka);
 
-      return true;
-
-    }
+  }
 
 
-    // ==========================================
-    // KONFIRMASI DEPOSIT
-    // ==========================================
+  // ==========================================
+  // UPDATE TOTAL
+  // ==========================================
 
-    async function konfirmasiDeposit() {
-
-      const loggedIn =
-        await checkLogin();
-
-      if (!loggedIn) {
-        return;
-      }
-
+  nominalInput.addEventListener(
+    "input",
+    function() {
 
       const nominal =
-        Number(nominalInput.value);
+        Number(nominalInput.value) || 0;
+
+      total.innerText =
+        formatRupiah(nominal);
+
+    }
+  );
 
 
-      // Cek nominal
+  // ==========================================
+  // PESAN
+  // ==========================================
 
-      if (!nominal || nominal < 10000) {
+  function tampilPesan(text, type) {
+
+    pesan.innerText = text;
+
+    pesan.className = type || "";
+
+  }
+
+
+  // ==========================================
+  // CEK LOGIN
+  // ==========================================
+
+  async function checkLogin() {
+
+    const {
+      data,
+      error
+    } = await client.auth.getSession();
+
+
+    if (error || !data.session) {
+
+      window.location.href =
+        "mac.html";
+
+      return false;
+
+    }
+
+    return true;
+
+  }
+
+
+  // ==========================================
+  // KONFIRMASI DEPOSIT
+  // ==========================================
+
+  async function konfirmasiDeposit() {
+
+    const loggedIn =
+      await checkLogin();
+
+    if (!loggedIn) {
+      return;
+    }
+
+
+    const nominal =
+      Number(nominalInput.value);
+
+
+    // ========================================
+    // VALIDASI MINIMAL RP25.000
+    // ========================================
+
+    if (!nominal || nominal < 25000) {
+
+      tampilPesan(
+        "Minimal deposit adalah Rp25.000.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    transferBtn.disabled = true;
+
+    tampilPesan(
+      "Menyimpan pengajuan deposit...",
+      ""
+    );
+
+
+    try {
+
+      // ======================================
+      // AMBIL USER LOGIN
+      // ======================================
+
+      const {
+        data: userData,
+        error: userError
+      } = await client.auth.getUser();
+
+
+      if (userError || !userData.user) {
 
         tampilPesan(
-          "Minimal deposit adalah Rp10.000.",
+          "Sesi login tidak ditemukan.",
           "error"
         );
 
@@ -512,111 +559,81 @@
       }
 
 
-      transferBtn.disabled = true;
-
-      tampilPesan(
-        "Menyimpan pengajuan deposit...",
-        ""
-      );
+      const user =
+        userData.user;
 
 
-      try {
+      // ======================================
+      // SIMPAN KE TABEL deposits
+      // ======================================
 
-        // Ambil user yang sedang login
-
-        const {
-          data: userData,
-          error: userError
-        } = await client.auth.getUser();
-
-
-        if (userError || !userData.user) {
-
-          tampilPesan(
-            "Sesi login tidak ditemukan.",
-            "error"
-          );
-
-          return;
-
-        }
+      const {
+        error
+      } = await client
+        .from("deposits")
+        .insert([
+          {
+            user_id: user.id,
+            amount: nominal,
+            status: "pending"
+          }
+        ]);
 
 
-        const user =
-          userData.user;
-
-
-        // ======================================
-        // SIMPAN KE TABEL deposits
-        // ======================================
-
-        const {
-          data,
-          error
-        } = await client
-          .from("deposits")
-          .insert([
-
-            {
-              user_id: user.id,
-              amount: nominal,
-              status: "pending"
-            }
-
-          ])
-          .select();
-
-
-        if (error) {
-
-          tampilPesan(
-            "Gagal menyimpan deposit: " +
-            error.message,
-            "error"
-          );
-
-          return;
-
-        }
-
+      if (error) {
 
         tampilPesan(
-          "Pengajuan deposit berhasil dikirim! " +
-          "Silakan tunggu verifikasi.",
-          "success"
-        );
-
-
-        nominalInput.value = "";
-
-        total.innerText =
-          "Rp0";
-
-
-      } catch (error) {
-
-        tampilPesan(
-          "Terjadi kesalahan: " +
+          "Gagal menyimpan deposit: " +
           error.message,
           "error"
         );
 
-      } finally {
-
-        transferBtn.disabled = false;
+        return;
 
       }
 
+
+      // ======================================
+      // BERHASIL
+      // ======================================
+
+      tampilPesan(
+        "Pengajuan deposit berhasil dikirim. " +
+        "Silakan tunggu verifikasi.",
+        "success"
+      );
+
+
+      nominalInput.value = "";
+
+      total.innerText =
+        "Rp0";
+
+
+    } catch (error) {
+
+      tampilPesan(
+        "Terjadi kesalahan: " +
+        error.message,
+        "error"
+      );
+
+    } finally {
+
+      transferBtn.disabled = false;
+
     }
 
+  }
 
-    // ==========================================
-    // JALANKAN CEK LOGIN
-    // ==========================================
 
-    checkLogin();
+  // ==========================================
+  // CEK LOGIN SAAT HALAMAN DIBUKA
+  // ==========================================
 
-  </script>
+  checkLogin();
+
+</script>
 
 </body>
 </html>
