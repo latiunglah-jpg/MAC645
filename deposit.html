@@ -1,5 +1,5 @@
-
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -17,6 +17,7 @@
 
     body {
       margin: 0;
+      min-height: 100vh;
       background: #f5f6f8;
       color: #202124;
     }
@@ -24,21 +25,24 @@
     header {
       background: white;
       border-bottom: 1px solid #e4e7eb;
-      padding: 18px 20px;
     }
 
     .header {
       max-width: 900px;
       margin: auto;
+      min-height: 65px;
+      padding: 12px 20px;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
       font-size: 27px;
       font-weight: 900;
       color: #087cff;
+      letter-spacing: 1px;
     }
 
     .logo span {
@@ -54,137 +58,175 @@
 
     .container {
       max-width: 650px;
-      margin: 30px auto;
-      padding: 0 15px 50px;
+      margin: auto;
+      padding: 30px 15px 50px;
     }
 
-    .box {
+    .card {
       background: white;
       border: 1px solid #e4e7eb;
       border-radius: 16px;
       padding: 25px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.05);
+      margin-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
     }
 
     h1 {
-      margin-top: 0;
+      margin: 0 0 8px;
       font-size: 25px;
     }
 
     .subtitle {
-      color: #707783;
-      font-size: 14px;
-      line-height: 1.6;
+      color: #737b88;
+      font-size: 13px;
       margin-bottom: 25px;
     }
 
-    .rekening {
-      background: #edf6ff;
-      border: 1px solid #cfe6ff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 25px;
-    }
-
-    .rekening small {
-      color: #667085;
+    .label {
       display: block;
-      margin-bottom: 7px;
-    }
-
-    .bank {
-      font-size: 20px;
       font-weight: bold;
-      color: #087cff;
+      font-size: 13px;
       margin-bottom: 10px;
     }
 
-    .nomor {
-      font-size: 25px;
+    .rekening-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rekening {
+      border: 2px solid #e2e6ec;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: .2s;
+      background: white;
+    }
+
+    .rekening:hover {
+      border-color: #087cff;
+    }
+
+    .rekening.selected {
+      border-color: #087cff;
+      background: #f1f7ff;
+    }
+
+    .rekening input {
+      display: none;
+    }
+
+    .bank {
+      font-size: 15px;
       font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 7px;
-    }
-
-    .pemilik {
-      font-size: 14px;
-      color: #555;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: bold;
+      color: #087cff;
       margin-bottom: 8px;
     }
 
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #d5d9e0;
-      border-radius: 9px;
-      font-size: 16px;
-      outline: none;
-      margin-bottom: 15px;
+    .nomor {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
     }
 
-    input:focus {
+    .nama {
+      color: #737b88;
+      font-size: 12px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d9dde4;
+      border-radius: 9px;
+      outline: none;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+
+    input[type="number"]:focus {
       border-color: #087cff;
     }
 
     .info {
       background: #fff8e6;
-      border: 1px solid #f1d78a;
+      border: 1px solid #f2d48a;
+      color: #765b16;
       padding: 13px;
       border-radius: 9px;
       font-size: 12px;
       line-height: 1.6;
-      margin-bottom: 18px;
+      margin-top: 15px;
     }
 
-    button {
+    .btn {
       width: 100%;
       border: 0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
       background: #087cff;
       color: white;
-      padding: 15px;
-      border-radius: 9px;
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    button:hover {
+    .btn:hover {
       opacity: .9;
     }
 
-    button:disabled {
+    .btn:disabled {
       opacity: .6;
       cursor: not-allowed;
     }
 
     #pesan {
       text-align: center;
+      min-height: 20px;
       margin-top: 15px;
       font-size: 13px;
-      min-height: 20px;
       line-height: 1.5;
     }
 
-    .error {
-      color: #d92d20;
+    .success {
+      color: #0b9d63;
     }
 
-    .success {
-      color: #079455;
+    .error {
+      color: #d93025;
     }
 
     .loading {
       text-align: center;
-      color: #667085;
+      color: #737b88;
+      font-size: 13px;
       padding: 20px;
     }
+
+    .empty {
+      background: #fff1f1;
+      border: 1px solid #ffcaca;
+      color: #a52222;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media(max-width: 500px) {
+      .card {
+        padding: 20px;
+      }
+
+      .nomor {
+        font-size: 18px;
+      }
+    }
   </style>
+
 </head>
 
 <body>
@@ -192,73 +234,83 @@
 <header>
   <div class="header">
 
-    <div class="logo">
-      MAC<span>645</span>
-    </div>
+```
+<div class="logo">
+  MAC<span>645</span>
+</div>
 
-    <a href="dashboard.html" class="back">
-      ← Kembali
-    </a>
+<a class="back" href="dashboard.html">
+  ← Dashboard
+</a>
+```
 
   </div>
 </header>
 
-
 <main class="container">
 
-  <div class="box">
+  <div class="card">
 
-    <h1>💰 Deposit</h1>
+```
+<h1>💰 Deposit</h1>
 
-    <div class="subtitle">
-      Silakan transfer sesuai nominal deposit ke rekening
-      yang tersedia di bawah ini.
-    </div>
-
-
-    <!-- REKENING AKTIF -->
-
-    <div id="rekeningArea" class="loading">
-      Memuat rekening...
-    </div>
+<div class="subtitle">
+  Tambahkan saldo ke akun MAC645 kamu.
+</div>
 
 
-    <!-- NOMINAL -->
+<label class="label">
+  Pilih Rekening Pembayaran
+</label>
 
-    <label for="amount">
-      Nominal Deposit
-    </label>
+<div id="rekeningList" class="rekening-list">
 
-    <input
-      type="number"
-      id="amount"
-      min="25000"
-      placeholder="Minimal Rp25.000"
-    >
+  <div class="loading">
+    Memuat rekening pembayaran...
+  </div>
 
-
-    <div class="info">
-      <b>Perhatian:</b><br>
-      Minimal deposit adalah <b>Rp25.000</b>.
-      Pastikan nama rekening dan nomor rekening tujuan
-      sesuai sebelum melakukan transfer.
-    </div>
+</div>
 
 
-    <button
-      id="transferBtn"
-      onclick="ajukanDeposit()"
-    >
-      SAYA SUDAH TRANSFER
-    </button>
+<div style="margin-top:25px;">
+
+  <label class="label" for="amount">
+    Nominal Deposit
+  </label>
+
+  <input
+    type="number"
+    id="amount"
+    min="25000"
+    step="1000"
+    placeholder="Minimal Rp25.000"
+  >
+
+</div>
 
 
-    <div id="pesan"></div>
+<div class="info">
+  <b>Minimal deposit Rp25.000.</b><br>
+  Silakan transfer sesuai nominal yang kamu masukkan
+  ke rekening yang dipilih. Setelah transfer berhasil,
+  tekan tombol <b>Saya Sudah Transfer</b>.
+</div>
+
+
+<button
+  id="submitBtn"
+  class="btn"
+  onclick="submitDeposit()"
+>
+  SAYA SUDAH TRANSFER
+</button>
+
+<div id="pesan"></div>
+```
 
   </div>
 
 </main>
-
 
 <script>
 
@@ -283,37 +335,27 @@
   // ELEMENT
   // ==========================================
 
-  const rekeningArea =
-    document.getElementById("rekeningArea");
+  const rekeningList =
+    document.getElementById("rekeningList");
 
   const amountInput =
     document.getElementById("amount");
 
-  const transferBtn =
-    document.getElementById("transferBtn");
+  const submitBtn =
+    document.getElementById("submitBtn");
 
   const pesan =
     document.getElementById("pesan");
 
 
-  // ==========================================
-  // FORMAT RUPIAH
-  // ==========================================
-
-  function rupiah(angka) {
-
-    return new Intl.NumberFormat(
-      "id-ID"
-    ).format(angka);
-
-  }
+  let selectedAccount = null;
 
 
   // ==========================================
-  // TAMPIL PESAN
+  // PESAN
   // ==========================================
 
-  function tampilPesan(text, type) {
+  function showMessage(text, type) {
 
     pesan.innerText = text;
 
@@ -326,7 +368,7 @@
   // CEK LOGIN
   // ==========================================
 
-  async function cekLogin() {
+  async function checkLogin() {
 
     const {
       data,
@@ -337,25 +379,23 @@
 
       window.location.href = "mac.html";
 
-      return null;
-
+      return false;
     }
 
-    return data.session;
-
+    return true;
   }
 
 
   // ==========================================
-  // AMBIL REKENING AKTIF
+  // LOAD REKENING
   // ==========================================
 
-  async function loadRekening() {
+  async function loadAccounts() {
 
-    const session =
-      await cekLogin();
+    const loggedIn =
+      await checkLogin();
 
-    if (!session) return;
+    if (!loggedIn) return;
 
 
     const {
@@ -363,9 +403,7 @@
       error
     } = await client
       .from("payment_accounts")
-      .select(
-        "slot, bank, account_number, account_name"
-      )
+      .select("*")
       .eq("is_active", true)
       .order("slot", {
         ascending: true
@@ -374,148 +412,241 @@
 
     if (error) {
 
-      rekeningArea.innerHTML =
-        '<div class="error">' +
-        "Gagal mengambil rekening: " +
-        error.message +
-        "</div>";
-
-      transferBtn.disabled = true;
+      rekeningList.innerHTML = `
+        <div class="empty">
+          Gagal mengambil rekening pembayaran.<br><br>
+          ${error.message}
+        </div>
+      `;
 
       return;
-
     }
 
 
     if (!data || data.length === 0) {
 
-      rekeningArea.innerHTML =
-        '<div class="error">' +
-        "Belum ada rekening pembayaran yang aktif." +
-        "</div>";
-
-      transferBtn.disabled = true;
+      rekeningList.innerHTML = `
+        <div class="empty">
+          Belum ada rekening pembayaran yang aktif.<br>
+          Silakan aktifkan rekening di Supabase.
+        </div>
+      `;
 
       return;
-
     }
 
 
-    // Tampilkan rekening aktif pertama
-
-    const rekening = data[0];
+    rekeningList.innerHTML = "";
 
 
-    rekeningArea.innerHTML = `
+    data.forEach(function(account, index) {
 
-      <div class="rekening">
+      const div =
+        document.createElement("label");
 
-        <small>
-          Transfer ke rekening
-        </small>
+      div.className = "rekening";
+
+      div.innerHTML = `
+
+        <input
+          type="radio"
+          name="rekening"
+          value="${account.id}"
+        >
 
         <div class="bank">
-          ${rekening.bank}
+          🏦 ${escapeHtml(account.bank || "BANK")}
         </div>
 
         <div class="nomor">
-          ${rekening.account_number}
+          ${escapeHtml(account.account_number || "-")}
         </div>
 
-        <div class="pemilik">
-          A/N ${rekening.account_name}
+        <div class="nama">
+          A/N ${escapeHtml(account.account_name || "-")}
         </div>
 
-      </div>
+      `;
 
-    `;
+
+      const radio =
+        div.querySelector("input");
+
+
+      radio.addEventListener(
+        "change",
+        function() {
+
+          document
+            .querySelectorAll(".rekening")
+            .forEach(function(item) {
+              item.classList.remove("selected");
+            });
+
+          div.classList.add("selected");
+
+          selectedAccount = account;
+
+          showMessage("", "");
+
+        }
+      );
+
+
+      rekeningList.appendChild(div);
+
+    });
 
   }
 
 
   // ==========================================
-  // AJUKAN DEPOSIT
+  // ESCAPE HTML
   // ==========================================
 
-  async function ajukanDeposit() {
+  function escapeHtml(value) {
 
-    const session =
-      await cekLogin();
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
-    if (!session) return;
+  }
+
+
+  // ==========================================
+  // SUBMIT DEPOSIT
+  // ==========================================
+
+  async function submitDeposit() {
+
+    showMessage("", "");
+
+
+    if (!selectedAccount) {
+
+      showMessage(
+        "Silakan pilih rekening pembayaran terlebih dahulu.",
+        "error"
+      );
+
+      return;
+    }
 
 
     const amount =
       Number(amountInput.value);
 
 
-    // Minimal deposit
-
     if (!amount || amount < 25000) {
 
-      tampilPesan(
+      showMessage(
         "Minimal deposit adalah Rp25.000.",
         "error"
       );
 
       return;
-
     }
 
 
-    transferBtn.disabled = true;
+    const {
+      data: sessionData,
+      error: sessionError
+    } = await client.auth.getSession();
 
-    tampilPesan(
-      "Mengirim pengajuan deposit...",
-      ""
-    );
+
+    if (
+      sessionError ||
+      !sessionData.session
+    ) {
+
+      window.location.href = "mac.html";
+
+      return;
+    }
+
+
+    const user =
+      sessionData.session.user;
+
+
+    submitBtn.disabled = true;
+
+    submitBtn.innerText =
+      "MENGIRIM DATA...";
 
 
     try {
 
+      /*
+        Menyimpan pengajuan deposit.
+
+        Tabel deposits yang digunakan:
+        id
+        user_id
+        amount
+        status
+        created_at
+      */
+
       const {
+        data,
         error
       } = await client
         .from("deposits")
         .insert({
 
-          user_id:
-            session.user.id,
+          user_id: user.id,
 
-          amount:
-            amount,
+          amount: amount,
 
-          status:
-            "pending"
+          status: "pending"
 
-        });
+        })
+        .select()
+        .single();
 
 
       if (error) {
 
-        tampilPesan(
+        showMessage(
           "Gagal mengirim deposit: " +
           error.message,
           "error"
         );
 
         return;
-
       }
 
 
-      tampilPesan(
-        "Pengajuan deposit berhasil dikirim. Silakan tunggu verifikasi admin.",
+      showMessage(
+        "Pengajuan deposit berhasil! Silakan tunggu konfirmasi admin.",
         "success"
       );
 
 
       amountInput.value = "";
 
+      document
+        .querySelectorAll('input[name="rekening"]')
+        .forEach(function(input) {
+          input.checked = false;
+        });
+
+      document
+        .querySelectorAll(".rekening")
+        .forEach(function(item) {
+          item.classList.remove("selected");
+        });
+
+      selectedAccount = null;
+
 
     } catch (error) {
 
-      tampilPesan(
+      showMessage(
         "Terjadi kesalahan: " +
         error.message,
         "error"
@@ -523,7 +654,10 @@
 
     } finally {
 
-      transferBtn.disabled = false;
+      submitBtn.disabled = false;
+
+      submitBtn.innerText =
+        "SAYA SUDAH TRANSFER";
 
     }
 
@@ -531,13 +665,12 @@
 
 
   // ==========================================
-  // JALANKAN
+  // START
   // ==========================================
 
-  loadRekening();
+  loadAccounts();
 
 </script>
 
 </body>
 </html>
-```
