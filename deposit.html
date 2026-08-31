@@ -12,115 +12,65 @@
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
     }
 
     body {
+      margin: 0;
+      min-height: 100vh;
       background: #f5f6f8;
       color: #202124;
-      min-height: 100vh;
-    }
-
-    header {
-      background: white;
-      border-bottom: 1px solid #e4e7eb;
     }
 
     .header {
-      max-width: 1000px;
-      margin: auto;
-      min-height: 68px;
-      padding: 12px 20px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: white;
+      border-bottom: 1px solid #e4e7eb;
+      padding: 18px 20px;
     }
 
     .logo {
-      font-size: 27px;
+      max-width: 900px;
+      margin: auto;
+      font-size: 26px;
       font-weight: 900;
       color: #087cff;
-      letter-spacing: 1px;
     }
 
     .logo span {
       color: #ff8a00;
     }
 
-    .back {
-      color: #087cff;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
     .container {
       max-width: 700px;
       margin: auto;
-      padding: 30px 20px 60px;
-    }
-
-    .title {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .title h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .title p {
-      color: #737b87;
-      font-size: 13px;
+      padding: 30px 20px 50px;
     }
 
     .card {
       background: white;
-      border: 1px solid #e2e6eb;
+      border: 1px solid #e1e5ea;
       border-radius: 16px;
       padding: 25px;
-      margin-bottom: 18px;
-    }
-
-    .card h2 {
-      font-size: 18px;
-      margin-bottom: 18px;
-    }
-
-    .bank {
-      background: linear-gradient(135deg, #087cff, #0056cf);
-      color: white;
-      border-radius: 14px;
-      padding: 22px;
       margin-bottom: 20px;
     }
 
-    .bank-label {
-      font-size: 12px;
-      opacity: .85;
-      margin-bottom: 8px;
+    h1 {
+      margin-top: 0;
+      font-size: 26px;
     }
 
-    .bank-name {
-      font-size: 25px;
-      font-weight: 900;
-      margin-bottom: 15px;
+    h2 {
+      font-size: 18px;
+      margin-top: 0;
     }
 
-    .rekening {
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .pemilik {
-      margin-top: 8px;
-      font-size: 13px;
-      opacity: .9;
+    .info {
+      background: #edf6ff;
+      border-radius: 10px;
+      padding: 15px;
+      color: #087cff;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
     label {
@@ -133,425 +83,348 @@
     input {
       width: 100%;
       padding: 13px;
-
-      border: 1px solid #d6dbe2;
+      border: 1px solid #d5dae1;
       border-radius: 9px;
-
-      outline: none;
       font-size: 15px;
-      background: #f9fafb;
+      outline: none;
+      margin-bottom: 18px;
     }
 
     input:focus {
       border-color: #087cff;
-      background: white;
     }
 
-    .hint {
-      margin-top: 7px;
-      color: #7b8491;
-      font-size: 11px;
+    .accounts {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .total {
-      margin-top: 18px;
-      padding: 14px;
-      background: #edf6ff;
-      border-radius: 9px;
-      color: #087cff;
+    .account {
+      border: 2px solid #e1e5ea;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .account:hover {
+      border-color: #087cff;
+    }
+
+    .account.active {
+      border-color: #087cff;
+      background: #f2f8ff;
+    }
+
+    .bank {
+      font-size: 16px;
       font-weight: bold;
-      font-size: 14px;
+      margin-bottom: 8px;
     }
 
-    .button {
-      width: 100%;
-      margin-top: 18px;
-      padding: 14px;
+    .number {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
 
+    .owner {
+      margin-top: 5px;
+      color: #707985;
+      font-size: 13px;
+    }
+
+    .copy {
+      margin-top: 10px;
       border: 0;
-      border-radius: 9px;
-
       background: #087cff;
       color: white;
+      padding: 8px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 12px;
+    }
 
-      font-size: 14px;
+    .submit {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 15px;
+      background: #087cff;
+      color: white;
+      font-size: 15px;
       font-weight: bold;
-
       cursor: pointer;
     }
 
-    .button:hover {
-      opacity: .9;
-    }
-
-    .button:disabled {
+    .submit:disabled {
       opacity: .6;
       cursor: not-allowed;
-    }
-
-    .warning {
-      background: #fff8e6;
-      border: 1px solid #f0d58a;
-      color: #765b15;
-
-      padding: 14px;
-      border-radius: 10px;
-
-      font-size: 12px;
-      line-height: 1.6;
-      margin-top: 18px;
     }
 
     #pesan {
       text-align: center;
       margin-top: 15px;
-      font-size: 13px;
-      min-height: 20px;
+      font-size: 14px;
       line-height: 1.5;
     }
 
-    .success {
-      color: #07945d;
-    }
-
-    .error {
-      color: #d93025;
-    }
-
-    footer {
+    .back {
+      display: block;
       text-align: center;
-      background: #101828;
-      color: #aeb7c6;
-      padding: 25px;
-      font-size: 12px;
-    }
-
-    @media(max-width: 500px) {
-      .container {
-        padding: 20px 12px 40px;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      .rekening {
-        font-size: 21px;
-      }
+      margin-top: 20px;
+      color: #087cff;
+      text-decoration: none;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-<header>
   <div class="header">
-
     <div class="logo">
       MAC<span>645</span>
     </div>
-
-    <a href="dashboard.html" class="back">
-      ← Kembali
-    </a>
-
-  </div>
-</header>
-
-
-<main class="container">
-
-  <div class="title">
-
-    <h1>💰 Deposit Saldo</h1>
-
-    <p>
-      Isi nominal deposit lalu lakukan transfer ke rekening MAC645.
-    </p>
-
   </div>
 
+  <main class="container">
 
-  <div class="card">
+    <div class="card">
 
-    <h2>🏦 Rekening Pembayaran</h2>
+      <h1>💰 Deposit MAC645</h1>
 
-    <div class="bank">
-
-      <div class="bank-label">
-        BANK
+      <div class="info">
+        Minimal deposit adalah <strong>Rp25.000</strong>.
+        Silakan pilih rekening dan lakukan transfer sesuai nominal.
       </div>
 
-      <div class="bank-name">
-        BCA
-      </div>
+      <h2>Pilih Rekening</h2>
 
-      <div class="bank-label">
-        NOMOR REKENING
-      </div>
+      <div class="accounts" id="accounts"></div>
 
-      <div class="rekening">
-        8115446297
-      </div>
+      <label for="amount">
+        Nominal Deposit
+      </label>
 
-      <div class="pemilik">
-        A/N ADITYA RAHMADANI
-      </div>
+      <input
+        type="number"
+        id="amount"
+        min="25000"
+        placeholder="Minimal Rp25.000"
+      >
+
+      <label for="sender">
+        Nama Pengirim
+      </label>
+
+      <input
+        type="text"
+        id="sender"
+        placeholder="Nama sesuai rekening pengirim"
+      >
+
+      <button
+        class="submit"
+        id="submitBtn"
+        onclick="submitDeposit()"
+      >
+        SAYA SUDAH TRANSFER
+      </button>
+
+      <div id="pesan"></div>
+
+      <a href="dashboard.html" class="back">
+        ← Kembali ke Dashboard
+      </a>
 
     </div>
 
+  </main>
 
-    <label for="nominal">
-      Nominal Deposit
-    </label>
+  <script>
 
-    <input
-      type="number"
-      id="nominal"
-      placeholder="Minimal Rp25.000"
-      min="25000"
-      step="1000"
-    >
+    // ==============================
+    // SUPABASE
+    // ==============================
 
-    <div class="hint">
-      Minimal deposit Rp25.000
-    </div>
+    const SUPABASE_URL =
+      "https://jblilyzqozodjslgylso.supabase.co";
 
+    const SUPABASE_KEY =
+      "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
-    <div class="total">
-      Total Transfer:
-      <span id="total">
-        Rp0
-      </span>
-    </div>
+    const client =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
 
 
-    <button
-      class="button"
-      id="transferBtn"
-      onclick="konfirmasiDeposit()"
-    >
-      SAYA SUDAH TRANSFER
-    </button>
+    // ==============================
+    // REKENING DEPOSIT
+    // ==============================
 
+    const accounts = [
 
-    <div id="pesan"></div>
-
-
-    <div class="warning">
-      ⚠️ <strong>Penting:</strong><br>
-      Pastikan nomor rekening dan nominal transfer
-      sudah benar sebelum melakukan pembayaran.
-      Setelah transfer berhasil, tekan tombol
-      "SAYA SUDAH TRANSFER".
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h2>📋 Cara Deposit</h2>
-
-    <p style="font-size:13px; line-height:1.8; color:#626b78;">
-
-      1. Masukkan nominal deposit minimal Rp25.000.<br>
-
-      2. Transfer ke rekening BCA
-      <strong>8115446297</strong>.<br>
-
-      3. Nama rekening:
-      <strong>ADITYA RAHMADANI</strong>.<br>
-
-      4. Setelah transfer berhasil,
-      tekan tombol <strong>SAYA SUDAH TRANSFER</strong>.<br>
-
-      5. Pengajuan deposit akan masuk ke sistem
-      untuk menunggu verifikasi.
-
-    </p>
-
-  </div>
-
-</main>
-
-
-<footer>
-  MAC645 © 2026 — Deposit
-</footer>
-
-
-<script>
-
-  // ==========================================
-  // SUPABASE MAC645
-  // ==========================================
-
-  const SUPABASE_URL =
-    "https://jblilyzqozodjslgylso.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
-
-
-  const client =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-
-  // ==========================================
-  // ELEMENT
-  // ==========================================
-
-  const nominalInput =
-    document.getElementById("nominal");
-
-  const total =
-    document.getElementById("total");
-
-  const pesan =
-    document.getElementById("pesan");
-
-  const transferBtn =
-    document.getElementById("transferBtn");
-
-
-  // ==========================================
-  // FORMAT RUPIAH
-  // ==========================================
-
-  function formatRupiah(angka) {
-
-    return new Intl.NumberFormat(
-      "id-ID",
       {
-        style: "currency",
-        currency: "IDR",
-        maximumFractionDigits: 0
+        bank: "BCA",
+        number: "8115446297",
+        owner: "ADITYA RAHMADANI"
       }
-    ).format(angka);
 
-  }
+      // Tambahkan rekening lain di sini.
+      //
+      // Contoh:
+      //
+      // {
+      //   bank: "BRI",
+      //   number: "1234567890",
+      //   owner: "NAMA PEMILIK"
+      // }
 
-
-  // ==========================================
-  // UPDATE TOTAL
-  // ==========================================
-
-  nominalInput.addEventListener(
-    "input",
-    function() {
-
-      const nominal =
-        Number(nominalInput.value) || 0;
-
-      total.innerText =
-        formatRupiah(nominal);
-
-    }
-  );
+    ];
 
 
-  // ==========================================
-  // PESAN
-  // ==========================================
-
-  function tampilPesan(text, type) {
-
-    pesan.innerText = text;
-
-    pesan.className = type || "";
-
-  }
+    let selectedAccount = null;
 
 
-  // ==========================================
-  // CEK LOGIN
-  // ==========================================
+    // ==============================
+    // TAMPILKAN REKENING
+    // ==============================
 
-  async function checkLogin() {
+    function renderAccounts() {
 
-    const {
-      data,
-      error
-    } = await client.auth.getSession();
+      const container =
+        document.getElementById("accounts");
 
+      container.innerHTML = "";
 
-    if (error || !data.session) {
+      accounts.forEach((account, index) => {
 
-      window.location.href =
-        "mac.html";
+        const div =
+          document.createElement("div");
 
-      return false;
+        div.className = "account";
 
-    }
+        div.onclick = function() {
 
-    return true;
+          selectAccount(index);
 
-  }
+        };
 
+        div.innerHTML = `
 
-  // ==========================================
-  // KONFIRMASI DEPOSIT
-  // ==========================================
+          <div class="bank">
+            🏦 ${account.bank}
+          </div>
 
-  async function konfirmasiDeposit() {
+          <div class="number">
+            ${account.number}
+          </div>
 
-    const loggedIn =
-      await checkLogin();
+          <div class="owner">
+            ${account.owner}
+          </div>
 
-    if (!loggedIn) {
-      return;
-    }
+          <button
+            class="copy"
+            onclick="event.stopPropagation(); copyAccount('${account.number}')"
+          >
+            SALIN REKENING
+          </button>
 
+        `;
 
-    const nominal =
-      Number(nominalInput.value);
+        container.appendChild(div);
 
-
-    // ========================================
-    // VALIDASI MINIMAL RP25.000
-    // ========================================
-
-    if (!nominal || nominal < 25000) {
-
-      tampilPesan(
-        "Minimal deposit adalah Rp25.000.",
-        "error"
-      );
-
-      return;
+      });
 
     }
 
 
-    transferBtn.disabled = true;
+    // ==============================
+    // PILIH REKENING
+    // ==============================
 
-    tampilPesan(
-      "Menyimpan pengajuan deposit...",
-      ""
-    );
+    function selectAccount(index) {
+
+      selectedAccount = accounts[index];
+
+      document
+        .querySelectorAll(".account")
+        .forEach(function(card, i) {
+
+          card.classList.toggle(
+            "active",
+            i === index
+          );
+
+        });
+
+    }
 
 
-    try {
+    // ==============================
+    // SALIN REKENING
+    // ==============================
 
-      // ======================================
-      // AMBIL USER LOGIN
-      // ======================================
+    async function copyAccount(number) {
 
-      const {
-        data: userData,
-        error: userError
-      } = await client.auth.getUser();
+      try {
 
-
-      if (userError || !userData.user) {
+        await navigator.clipboard.writeText(number);
 
         tampilPesan(
-          "Sesi login tidak ditemukan.",
-          "error"
+          "Nomor rekening berhasil disalin."
+        );
+
+      } catch {
+
+        tampilPesan(
+          "Nomor rekening: " + number
+        );
+
+      }
+
+    }
+
+
+    // ==============================
+    // PESAN
+    // ==============================
+
+    function tampilPesan(text) {
+
+      document.getElementById("pesan").innerText =
+        text;
+
+    }
+
+
+    // ==============================
+    // SUBMIT DEPOSIT
+    // ==============================
+
+    async function submitDeposit() {
+
+      const amount =
+        Number(
+          document.getElementById("amount").value
+        );
+
+      const sender =
+        document.getElementById("sender").value.trim();
+
+      const button =
+        document.getElementById("submitBtn");
+
+
+      if (!selectedAccount) {
+
+        tampilPesan(
+          "Silakan pilih rekening tujuan terlebih dahulu."
         );
 
         return;
@@ -559,81 +432,156 @@
       }
 
 
-      const user =
-        userData.user;
+      if (!amount || amount < 25000) {
+
+        tampilPesan(
+          "Minimal deposit adalah Rp25.000."
+        );
+
+        return;
+
+      }
 
 
-      // ======================================
-      // SIMPAN KE TABEL deposits
-      // ======================================
+      if (!sender) {
+
+        tampilPesan(
+          "Nama pengirim wajib diisi."
+        );
+
+        return;
+
+      }
+
+
+      button.disabled = true;
+
+      tampilPesan(
+        "Mengirim pengajuan deposit..."
+      );
+
+
+      try {
+
+        const {
+          data: sessionData,
+          error: sessionError
+        } = await client.auth.getSession();
+
+
+        if (
+          sessionError ||
+          !sessionData.session
+        ) {
+
+          window.location.href =
+            "mac.html";
+
+          return;
+
+        }
+
+
+        const user =
+          sessionData.session.user;
+
+
+        // ==========================
+        // SIMPAN KE SUPABASE
+        // ==========================
+
+        const { error } =
+          await client
+            .from("deposits")
+            .insert({
+
+              user_id: user.id,
+
+              amount: amount,
+
+              payment_method:
+                selectedAccount.bank,
+
+              sender_name: sender,
+
+              status: "pending"
+
+            });
+
+
+        if (error) {
+
+          tampilPesan(
+            "Gagal menyimpan deposit: " +
+            error.message
+          );
+
+          return;
+
+        }
+
+
+        tampilPesan(
+          "Pengajuan deposit berhasil dikirim. Silakan tunggu verifikasi admin."
+        );
+
+
+        document.getElementById("amount").value =
+          "";
+
+        document.getElementById("sender").value =
+          "";
+
+
+      } catch (error) {
+
+        tampilPesan(
+          "Terjadi kesalahan: " +
+          error.message
+        );
+
+      } finally {
+
+        button.disabled = false;
+
+      }
+
+    }
+
+
+    // ==============================
+    // CEK LOGIN
+    // ==============================
+
+    async function checkLogin() {
 
       const {
+        data,
         error
-      } = await client
-        .from("deposits")
-        .insert([
-          {
-            user_id: user.id,
-            amount: nominal,
-            status: "pending"
-          }
-        ]);
+      } = await client.auth.getSession();
 
 
-      if (error) {
+      if (error || !data.session) {
 
-        tampilPesan(
-          "Gagal menyimpan deposit: " +
-          error.message,
-          "error"
-        );
+        window.location.href =
+          "mac.html";
 
         return;
 
       }
 
-
-      // ======================================
-      // BERHASIL
-      // ======================================
-
-      tampilPesan(
-        "Pengajuan deposit berhasil dikirim. " +
-        "Silakan tunggu verifikasi.",
-        "success"
-      );
-
-
-      nominalInput.value = "";
-
-      total.innerText =
-        "Rp0";
-
-
-    } catch (error) {
-
-      tampilPesan(
-        "Terjadi kesalahan: " +
-        error.message,
-        "error"
-      );
-
-    } finally {
-
-      transferBtn.disabled = false;
-
     }
 
-  }
 
+    // ==============================
+    // MULAI
+    // ==============================
 
-  // ==========================================
-  // CEK LOGIN SAAT HALAMAN DIBUKA
-  // ==========================================
+    renderAccounts();
 
-  checkLogin();
+    checkLogin();
 
-</script>
+  </script>
 
 </body>
 </html>
