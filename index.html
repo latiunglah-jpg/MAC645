@@ -1,1 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAC645</title>
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1020;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 15, 35, 0.95);
+      border-bottom: 1px solid #222a45;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: #00e5ff;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #00e5ff;
+    }
+
+    .hero {
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      background:
+        radial-gradient(circle at top, #172554 0%, #0b1020 55%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid #00e5ff;
+      border-radius: 30px;
+      color: #00e5ff;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
+
+    h1 span {
+      color: #00e5ff;
+    }
+
+    .hero p {
+      color: #aab3c5;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .primary {
+      background: #00e5ff;
+      color: #061018;
+    }
+
+    .primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.25);
+    }
+
+    .secondary {
+      border: 1px solid #34405f;
+      color: white;
+    }
+
+    .secondary:hover {
+      border-color: #00e5ff;
+      color: #00e5ff;
+    }
+
+    .features {
+      padding: 70px 7%;
+      background: #090d1a;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #8993a8;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: #11182b;
+      border: 1px solid #222c48;
+      border-radius: 18px;
+      padding: 30px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #00e5ff;
+    }
+
+    .icon {
+      font-size: 35px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #8f9ab0;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #060914;
+      color: #68738a;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 42px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">MAC<span>645</span></div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#fitur">Fitur</a>
+      <a href="mac.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+
+      <div class="badge">WELCOME TO MAC645</div>
+
+      <h1>MAC<span>645</span></h1>
+
+      <p>
+        Platform digital modern dengan tampilan cepat,
+        sederhana, dan nyaman digunakan.
+      </p>
+
+      <div class="buttons">
+        <a href="mac.html" class="btn primary">MULAI SEKARANG</a>
+        <a href="#fitur" class="btn secondary">LIHAT FITUR</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="features" id="fitur">
+
+    <div class="section-title">
+      <h2>Kenapa MAC645?</h2>
+      <p>Dibuat sederhana, cepat, dan mudah digunakan.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Cepat</h3>
+        <p>
+          Tampilan ringan dan responsif sehingga nyaman
+          digunakan melalui komputer maupun HP.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔐</div>
+        <h3>Aman</h3>
+        <p>
+          Sistem dapat dikembangkan dengan login,
+          database, dan sistem keamanan.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📱</div>
+        <h3>Responsive</h3>
+        <p>
+          Tampilan otomatis menyesuaikan ukuran layar
+          perangkat yang digunakan.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 MAC645 — All Rights Reserved
+  </footer>
+
+</body>
+</html>
