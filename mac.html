@@ -278,6 +278,106 @@
     }
 
   </script>
+<script>
+(function () {
 
+  // =========================
+  // SUPABASE MAC645
+  // =========================
+
+  const MAC645_URL = "https://jblilyzqozodjslgylso.supabase.co";
+  const MAC645_KEY = "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+
+  const client = window.supabase.createClient(
+    MAC645_URL,
+    MAC645_KEY
+  );
+
+  // =========================
+  // LOGIN
+  // =========================
+
+  window.login = async function () {
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const pesan = document.getElementById("pesan");
+
+    if (!email || !password) {
+      pesan.innerText = "Email dan password wajib diisi.";
+      return;
+    }
+
+    if (!email.includes("@")) {
+      pesan.innerText = "Masukkan email yang benar.";
+      return;
+    }
+
+    pesan.innerText = "Sedang login...";
+
+    const { data, error } =
+      await client.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+    if (error) {
+      pesan.innerText = "Login gagal: " + error.message;
+      return;
+    }
+
+    pesan.innerText = "Login berhasil!";
+
+    setTimeout(function () {
+      window.location.href = "index.html";
+    }, 1000);
+  };
+
+
+  // =========================
+  // REGISTER
+  // =========================
+
+  window.register = async function () {
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const pesan = document.getElementById("pesan");
+
+    if (!email || !password) {
+      pesan.innerText = "Email dan password wajib diisi.";
+      return;
+    }
+
+    if (!email.includes("@")) {
+      pesan.innerText = "Masukkan email yang benar.";
+      return;
+    }
+
+    if (password.length < 6) {
+      pesan.innerText = "Password minimal 6 karakter.";
+      return;
+    }
+
+    pesan.innerText = "Mendaftarkan akun...";
+
+    const { data, error } =
+      await client.auth.signUp({
+        email: email,
+        password: password
+      });
+
+    if (error) {
+      pesan.innerText = "Gagal daftar: " + error.message;
+      return;
+    }
+
+    pesan.innerText =
+      "Akun berhasil dibuat! Silakan login.";
+
+  };
+
+})();
+</script>
 </body>
 </html>
