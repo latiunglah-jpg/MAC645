@@ -1,621 +1,340 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAC645 - Admin Panel</title>
+  <title>MAC645 - Deposit</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    background:#071b12;
-    color:#fff;
-}
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:240px;
-    height:100vh;
-    background:#0b2918;
-    border-right:1px solid #285d35;
-    padding:25px 15px;
-}
-
-.logo{
-    font-size:30px;
-    font-weight:900;
-    padding:0 12px 30px;
-}
-
-.logo span{
-    color:#aaff38;
-}
-
-.admin-label{
-    color:#8fa693;
-    font-size:11px;
-    padding:0 12px 12px;
-    text-transform:uppercase;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-}
-
-.menu button{
-    width:100%;
-    border:0;
-    background:transparent;
-    color:#d8eadc;
-    padding:14px 12px;
-    text-align:left;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.menu button:hover,
-.menu button.active{
-    background:#194b27;
-    color:#aaff38;
-}
-
-.logout{
-    position:absolute;
-    bottom:25px;
-    left:15px;
-    width:210px;
-    padding:13px;
-    border:1px solid #aaff38;
-    background:transparent;
-    color:white;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.logout:hover{
-    background:#aaff38;
-    color:#10210e;
-}
-
-.main{
-    margin-left:240px;
-    padding:25px;
-}
-
-.top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.top h1{
-    font-size:27px;
-}
-
-.admin-name{
-    background:#102a19;
-    border:1px solid #285634;
-    padding:10px 15px;
-    border-radius:7px;
-    font-size:13px;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:25px;
-}
-
-.stat{
-    background:#102a19;
-    border:1px solid #285634;
-    border-radius:10px;
-    padding:20px;
-}
-
-.stat-title{
-    color:#9caf9e;
-    font-size:12px;
-    margin-bottom:10px;
-}
-
-.stat-number{
-    font-size:25px;
-    font-weight:900;
-    color:#aaff38;
-}
-
-.panel{
-    background:#102a19;
-    border:1px solid #285634;
-    border-radius:10px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.panel-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-}
-
-.panel-header h2{
-    font-size:18px;
-}
-
-.refresh{
-    background:#aaff38;
-    color:#10210e;
-    border:0;
-    padding:9px 15px;
-    border-radius:6px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.table-wrap{
-    overflow-x:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:850px;
-}
-
-th{
-    background:#0b2918;
-    color:#aaff38;
-    text-align:left;
-    font-size:12px;
-    padding:13px;
-}
-
-td{
-    border-top:1px solid #285634;
-    padding:13px;
-    font-size:12px;
-    color:#d8eadc;
-}
-
-.empty{
-    text-align:center;
-    padding:35px;
-    color:#8fa693;
-}
-
-.status{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:5px;
-    font-size:10px;
-    font-weight:bold;
-}
-
-.pending{
-    background:#5d4a12;
-    color:#ffe47a;
-}
-
-.approved{
-    background:#174d25;
-    color:#aaff38;
-}
-
-.rejected{
-    background:#542020;
-    color:#ff8f8f;
-}
-
-.btn{
-    border:0;
-    padding:7px 10px;
-    border-radius:5px;
-    cursor:pointer;
-    font-size:11px;
-    font-weight:bold;
-    margin-right:4px;
-}
-
-.approve-btn{
-    background:#aaff38;
-    color:#10210e;
-}
-
-.reject-btn{
-    background:#642525;
-    color:white;
-}
-
-.view-btn{
-    background:#285e30;
-    color:white;
-}
-
-.btn:hover{
-    opacity:.8;
-}
-
-.btn:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-}
-
-.user-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-top:1px solid #285634;
-    padding:15px 5px;
-}
-
-.user-id{
-    font-size:12px;
-    color:#d8eadc;
-    word-break:break-all;
-}
-
-.balance{
-    color:#aaff38;
-    font-weight:bold;
-}
-
-.loading{
-    text-align:center;
-    padding:35px;
-    color:#8fa693;
-}
-
-.message{
-    padding:13px;
-    border-radius:7px;
-    margin-bottom:15px;
-    display:none;
-    font-size:13px;
-}
-
-.message.error{
-    display:block;
-    background:#542020;
-    color:#ffb0b0;
-}
-
-.message.success{
-    display:block;
-    background:#174d25;
-    color:#aaff38;
-}
-
-@media(max-width:900px){
-
-    .sidebar{
-        width:190px;
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
-    .main{
-        margin-left:190px;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f5f6f8;
+      color: #202124;
     }
 
-    .logout{
-        width:160px;
+    header {
+      background: white;
+      border-bottom: 1px solid #e4e7eb;
     }
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
+    .header {
+      max-width: 900px;
+      margin: auto;
+      min-height: 65px;
+      padding: 12px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-}
-
-@media(max-width:600px){
-
-    .sidebar{
-        position:relative;
-        width:100%;
-        height:auto;
-        border-right:0;
-        border-bottom:1px solid #285d35;
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      color: #087cff;
+      letter-spacing: 1px;
     }
 
-    .logout{
-        position:static;
-        width:100%;
-        margin-top:20px;
+    .logo span {
+      color: #ff8a00;
     }
 
-    .main{
-        margin-left:0;
-        padding:15px;
+    .back {
+      color: #087cff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
     }
 
-    .stats{
-        grid-template-columns:1fr;
+    .container {
+      max-width: 650px;
+      margin: auto;
+      padding: 30px 15px 50px;
     }
 
-    .top{
-        display:block;
+    .card {
+      background: white;
+      border: 1px solid #e4e7eb;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
     }
 
-    .admin-name{
-        display:inline-block;
-        margin-top:10px;
+    h1 {
+      margin: 0 0 8px;
+      font-size: 25px;
     }
-}
-</style>
+
+    .subtitle {
+      color: #737b88;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .label {
+      display: block;
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .rekening-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rekening {
+      border: 2px solid #e2e6ec;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: .2s;
+      background: white;
+    }
+
+    .rekening:hover {
+      border-color: #087cff;
+    }
+
+    .rekening.selected {
+      border-color: #087cff;
+      background: #f1f7ff;
+    }
+
+    .rekening input {
+      display: none;
+    }
+
+    .bank {
+      font-size: 15px;
+      font-weight: 900;
+      color: #087cff;
+      margin-bottom: 8px;
+    }
+
+    .nomor {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .nama {
+      color: #737b88;
+      font-size: 12px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d9dde4;
+      border-radius: 9px;
+      outline: none;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+
+    input[type="number"]:focus {
+      border-color: #087cff;
+    }
+
+    .info {
+      background: #fff8e6;
+      border: 1px solid #f2d48a;
+      color: #765b16;
+      padding: 13px;
+      border-radius: 9px;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    .btn {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+      background: #087cff;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      opacity: .9;
+    }
+
+    .btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    #pesan {
+      text-align: center;
+      min-height: 20px;
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .success {
+      color: #0b9d63;
+    }
+
+    .error {
+      color: #d93025;
+    }
+
+    .loading {
+      text-align: center;
+      color: #737b88;
+      font-size: 13px;
+      padding: 20px;
+    }
+
+    .empty {
+      background: #fff1f1;
+      border: 1px solid #ffcaca;
+      color: #a52222;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .user-box {
+      background: #f1f7ff;
+      border: 1px solid #cfe2ff;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
+    .user-box b {
+      color: #087cff;
+    }
+
+    @media(max-width: 500px) {
+      .card {
+        padding: 20px;
+      }
+
+      .nomor {
+        font-size: 18px;
+      }
+
+      .header {
+        padding: 12px 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<aside class="sidebar">
+<header>
+  <div class="header">
 
     <div class="logo">
-        MAC<span>645</span>
+      MAC<span>645</span>
     </div>
 
-    <div class="admin-label">
-        ADMIN PANEL
+    <a class="back" href="dashboard.html">
+      ← Dashboard
+    </a>
+
+  </div>
+</header>
+
+
+<main class="container">
+
+  <div class="card">
+
+    <h1>💰 Deposit</h1>
+
+    <div class="subtitle">
+      Tambahkan saldo ke akun MAC645 kamu.
     </div>
 
-    <div class="menu">
 
-        <button class="active"
-            onclick="showSection('dashboard',this)">
-            📊 Dashboard
-        </button>
+    <div id="userBox" class="user-box">
+      Memeriksa akun...
+    </div>
 
-        <button
-            onclick="showSection('deposit',this)">
-            💰 Deposit
-        </button>
 
-        <button
-            onclick="showSection('users',this)">
-            👥 User & Saldo
-        </button>
+    <label class="label">
+      Pilih Rekening Pembayaran
+    </label>
+
+    <div id="rekeningList" class="rekening-list">
+
+      <div class="loading">
+        Memuat rekening pembayaran...
+      </div>
 
     </div>
 
-    <button class="logout"
-        onclick="logoutAdmin()">
-        🚪 LOGOUT
+
+    <div style="margin-top:25px;">
+
+      <label class="label" for="amount">
+        Nominal Deposit
+      </label>
+
+      <input
+        type="number"
+        id="amount"
+        min="25000"
+        step="1000"
+        placeholder="Minimal Rp25.000"
+      >
+
+    </div>
+
+
+    <div class="info">
+
+      <b>Minimal deposit Rp25.000.</b>
+      <br>
+
+      Silakan transfer sesuai nominal yang kamu masukkan
+      ke rekening yang dipilih.
+
+      <br><br>
+
+      Setelah transfer berhasil,
+      tekan tombol <b>SAYA SUDAH TRANSFER</b>.
+
+    </div>
+
+
+    <button
+      id="submitBtn"
+      class="btn"
+      onclick="submitDeposit()"
+    >
+      SAYA SUDAH TRANSFER
     </button>
 
-</aside>
 
+    <div id="pesan"></div>
 
-<main class="main">
-
-    <div class="top">
-
-        <h1 id="pageTitle">
-            Dashboard Admin
-        </h1>
-
-        <div class="admin-name">
-            👑 <span id="adminEmail">
-                Memeriksa...
-            </span>
-        </div>
-
-    </div>
-
-
-    <div id="message"
-         class="message">
-    </div>
-
-
-    <!-- DASHBOARD -->
-
-    <section id="dashboard"
-             class="section-content">
-
-        <div class="stats">
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    TOTAL USER WALLET
-                </div>
-
-                <div class="stat-number"
-                     id="totalUsers">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    DEPOSIT PENDING
-                </div>
-
-                <div class="stat-number"
-                     id="pendingDeposit">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    DEPOSIT APPROVED
-                </div>
-
-                <div class="stat-number"
-                     id="approvedDeposit">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    TOTAL DEPOSIT
-                </div>
-
-                <div class="stat-number"
-                     id="totalDeposit">
-                    Rp0
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="panel">
-
-            <div class="panel-header">
-
-                <h2>
-                    💰 Deposit Terbaru
-                </h2>
-
-                <button class="refresh"
-                        onclick="loadAll()">
-                    ↻ REFRESH
-                </button>
-
-            </div>
-
-
-            <div class="table-wrap">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>ID</th>
-                            <th>USER ID</th>
-                            <th>NOMINAL</th>
-                            <th>STATUS</th>
-                            <th>TANGGAL</th>
-                            <th>AKSI</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="depositTable">
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- DEPOSIT -->
-
-    <section id="deposit"
-             class="section-content"
-             style="display:none;">
-
-        <div class="panel">
-
-            <div class="panel-header">
-
-                <h2>
-                    💰 Kelola Deposit
-                </h2>
-
-                <button class="refresh"
-                        onclick="loadDeposits()">
-                    ↻ REFRESH
-                </button>
-
-            </div>
-
-
-            <div class="table-wrap">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>ID</th>
-                            <th>USER ID</th>
-                            <th>NOMINAL</th>
-                            <th>STATUS</th>
-                            <th>TANGGAL</th>
-                            <th>AKSI</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="depositTable2">
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- USERS -->
-
-    <section id="users"
-             class="section-content"
-             style="display:none;">
-
-        <div class="panel">
-
-            <div class="panel-header">
-
-                <h2>
-                    👥 User & Saldo
-                </h2>
-
-                <button class="refresh"
-                        onclick="loadWallets()">
-                    ↻ REFRESH
-                </button>
-
-            </div>
-
-
-            <div id="userList">
-
-                <div class="loading">
-                    Memuat data saldo...
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+  </div>
 
 </main>
 
@@ -627,861 +346,440 @@ td{
 ===================================================== */
 
 const SUPABASE_URL =
-"https://jblilyzqozodjslgylso.supabase.co";
+  "https://jblilyzqozodjslgylso.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+  "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
 const client =
-window.supabase.createClient(
+  window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
-);
+  );
 
 
 /* =====================================================
-   FORMAT RUPIAH
+   ELEMENT
 ===================================================== */
 
-function rupiah(value){
+const rekeningList =
+  document.getElementById("rekeningList");
 
-    return new Intl.NumberFormat(
-        "id-ID",
-        {
-            style:"currency",
-            currency:"IDR",
-            maximumFractionDigits:0
-        }
-    ).format(Number(value) || 0);
+const amountInput =
+  document.getElementById("amount");
 
-}
+const submitBtn =
+  document.getElementById("submitBtn");
+
+const pesan =
+  document.getElementById("pesan");
+
+const userBox =
+  document.getElementById("userBox");
 
 
-/* =====================================================
-   HTML ESCAPE
-===================================================== */
-
-function escapeHtml(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
+let selectedAccount = null;
 
 
 /* =====================================================
    MESSAGE
 ===================================================== */
 
-function showMessage(text,type){
+function showMessage(text, type) {
 
-    const box =
-        document.getElementById("message");
+  pesan.innerText = text;
 
-    box.innerText = text;
-
-    box.className =
-        "message " + type;
-
-    setTimeout(function(){
-
-        box.className =
-            "message";
-
-    },5000);
+  pesan.className =
+    type || "";
 
 }
 
 
 /* =====================================================
-   CEK LOGIN DAN ADMIN
+   ESCAPE HTML
 ===================================================== */
 
-async function checkAdmin(){
+function escapeHtml(value) {
 
-    const {
-        data,
-        error
-    } = await client.auth.getSession();
-
-
-    if(
-        error ||
-        !data.session ||
-        !data.session.user
-    ){
-
-        window.location.href =
-            "mac.html";
-
-        return false;
-
-    }
-
-
-    const user =
-        data.session.user;
-
-
-    document.getElementById(
-        "adminEmail"
-    ).innerText =
-        user.email || "ADMIN";
-
-
-    const {
-        data:isAdmin,
-        error:adminError
-    } = await client.rpc(
-        "is_admin"
-    );
-
-
-    if(
-        adminError ||
-        !isAdmin
-    ){
-
-        document.body.innerHTML = `
-
-            <div style="
-                min-height:100vh;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                background:#071b12;
-                color:white;
-                text-align:center;
-                padding:30px;
-            ">
-
-                <div>
-
-                    <h1 style="
-                        color:#ff6b6b;
-                        margin-bottom:15px;
-                    ">
-                        AKSES DITOLAK
-                    </h1>
-
-                    <p>
-                        Akun ini bukan admin MAC645.
-                    </p>
-
-                    <button
-                        onclick="
-                        window.location.href='mac.html'
-                        "
-                        style="
-                            margin-top:20px;
-                            padding:12px 20px;
-                            border:0;
-                            border-radius:7px;
-                            background:#aaff38;
-                            cursor:pointer;
-                            font-weight:bold;
-                        "
-                    >
-                        KEMBALI LOGIN
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return false;
-
-    }
-
-
-    return true;
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
 
 
 /* =====================================================
-   LOAD DEPOSIT
+   CEK LOGIN USER
 ===================================================== */
 
-async function loadDeposits(){
-
-    const loading = `
-
-        <tr>
-            <td colspan="6"
-                class="empty">
-                Memuat deposit...
-            </td>
-        </tr>
-
-    `;
-
-
-    document.getElementById(
-        "depositTable"
-    ).innerHTML = loading;
-
-
-    document.getElementById(
-        "depositTable2"
-    ).innerHTML = loading;
-
-
-    const {
-        data,
-        error
-    } = await client.rpc(
-        "get_admin_deposits"
-    );
-
-
-    if(error){
-
-        const errorHTML = `
-
-            <tr>
-                <td colspan="6"
-                    class="empty">
-
-                    Gagal mengambil deposit.
-
-                    <br><br>
-
-                    ${escapeHtml(error.message)}
-
-                </td>
-            </tr>
-
-        `;
-
-
-        document.getElementById(
-            "depositTable"
-        ).innerHTML =
-            errorHTML;
-
-
-        document.getElementById(
-            "depositTable2"
-        ).innerHTML =
-            errorHTML;
-
-        return;
-
-    }
-
-
-    if(!data || data.length === 0){
-
-        const emptyHTML = `
-
-            <tr>
-                <td colspan="6"
-                    class="empty">
-
-                    Belum ada deposit.
-
-                </td>
-            </tr>
-
-        `;
-
-
-        document.getElementById(
-            "depositTable"
-        ).innerHTML =
-            emptyHTML;
-
-
-        document.getElementById(
-            "depositTable2"
-        ).innerHTML =
-            emptyHTML;
-
-
-        updateStats([]);
-
-        return;
-
-    }
-
-
-    let html = "";
-
-
-    data.forEach(function(item){
-
-        const status =
-            String(item.status || "")
-            .toLowerCase();
-
-
-        let statusClass =
-            "pending";
-
-
-        if(status === "approved"){
-            statusClass = "approved";
-        }
-
-        if(status === "rejected"){
-            statusClass = "rejected";
-        }
-
-
-        let action = "";
-
-
-        if(status === "pending"){
-
-            action = `
-
-                <button
-                    class="btn approve-btn"
-                    onclick="approveDeposit(${Number(item.id)})">
-                    SETUJUI
-                </button>
-
-                <button
-                    class="btn reject-btn"
-                    onclick="rejectDeposit(${Number(item.id)})">
-                    TOLAK
-                </button>
-
-            `;
-
-        }else{
-
-            action = `
-
-                <button
-                    class="btn view-btn"
-                    onclick="
-                    viewDeposit(
-                        '${escapeHtml(item.id)}',
-                        '${escapeHtml(item.user_id)}',
-                        '${escapeHtml(item.amount)}',
-                        '${escapeHtml(status)}'
-                    )">
-                    LIHAT
-                </button>
-
-            `;
-
-        }
-
-
-        const date =
-            item.created_at
-            ? new Date(
-                item.created_at
-              ).toLocaleString("id-ID")
-            : "-";
-
-
-        html += `
-
-            <tr>
-
-                <td>
-                    ${escapeHtml(item.id)}
-                </td>
-
-                <td>
-                    ${escapeHtml(item.user_id)}
-                </td>
-
-                <td>
-                    ${rupiah(item.amount)}
-                </td>
-
-                <td>
-
-                    <span class="
-                        status ${statusClass}
-                    ">
-
-                        ${status.toUpperCase()}
-
-                    </span>
-
-                </td>
-
-                <td>
-                    ${escapeHtml(date)}
-                </td>
-
-                <td>
-                    ${action}
-                </td>
-
-            </tr>
-
-        `;
-
-    });
-
-
-    document.getElementById(
-        "depositTable"
-    ).innerHTML = html;
-
-
-    document.getElementById(
-        "depositTable2"
-    ).innerHTML = html;
-
-
-    updateStats(data);
-
-}
-
-
-/* =====================================================
-   STATISTIK
-===================================================== */
-
-function updateStats(data){
-
-    const list =
-        Array.isArray(data)
-        ? data
-        : [];
-
-
-    const pending =
-        list.filter(function(item){
-
-            return String(item.status)
-                .toLowerCase()
-                === "pending";
-
-        }).length;
-
-
-    const approved =
-        list.filter(function(item){
-
-            return String(item.status)
-                .toLowerCase()
-                === "approved";
-
-        }).length;
-
-
-    const total =
-        list.reduce(function(total,item){
-
-            return total +
-                Number(item.amount || 0);
-
-        },0);
-
-
-    document.getElementById(
-        "pendingDeposit"
-    ).innerText =
-        pending;
-
-
-    document.getElementById(
-        "approvedDeposit"
-    ).innerText =
-        approved;
-
-
-    document.getElementById(
-        "totalDeposit"
-    ).innerText =
-        rupiah(total);
-
-}
-
-
-/* =====================================================
-   APPROVE DEPOSIT
-===================================================== */
-
-async function approveDeposit(id){
-
-    const yakin =
-        confirm(
-            "Yakin ingin menyetujui deposit #" +
-            id +
-            "?\n\n" +
-            "Saldo user akan otomatis bertambah."
-        );
-
-
-    if(!yakin){
-        return;
-    }
-
-
-    const {
-        data,
-        error
-    } = await client.rpc(
-        "approve_deposit",
-        {
-            p_deposit_id:id
-        }
-    );
-
-
-    if(error){
-
-        showMessage(
-            "Gagal menyetujui deposit: " +
-            error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showMessage(
-        "Deposit berhasil disetujui. Saldo user sudah bertambah.",
-        "success"
-    );
-
-
-    await loadAll();
-
-}
-
-
-/* =====================================================
-   REJECT DEPOSIT
-===================================================== */
-
-async function rejectDeposit(id){
-
-    const yakin =
-        confirm(
-            "Yakin ingin menolak deposit #" +
-            id +
-            "?"
-        );
-
-
-    if(!yakin){
-        return;
-    }
-
-
-    const {
-        data,
-        error
-    } = await client.rpc(
-        "reject_deposit",
-        {
-            p_deposit_id:id
-        }
-    );
-
-
-    if(error){
-
-        showMessage(
-            "Gagal menolak deposit: " +
-            error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showMessage(
-        "Deposit berhasil ditolak.",
-        "success"
-    );
-
-
-    await loadAll();
-
-}
-
-
-/* =====================================================
-   DETAIL DEPOSIT
-===================================================== */
-
-function viewDeposit(
-    id,
-    user,
-    amount,
-    status
-){
-
-    alert(
-
-        "DETAIL DEPOSIT\n\n" +
-
-        "ID: " +
-        id +
-
-        "\nUser ID: " +
-        user +
-
-        "\nNominal: " +
-        rupiah(amount) +
-
-        "\nStatus: " +
-        status.toUpperCase()
-
-    );
-
-}
-
-
-/* =====================================================
-   LOAD WALLET
-===================================================== */
-
-async function loadWallets(){
-
-    const list =
-        document.getElementById(
-            "userList"
-        );
-
-
-    list.innerHTML = `
-
-        <div class="loading">
-            Memuat saldo user...
-        </div>
-
-    `;
-
-
-    const {
-        data,
-        error
-    } = await client.rpc(
-        "get_admin_wallets"
-    );
-
-
-    if(error){
-
-        list.innerHTML = `
-
-            <div class="empty">
-
-                Gagal mengambil saldo.
-
-                <br><br>
-
-                ${escapeHtml(
-                    error.message
-                )}
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "totalUsers"
-    ).innerText =
-        data ? data.length : 0;
-
-
-    if(!data || data.length === 0){
-
-        list.innerHTML = `
-
-            <div class="empty">
-                Belum ada wallet user.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    let html = "";
-
-
-    data.forEach(function(wallet){
-
-        html += `
-
-            <div class="user-row">
-
-                <div>
-
-                    <div style="
-                        font-weight:bold;
-                        margin-bottom:6px;
-                    ">
-                        USER
-                    </div>
-
-                    <div class="user-id">
-                        ${escapeHtml(
-                            wallet.user_id
-                        )}
-                    </div>
-
-                </div>
-
-
-                <div class="balance">
-
-                    ${rupiah(
-                        wallet.balance
-                    )}
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-
-    list.innerHTML =
-        html;
-
-}
-
-
-/* =====================================================
-   LOAD SEMUA
-===================================================== */
-
-async function loadAll(){
-
-    await loadDeposits();
-
-    await loadWallets();
-
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-function showSection(
-    section,
-    button
-){
-
-    document
-        .querySelectorAll(
-            ".section-content"
-        )
-        .forEach(function(el){
-
-            el.style.display =
-                "none";
-
-        });
-
-
-    document.getElementById(
-        section
-    ).style.display =
-        "block";
-
-
-    document
-        .querySelectorAll(
-            ".menu button"
-        )
-        .forEach(function(btn){
-
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-
-    button.classList.add(
-        "active"
-    );
-
-
-    const titles = {
-
-        dashboard:
-            "Dashboard Admin",
-
-        deposit:
-            "Kelola Deposit",
-
-        users:
-            "User & Saldo"
-
-    };
-
-
-    document.getElementById(
-        "pageTitle"
-    ).innerText =
-        titles[section];
-
-
-    if(section === "deposit"){
-
-        loadDeposits();
-
-    }
-
-
-    if(section === "users"){
-
-        loadWallets();
-
-    }
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-async function logoutAdmin(){
-
-    const yakin =
-        confirm(
-            "Yakin ingin logout?"
-        );
-
-
-    if(!yakin){
-        return;
-    }
-
-
-    await client.auth.signOut();
-
+async function checkLogin() {
+
+  const {
+    data,
+    error
+  } = await client.auth.getSession();
+
+
+  if (
+    error ||
+    !data ||
+    !data.session ||
+    !data.session.user
+  ) {
 
     window.location.href =
-        "mac.html";
+      "mac.html";
+
+    return null;
+
+  }
+
+
+  const user =
+    data.session.user;
+
+
+  userBox.innerHTML =
+    "AKUN: <b>" +
+    escapeHtml(user.email || "-") +
+    "</b>";
+
+
+  return user;
+
+}
+
+
+/* =====================================================
+   LOAD REKENING PEMBAYARAN
+===================================================== */
+
+async function loadAccounts() {
+
+  const user =
+    await checkLogin();
+
+
+  if (!user) {
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } = await client
+    .from("payment_accounts")
+    .select("*")
+    .eq("is_active", true)
+    .order("slot", {
+      ascending: true
+    });
+
+
+  if (error) {
+
+    rekeningList.innerHTML = `
+      <div class="empty">
+
+        Gagal mengambil rekening pembayaran.
+
+        <br><br>
+
+        ${escapeHtml(error.message)}
+
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  if (!data || data.length === 0) {
+
+    rekeningList.innerHTML = `
+      <div class="empty">
+
+        Belum ada rekening pembayaran yang aktif.
+
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  rekeningList.innerHTML = "";
+
+
+  data.forEach(function(account) {
+
+    const div =
+      document.createElement("label");
+
+
+    div.className =
+      "rekening";
+
+
+    div.innerHTML = `
+
+      <input
+        type="radio"
+        name="rekening"
+        value="${escapeHtml(account.id)}"
+      >
+
+      <div class="bank">
+        🏦 ${escapeHtml(account.bank || "BANK")}
+      </div>
+
+      <div class="nomor">
+        ${escapeHtml(account.account_number || "-")}
+      </div>
+
+      <div class="nama">
+        A/N ${escapeHtml(account.account_name || "-")}
+      </div>
+
+    `;
+
+
+    const radio =
+      div.querySelector("input");
+
+
+    radio.addEventListener(
+      "change",
+      function() {
+
+        document
+          .querySelectorAll(".rekening")
+          .forEach(function(item) {
+
+            item.classList.remove(
+              "selected"
+            );
+
+          });
+
+
+        div.classList.add(
+          "selected"
+        );
+
+
+        selectedAccount =
+          account;
+
+
+        showMessage(
+          "",
+          ""
+        );
+
+      }
+    );
+
+
+    rekeningList.appendChild(
+      div
+    );
+
+  });
+
+}
+
+
+/* =====================================================
+   SUBMIT DEPOSIT
+===================================================== */
+
+async function submitDeposit() {
+
+  showMessage(
+    "",
+    ""
+  );
+
+
+  /* CEK REKENING */
+
+  if (!selectedAccount) {
+
+    showMessage(
+      "Silakan pilih rekening pembayaran terlebih dahulu.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  /* CEK NOMINAL */
+
+  const amount =
+    Number(
+      amountInput.value
+    );
+
+
+  if (
+    !amount ||
+    amount < 25000
+  ) {
+
+    showMessage(
+      "Minimal deposit adalah Rp25.000.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  /* CEK LOGIN */
+
+  const {
+    data: sessionData,
+    error: sessionError
+  } = await client.auth.getSession();
+
+
+  if (
+    sessionError ||
+    !sessionData ||
+    !sessionData.session ||
+    !sessionData.session.user
+  ) {
+
+    window.location.href =
+      "mac.html";
+
+    return;
+
+  }
+
+
+  const user =
+    sessionData.session.user;
+
+
+  submitBtn.disabled =
+    true;
+
+  submitBtn.innerText =
+    "MENGIRIM DATA...";
+
+
+  try {
+
+
+    /* ================================================
+       INSERT DEPOSIT USER
+    ================================================ */
+
+    const {
+      data,
+      error
+    } = await client
+      .from("deposits")
+      .insert({
+
+        user_id:
+          user.id,
+
+        amount:
+          amount,
+
+        status:
+          "pending"
+
+      })
+      .select()
+      .single();
+
+
+    if (error) {
+
+      showMessage(
+        "Gagal mengirim deposit: " +
+        error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /* ================================================
+       BERHASIL
+    ================================================ */
+
+    showMessage(
+      "Pengajuan deposit berhasil! Status: PENDING. Silakan tunggu konfirmasi admin.",
+      "success"
+    );
+
+
+    /* RESET */
+
+    amountInput.value =
+      "";
+
+
+    document
+      .querySelectorAll(
+        'input[name="rekening"]'
+      )
+      .forEach(function(input) {
+
+        input.checked =
+          false;
+
+      });
+
+
+    document
+      .querySelectorAll(".rekening")
+      .forEach(function(item) {
+
+        item.classList.remove(
+          "selected"
+        );
+
+      });
+
+
+    selectedAccount =
+      null;
+
+
+  } catch (error) {
+
+    showMessage(
+      "Terjadi kesalahan: " +
+      error.message,
+      "error"
+    );
+
+  } finally {
+
+    submitBtn.disabled =
+      false;
+
+    submitBtn.innerText =
+      "SAYA SUDAH TRANSFER";
+
+  }
 
 }
 
@@ -1490,20 +788,7 @@ async function logoutAdmin(){
    START
 ===================================================== */
 
-(async function(){
-
-    const allowed =
-        await checkAdmin();
-
-
-    if(!allowed){
-        return;
-    }
-
-
-    await loadAll();
-
-})();
+loadAccounts();
 
 </script>
 
