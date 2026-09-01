@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAC645 - Admin Panel</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#071b12;
+  color:white;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  width:240px;
+  height:100vh;
+  background:#0b2918;
+  border-right:1px solid #285d35;
+  padding:25px 15px;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:900;
+  padding:0 12px 30px;
+}
+
+.logo span{
+  color:#aaff38;
+}
+
+.admin-label{
+  color:#8fa693;
+  font-size:11px;
+  padding:0 12px 12px;
+  text-transform:uppercase;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.menu button{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#d8eadc;
+  padding:14px 12px;
+  text-align:left;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.menu button:hover,
+.menu button.active{
+  background:#194b27;
+  color:#aaff38;
+}
+
+.logout{
+  position:absolute;
+  bottom:25px;
+  left:15px;
+  width:210px;
+  padding:13px;
+  border:1px solid #9cff32;
+  background:transparent;
+  color:white;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.logout:hover{
+  background:#aaff38;
+  color:#10210e;
+}
+
+/* MAIN */
+.main{
+  margin-left:240px;
+  padding:25px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.top h1{
+  font-size:27px;
+}
+
+.admin-name{
+  background:#102a19;
+  border:1px solid #285634;
+  padding:10px 15px;
+  border-radius:7px;
+  font-size:13px;
+}
+
+/* STAT */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.stat{
+  background:#102a19;
+  border:1px solid #285634;
+  border-radius:10px;
+  padding:20px;
+}
+
+.stat-title{
+  color:#9caf9e;
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.stat-number{
+  font-size:25px;
+  font-weight:900;
+  color:#aaff38;
+}
+
+/* CONTENT */
+.panel{
+  background:#102a19;
+  border:1px solid #285634;
+  border-radius:10px;
+  padding:20px;
+  margin-bottom:20px;
+}
+
+.panel-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.panel-header h2{
+  font-size:18px;
+}
+
+.refresh{
+  background:#aaff38;
+  color:#10210e;
+  border:0;
+  padding:9px 15px;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* TABLE */
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+th{
+  background:#0b2918;
+  color:#aaff38;
+  text-align:left;
+  font-size:12px;
+  padding:13px;
+}
+
+td{
+  border-top:1px solid #285634;
+  padding:13px;
+  font-size:12px;
+  color:#d8eadc;
+}
+
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:5px;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.pending{
+  background:#5d4a12;
+  color:#ffe47a;
+}
+
+.approved{
+  background:#174d25;
+  color:#aaff38;
+}
+
+.rejected{
+  background:#542020;
+  color:#ff8f8f;
+}
+
+/* BUTTON */
+.btn{
+  border:0;
+  padding:7px 10px;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:bold;
+  margin-right:4px;
+}
+
+.btn-approve{
+  background:#aaff38;
+  color:#10210e;
+}
+
+.btn-reject{
+  background:#642525;
+  color:white;
+}
+
+.btn-view{
+  background:#285e30;
+  color:white;
+}
+
+.btn:hover{
+  opacity:.8;
+}
+
+/* USER */
+.user-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid #285634;
+  padding:15px 5px;
+}
+
+.user-info strong{
+  display:block;
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+.user-info small{
+  color:#8fa693;
+}
+
+.balance{
+  color:#aaff38;
+  font-weight:bold;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .sidebar{
+    width:190px;
+  }
+
+  .main{
+    margin-left:190px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .logout{
+    width:160px;
+  }
+}
+
+@media(max-width:600px){
+
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+    border-right:0;
+    border-bottom:1px solid #285d35;
+  }
+
+  .logout{
+    position:static;
+    margin-top:20px;
+    width:100%;
+  }
+
+  .main{
+    margin-left:0;
+    padding:15px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .top{
+    display:block;
+  }
+
+  .admin-name{
+    margin-top:10px;
+    display:inline-block;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="logo">
+    MAC<span>645</span>
+  </div>
+
+  <div class="admin-label">
+    ADMIN PANEL
+  </div>
+
+  <div class="menu">
+
+    <button class="active" onclick="showSection('dashboard',this)">
+      📊 Dashboard
+    </button>
+
+    <button onclick="showSection('deposit',this)">
+      💰 Deposit
+    </button>
+
+    <button onclick="showSection('users',this)">
+      👥 Data User
+    </button>
+
+    <button onclick="showSection('transactions',this)">
+      📜 Transaksi
+    </button>
+
+    <button onclick="showSection('balance',this)">
+      💳 Kelola Saldo
+    </button>
+
+  </div>
+
+  <button class="logout" onclick="logoutAdmin()">
+    🚪 LOGOUT
+  </button>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="top">
+
+    <h1 id="pageTitle">
+      Dashboard Admin
+    </h1>
+
+    <div class="admin-name">
+      👑 Administrator MAC645
+    </div>
+
+  </div>
+
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="section-content">
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-title">
+          TOTAL USER
+        </div>
+
+        <div class="stat-number" id="totalUsers">
+          0
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">
+          DEPOSIT PENDING
+        </div>
+
+        <div class="stat-number" id="pendingDeposit">
+          0
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">
+          DEPOSIT DISETUJUI
+        </div>
+
+        <div class="stat-number" id="approvedDeposit">
+          0
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">
+          TOTAL TRANSAKSI
+        </div>
+
+        <div class="stat-number" id="totalTransactions">
+          0
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <div class="panel-header">
+
+        <h2>
+          💰 Deposit Terbaru
+        </h2>
+
+        <button class="refresh" onclick="loadData()">
+          ↻ Refresh
+        </button>
+
+      </div>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Nominal</th>
+              <th>Status</th>
+              <th>Tanggal</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+
+          <tbody id="depositTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DEPOSIT -->
+  <section id="deposit" class="section-content" style="display:none">
+
+    <div class="panel">
+
+      <div class="panel-header">
+
+        <h2>
+          💰 Kelola Deposit
+        </h2>
+
+        <button class="refresh" onclick="loadData()">
+          ↻ Refresh
+        </button>
+
+      </div>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Nominal</th>
+              <th>Status</th>
+              <th>Tanggal</th>
+              <th>Aksi</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="depositTable2">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- USERS -->
+  <section id="users" class="section-content" style="display:none">
+
+    <div class="panel">
+
+      <div class="panel-header">
+
+        <h2>
+          👥 Data User
+        </h2>
+
+        <button class="refresh" onclick="loadUsers()">
+          ↻ Refresh
+        </button>
+
+      </div>
+
+      <div id="userList">
+
+        <div class="user-card">
+
+          <div class="user-info">
+            <strong>Belum terhubung database</strong>
+            <small>Data user akan muncul setelah Supabase disambungkan.</small>
+          </div>
+
+          <div class="balance">
+            Rp0
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TRANSACTIONS -->
+  <section id="transactions" class="section-content" style="display:none">
+
+    <div class="panel">
+
+      <div class="panel-header">
+
+        <h2>
+          📜 Riwayat Transaksi
+        </h2>
+
+        <button class="refresh">
+          ↻ Refresh
+        </button>
+
+      </div>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Produk</th>
+              <th>Nominal</th>
+              <th>Status</th>
+              <th>Tanggal</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+
+              <td colspan="6" style="text-align:center;color:#8fa693">
+                Belum ada data transaksi.
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BALANCE -->
+  <section id="balance" class="section-content" style="display:none">
+
+    <div class="panel">
+
+      <div class="panel-header">
+
+        <h2>
+          💳 Kelola Saldo User
+        </h2>
+
+      </div>
+
+      <div class="user-card">
+
+        <div class="user-info">
+
+          <strong>
+            Sistem saldo MAC645
+          </strong>
+
+          <small>
+            Pengelolaan saldo akan menggunakan database Supabase.
+          </small>
+
+        </div>
+
+        <button class="btn btn-view">
+          Kelola
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+/* =========================
+   DATA CONTOH
+   NANTI DIGANTI SUPABASE
+========================= */
+
+const deposits = [
+  {
+    id:"DEP001",
+    user:"User Demo",
+    amount:100000,
+    status:"pending",
+    date:"01-09-2026"
+  },
+  {
+    id:"DEP002",
+    user:"User Contoh",
+    amount:50000,
+    status:"approved",
+    date:"01-09-2026"
+  }
+];
+
+
+/* =========================
+   FORMAT RUPIAH
+========================= */
+
+function rupiah(number){
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(number);
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function statusHTML(status){
+
+  if(status === "pending"){
+    return '<span class="status pending">PENDING</span>';
+  }
+
+  if(status === "approved"){
+    return '<span class="status approved">APPROVED</span>';
+  }
+
+  return '<span class="status rejected">REJECTED</span>';
+
+}
+
+
+/* =========================
+   TABEL DEPOSIT
+========================= */
+
+function renderDeposits(){
+
+  let html = "";
+
+  deposits.forEach((item,index)=>{
+
+    let actions = "";
+
+    if(item.status === "pending"){
+
+      actions = `
+        <button
+          class="btn btn-approve"
+          onclick="approveDeposit(${index})">
+          SETUJUI
+        </button>
+
+        <button
+          class="btn btn-reject"
+          onclick="rejectDeposit(${index})">
+          TOLAK
+        </button>
+      `;
+
+    }else{
+
+      actions = `
+        <button
+          class="btn btn-view"
+          onclick="viewDeposit(${index})">
+          LIHAT
+        </button>
+      `;
+
+    }
+
+
+    html += `
+
+      <tr>
+
+        <td>${item.id}</td>
+
+        <td>${item.user}</td>
+
+        <td>${rupiah(item.amount)}</td>
+
+        <td>
+          ${statusHTML(item.status)}
+        </td>
+
+        <td>${item.date}</td>
+
+        <td>
+          ${actions}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+
+  document.getElementById("depositTable").innerHTML = html;
+
+  document.getElementById("depositTable2").innerHTML = html;
+
+}
+
+
+/* =========================
+   APPROVE
+========================= */
+
+function approveDeposit(index){
+
+  const item = deposits[index];
+
+  const confirmApprove = confirm(
+    "Setujui deposit " +
+    rupiah(item.amount) +
+    " milik " +
+    item.user +
+    "?"
+  );
+
+  if(!confirmApprove) return;
+
+
+  /*
+    NANTI DI SINI:
+    1. UPDATE STATUS DEPOSIT
+    2. AMBIL USER ID
+    3. TAMBAH SALDO USER
+    4. SIMPAN KE SUPABASE
+  */
+
+  item.status = "approved";
+
+  renderDeposits();
+
+  updateStats();
+
+  alert(
+    "Deposit berhasil disetujui.\n\n" +
+    "Saldo user akan otomatis bertambah setelah database Supabase disambungkan."
+  );
+
+}
+
+
+/* =========================
+   REJECT
+========================= */
+
+function rejectDeposit(index){
+
+  const item = deposits[index];
+
+  const confirmReject = confirm(
+    "Tolak deposit " +
+    rupiah(item.amount) +
+    " milik " +
+    item.user +
+    "?"
+  );
+
+  if(!confirmReject) return;
+
+  item.status = "rejected";
+
+  renderDeposits();
+
+  updateStats();
+
+  alert("Deposit berhasil ditolak.");
+
+}
+
+
+/* =========================
+   VIEW
+========================= */
+
+function viewDeposit(index){
+
+  const item = deposits[index];
+
+  alert(
+    "ID Deposit: " + item.id +
+    "\nUser: " + item.user +
+    "\nNominal: " + rupiah(item.amount) +
+    "\nStatus: " + item.status +
+    "\nTanggal: " + item.date
+  );
+
+}
+
+
+/* =========================
+   STATISTIK
+========================= */
+
+function updateStats(){
+
+  const pending =
+    deposits.filter(x => x.status === "pending").length;
+
+  const approved =
+    deposits.filter(x => x.status === "approved").length;
+
+  document.getElementById("totalUsers").innerText = "0";
+
+  document.getElementById("pendingDeposit").innerText =
+    pending;
+
+  document.getElementById("approvedDeposit").innerText =
+    approved;
+
+  document.getElementById("totalTransactions").innerText =
+    "0";
+
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+function showSection(section,button){
+
+  document
+    .querySelectorAll(".section-content")
+    .forEach(el=>{
+      el.style.display = "none";
+    });
+
+
+  document.getElementById(section).style.display =
+    "block";
+
+
+  document
+    .querySelectorAll(".menu button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+
+  button.classList.add("active");
+
+
+  const titles = {
+
+    dashboard:"Dashboard Admin",
+
+    deposit:"Kelola Deposit",
+
+    users:"Data User",
+
+    transactions:"Riwayat Transaksi",
+
+    balance:"Kelola Saldo"
+
+  };
+
+
+  document.getElementById("pageTitle").innerText =
+    titles[section];
+
+}
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+function loadData(){
+
+  renderDeposits();
+
+  updateStats();
+
+}
+
+
+/* =========================
+   LOAD USERS
+========================= */
+
+function loadUsers(){
+
+  alert(
+    "Data user akan dimuat dari Supabase setelah tabel user disambungkan."
+  );
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutAdmin(){
+
+  const keluar = confirm(
+    "Yakin ingin logout dari panel admin?"
+  );
+
+  if(keluar){
+
+    window.location.href = "mac.html";
+
+  }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadData();
+
+</script>
+
+</body>
+</html>
+```
