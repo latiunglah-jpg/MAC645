@@ -1,1325 +1,1168 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>MAC645 - Dashboard</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      background: #071b12;
-      color: white;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* TOPBAR */
-
-    .topbar {
-      height: 34px;
-      background: #123f25;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .marquee {
-      white-space: nowrap;
-      animation: jalan 18s linear infinite;
-    }
-
-    @keyframes jalan {
-      from {
-        transform: translateX(100%);
-      }
-
-      to {
-        transform: translateX(-100%);
-      }
-    }
-
-    /* HEADER */
-
-    header {
-      background: #0b2918;
-      border-bottom: 1px solid #285d35;
-    }
-
-    .header {
-      max-width: 1250px;
-      margin: auto;
-      min-height: 75px;
-      padding: 10px 18px;
-
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-
-    .logo {
-      font-size: 34px;
-      font-weight: 900;
-      letter-spacing: -2px;
-      min-width: 145px;
-    }
-
-    .logo span {
-      color: #aaff38;
-    }
-
-    .welcome-user {
-      color: #bfd1c2;
-      font-size: 12px;
-    }
-
-    .welcome-user strong {
-      display: block;
-      color: white;
-      margin-top: 4px;
-      font-size: 14px;
-    }
-
-    .header-right {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .balance-mini {
-      background: #173d22;
-      border: 1px solid #35643c;
-      color: #aaff38;
-      padding: 10px 14px;
-      border-radius: 7px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .logout {
-      background: transparent;
-      border: 1px solid #aaff38;
-      color: #aaff38;
-      padding: 10px 15px;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    /* NAV */
-
-    .navbar {
-      background: #102f1b;
-      border-bottom: 1px solid #285d35;
-    }
-
-    .nav {
-      max-width: 1250px;
-      margin: auto;
-      padding: 0 18px;
-
-      display: flex;
-      align-items: center;
-      overflow-x: auto;
-    }
-
-    .nav a {
-      padding: 15px 16px;
-      font-size: 13px;
-      font-weight: bold;
-      white-space: nowrap;
-      color: #e1ece3;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: #aaff38;
-      background: #194b27;
-    }
-
-    /* CONTENT */
-
-    .container {
-      max-width: 1250px;
-      margin: auto;
-      padding: 22px 18px 50px;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 190px;
-      border-radius: 13px;
-      border: 1px solid #39733e;
-
-      padding: 30px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      background:
-        radial-gradient(
-          circle at 85% 20%,
-          rgba(170,255,56,.28),
-          transparent 30%
-        ),
-        linear-gradient(
-          120deg,
-          #123e1f,
-          #1c5c25,
-          #0d3219
-        );
-    }
-
-    .hero h1 {
-      font-size: 29px;
-      margin-bottom: 10px;
-    }
-
-    .hero h1 span {
-      color: #aaff38;
-    }
-
-    .hero p {
-      color: #d0dfd3;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .hero-icon {
-      font-size: 90px;
-      opacity: .8;
-    }
-
-    /* SECTION */
-
-    .section {
-      margin-top: 25px;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 13px;
-    }
-
-    .section-title h2 {
-      font-size: 20px;
-    }
-
-    .section-title a {
-      color: #aaff38;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    /* WALLET */
-
-    .wallet-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 12px;
-    }
-
-    .wallet {
-      background: #102a19;
-      border: 1px solid #285634;
-      border-radius: 11px;
-      padding: 20px;
-    }
-
-    .wallet small {
-      color: #91a695;
-      font-size: 11px;
-    }
-
-    .wallet h2 {
-      margin-top: 8px;
-      font-size: 24px;
-      color: #aaff38;
-    }
-
-    .wallet p {
-      margin-top: 7px;
-      color: #a9baac;
-      font-size: 11px;
-    }
-
-    .deposit-button {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 10px 16px;
-      border-radius: 7px;
-      background: #aaff38;
-      color: #10210e;
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .active {
-      color: #aaff38 !important;
-    }
-
-    /* MENU */
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-    }
-
-    .menu {
-      background: #102a19;
-      border: 1px solid #285634;
-      border-radius: 10px;
-      text-align: center;
-      padding: 18px 8px;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .menu:hover {
-      transform: translateY(-3px);
-      border-color: #aaff38;
-    }
-
-    .menu-icon {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .menu h3 {
-      font-size: 11px;
-    }
-
-    /* PRODUCTS */
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-    }
-
-    .product {
-      background: #102a19;
-      border: 1px solid #285634;
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .product:hover {
-      transform: translateY(-4px);
-      border-color: #aaff38;
-    }
-
-    .product-image {
-      height: 125px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background:
-        radial-gradient(
-          circle,
-          #285e30,
-          #102a19
-        );
-
-      font-size: 53px;
-    }
-
-    .product-info {
-      padding: 13px;
-    }
-
-    .product-info h3 {
-      font-size: 12px;
-      margin-bottom: 7px;
-    }
-
-    .price {
-      color: #aaff38;
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    .product-info small {
-      display: block;
-      margin-top: 5px;
-      color: #91a695;
-      font-size: 10px;
-    }
-
-    /* TRANSACTIONS */
-
-    .transaction {
-      background: #102a19;
-      border: 1px solid #285634;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .transaction-row {
-      display: grid;
-      grid-template-columns: 1.2fr 2fr 1fr 1fr;
-
-      padding: 14px;
-
-      border-bottom: 1px solid #244b2d;
-
-      font-size: 11px;
-    }
-
-    .transaction-row:last-child {
-      border-bottom: 0;
-    }
-
-    .transaction-head {
-      background: #173a20;
-      color: #aebcaf;
-      font-weight: bold;
-    }
-
-    .pending {
-      color: #ffc44d;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-
-    footer {
-      background: #06150c;
-      border-top: 1px solid #244d2e;
-      padding: 32px 18px;
-    }
-
-    .footer {
-      max-width: 1250px;
-      margin: auto;
-
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 25px;
-    }
-
-    footer h3 {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    footer p,
-    footer a {
-      display: block;
-      color: #8fa693;
-      font-size: 11px;
-      line-height: 2;
-    }
-
-    /* CS */
-
-    .cs {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-
-      width: 58px;
-      height: 58px;
-
-      border-radius: 50%;
-
-      background: #aaff38;
-      color: #10210e;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 24px;
-      cursor: pointer;
-
-      box-shadow: 0 5px 25px rgba(0,0,0,.4);
-      z-index: 999;
-    }
-
-    /* MOBILE */
-
-    @media(max-width: 950px) {
-
-      .welcome-user {
-        display: none;
-      }
-
-      .wallet-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .menu-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .footer {
-        grid-template-columns: 1fr 1fr;
-      }
-
-    }
-
-    @media(max-width: 650px) {
-
-      .header {
-        min-height: 65px;
-      }
-
-      .logo {
-        font-size: 27px;
-        min-width: auto;
-      }
-
-      .balance-mini {
-        display: none;
-      }
-
-      .hero {
-        padding: 24px;
-      }
-
-      .hero h1 {
-        font-size: 23px;
-      }
-
-      .hero-icon {
-        display: none;
-      }
-
-      .wallet-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .transaction-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 7px;
-      }
-
-      .transaction-head {
-        display: none;
-      }
-
-      .footer {
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-    @media(max-width: 400px) {
-
-      .menu-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MAC645 - Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif
+}
+
+body{
+  background:#071b12;
+  color:#fff
+}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+/* TOP */
+.top{
+  height:35px;
+  background:#123c23;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  font-size:12px;
+  font-weight:bold
+}
+
+.running{
+  white-space:nowrap;
+  animation:run 18s linear infinite
+}
+
+@keyframes run{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* HEADER */
+header{
+  background:#0b2918;
+  border-bottom:1px solid #285936
+}
+
+.header{
+  max-width:1250px;
+  margin:auto;
+  min-height:72px;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  gap:20px
+}
+
+.logo{
+  font-size:32px;
+  font-weight:900
+}
+
+.logo span{
+  color:#aaff38
+}
+
+.account{
+  color:#9eb3a3;
+  font-size:11px
+}
+
+.account strong{
+  display:block;
+  color:#fff;
+  font-size:13px;
+  margin-top:4px
+}
+
+.header-right{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+
+.mini-saldo{
+  background:#173c22;
+  border:1px solid #38643e;
+  color:#aaff38;
+  padding:10px 14px;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:bold
+}
+
+.logout{
+  background:transparent;
+  border:1px solid #aaff38;
+  color:#aaff38;
+  padding:10px 14px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:bold
+}
+
+/* NAV */
+.navbar{
+  background:#102f1b;
+  border-top:1px solid #1e4728
+}
+
+.nav{
+  max-width:1250px;
+  margin:auto;
+  display:flex;
+  overflow-x:auto;
+  padding:0 18px
+}
+
+.nav a{
+  padding:15px 17px;
+  font-size:12px;
+  font-weight:bold;
+  white-space:nowrap
+}
+
+.nav a:hover,
+.nav .active{
+  color:#aaff38;
+  background:#194a27
+}
+
+/* MAIN */
+.container{
+  max-width:1250px;
+  margin:auto;
+  padding:22px 18px 50px
+}
+
+/* HERO */
+.hero{
+  min-height:190px;
+  padding:30px;
+  border-radius:14px;
+  border:1px solid #39723e;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:
+  radial-gradient(circle at 85% 20%,rgba(170,255,56,.25),transparent 30%),
+  linear-gradient(120deg,#123d1f,#1d5b26,#0d3219)
+}
+
+.hero h1{
+  font-size:28px;
+  margin-bottom:10px
+}
+
+.hero h1 span{
+  color:#aaff38
+}
+
+.hero p{
+  color:#cfddd2;
+  font-size:13px;
+  line-height:1.6
+}
+
+.hero-icon{
+  font-size:80px
+}
+
+/* SECTION */
+.section{
+  margin-top:25px
+}
+
+.title{
+  margin-bottom:13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
+.title h2{
+  font-size:19px
+}
+
+.title a{
+  color:#aaff38;
+  font-size:12px;
+  font-weight:bold
+}
+
+/* WALLET */
+.wallet-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:12px
+}
+
+.wallet{
+  background:#102a19;
+  border:1px solid #285634;
+  border-radius:11px;
+  padding:20px
+}
+
+.wallet small{
+  color:#91a695;
+  font-size:11px
+}
+
+.saldo{
+  margin-top:8px;
+  color:#aaff38;
+  font-size:26px;
+  font-weight:900
+}
+
+.wallet p{
+  color:#9daf9f;
+  font-size:11px;
+  margin-top:7px
+}
+
+.deposit-btn{
+  display:inline-block;
+  margin-top:14px;
+  padding:10px 16px;
+  border-radius:7px;
+  background:#aaff38;
+  color:#10210e;
+  font-size:11px;
+  font-weight:900
+}
+
+.status{
+  color:#aaff38;
+  font-size:24px;
+  font-weight:900;
+  margin-top:8px
+}
+
+/* MENU */
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:10px
+}
+
+.menu{
+  background:#102a19;
+  border:1px solid #285634;
+  border-radius:10px;
+  text-align:center;
+  padding:18px 8px;
+  cursor:pointer;
+  transition:.2s
+}
+
+.menu:hover{
+  transform:translateY(-3px);
+  border-color:#aaff38
+}
+
+.menu-icon{
+  font-size:31px;
+  margin-bottom:8px
+}
+
+.menu h3{
+  font-size:11px
+}
+
+/* PRODUCT */
+.products{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px
+}
+
+.product{
+  background:#102a19;
+  border:1px solid #285634;
+  border-radius:10px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s
+}
+
+.product:hover{
+  transform:translateY(-3px);
+  border-color:#aaff38
+}
+
+.product-image{
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+  background:radial-gradient(circle,#285d30,#102a19)
+}
+
+.product-info{
+  padding:13px
+}
+
+.product-info h3{
+  font-size:12px;
+  margin-bottom:7px
+}
+
+.price{
+  color:#aaff38;
+  font-size:15px;
+  font-weight:900
+}
+
+.product-info small{
+  display:block;
+  color:#91a695;
+  font-size:10px;
+  margin-top:5px
+}
+
+/* TRANSACTION */
+.transaction{
+  background:#102a19;
+  border:1px solid #285634;
+  border-radius:10px;
+  overflow:hidden
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1.2fr 2fr 1fr 1fr;
+  padding:14px;
+  border-bottom:1px solid #244b2d;
+  font-size:11px
+}
+
+.row:last-child{
+  border-bottom:0
+}
+
+.head{
+  background:#173a20;
+  color:#aebcaf;
+  font-weight:bold
+}
+
+.pending{
+  color:#ffc44d;
+  font-weight:bold
+}
+
+/* FOOTER */
+footer{
+  background:#06150c;
+  border-top:1px solid #244d2e;
+  padding:30px 18px
+}
+
+.footer{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:25px
+}
+
+footer h3{
+  font-size:14px;
+  margin-bottom:10px
+}
+
+footer p,
+footer a{
+  display:block;
+  color:#8fa693;
+  font-size:11px;
+  line-height:2
+}
+
+/* CS */
+.cs{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:#aaff38;
+  color:#10210e;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  cursor:pointer;
+  z-index:999
+}
+
+/* MOBILE */
+@media(max-width:950px){
+
+  .account{
+    display:none
+  }
+
+  .wallet-grid{
+    grid-template-columns:1fr 1fr
+  }
+
+  .menu-grid{
+    grid-template-columns:repeat(3,1fr)
+  }
+
+  .products{
+    grid-template-columns:repeat(3,1fr)
+  }
+
+  .footer{
+    grid-template-columns:1fr 1fr
+  }
+}
+
+@media(max-width:650px){
+
+  .logo{
+    font-size:27px
+  }
+
+  .mini-saldo{
+    display:none
+  }
+
+  .hero{
+    padding:23px
+  }
+
+  .hero h1{
+    font-size:22px
+  }
+
+  .hero-icon{
+    display:none
+  }
+
+  .wallet-grid{
+    grid-template-columns:1fr
+  }
+
+  .menu-grid{
+    grid-template-columns:repeat(3,1fr)
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  .row{
+    grid-template-columns:1fr 1fr;
+    gap:8px
+  }
+
+  .head{
+    display:none
+  }
+
+  .footer{
+    grid-template-columns:1fr
+  }
+}
+
+@media(max-width:400px){
+
+  .menu-grid{
+    grid-template-columns:repeat(2,1fr)
+  }
+}
+</style>
 </head>
 
 <body>
 
+<!-- TOP -->
+<div class="top">
+  <div class="running">
+    📢 MAC645 — Selamat datang! Deposit minimal Rp25.000 dan nikmati layanan produk digital kami.
+  </div>
+</div>
 
-  <!-- TOPBAR -->
+<!-- HEADER -->
+<header>
 
-  <div class="topbar">
+  <div class="header">
 
-    <div class="marquee">
-      📢 MAC645 — Selamat datang! Nikmati layanan produk digital dengan mudah dan cepat.
+    <div class="logo">
+      MAC<span>645</span>
+    </div>
+
+    <div class="account">
+      AKUN SAYA
+      <strong id="userEmail">Memuat...</strong>
+    </div>
+
+    <div class="header-right">
+
+      <div
+        class="mini-saldo"
+        id="saldoHeader"
+      >
+        💰 Saldo Rp0
+      </div>
+
+      <button
+        class="logout"
+        onclick="logout()"
+      >
+        KELUAR
+      </button>
+
     </div>
 
   </div>
 
+  <nav class="navbar">
 
-  <!-- HEADER -->
+    <div class="nav">
 
-  <header>
+      <a
+        href="dashboard.html"
+        class="active"
+      >
+        🏠 Dashboard
+      </a>
 
-    <div class="header">
+      <a href="#produk">
+        Produk
+      </a>
 
-      <div class="logo">
-        MAC<span>645</span>
-      </div>
+      <a href="#kategori">
+        Kategori
+      </a>
 
+      <a href="deposit.html">
+        💰 Deposit
+      </a>
 
-      <div class="welcome-user">
-
-        Akun saya
-
-        <strong id="userEmail">
-          Memuat akun...
-        </strong>
-
-      </div>
-
-
-      <div class="header-right">
-
-        <div class="balance-mini">
-          💰 Saldo Rp0
-        </div>
-
-        <button
-          class="logout"
-          onclick="logout()"
-        >
-          KELUAR
-        </button>
-
-      </div>
+      <a href="#transaksi">
+        📋 Transaksi
+      </a>
 
     </div>
 
+  </nav>
 
-    <!-- NAVIGATION -->
+</header>
 
-    <nav class="navbar">
 
-      <div class="nav">
+<!-- MAIN -->
 
-        <a
-          href="dashboard.html"
-          class="active"
+<main class="container">
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div>
+
+      <h1>
+        Selamat Datang di
+        <span>MAC645</span> 👋
+      </h1>
+
+      <p>
+        Kelola saldo, deposit, dan pembelian
+        produk digital kamu dengan mudah.
+      </p>
+
+    </div>
+
+    <div class="hero-icon">
+      🛍️
+    </div>
+
+  </section>
+
+
+  <!-- WALLET -->
+
+  <section class="section">
+
+    <div class="title">
+      <h2>💰 Dompet Saya</h2>
+    </div>
+
+    <div class="wallet-grid">
+
+
+      <div class="wallet">
+
+        <small>SALDO UTAMA</small>
+
+        <div
+          class="saldo"
+          id="saldoUtama"
         >
-          🏠 Dashboard
-        </a>
-
-        <a href="#produk">
-          Produk
-        </a>
-
-        <a href="#kategori">
-          Kategori
-        </a>
-
-        <a href="deposit.html">
-          💰 Deposit
-        </a>
-
-        <a href="#transaksi">
-          📋 Transaksi
-        </a>
-
-        <a href="#">
-          👤 Profil
-        </a>
-
-      </div>
-
-    </nav>
-
-  </header>
-
-
-  <!-- CONTENT -->
-
-  <main class="container">
-
-
-    <!-- WELCOME -->
-
-    <section class="hero">
-
-      <div>
-
-        <h1>
-          Selamat Datang di
-          <span>MAC645</span> 👋
-        </h1>
+          Rp0
+        </div>
 
         <p>
-          Kelola saldo, lakukan deposit,
-          dan beli berbagai produk digital
-          langsung dari dashboard kamu.
+          Saldo yang dapat digunakan untuk transaksi.
         </p>
 
-      </div>
-
-      <div class="hero-icon">
-        🛍️
-      </div>
-
-    </section>
-
-
-    <!-- WALLET -->
-
-    <section class="section">
-
-      <div class="section-title">
-
-        <h2>
-          💰 Dompet Saya
-        </h2>
+        <a
+          href="deposit.html"
+          class="deposit-btn"
+        >
+          + DEPOSIT
+        </a>
 
       </div>
 
 
-      <div class="wallet-grid">
+      <div class="wallet">
 
+        <small>TOTAL TRANSAKSI</small>
 
-        <div class="wallet">
-
-          <small>
-            SALDO UTAMA
-          </small>
-
-          <h2>
-            Rp0
-          </h2>
-
-          <p>
-            Saldo tersedia untuk pembelian produk.
-          </p>
-
-          <a
-            href="deposit.html"
-            class="deposit-button"
-          >
-            + DEPOSIT
-          </a>
-
+        <div class="saldo">
+          0
         </div>
-
-
-        <div class="wallet">
-
-          <small>
-            TOTAL TRANSAKSI
-          </small>
-
-          <h2>
-            0
-          </h2>
-
-          <p>
-            Jumlah transaksi akun.
-          </p>
-
-        </div>
-
-
-        <div class="wallet">
-
-          <small>
-            STATUS AKUN
-          </small>
-
-          <h2 class="active">
-            AKTIF
-          </h2>
-
-          <p>
-            Akun kamu dapat digunakan.
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- KATEGORI -->
-
-    <section
-      class="section"
-      id="kategori"
-    >
-
-      <div class="section-title">
-
-        <h2>
-          ⚡ Menu Produk
-        </h2>
-
-      </div>
-
-
-      <div class="menu-grid">
-
-
-        <div
-          class="menu"
-          onclick="produk('Pulsa')"
-        >
-
-          <div class="menu-icon">
-            📱
-          </div>
-
-          <h3>
-            Pulsa
-          </h3>
-
-        </div>
-
-
-        <div
-          class="menu"
-          onclick="produk('Paket Data')"
-        >
-
-          <div class="menu-icon">
-            🌐
-          </div>
-
-          <h3>
-            Paket Data
-          </h3>
-
-        </div>
-
-
-        <div
-          class="menu"
-          onclick="produk('Token PLN')"
-        >
-
-          <div class="menu-icon">
-            ⚡
-          </div>
-
-          <h3>
-            Token PLN
-          </h3>
-
-        </div>
-
-
-        <div
-          class="menu"
-          onclick="produk('E-Wallet')"
-        >
-
-          <div class="menu-icon">
-            💳
-          </div>
-
-          <h3>
-            E-Wallet
-          </h3>
-
-        </div>
-
-
-        <div
-          class="menu"
-          onclick="produk('Voucher Game')"
-        >
-
-          <div class="menu-icon">
-            🎮
-          </div>
-
-          <h3>
-            Voucher Game
-          </h3>
-
-        </div>
-
-
-        <div
-          class="menu"
-          onclick="produk('Streaming')"
-        >
-
-          <div class="menu-icon">
-            🎬
-          </div>
-
-          <h3>
-            Streaming
-          </h3>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- PRODUK -->
-
-    <section
-      class="section"
-      id="produk"
-    >
-
-      <div class="section-title">
-
-        <h2>
-          ⭐ Produk Pilihan
-        </h2>
-
-      </div>
-
-
-      <div class="product-grid">
-
-
-        <div
-          class="product"
-          onclick="produk('Pulsa 10.000')"
-        >
-
-          <div class="product-image">
-            📱
-          </div>
-
-          <div class="product-info">
-
-            <h3>
-              Pulsa 10.000
-            </h3>
-
-            <div class="price">
-              Rp10.500
-            </div>
-
-            <small>
-              Semua operator
-            </small>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="product"
-          onclick="produk('Paket Data 10GB')"
-        >
-
-          <div class="product-image">
-            🌐
-          </div>
-
-          <div class="product-info">
-
-            <h3>
-              Paket Data 10GB
-            </h3>
-
-            <div class="price">
-              Rp25.000
-            </div>
-
-            <small>
-              Masa aktif 30 hari
-            </small>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="product"
-          onclick="produk('Token PLN 50.000')"
-        >
-
-          <div class="product-image">
-            ⚡
-          </div>
-
-          <div class="product-info">
-
-            <h3>
-              Token PLN 50.000
-            </h3>
-
-            <div class="price">
-              Rp50.000
-            </div>
-
-            <small>
-              Tersedia 24 jam
-            </small>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="product"
-          onclick="produk('E-Wallet 50.000')"
-        >
-
-          <div class="product-image">
-            💳
-          </div>
-
-          <div class="product-info">
-
-            <h3>
-              E-Wallet 50.000
-            </h3>
-
-            <div class="price">
-              Rp50.000
-            </div>
-
-            <small>
-              Proses cepat
-            </small>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="product"
-          onclick="produk('Voucher Game 20.000')"
-        >
-
-          <div class="product-image">
-            🎮
-          </div>
-
-          <div class="product-info">
-
-            <h3>
-              Voucher Game 20.000
-            </h3>
-
-            <div class="price">
-              Rp20.000
-            </div>
-
-            <small>
-              Proses cepat
-            </small>
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- TRANSAKSI -->
-
-    <section
-      class="section"
-      id="transaksi"
-    >
-
-      <div class="section-title">
-
-        <h2>
-          📋 Transaksi Terbaru
-        </h2>
-
-      </div>
-
-
-      <div class="transaction">
-
-
-        <div class="transaction-row transaction-head">
-
-          <div>
-            ORDER
-          </div>
-
-          <div>
-            PRODUK
-          </div>
-
-          <div>
-            HARGA
-          </div>
-
-          <div>
-            STATUS
-          </div>
-
-        </div>
-
-
-        <div class="transaction-row">
-
-          <div>
-            -
-          </div>
-
-          <div>
-            Belum ada transaksi
-          </div>
-
-          <div>
-            -
-          </div>
-
-          <div class="pending">
-            -
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <div class="footer">
-
-
-      <div>
-
-        <h3>
-          MAC645
-        </h3>
 
         <p>
-          Marketplace produk digital
-          untuk kebutuhan pulsa,
-          paket data, game dan layanan digital.
+          Jumlah transaksi kamu.
         </p>
 
       </div>
 
 
-      <div>
+      <div class="wallet">
 
-        <h3>
-          Produk
-        </h3>
+        <small>STATUS AKUN</small>
 
-        <a href="#produk">
-          Pulsa
-        </a>
+        <div class="status">
+          AKTIF
+        </div>
 
-        <a href="#produk">
-          Paket Data
-        </a>
-
-        <a href="#produk">
-          Token PLN
-        </a>
-
-      </div>
-
-
-      <div>
-
-        <h3>
-          Akun
-        </h3>
-
-        <a href="deposit.html">
-          Deposit
-        </a>
-
-        <a href="#transaksi">
-          Transaksi
-        </a>
-
-        <a
-          href="#"
-          onclick="logout(); return false;"
-        >
-          Keluar
-        </a>
-
-      </div>
-
-
-      <div>
-
-        <h3>
-          Bantuan
-        </h3>
-
-        <a href="#">
-          Cara Belanja
-        </a>
-
-        <a href="#">
-          Pembayaran
-        </a>
-
-        <a
-          href="#"
-          onclick="hubungiCS(); return false;"
-        >
-          Hubungi CS
-        </a>
+        <p>
+          Akun siap digunakan.
+        </p>
 
       </div>
 
 
     </div>
 
-  </footer>
+  </section>
 
 
-  <!-- CS -->
+  <!-- KATEGORI -->
 
-  <div
-    class="cs"
-    onclick="hubungiCS()"
+  <section
+    class="section"
+    id="kategori"
   >
-    💬
+
+    <div class="title">
+      <h2>⚡ Kategori Produk</h2>
+    </div>
+
+    <div class="menu-grid">
+
+
+      <div
+        class="menu"
+        onclick="pilih('Pulsa')"
+      >
+        <div class="menu-icon">📱</div>
+        <h3>Pulsa</h3>
+      </div>
+
+
+      <div
+        class="menu"
+        onclick="pilih('Paket Data')"
+      >
+        <div class="menu-icon">🌐</div>
+        <h3>Paket Data</h3>
+      </div>
+
+
+      <div
+        class="menu"
+        onclick="pilih('Token PLN')"
+      >
+        <div class="menu-icon">⚡</div>
+        <h3>Token PLN</h3>
+      </div>
+
+
+      <div
+        class="menu"
+        onclick="pilih('E-Wallet')"
+      >
+        <div class="menu-icon">💳</div>
+        <h3>E-Wallet</h3>
+      </div>
+
+
+      <div
+        class="menu"
+        onclick="pilih('Voucher Game')"
+      >
+        <div class="menu-icon">🎮</div>
+        <h3>Voucher Game</h3>
+      </div>
+
+
+      <div
+        class="menu"
+        onclick="pilih('Streaming')"
+      >
+        <div class="menu-icon">🎬</div>
+        <h3>Streaming</h3>
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUK -->
+
+  <section
+    class="section"
+    id="produk"
+  >
+
+    <div class="title">
+      <h2>⭐ Produk Pilihan</h2>
+    </div>
+
+    <div class="products">
+
+
+      <div
+        class="product"
+        onclick="pilih('Pulsa 10.000')"
+      >
+        <div class="product-image">📱</div>
+
+        <div class="product-info">
+          <h3>Pulsa 10.000</h3>
+
+          <div class="price">
+            Rp10.500
+          </div>
+
+          <small>Semua operator</small>
+        </div>
+      </div>
+
+
+      <div
+        class="product"
+        onclick="pilih('Paket Data 10GB')"
+      >
+        <div class="product-image">🌐</div>
+
+        <div class="product-info">
+          <h3>Paket Data 10GB</h3>
+
+          <div class="price">
+            Rp25.000
+          </div>
+
+          <small>Masa aktif 30 hari</small>
+        </div>
+      </div>
+
+
+      <div
+        class="product"
+        onclick="pilih('Token PLN 50.000')"
+      >
+        <div class="product-image">⚡</div>
+
+        <div class="product-info">
+          <h3>Token PLN 50.000</h3>
+
+          <div class="price">
+            Rp50.000
+          </div>
+
+          <small>Tersedia 24 jam</small>
+        </div>
+      </div>
+
+
+      <div
+        class="product"
+        onclick="pilih('E-Wallet 50.000')"
+      >
+        <div class="product-image">💳</div>
+
+        <div class="product-info">
+          <h3>E-Wallet 50.000</h3>
+
+          <div class="price">
+            Rp50.000
+          </div>
+
+          <small>Proses cepat</small>
+        </div>
+      </div>
+
+
+      <div
+        class="product"
+        onclick="pilih('Voucher Game 20.000')"
+      >
+        <div class="product-image">🎮</div>
+
+        <div class="product-info">
+          <h3>Voucher Game 20.000</h3>
+
+          <div class="price">
+            Rp20.000
+          </div>
+
+          <small>Proses cepat</small>
+        </div>
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- TRANSAKSI -->
+
+  <section
+    class="section"
+    id="transaksi"
+  >
+
+    <div class="title">
+      <h2>📋 Transaksi Terbaru</h2>
+    </div>
+
+    <div class="transaction">
+
+      <div class="row head">
+
+        <div>ORDER</div>
+        <div>PRODUK</div>
+        <div>HARGA</div>
+        <div>STATUS</div>
+
+      </div>
+
+      <div class="row">
+
+        <div>-</div>
+
+        <div>
+          Belum ada transaksi
+        </div>
+
+        <div>-</div>
+
+        <div class="pending">
+          -
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer">
+
+    <div>
+
+      <h3>MAC645</h3>
+
+      <p>
+        Marketplace produk digital
+        untuk pulsa, data, game,
+        e-wallet dan layanan digital.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h3>Produk</h3>
+
+      <a href="#produk">Pulsa</a>
+      <a href="#produk">Paket Data</a>
+      <a href="#produk">Token PLN</a>
+
+    </div>
+
+
+    <div>
+
+      <h3>Akun</h3>
+
+      <a href="deposit.html">
+        Deposit
+      </a>
+
+      <a href="#transaksi">
+        Transaksi
+      </a>
+
+      <a
+        href="#"
+        onclick="logout();return false;"
+      >
+        Keluar
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <h3>Bantuan</h3>
+
+      <a href="#">
+        Cara Belanja
+      </a>
+
+      <a href="#">
+        Pembayaran
+      </a>
+
+      <a
+        href="#"
+        onclick="cs();return false;"
+      >
+        Hubungi CS
+      </a>
+
+    </div>
+
   </div>
 
-
-  <script>
-
-    /* =========================
-       SUPABASE
-    ========================= */
-
-    const SUPABASE_URL =
-      "https://jblilyzqozodjslgylso.supabase.co";
-
-    const SUPABASE_KEY =
-      "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+</footer>
 
 
-    const client =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+<!-- CS -->
+
+<div
+  class="cs"
+  onclick="cs()"
+>
+  💬
+</div>
 
 
-    /* =========================
-       CEK LOGIN
-    ========================= */
+<script>
 
-    async function checkLogin() {
+/* =================================
+   SUPABASE
+================================= */
 
-      const {
-        data,
-        error
-      } = await client.auth.getSession();
+const SUPABASE_URL =
+"https://jblilyzqozodjslgylso.supabase.co";
 
+const SUPABASE_KEY =
+"sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
-      if (error || !data.session) {
-
-        window.location.href = "mac.html";
-
-        return;
-
-      }
+const client =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
-      const user =
-        data.session.user;
+/* =================================
+   CEK LOGIN
+================================= */
+
+async function checkLogin(){
+
+  const {
+    data,
+    error
+  } = await client.auth.getSession();
 
 
-      const email =
-        user.email || "User MAC645";
+  if(
+    error ||
+    !data.session
+  ){
+
+    window.location.href =
+    "mac.html";
+
+    return;
+
+  }
 
 
-      document.getElementById(
-        "userEmail"
-      ).textContent = email;
-
-    }
+  const user =
+  data.session.user;
 
 
-    /* =========================
-       LOGOUT
-    ========================= */
-
-    async function logout() {
-
-      await client.auth.signOut();
-
-      window.location.href =
-        "mac.html";
-
-    }
+  document.getElementById(
+    "userEmail"
+  ).textContent =
+  user.email || "User MAC645";
 
 
-    /* =========================
-       PRODUK
-    ========================= */
+  await loadSaldo(
+    user.id
+  );
 
-    function produk(nama) {
-
-      alert(
-        nama +
-        "\n\nFitur pembelian akan kita sambungkan ke sistem transaksi."
-      );
-
-    }
+}
 
 
-    /* =========================
-       CS
-    ========================= */
+/* =================================
+   LOAD SALDO
+================================= */
 
-    function hubungiCS() {
+async function loadSaldo(userId){
 
-      alert(
-        "Customer Service MAC645\n\n" +
-        "Silakan hubungi admin untuk bantuan."
-      );
+  const {
+    data,
+    error
+  } = await client
+    .from("wallets")
+    .select("balance")
+    .eq("user_id",userId)
+    .maybeSingle();
 
-    }
+
+  if(error){
+
+    console.error(
+      "Saldo error:",
+      error
+    );
+
+    setSaldo(0);
+
+    return;
+
+  }
 
 
-    /* =========================
-       START
-    ========================= */
+  const balance =
+  data
+  ? Number(data.balance)
+  : 0;
 
-    checkLogin();
 
-  </script>
+  setSaldo(balance);
+
+}
+
+
+/* =================================
+   TAMPILKAN SALDO
+================================= */
+
+function setSaldo(amount){
+
+  const formatted =
+  new Intl.NumberFormat(
+    "id-ID"
+  ).format(amount);
+
+
+  document.getElementById(
+    "saldoUtama"
+  ).textContent =
+  "Rp" + formatted;
+
+
+  document.getElementById(
+    "saldoHeader"
+  ).textContent =
+  "💰 Saldo Rp" + formatted;
+
+}
+
+
+/* =================================
+   LOGOUT
+================================= */
+
+async function logout(){
+
+  await client.auth.signOut();
+
+  window.location.href =
+  "mac.html";
+
+}
+
+
+/* =================================
+   PRODUK
+================================= */
+
+function pilih(nama){
+
+  alert(
+    nama +
+    "\n\nFitur pembelian akan segera tersedia."
+  );
+
+}
+
+
+/* =================================
+   CS
+================================= */
+
+function cs(){
+
+  alert(
+    "Customer Service MAC645\n\n" +
+    "Silakan hubungi admin untuk bantuan."
+  );
+
+}
+
+
+/* =================================
+   MULAI
+================================= */
+
+checkLogin();
+
+</script>
 
 </body>
 </html>
