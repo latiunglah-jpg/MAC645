@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MAC645 - Admin Deposit</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -253,11 +254,6 @@ td{
   font-weight:bold;
 }
 
-.btn:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-}
-
 .btn-approve{
   background:#07965c;
 }
@@ -375,19 +371,13 @@ td{
 
 <body>
 
-<!-- =========================
-     AKSES DITOLAK
-========================= -->
-
 <div id="accessDenied">
 
   <div class="denied-box">
 
     <h1>AKSES DITOLAK</h1>
 
-    <p>
-      Akun ini bukan admin MAC645.
-    </p>
+    <p>Akun ini bukan admin MAC645.</p>
 
     <a href="../mac.html">
       KEMBALI LOGIN
@@ -397,10 +387,6 @@ td{
 
 </div>
 
-
-<!-- =========================
-     ADMIN PANEL
-========================= -->
 
 <div id="adminPanel" style="display:none;">
 
@@ -420,20 +406,8 @@ td{
         📊 Dashboard
       </a>
 
-      <a href="deposits.html" class="active">
+      <a href="deposit.html" class="active">
         💰 Deposit
-      </a>
-
-      <a href="transactions.html">
-        🛒 Transaksi
-      </a>
-
-      <a href="users.html">
-        👤 User
-      </a>
-
-      <a href="wallets.html">
-        💳 Wallet
       </a>
 
       <a href="../dashboard.html">
@@ -476,8 +450,6 @@ td{
 
     <section class="content">
 
-      <!-- STATISTIK -->
-
       <div class="stats">
 
         <div class="stat">
@@ -518,8 +490,6 @@ td{
       </div>
 
 
-      <!-- DEPOSIT -->
-
       <div class="card">
 
         <div class="card-head">
@@ -558,12 +528,14 @@ td{
             <tbody id="depositTable">
 
               <tr>
+
                 <td
                   colspan="6"
                   class="loading"
                 >
                   Memuat deposit...
                 </td>
+
               </tr>
 
             </tbody>
@@ -581,16 +553,10 @@ td{
 </div>
 
 
-<!-- MESSAGE -->
-
 <div id="message"></div>
 
 
 <script>
-
-/* =========================================
-   SUPABASE
-========================================= */
 
 const SUPABASE_URL =
   "https://jblilyzqozodjslgylso.supabase.co";
@@ -604,10 +570,6 @@ const client =
     SUPABASE_KEY
   );
 
-
-/* =========================================
-   ELEMENT
-========================================= */
 
 const adminPanel =
   document.getElementById("adminPanel");
@@ -625,10 +587,6 @@ const message =
   document.getElementById("message");
 
 
-/* =========================================
-   ESCAPE
-========================================= */
-
 function escapeHtml(value){
 
   return String(value ?? "")
@@ -641,10 +599,6 @@ function escapeHtml(value){
 }
 
 
-/* =========================================
-   RUPIAH
-========================================= */
-
 function rupiah(value){
 
   return new Intl.NumberFormat(
@@ -654,55 +608,32 @@ function rupiah(value){
       currency:"IDR",
       maximumFractionDigits:0
     }
-  ).format(
-    Number(value) || 0
-  );
+  ).format(Number(value) || 0);
 
 }
 
 
-/* =========================================
-   MESSAGE
-========================================= */
+function showMessage(text,type=""){
 
-function showMessage(
-  text,
-  type=""
-){
+  message.innerText = text;
+  message.className = type;
+  message.style.display = "block";
 
-  message.innerText =
-    text;
+  setTimeout(function(){
 
-  message.className =
-    type;
+    message.style.display = "none";
 
-  message.style.display =
-    "block";
-
-  setTimeout(
-    function(){
-
-      message.style.display =
-        "none";
-
-    },
-    4000
-  );
+  },4000);
 
 }
 
-
-/* =========================================
-   CURRENT USER
-========================================= */
 
 async function getUser(){
 
   const {
     data,
     error
-  } =
-  await client.auth.getSession();
+  } = await client.auth.getSession();
 
   if(
     error ||
@@ -719,29 +650,18 @@ async function getUser(){
 }
 
 
-/* =========================================
-   CHECK ADMIN
-========================================= */
-
 async function checkAdmin(){
 
-  const user =
-    await getUser();
-
+  const user = await getUser();
 
   if(!user){
 
-    window.location.href =
-      "../mac.html";
+    window.location.href = "../mac.html";
 
     return false;
 
   }
 
-
-  /*
-     CEK TABEL admin_users
-  */
 
   const {
     data,
@@ -750,23 +670,15 @@ async function checkAdmin(){
   await client
     .from("admin_users")
     .select("user_id")
-    .eq(
-      "user_id",
-      user.id
-    )
+    .eq("user_id",user.id)
     .maybeSingle();
 
 
-  if(
-    error ||
-    !data
-  ){
+  if(error || !data){
 
-    adminPanel.style.display =
-      "none";
+    adminPanel.style.display = "none";
 
-    accessDenied.style.display =
-      "flex";
+    accessDenied.style.display = "flex";
 
     return false;
 
@@ -776,30 +688,21 @@ async function checkAdmin(){
   adminEmail.innerText =
     user.email || "ADMIN";
 
-
   adminPanel.style.display =
     "block";
-
 
   return true;
 
 }
 
 
-/* =========================================
-   LOAD DEPOSITS
-========================================= */
-
 async function loadDeposits(){
 
   const isAdmin =
     await checkAdmin();
 
-
   if(!isAdmin){
-
     return;
-
   }
 
 
@@ -851,9 +754,7 @@ async function loadDeposits(){
 
           <br><br>
 
-          ${escapeHtml(
-            error.message
-          )}
+          ${escapeHtml(error.message)}
 
         </td>
 
@@ -866,71 +767,50 @@ async function loadDeposits(){
   }
 
 
-  const deposits =
-    data || [];
-
-
-  /* =====================================
-     HITUNG
-  ===================================== */
+  const deposits = data || [];
 
   let pending = 0;
   let approved = 0;
   let rejected = 0;
 
 
-  deposits.forEach(
-    function(item){
+  deposits.forEach(function(item){
 
-      const status =
-        String(
-          item.status || ""
-        ).toLowerCase();
+    const status =
+      String(item.status || "")
+      .toLowerCase();
 
-
-      if(status === "pending"){
-        pending++;
-      }
-
-      if(status === "approved"){
-        approved++;
-      }
-
-      if(status === "rejected"){
-        rejected++;
-      }
-
+    if(status === "pending"){
+      pending++;
     }
-  );
+
+    if(status === "approved"){
+      approved++;
+    }
+
+    if(status === "rejected"){
+      rejected++;
+    }
+
+  });
 
 
   document.getElementById(
     "totalCount"
-  ).innerText =
-    deposits.length;
-
+  ).innerText = deposits.length;
 
   document.getElementById(
     "pendingCount"
-  ).innerText =
-    pending;
-
+  ).innerText = pending;
 
   document.getElementById(
     "approvedCount"
-  ).innerText =
-    approved;
-
+  ).innerText = approved;
 
   document.getElementById(
     "rejectedCount"
-  ).innerText =
-    rejected;
+  ).innerText = rejected;
 
-
-  /* =====================================
-     KOSONG
-  ===================================== */
 
   if(deposits.length === 0){
 
@@ -942,9 +822,7 @@ async function loadDeposits(){
           colspan="6"
           class="empty"
         >
-
           Belum ada pengajuan deposit.
-
         </td>
 
       </tr>
@@ -956,133 +834,117 @@ async function loadDeposits(){
   }
 
 
-  /* =====================================
-     TAMPILKAN
-  ===================================== */
-
   depositTable.innerHTML = "";
 
 
-  deposits.forEach(
-    function(item){
+  deposits.forEach(function(item){
 
-      const status =
-        String(
-          item.status || "pending"
-        ).toLowerCase();
-
-
-      let badge =
-        "pending";
+    const status =
+      String(
+        item.status || "pending"
+      ).toLowerCase();
 
 
-      if(status === "approved"){
-        badge = "approved";
-      }
+    let badge = "pending";
 
-      if(status === "rejected"){
-        badge = "rejected";
-      }
+    if(status === "approved"){
+      badge = "approved";
+    }
 
-
-      let actions = "-";
-
-
-      if(status === "pending"){
-
-        actions = `
-
-          <div class="actions">
-
-            <button
-              class="btn btn-approve"
-              onclick="approveDeposit(${Number(item.id)})"
-            >
-              SETUJUI
-            </button>
-
-            <button
-              class="btn btn-reject"
-              onclick="rejectDeposit(${Number(item.id)})"
-            >
-              TOLAK
-            </button>
-
-          </div>
-
-        `;
-
-      }
+    if(status === "rejected"){
+      badge = "rejected";
+    }
 
 
-      const date =
-        item.created_at
-          ? new Date(
-              item.created_at
-            ).toLocaleString(
-              "id-ID"
-            )
-          : "-";
+    let actions = "-";
 
 
-      const row =
-        document.createElement("tr");
+    if(status === "pending"){
 
+      actions = `
 
-      row.innerHTML = `
+        <div class="actions">
 
-        <td>
-          #${escapeHtml(item.id)}
-        </td>
-
-        <td>
-          <div class="userid">
-            ${escapeHtml(item.user_id)}
-          </div>
-        </td>
-
-        <td>
-          <div class="amount">
-            ${rupiah(item.amount)}
-          </div>
-        </td>
-
-        <td>
-
-          <span
-            class="badge ${badge}"
+          <button
+            class="btn btn-approve"
+            onclick="approveDeposit(${Number(item.id)})"
           >
-            ${escapeHtml(status)}
-          </span>
+            SETUJUI
+          </button>
 
-        </td>
+          <button
+            class="btn btn-reject"
+            onclick="rejectDeposit(${Number(item.id)})"
+          >
+            TOLAK
+          </button>
 
-        <td>
-          ${escapeHtml(date)}
-        </td>
-
-        <td>
-          ${actions}
-        </td>
+        </div>
 
       `;
 
-
-      depositTable.appendChild(row);
-
     }
-  );
+
+
+    const date =
+      item.created_at
+      ? new Date(
+          item.created_at
+        ).toLocaleString("id-ID")
+      : "-";
+
+
+    const row =
+      document.createElement("tr");
+
+
+    row.innerHTML = `
+
+      <td>
+        #${escapeHtml(item.id)}
+      </td>
+
+      <td>
+        <div class="userid">
+          ${escapeHtml(item.user_id)}
+        </div>
+      </td>
+
+      <td>
+        <div class="amount">
+          ${rupiah(item.amount)}
+        </div>
+      </td>
+
+      <td>
+
+        <span
+          class="badge ${badge}"
+        >
+          ${escapeHtml(status)}
+        </span>
+
+      </td>
+
+      <td>
+        ${escapeHtml(date)}
+      </td>
+
+      <td>
+        ${actions}
+      </td>
+
+    `;
+
+
+    depositTable.appendChild(row);
+
+  });
 
 }
 
 
-/* =========================================
-   APPROVE
-========================================= */
-
-async function approveDeposit(
-  depositId
-){
+async function approveDeposit(depositId){
 
   const yes =
     confirm(
@@ -1104,11 +966,6 @@ async function approveDeposit(
 
 
   try{
-
-    /*
-       PANGGIL FUNCTION SUPABASE
-       approve_deposit()
-    */
 
     const {
       data,
@@ -1168,13 +1025,7 @@ async function approveDeposit(
 }
 
 
-/* =========================================
-   REJECT
-========================================= */
-
-async function rejectDeposit(
-  depositId
-){
+async function rejectDeposit(depositId){
 
   const yes =
     confirm(
@@ -1225,8 +1076,6 @@ async function rejectDeposit(
         "error"
       );
 
-      console.error(error);
-
       return;
 
     }
@@ -1270,10 +1119,6 @@ async function rejectDeposit(
 }
 
 
-/* =========================================
-   LOGOUT
-========================================= */
-
 async function logout(){
 
   await client.auth.signOut();
@@ -1283,10 +1128,6 @@ async function logout(){
 
 }
 
-
-/* =========================================
-   START
-========================================= */
 
 loadDeposits();
 
