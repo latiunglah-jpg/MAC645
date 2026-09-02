@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAC645 - Admin Deposit</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6f8;
+  color:#202124;
+}
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  width:230px;
+  height:100vh;
+  background:#101820;
+  color:white;
+  padding:25px 15px;
+}
+
+.logo{
+  text-align:center;
+  font-size:28px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.logo span{
+  color:#9cff00;
+}
+
+.admin-title{
+  text-align:center;
+  color:#89949e;
+  font-size:11px;
+  margin-bottom:30px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.menu a,
+.logout-btn{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:8px;
+  background:transparent;
+  color:#ddd;
+  text-decoration:none;
+  text-align:left;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.menu a:hover,
+.menu a.active,
+.logout-btn:hover{
+  background:#1e2d38;
+  color:#9cff00;
+}
+
+.logout-box{
+  margin-top:20px;
+  border-top:1px solid #29353e;
+  padding-top:20px;
+}
+
+.main{
+  margin-left:230px;
+  min-height:100vh;
+}
+
+.topbar{
+  height:70px;
+  background:white;
+  border-bottom:1px solid #e1e5e9;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 30px;
+}
+
+.topbar h1{
+  font-size:21px;
+}
+
+.email{
+  color:#727c86;
+  font-size:12px;
+}
+
+.content{
+  padding:30px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.stat{
+  background:white;
+  border:1px solid #e2e6ea;
+  border-radius:13px;
+  padding:20px;
+}
+
+.stat small{
+  display:block;
+  color:#77818a;
+  font-size:10px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.stat strong{
+  font-size:26px;
+}
+
+.pending{
+  color:#e39a00;
+}
+
+.approved{
+  color:#07965c;
+}
+
+.rejected{
+  color:#d93025;
+}
+
+.card{
+  background:white;
+  border:1px solid #e1e5e9;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.card-head{
+  padding:20px;
+  border-bottom:1px solid #e7eaed;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.card-head h2{
+  font-size:17px;
+}
+
+.refresh{
+  border:0;
+  background:#087cff;
+  color:white;
+  padding:10px 15px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:11px;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  min-width:850px;
+  border-collapse:collapse;
+}
+
+th{
+  background:#f8f9fa;
+  color:#68737d;
+  text-align:left;
+  padding:14px;
+  font-size:10px;
+}
+
+td{
+  padding:14px;
+  border-top:1px solid #edf0f2;
+  font-size:12px;
+}
+
+.amount{
+  font-weight:900;
+}
+
+.userid{
+  max-width:220px;
+  word-break:break-all;
+  font-family:monospace;
+  font-size:10px;
+  color:#68737d;
+}
+
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:9px;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+.badge.pending{
+  background:#fff2d6;
+  color:#a96800;
+}
+
+.badge.approved{
+  background:#ddf5e9;
+  color:#087849;
+}
+
+.badge.rejected{
+  background:#ffe5e5;
+  color:#b42323;
+}
+
+.actions{
+  display:flex;
+  gap:6px;
+}
+
+.btn{
+  border:0;
+  color:white;
+  padding:8px 10px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:9px;
+  font-weight:bold;
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.btn-approve{
+  background:#07965c;
+}
+
+.btn-reject{
+  background:#d93025;
+}
+
+.loading,
+.empty{
+  text-align:center;
+  padding:45px;
+  color:#737d86;
+}
+
+#message{
+  display:none;
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  padding:14px 18px;
+  border-radius:8px;
+  background:#202a32;
+  color:white;
+  font-size:12px;
+  z-index:999;
+}
+
+#message.success{
+  background:#087849;
+}
+
+#message.error{
+  background:#c62828;
+}
+
+#accessDenied{
+  display:none;
+  min-height:100vh;
+  background:#061b13;
+  color:white;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.denied-box h1{
+  color:#ff5555;
+  margin-bottom:12px;
+}
+
+.denied-box p{
+  color:#ddd;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.denied-box a{
+  display:inline-block;
+  background:#9cff00;
+  color:#101820;
+  padding:11px 18px;
+  border-radius:7px;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:bold;
+}
+
+@media(max-width:850px){
+
+  .sidebar{
+    width:190px;
+  }
+
+  .main{
+    margin-left:190px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .topbar{
+    height:auto;
+    padding:18px;
+    gap:10px;
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .content{
+    padding:15px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     AKSES DITOLAK
+========================= -->
+
+<div id="accessDenied">
+
+  <div class="denied-box">
+
+    <h1>AKSES DITOLAK</h1>
+
+    <p>
+      Akun ini bukan admin MAC645.
+    </p>
+
+    <a href="../mac.html">
+      KEMBALI LOGIN
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADMIN PANEL
+========================= -->
+
+<div id="adminPanel" style="display:none;">
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      MAC<span>645</span>
+    </div>
+
+    <div class="admin-title">
+      ADMIN PANEL
+    </div>
+
+    <nav class="menu">
+
+      <a href="index.html">
+        📊 Dashboard
+      </a>
+
+      <a href="deposits.html" class="active">
+        💰 Deposit
+      </a>
+
+      <a href="transactions.html">
+        🛒 Transaksi
+      </a>
+
+      <a href="users.html">
+        👤 User
+      </a>
+
+      <a href="wallets.html">
+        💳 Wallet
+      </a>
+
+      <a href="../dashboard.html">
+        🌐 Dashboard User
+      </a>
+
+      <div class="logout-box">
+
+        <button
+          class="logout-btn"
+          onclick="logout()"
+        >
+          🚪 Logout
+        </button>
+
+      </div>
+
+    </nav>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <h1>
+        💰 Kelola Deposit
+      </h1>
+
+      <div
+        id="adminEmail"
+        class="email"
+      >
+        Memeriksa admin...
+      </div>
+
+    </header>
+
+
+    <section class="content">
+
+      <!-- STATISTIK -->
+
+      <div class="stats">
+
+        <div class="stat">
+          <small>TOTAL DEPOSIT</small>
+          <strong id="totalCount">0</strong>
+        </div>
+
+        <div class="stat">
+          <small>PENDING</small>
+          <strong
+            id="pendingCount"
+            class="pending"
+          >
+            0
+          </strong>
+        </div>
+
+        <div class="stat">
+          <small>APPROVED</small>
+          <strong
+            id="approvedCount"
+            class="approved"
+          >
+            0
+          </strong>
+        </div>
+
+        <div class="stat">
+          <small>REJECTED</small>
+          <strong
+            id="rejectedCount"
+            class="rejected"
+          >
+            0
+          </strong>
+        </div>
+
+      </div>
+
+
+      <!-- DEPOSIT -->
+
+      <div class="card">
+
+        <div class="card-head">
+
+          <h2>
+            Pengajuan Deposit User
+          </h2>
+
+          <button
+            class="refresh"
+            onclick="loadDeposits()"
+          >
+            ↻ REFRESH
+          </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>ID</th>
+                <th>USER ID</th>
+                <th>NOMINAL</th>
+                <th>STATUS</th>
+                <th>TANGGAL</th>
+                <th>AKSI</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="depositTable">
+
+              <tr>
+                <td
+                  colspan="6"
+                  class="loading"
+                >
+                  Memuat deposit...
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- MESSAGE -->
+
+<div id="message"></div>
+
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+  "https://jblilyzqozodjslgylso.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+
+const client =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================
+   ELEMENT
+========================================= */
+
+const adminPanel =
+  document.getElementById("adminPanel");
+
+const accessDenied =
+  document.getElementById("accessDenied");
+
+const adminEmail =
+  document.getElementById("adminEmail");
+
+const depositTable =
+  document.getElementById("depositTable");
+
+const message =
+  document.getElementById("message");
+
+
+/* =========================================
+   ESCAPE
+========================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   RUPIAH
+========================================= */
+
+function rupiah(value){
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(
+    Number(value) || 0
+  );
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+  text,
+  type=""
+){
+
+  message.innerText =
+    text;
+
+  message.className =
+    type;
+
+  message.style.display =
+    "block";
+
+  setTimeout(
+    function(){
+
+      message.style.display =
+        "none";
+
+    },
+    4000
+  );
+
+}
+
+
+/* =========================================
+   CURRENT USER
+========================================= */
+
+async function getUser(){
+
+  const {
+    data,
+    error
+  } =
+  await client.auth.getSession();
+
+  if(
+    error ||
+    !data ||
+    !data.session
+  ){
+
+    return null;
+
+  }
+
+  return data.session.user;
+
+}
+
+
+/* =========================================
+   CHECK ADMIN
+========================================= */
+
+async function checkAdmin(){
+
+  const user =
+    await getUser();
+
+
+  if(!user){
+
+    window.location.href =
+      "../mac.html";
+
+    return false;
+
+  }
+
+
+  /*
+     CEK TABEL admin_users
+  */
+
+  const {
+    data,
+    error
+  } =
+  await client
+    .from("admin_users")
+    .select("user_id")
+    .eq(
+      "user_id",
+      user.id
+    )
+    .maybeSingle();
+
+
+  if(
+    error ||
+    !data
+  ){
+
+    adminPanel.style.display =
+      "none";
+
+    accessDenied.style.display =
+      "flex";
+
+    return false;
+
+  }
+
+
+  adminEmail.innerText =
+    user.email || "ADMIN";
+
+
+  adminPanel.style.display =
+    "block";
+
+
+  return true;
+
+}
+
+
+/* =========================================
+   LOAD DEPOSITS
+========================================= */
+
+async function loadDeposits(){
+
+  const isAdmin =
+    await checkAdmin();
+
+
+  if(!isAdmin){
+
+    return;
+
+  }
+
+
+  depositTable.innerHTML = `
+
+    <tr>
+
+      <td
+        colspan="6"
+        class="loading"
+      >
+        Memuat deposit...
+      </td>
+
+    </tr>
+
+  `;
+
+
+  const {
+    data,
+    error
+  } =
+  await client
+    .from("deposits")
+    .select(
+      "id,user_id,amount,status,created_at"
+    )
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    depositTable.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="6"
+          class="empty"
+        >
+
+          Gagal membaca deposits.
+
+          <br><br>
+
+          ${escapeHtml(
+            error.message
+          )}
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  const deposits =
+    data || [];
+
+
+  /* =====================================
+     HITUNG
+  ===================================== */
+
+  let pending = 0;
+  let approved = 0;
+  let rejected = 0;
+
+
+  deposits.forEach(
+    function(item){
+
+      const status =
+        String(
+          item.status || ""
+        ).toLowerCase();
+
+
+      if(status === "pending"){
+        pending++;
+      }
+
+      if(status === "approved"){
+        approved++;
+      }
+
+      if(status === "rejected"){
+        rejected++;
+      }
+
+    }
+  );
+
+
+  document.getElementById(
+    "totalCount"
+  ).innerText =
+    deposits.length;
+
+
+  document.getElementById(
+    "pendingCount"
+  ).innerText =
+    pending;
+
+
+  document.getElementById(
+    "approvedCount"
+  ).innerText =
+    approved;
+
+
+  document.getElementById(
+    "rejectedCount"
+  ).innerText =
+    rejected;
+
+
+  /* =====================================
+     KOSONG
+  ===================================== */
+
+  if(deposits.length === 0){
+
+    depositTable.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="6"
+          class="empty"
+        >
+
+          Belum ada pengajuan deposit.
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  /* =====================================
+     TAMPILKAN
+  ===================================== */
+
+  depositTable.innerHTML = "";
+
+
+  deposits.forEach(
+    function(item){
+
+      const status =
+        String(
+          item.status || "pending"
+        ).toLowerCase();
+
+
+      let badge =
+        "pending";
+
+
+      if(status === "approved"){
+        badge = "approved";
+      }
+
+      if(status === "rejected"){
+        badge = "rejected";
+      }
+
+
+      let actions = "-";
+
+
+      if(status === "pending"){
+
+        actions = `
+
+          <div class="actions">
+
+            <button
+              class="btn btn-approve"
+              onclick="approveDeposit(${Number(item.id)})"
+            >
+              SETUJUI
+            </button>
+
+            <button
+              class="btn btn-reject"
+              onclick="rejectDeposit(${Number(item.id)})"
+            >
+              TOLAK
+            </button>
+
+          </div>
+
+        `;
+
+      }
+
+
+      const date =
+        item.created_at
+          ? new Date(
+              item.created_at
+            ).toLocaleString(
+              "id-ID"
+            )
+          : "-";
+
+
+      const row =
+        document.createElement("tr");
+
+
+      row.innerHTML = `
+
+        <td>
+          #${escapeHtml(item.id)}
+        </td>
+
+        <td>
+          <div class="userid">
+            ${escapeHtml(item.user_id)}
+          </div>
+        </td>
+
+        <td>
+          <div class="amount">
+            ${rupiah(item.amount)}
+          </div>
+        </td>
+
+        <td>
+
+          <span
+            class="badge ${badge}"
+          >
+            ${escapeHtml(status)}
+          </span>
+
+        </td>
+
+        <td>
+          ${escapeHtml(date)}
+        </td>
+
+        <td>
+          ${actions}
+        </td>
+
+      `;
+
+
+      depositTable.appendChild(row);
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   APPROVE
+========================================= */
+
+async function approveDeposit(
+  depositId
+){
+
+  const yes =
+    confirm(
+      "SETUJUI deposit #" +
+      depositId +
+      "?\n\n" +
+      "Saldo user akan bertambah sesuai nominal deposit."
+    );
+
+
+  if(!yes){
+    return;
+  }
+
+
+  showMessage(
+    "Sedang memproses approve..."
+  );
+
+
+  try{
+
+    /*
+       PANGGIL FUNCTION SUPABASE
+       approve_deposit()
+    */
+
+    const {
+      data,
+      error
+    } =
+    await client.rpc(
+      "approve_deposit",
+      {
+        p_deposit_id:
+          Number(depositId)
+      }
+    );
+
+
+    if(error){
+
+      showMessage(
+        "Approve gagal: " +
+        error.message,
+        "error"
+      );
+
+      console.error(error);
+
+      return;
+
+    }
+
+
+    console.log(
+      "approve_deposit:",
+      data
+    );
+
+
+    showMessage(
+      "Deposit #" +
+      depositId +
+      " berhasil disetujui.",
+      "success"
+    );
+
+
+    await loadDeposits();
+
+  }
+  catch(error){
+
+    showMessage(
+      "Terjadi kesalahan: " +
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   REJECT
+========================================= */
+
+async function rejectDeposit(
+  depositId
+){
+
+  const yes =
+    confirm(
+      "TOLAK deposit #" +
+      depositId +
+      "?"
+    );
+
+
+  if(!yes){
+    return;
+  }
+
+
+  showMessage(
+    "Sedang memproses penolakan..."
+  );
+
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await client
+      .from("deposits")
+      .update({
+        status:"rejected"
+      })
+      .eq(
+        "id",
+        Number(depositId)
+      )
+      .eq(
+        "status",
+        "pending"
+      )
+      .select()
+      .maybeSingle();
+
+
+    if(error){
+
+      showMessage(
+        "Tolak gagal: " +
+        error.message,
+        "error"
+      );
+
+      console.error(error);
+
+      return;
+
+    }
+
+
+    if(!data){
+
+      showMessage(
+        "Deposit sudah diproses atau tidak ditemukan.",
+        "error"
+      );
+
+      await loadDeposits();
+
+      return;
+
+    }
+
+
+    showMessage(
+      "Deposit #" +
+      depositId +
+      " berhasil ditolak.",
+      "success"
+    );
+
+
+    await loadDeposits();
+
+  }
+  catch(error){
+
+    showMessage(
+      "Terjadi kesalahan: " +
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+async function logout(){
+
+  await client.auth.signOut();
+
+  window.location.href =
+    "../mac.html";
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadDeposits();
+
+</script>
+
+</body>
+</html>
