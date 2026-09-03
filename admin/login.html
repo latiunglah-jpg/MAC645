@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAC645 - Admin Login</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0b1117;
+    color:#fff;
+    padding:20px;
+}
+
+/* BACKGROUND */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.25;
+}
+
+.circle.one{
+    width:300px;
+    height:300px;
+    background:#087cff;
+    top:-100px;
+    left:-100px;
+}
+
+.circle.two{
+    width:350px;
+    height:350px;
+    background:#58e600;
+    right:-150px;
+    bottom:-120px;
+}
+
+/* LOGIN BOX */
+
+.login-box{
+    position:relative;
+    width:100%;
+    max-width:430px;
+    background:#121b24;
+    border:1px solid #263441;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 25px 70px rgba(0,0,0,.45);
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.logo span{
+    color:#58e600;
+}
+
+.admin-title{
+    text-align:center;
+    color:#8f9aa5;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:30px;
+}
+
+/* ICON */
+
+.lock{
+    width:70px;
+    height:70px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#1c2d3a;
+    font-size:30px;
+}
+
+/* FORM */
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    color:#c8d0d8;
+    margin-bottom:8px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+input{
+    width:100%;
+    padding:14px 15px;
+    border-radius:9px;
+    border:1px solid #334351;
+    background:#0d151d;
+    color:#fff;
+    outline:none;
+    font-size:14px;
+}
+
+input:focus{
+    border-color:#087cff;
+    box-shadow:0 0 0 3px rgba(8,124,255,.12);
+}
+
+input::placeholder{
+    color:#65727e;
+}
+
+/* BUTTON */
+
+.login-btn{
+    width:100%;
+    border:0;
+    border-radius:9px;
+    padding:14px;
+    background:#087cff;
+    color:#fff;
+    font-weight:800;
+    font-size:14px;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.login-btn:hover{
+    background:#006de5;
+}
+
+.login-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* MESSAGE */
+
+.message{
+    display:none;
+    margin-bottom:18px;
+    padding:12px;
+    border-radius:8px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.message.error{
+    display:block;
+    background:#3a1717;
+    border:1px solid #702525;
+    color:#ffb4b4;
+}
+
+.message.success{
+    display:block;
+    background:#15331f;
+    border:1px solid #27633a;
+    color:#a9efbd;
+}
+
+/* BACK */
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:22px;
+    color:#8e9aa5;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.back:hover{
+    color:#58e600;
+}
+
+/* SECURITY */
+
+.security{
+    text-align:center;
+    color:#65727e;
+    font-size:11px;
+    margin-top:25px;
+    line-height:1.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+</div>
+
+
+<div class="login-box">
+
+    <div class="lock">
+        🔐
+    </div>
+
+    <div class="logo">
+        MAC<span>645</span>
+    </div>
+
+    <div class="admin-title">
+        ADMINISTRATOR LOGIN
+    </div>
+
+
+    <div id="message" class="message"></div>
+
+
+    <form id="loginForm">
+
+        <div class="input-group">
+
+            <label for="email">
+                Email Administrator
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="Masukkan email admin"
+                autocomplete="username"
+                required
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Masukkan password"
+                autocomplete="current-password"
+                required
+            >
+
+        </div>
+
+
+        <button
+            id="loginButton"
+            class="login-btn"
+            type="submit">
+
+            🔐 LOGIN ADMIN
+
+        </button>
+
+    </form>
+
+
+    <a
+        class="back"
+        href="../index.html">
+
+        ← Kembali ke Login User
+
+    </a>
+
+
+    <div class="security">
+
+        🔒 Halaman khusus administrator MAC645.<br>
+        Akses hanya diberikan kepada akun yang terdaftar sebagai admin.
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   SUPABASE
+========================================== */
+
+const SUPABASE_URL =
+"https://jblilyzqozodjslgylso.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ==========================================
+   ELEMENT
+========================================== */
+
+const form =
+document.getElementById("loginForm");
+
+const emailInput =
+document.getElementById("email");
+
+const passwordInput =
+document.getElementById("password");
+
+const loginButton =
+document.getElementById("loginButton");
+
+const message =
+document.getElementById("message");
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+function showMessage(
+    text,
+    type="error"
+){
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+/* ==========================================
+   CHECK ALREADY LOGIN
+========================================== */
+
+async function checkExistingSession(){
+
+    const {
+        data:{
+            session
+        }
+    } =
+    await supabaseClient.auth.getSession();
+
+
+    if(!session){
+        return;
+    }
+
+
+    const user =
+        session.user;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("admin_users")
+        .select("user_id")
+        .eq(
+            "user_id",
+            user.id
+        )
+        .maybeSingle();
+
+
+    if(
+        !error &&
+        data
+    ){
+
+        window.location.href =
+            "index.html";
+
+    }
+
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+form.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const email =
+            emailInput.value.trim();
+
+        const password =
+            passwordInput.value;
+
+
+        if(!email || !password){
+
+            showMessage(
+                "Email dan password wajib diisi."
+            );
+
+            return;
+
+        }
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+            "⏳ MEMERIKSA...";
+
+
+        showMessage(
+            "",
+            "success"
+        );
+
+
+        /*
+         * LOGIN SUPABASE
+         */
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email:email,
+
+            password:password
+
+        });
+
+
+        if(error){
+
+            console.error(error);
+
+            showMessage(
+                "Login gagal: " +
+                error.message
+            );
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "🔐 LOGIN ADMIN";
+
+            return;
+
+        }
+
+
+        const user =
+            data.user;
+
+
+        if(!user){
+
+            showMessage(
+                "Akun tidak ditemukan."
+            );
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "🔐 LOGIN ADMIN";
+
+            return;
+
+        }
+
+
+        /*
+         * CEK APAKAH USER ADALAH ADMIN
+         */
+
+        const {
+            data:adminData,
+            error:adminError
+        } =
+        await supabaseClient
+            .from("admin_users")
+            .select("user_id")
+            .eq(
+                "user_id",
+                user.id
+            )
+            .maybeSingle();
+
+
+        console.log(
+            "ADMIN CHECK:",
+            {
+                user_id:user.id,
+                adminData:adminData,
+                adminError:adminError
+            }
+        );
+
+
+        /*
+         * BUKAN ADMIN
+         */
+
+        if(
+            adminError ||
+            !adminData
+        ){
+
+            await supabaseClient.auth.signOut();
+
+
+            showMessage(
+                "❌ Akun berhasil login, tetapi akun ini tidak terdaftar sebagai administrator."
+            );
+
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "🔐 LOGIN ADMIN";
+
+            return;
+
+        }
+
+
+        /*
+         * ADMIN BERHASIL LOGIN
+         */
+
+        showMessage(
+            "✅ Login admin berhasil. Membuka panel...",
+            "success"
+        );
+
+
+        setTimeout(
+            function(){
+
+                window.location.href =
+                    "index.html";
+
+            },
+            700
+        );
+
+    }
+);
+
+
+/* ==========================================
+   START
+========================================== */
+
+checkExistingSession();
+
+</script>
+
+</body>
+</html>
