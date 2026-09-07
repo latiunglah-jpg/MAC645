@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>MAC645 - Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAC645 - Deposit</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -12,17 +14,18 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,Helvetica,sans-serif
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
   background:#071b12;
-  color:#fff
+  color:#fff;
+  min-height:100vh;
 }
 
 a{
   text-decoration:none;
-  color:inherit
+  color:inherit;
 }
 
 /* TOP */
@@ -33,12 +36,12 @@ a{
   align-items:center;
   overflow:hidden;
   font-size:12px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .running{
   white-space:nowrap;
-  animation:run 18s linear infinite
+  animation:run 18s linear infinite;
 }
 
 @keyframes run{
@@ -49,45 +52,45 @@ a{
 /* HEADER */
 header{
   background:#0b2918;
-  border-bottom:1px solid #285936
+  border-bottom:1px solid #285936;
 }
 
 .header{
-  max-width:1250px;
+  max-width:1100px;
   margin:auto;
   min-height:72px;
   padding:10px 18px;
   display:flex;
   align-items:center;
-  gap:20px
+  gap:20px;
 }
 
 .logo{
   font-size:32px;
-  font-weight:900
+  font-weight:900;
 }
 
 .logo span{
-  color:#aaff38
+  color:#aaff38;
 }
 
 .account{
   color:#9eb3a3;
-  font-size:11px
+  font-size:11px;
 }
 
 .account strong{
   display:block;
   color:#fff;
   font-size:13px;
-  margin-top:4px
+  margin-top:4px;
 }
 
 .header-right{
   margin-left:auto;
   display:flex;
   align-items:center;
-  gap:10px
+  gap:10px;
 }
 
 .mini-saldo{
@@ -97,7 +100,7 @@ header{
   padding:10px 14px;
   border-radius:7px;
   font-size:12px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .logout{
@@ -108,385 +111,447 @@ header{
   border-radius:7px;
   cursor:pointer;
   font-size:11px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 /* NAV */
 .navbar{
   background:#102f1b;
-  border-top:1px solid #1e4728
+  border-top:1px solid #1e4728;
 }
 
 .nav{
-  max-width:1250px;
+  max-width:1100px;
   margin:auto;
   display:flex;
   overflow-x:auto;
-  padding:0 18px
+  padding:0 18px;
 }
 
 .nav a{
   padding:15px 17px;
   font-size:12px;
   font-weight:bold;
-  white-space:nowrap
+  white-space:nowrap;
 }
 
 .nav a:hover,
 .nav .active{
   color:#aaff38;
-  background:#194a27
+  background:#194a27;
 }
 
 /* MAIN */
 .container{
-  max-width:1250px;
+  max-width:1100px;
   margin:auto;
-  padding:22px 18px 50px
+  padding:25px 18px 60px;
 }
 
-/* HERO */
-.hero{
-  min-height:190px;
-  padding:30px;
-  border-radius:14px;
-  border:1px solid #39723e;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  background:
-  radial-gradient(circle at 85% 20%,rgba(170,255,56,.25),transparent 30%),
-  linear-gradient(120deg,#123d1f,#1d5b26,#0d3219)
+/* TITLE */
+.page-title{
+  margin-bottom:20px;
 }
 
-.hero h1{
+.page-title h1{
   font-size:28px;
-  margin-bottom:10px
+  margin-bottom:8px;
 }
 
-.hero h1 span{
-  color:#aaff38
-}
-
-.hero p{
-  color:#cfddd2;
-  font-size:13px;
-  line-height:1.6
-}
-
-.hero-icon{
-  font-size:80px
-}
-
-/* SECTION */
-.section{
-  margin-top:25px
-}
-
-.title{
-  margin-bottom:13px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between
-}
-
-.title h2{
-  font-size:19px
-}
-
-.title a{
+.page-title h1 span{
   color:#aaff38;
-  font-size:12px;
-  font-weight:bold
 }
 
-/* WALLET */
-.wallet-grid{
+.page-title p{
+  color:#9caf9f;
+  font-size:13px;
+}
+
+/* GRID */
+.deposit-grid{
   display:grid;
-  grid-template-columns:1.5fr 1fr 1fr;
-  gap:12px
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
-.wallet{
+/* CARD */
+.card{
   background:#102a19;
   border:1px solid #285634;
-  border-radius:11px;
-  padding:20px
+  border-radius:13px;
+  padding:22px;
 }
 
-.wallet small{
-  color:#91a695;
-  font-size:11px
+.card-title{
+  font-size:16px;
+  margin-bottom:17px;
+  font-weight:800;
+}
+
+.card-title span{
+  color:#aaff38;
+}
+
+/* SALDO */
+.saldo-card{
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(170,255,56,.18),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #123d1f,
+      #173f22
+    );
+}
+
+.saldo-label{
+  color:#9caf9f;
+  font-size:11px;
 }
 
 .saldo{
-  margin-top:8px;
+  margin-top:7px;
   color:#aaff38;
-  font-size:26px;
-  font-weight:900
+  font-size:30px;
+  font-weight:900;
 }
 
-.wallet p{
-  color:#9daf9f;
+.saldo-info{
+  margin-top:7px;
+  color:#9caf9f;
   font-size:11px;
-  margin-top:7px
 }
 
-.deposit-btn{
-  display:inline-block;
+/* REKENING */
+.bank-box{
+  background:#0b2114;
+  border:1px solid #315e38;
+  border-radius:10px;
+  padding:17px;
+}
+
+.bank-name{
+  color:#aaff38;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:13px;
+}
+
+.bank-label{
+  color:#829586;
+  font-size:10px;
+  margin-top:10px;
+}
+
+.bank-value{
+  font-size:20px;
+  font-weight:900;
+  margin-top:4px;
+  letter-spacing:1px;
+}
+
+.owner{
+  font-size:13px;
+  margin-top:4px;
+}
+
+.copy-btn{
   margin-top:14px;
-  padding:10px 16px;
+  width:100%;
+  border:1px solid #aaff38;
+  background:transparent;
+  color:#aaff38;
+  padding:11px;
   border-radius:7px;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.copy-btn:hover{
   background:#aaff38;
   color:#10210e;
-  font-size:11px;
-  font-weight:900
 }
 
-.status{
-  color:#aaff38;
-  font-size:24px;
-  font-weight:900;
-  margin-top:8px
+/* FORM */
+.form-group{
+  margin-bottom:16px;
 }
 
-/* MENU */
-.menu-grid{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:10px
-}
-
-.menu{
-  background:#102a19;
-  border:1px solid #285634;
-  border-radius:10px;
-  text-align:center;
-  padding:18px 8px;
-  cursor:pointer;
-  transition:.2s
-}
-
-.menu:hover{
-  transform:translateY(-3px);
-  border-color:#aaff38
-}
-
-.menu-icon{
-  font-size:31px;
-  margin-bottom:8px
-}
-
-.menu h3{
-  font-size:11px
-}
-
-/* PRODUCT */
-.products{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px
-}
-
-.product{
-  background:#102a19;
-  border:1px solid #285634;
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.2s
-}
-
-.product:hover{
-  transform:translateY(-3px);
-  border-color:#aaff38
-}
-
-.product-image{
-  height:120px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:50px;
-  background:radial-gradient(circle,#285d30,#102a19)
-}
-
-.product-info{
-  padding:13px
-}
-
-.product-info h3{
-  font-size:12px;
-  margin-bottom:7px
-}
-
-.price{
-  color:#aaff38;
-  font-size:15px;
-  font-weight:900
-}
-
-.product-info small{
+.form-group label{
   display:block;
-  color:#91a695;
+  color:#b8c8bb;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.input{
+  width:100%;
+  background:#081b10;
+  border:1px solid #315b38;
+  color:#fff;
+  padding:13px;
+  border-radius:8px;
+  outline:none;
+  font-size:13px;
+}
+
+.input:focus{
+  border-color:#aaff38;
+}
+
+.nominal-info{
+  margin-top:7px;
+  color:#829586;
   font-size:10px;
-  margin-top:5px
 }
 
-/* TRANSACTION */
-.transaction{
-  background:#102a19;
-  border:1px solid #285634;
-  border-radius:10px;
-  overflow:hidden
+/* FILE */
+.file-box{
+  border:1px dashed #47714d;
+  background:#0b2114;
+  border-radius:8px;
+  padding:15px;
 }
 
-.row{
-  display:grid;
-  grid-template-columns:1.2fr 2fr 1fr 1fr;
-  padding:14px;
-  border-bottom:1px solid #244b2d;
-  font-size:11px
-}
-
-.row:last-child{
-  border-bottom:0
-}
-
-.head{
-  background:#173a20;
-  color:#aebcaf;
-  font-weight:bold
-}
-
-.pending{
-  color:#ffc44d;
-  font-weight:bold
-}
-
-/* FOOTER */
-footer{
-  background:#06150c;
-  border-top:1px solid #244d2e;
-  padding:30px 18px
-}
-
-.footer{
-  max-width:1250px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:25px
-}
-
-footer h3{
-  font-size:14px;
-  margin-bottom:10px
-}
-
-footer p,
-footer a{
-  display:block;
-  color:#8fa693;
+.file-box input{
+  width:100%;
+  color:#9caf9f;
   font-size:11px;
-  line-height:2
 }
 
-/* CS */
-.cs{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  width:56px;
-  height:56px;
+.file-name{
+  margin-top:8px;
+  color:#aaff38;
+  font-size:10px;
+}
+
+/* BUTTON */
+.submit-btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:8px;
+  background:#aaff38;
+  color:#10210e;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.submit-btn:hover{
+  opacity:.9;
+}
+
+.submit-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* MESSAGE */
+.message{
+  display:none;
+  padding:12px;
+  border-radius:8px;
+  font-size:11px;
+  margin-bottom:15px;
+}
+
+.message.success{
+  display:block;
+  background:#123c23;
+  border:1px solid #3e8148;
+  color:#baff73;
+}
+
+.message.error{
+  display:block;
+  background:#351515;
+  border:1px solid #803737;
+  color:#ff9c9c;
+}
+
+/* STEPS */
+.steps{
+  display:grid;
+  gap:12px;
+}
+
+.step{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.step-number{
+  min-width:28px;
+  height:28px;
   border-radius:50%;
   background:#aaff38;
   color:#10210e;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:24px;
-  cursor:pointer;
-  z-index:999
+  font-size:11px;
+  font-weight:900;
+}
+
+.step-text strong{
+  display:block;
+  font-size:12px;
+  margin-bottom:3px;
+}
+
+.step-text span{
+  color:#8fa394;
+  font-size:10px;
+  line-height:1.5;
+}
+
+/* WARNING */
+.warning{
+  margin-top:18px;
+  padding:13px;
+  background:#302914;
+  border:1px solid #62562d;
+  border-radius:8px;
+  color:#e2d394;
+  font-size:10px;
+  line-height:1.6;
+}
+
+/* HISTORY */
+.history{
+  margin-top:20px;
+}
+
+.history-box{
+  overflow-x:auto;
+  border:1px solid #285634;
+  border-radius:10px;
+}
+
+.history-row{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr 1fr;
+  padding:13px;
+  border-bottom:1px solid #244b2d;
+  font-size:11px;
+  min-width:600px;
+}
+
+.history-row:last-child{
+  border-bottom:0;
+}
+
+.history-head{
+  background:#173a20;
+  color:#aebcaf;
+  font-weight:bold;
+}
+
+.status-pending{
+  color:#ffc44d;
+  font-weight:bold;
+}
+
+.status-approved{
+  color:#aaff38;
+  font-weight:bold;
+}
+
+.status-rejected{
+  color:#ff7777;
+  font-weight:bold;
+}
+
+.empty{
+  text-align:center;
+  color:#829586;
+  padding:20px;
+  font-size:11px;
+}
+
+/* FOOTER */
+footer{
+  background:#06150c;
+  border-top:1px solid #244d2e;
+  padding:28px 18px;
+}
+
+.footer{
+  max-width:1100px;
+  margin:auto;
+  text-align:center;
+}
+
+.footer h3{
+  font-size:14px;
+  margin-bottom:7px;
+}
+
+.footer h3 span{
+  color:#aaff38;
+}
+
+.footer p{
+  color:#718575;
+  font-size:10px;
+}
+
+/* LOADING */
+.loading{
+  text-align:center;
+  padding:20px;
+  color:#829586;
+  font-size:11px;
 }
 
 /* MOBILE */
-@media(max-width:950px){
+@media(max-width:800px){
 
   .account{
-    display:none
+    display:none;
   }
 
-  .wallet-grid{
-    grid-template-columns:1fr 1fr
+  .deposit-grid{
+    grid-template-columns:1fr;
   }
 
-  .menu-grid{
-    grid-template-columns:repeat(3,1fr)
-  }
-
-  .products{
-    grid-template-columns:repeat(3,1fr)
-  }
-
-  .footer{
-    grid-template-columns:1fr 1fr
-  }
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
+
+  .header{
+    padding:10px 13px;
+  }
 
   .logo{
-    font-size:27px
+    font-size:27px;
   }
 
   .mini-saldo{
-    display:none
+    display:none;
   }
 
-  .hero{
-    padding:23px
+  .container{
+    padding:20px 13px 45px;
   }
 
-  .hero h1{
-    font-size:22px
+  .page-title h1{
+    font-size:23px;
   }
 
-  .hero-icon{
-    display:none
+  .card{
+    padding:17px;
   }
 
-  .wallet-grid{
-    grid-template-columns:1fr
-  }
-
-  .menu-grid{
-    grid-template-columns:repeat(3,1fr)
-  }
-
-  .products{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .row{
-    grid-template-columns:1fr 1fr;
-    gap:8px
-  }
-
-  .head{
-    display:none
-  }
-
-  .footer{
-    grid-template-columns:1fr
-  }
-}
-
-@media(max-width:400px){
-
-  .menu-grid{
-    grid-template-columns:repeat(2,1fr)
+  .saldo{
+    font-size:26px;
   }
 }
 </style>
@@ -497,18 +562,19 @@ footer a{
 <!-- TOP -->
 <div class="top">
   <div class="running">
-    📢 MAC645 — Selamat datang! Deposit minimal Rp25.000 dan nikmati layanan produk digital kami.
+    📢 MAC645 — Deposit minimal Rp25.000. Silakan transfer ke rekening resmi MAC645.
   </div>
 </div>
+
 
 <!-- HEADER -->
 <header>
 
   <div class="header">
 
-    <div class="logo">
+    <a href="dashboard.html" class="logo">
       MAC<span>645</span>
-    </div>
+    </a>
 
     <div class="account">
       AKUN SAYA
@@ -517,17 +583,11 @@ footer a{
 
     <div class="header-right">
 
-      <div
-        class="mini-saldo"
-        id="saldoHeader"
-      >
+      <div class="mini-saldo" id="saldoHeader">
         💰 Saldo Rp0
       </div>
 
-      <button
-        class="logout"
-        onclick="logout()"
-      >
+      <button class="logout" onclick="logout()">
         KELUAR
       </button>
 
@@ -535,30 +595,28 @@ footer a{
 
   </div>
 
+
   <nav class="navbar">
 
     <div class="nav">
 
-      <a
-        href="dashboard.html"
-        class="active"
-      >
+      <a href="dashboard.html">
         🏠 Dashboard
       </a>
 
-      <a href="#produk">
+      <a href="dashboard.html#produk">
         Produk
       </a>
 
-      <a href="#kategori">
+      <a href="dashboard.html#kategori">
         Kategori
       </a>
 
-      <a href="deposit.html">
+      <a href="deposit.html" class="active">
         💰 Deposit
       </a>
 
-      <a href="#transaksi">
+      <a href="dashboard.html#transaksi">
         📋 Transaksi
       </a>
 
@@ -570,322 +628,310 @@ footer a{
 
 
 <!-- MAIN -->
-
 <main class="container">
 
+  <div class="page-title">
 
-  <!-- HERO -->
+    <h1>
+      💰 Deposit <span>MAC645</span>
+    </h1>
 
-  <section class="hero">
+    <p>
+      Tambahkan saldo akun kamu dengan melakukan transfer ke rekening resmi MAC645.
+    </p>
 
+  </div>
+
+
+  <div id="message" class="message"></div>
+
+
+  <div class="deposit-grid">
+
+
+    <!-- KIRI -->
     <div>
 
-      <h1>
-        Selamat Datang di
-        <span>MAC645</span> 👋
-      </h1>
 
-      <p>
-        Kelola saldo, deposit, dan pembelian
-        produk digital kamu dengan mudah.
-      </p>
+      <!-- SALDO -->
+      <div class="card saldo-card">
 
-    </div>
+        <div class="saldo-label">
+          SALDO UTAMA
+        </div>
 
-    <div class="hero-icon">
-      🛍️
-    </div>
-
-  </section>
-
-
-  <!-- WALLET -->
-
-  <section class="section">
-
-    <div class="title">
-      <h2>💰 Dompet Saya</h2>
-    </div>
-
-    <div class="wallet-grid">
-
-
-      <div class="wallet">
-
-        <small>SALDO UTAMA</small>
-
-        <div
-          class="saldo"
-          id="saldoUtama"
-        >
+        <div class="saldo" id="saldoUtama">
           Rp0
         </div>
 
-        <p>
-          Saldo yang dapat digunakan untuk transaksi.
+        <div class="saldo-info">
+          Saldo akan bertambah setelah deposit disetujui admin.
+        </div>
+
+      </div>
+
+
+      <!-- REKENING -->
+      <div class="card" style="margin-top:18px;">
+
+        <div class="card-title">
+          🏦 Rekening <span>Tujuan</span>
+        </div>
+
+        <div class="bank-box">
+
+          <div class="bank-name">
+            BANK MAC645
+          </div>
+
+          <div class="bank-label">
+            NOMOR REKENING
+          </div>
+
+          <div class="bank-value" id="nomorRekening">
+            1234567890
+          </div>
+
+          <div class="bank-label">
+            ATAS NAMA
+          </div>
+
+          <div class="owner" id="namaPemilik">
+            MAC645 DIGITAL STORE
+          </div>
+
+          <button class="copy-btn" onclick="copyRekening()">
+            📋 SALIN NO. REKENING
+          </button>
+
+        </div>
+
+
+        <div class="warning">
+          ⚠️ Pastikan nama rekening dan nomor rekening sudah benar sebelum melakukan transfer.
+          Jangan transfer ke rekening lain yang mengatasnamakan MAC645.
+        </div>
+
+      </div>
+
+
+      <!-- CARA -->
+      <div class="card" style="margin-top:18px;">
+
+        <div class="card-title">
+          📌 Cara <span>Deposit</span>
+        </div>
+
+        <div class="steps">
+
+          <div class="step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <div class="step-text">
+
+              <strong>Masukkan nominal</strong>
+
+              <span>
+                Masukkan jumlah uang yang kamu transfer.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <div class="step-text">
+
+              <strong>Transfer ke rekening MAC645</strong>
+
+              <span>
+                Transfer sesuai nominal ke rekening tujuan yang tertera.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <div class="step-text">
+
+              <strong>Upload bukti transfer</strong>
+
+              <span>
+                Upload screenshot atau foto bukti pembayaran.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              4
+            </div>
+
+            <div class="step-text">
+
+              <strong>Tunggu verifikasi admin</strong>
+
+              <span>
+                Saldo akan masuk setelah pengajuan disetujui.
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- KANAN -->
+    <div>
+
+
+      <!-- FORM -->
+      <div class="card">
+
+        <div class="card-title">
+          📝 Ajukan <span>Deposit</span>
+        </div>
+
+
+        <form id="depositForm">
+
+
+          <div class="form-group">
+
+            <label>
+              NOMINAL DEPOSIT
+            </label>
+
+            <input
+              type="number"
+              id="nominal"
+              class="input"
+              placeholder="Contoh: 50000"
+              min="25000"
+              step="1000"
+              required
+            >
+
+            <div class="nominal-info">
+              Minimal deposit Rp25.000
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              BUKTI TRANSFER
+            </label>
+
+            <div class="file-box">
+
+              <input
+                type="file"
+                id="bukti"
+                accept="image/*"
+                required
+              >
+
+              <div class="file-name" id="fileName">
+                Belum ada file dipilih.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="submit-btn"
+            id="submitBtn"
+          >
+            AJUKAN DEPOSIT
+          </button>
+
+
+        </form>
+
+      </div>
+
+
+      <!-- INFO -->
+      <div class="card" style="margin-top:18px;">
+
+        <div class="card-title">
+          🔐 Informasi <span>Keamanan</span>
+        </div>
+
+        <p style="
+          color:#8fa394;
+          font-size:11px;
+          line-height:1.7;
+        ">
+          Jangan pernah memberikan password akun kepada siapapun.
+          MAC645 tidak akan meminta password melalui chat.
+          Pastikan melakukan transfer hanya ke rekening resmi yang tampil di halaman ini.
         </p>
 
-        <a
-          href="deposit.html"
-          class="deposit-btn"
-        >
-          + DEPOSIT
-        </a>
-
       </div>
 
+    </div>
 
-      <div class="wallet">
+  </div>
 
-        <small>TOTAL TRANSAKSI</small>
 
-        <div class="saldo">
-          0
+  <!-- HISTORY -->
+  <section class="history">
+
+    <div class="card">
+
+      <div class="card-title">
+        📋 Riwayat <span>Deposit</span>
+      </div>
+
+      <div class="history-box">
+
+        <div class="history-row history-head">
+
+          <div>TANGGAL</div>
+          <div>NOMINAL</div>
+          <div>STATUS</div>
+          <div>KETERANGAN</div>
+
         </div>
 
-        <p>
-          Jumlah transaksi kamu.
-        </p>
+        <div id="historyList">
 
-      </div>
-
-
-      <div class="wallet">
-
-        <small>STATUS AKUN</small>
-
-        <div class="status">
-          AKTIF
-        </div>
-
-        <p>
-          Akun siap digunakan.
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- KATEGORI -->
-
-  <section
-    class="section"
-    id="kategori"
-  >
-
-    <div class="title">
-      <h2>⚡ Kategori Produk</h2>
-    </div>
-
-    <div class="menu-grid">
-
-
-      <div
-        class="menu"
-        onclick="pilih('Pulsa')"
-      >
-        <div class="menu-icon">📱</div>
-        <h3>Pulsa</h3>
-      </div>
-
-
-      <div
-        class="menu"
-        onclick="pilih('Paket Data')"
-      >
-        <div class="menu-icon">🌐</div>
-        <h3>Paket Data</h3>
-      </div>
-
-
-      <div
-        class="menu"
-        onclick="pilih('Token PLN')"
-      >
-        <div class="menu-icon">⚡</div>
-        <h3>Token PLN</h3>
-      </div>
-
-
-      <div
-        class="menu"
-        onclick="pilih('E-Wallet')"
-      >
-        <div class="menu-icon">💳</div>
-        <h3>E-Wallet</h3>
-      </div>
-
-
-      <div
-        class="menu"
-        onclick="pilih('Voucher Game')"
-      >
-        <div class="menu-icon">🎮</div>
-        <h3>Voucher Game</h3>
-      </div>
-
-
-      <div
-        class="menu"
-        onclick="pilih('Streaming')"
-      >
-        <div class="menu-icon">🎬</div>
-        <h3>Streaming</h3>
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- PRODUK -->
-
-  <section
-    class="section"
-    id="produk"
-  >
-
-    <div class="title">
-      <h2>⭐ Produk Pilihan</h2>
-    </div>
-
-    <div class="products">
-
-
-      <div
-        class="product"
-        onclick="pilih('Pulsa 10.000')"
-      >
-        <div class="product-image">📱</div>
-
-        <div class="product-info">
-          <h3>Pulsa 10.000</h3>
-
-          <div class="price">
-            Rp10.500
+          <div class="loading">
+            Memuat riwayat deposit...
           </div>
 
-          <small>Semua operator</small>
-        </div>
-      </div>
-
-
-      <div
-        class="product"
-        onclick="pilih('Paket Data 10GB')"
-      >
-        <div class="product-image">🌐</div>
-
-        <div class="product-info">
-          <h3>Paket Data 10GB</h3>
-
-          <div class="price">
-            Rp25.000
-          </div>
-
-          <small>Masa aktif 30 hari</small>
-        </div>
-      </div>
-
-
-      <div
-        class="product"
-        onclick="pilih('Token PLN 50.000')"
-      >
-        <div class="product-image">⚡</div>
-
-        <div class="product-info">
-          <h3>Token PLN 50.000</h3>
-
-          <div class="price">
-            Rp50.000
-          </div>
-
-          <small>Tersedia 24 jam</small>
-        </div>
-      </div>
-
-
-      <div
-        class="product"
-        onclick="pilih('E-Wallet 50.000')"
-      >
-        <div class="product-image">💳</div>
-
-        <div class="product-info">
-          <h3>E-Wallet 50.000</h3>
-
-          <div class="price">
-            Rp50.000
-          </div>
-
-          <small>Proses cepat</small>
-        </div>
-      </div>
-
-
-      <div
-        class="product"
-        onclick="pilih('Voucher Game 20.000')"
-      >
-        <div class="product-image">🎮</div>
-
-        <div class="product-info">
-          <h3>Voucher Game 20.000</h3>
-
-          <div class="price">
-            Rp20.000
-          </div>
-
-          <small>Proses cepat</small>
-        </div>
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- TRANSAKSI -->
-
-  <section
-    class="section"
-    id="transaksi"
-  >
-
-    <div class="title">
-      <h2>📋 Transaksi Terbaru</h2>
-    </div>
-
-    <div class="transaction">
-
-      <div class="row head">
-
-        <div>ORDER</div>
-        <div>PRODUK</div>
-        <div>HARGA</div>
-        <div>STATUS</div>
-
-      </div>
-
-      <div class="row">
-
-        <div>-</div>
-
-        <div>
-          Belum ada transaksi
-        </div>
-
-        <div>-</div>
-
-        <div class="pending">
-          -
         </div>
 
       </div>
@@ -893,104 +939,33 @@ footer a{
     </div>
 
   </section>
-
 
 </main>
 
 
 <!-- FOOTER -->
-
 <footer>
 
   <div class="footer">
 
-    <div>
+    <h3>
+      MAC<span>645</span>
+    </h3>
 
-      <h3>MAC645</h3>
-
-      <p>
-        Marketplace produk digital
-        untuk pulsa, data, game,
-        e-wallet dan layanan digital.
-      </p>
-
-    </div>
-
-
-    <div>
-
-      <h3>Produk</h3>
-
-      <a href="#produk">Pulsa</a>
-      <a href="#produk">Paket Data</a>
-      <a href="#produk">Token PLN</a>
-
-    </div>
-
-
-    <div>
-
-      <h3>Akun</h3>
-
-      <a href="deposit.html">
-        Deposit
-      </a>
-
-      <a href="#transaksi">
-        Transaksi
-      </a>
-
-      <a
-        href="#"
-        onclick="logout();return false;"
-      >
-        Keluar
-      </a>
-
-    </div>
-
-
-    <div>
-
-      <h3>Bantuan</h3>
-
-      <a href="#">
-        Cara Belanja
-      </a>
-
-      <a href="#">
-        Pembayaran
-      </a>
-
-      <a
-        href="#"
-        onclick="cs();return false;"
-      >
-        Hubungi CS
-      </a>
-
-    </div>
+    <p>
+      Marketplace produk digital — Pulsa, Data, PLN, E-Wallet, Game dan layanan digital.
+    </p>
 
   </div>
 
 </footer>
 
 
-<!-- CS -->
-
-<div
-  class="cs"
-  onclick="cs()"
->
-  💬
-</div>
-
-
 <script>
 
-/* =================================
+/* =========================================
    SUPABASE
-================================= */
+========================================= */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -1005,9 +980,46 @@ window.supabase.createClient(
 );
 
 
-/* =================================
+/* =========================================
+   PENGATURAN REKENING DEPOSIT
+   GANTI BAGIAN INI DENGAN REKENING KAMU
+========================================= */
+
+const REKENING_DEPOSIT = {
+
+  bank:
+  "BANK MAC645",
+
+  nomor:
+  "1234567890",
+
+  nama:
+  "MAC645 DIGITAL STORE"
+
+};
+
+
+/* =========================================
+   TAMPILKAN REKENING
+========================================= */
+
+document.getElementById("nomorRekening")
+.textContent = REKENING_DEPOSIT.nomor;
+
+document.getElementById("namaPemilik")
+.textContent = REKENING_DEPOSIT.nama;
+
+
+/* =========================================
+   SESSION
+========================================= */
+
+let currentUser = null;
+
+
+/* =========================================
    CEK LOGIN
-================================= */
+========================================= */
 
 async function checkLogin(){
 
@@ -1030,26 +1042,32 @@ async function checkLogin(){
   }
 
 
-  const user =
+  currentUser =
   data.session.user;
 
 
   document.getElementById(
     "userEmail"
   ).textContent =
-  user.email || "User MAC645";
+  currentUser.email ||
+  "User MAC645";
 
 
   await loadSaldo(
-    user.id
+    currentUser.id
+  );
+
+
+  await loadHistory(
+    currentUser.id
   );
 
 }
 
 
-/* =================================
+/* =========================================
    LOAD SALDO
-================================= */
+========================================= */
 
 async function loadSaldo(userId){
 
@@ -1078,9 +1096,9 @@ async function loadSaldo(userId){
 
 
   const balance =
-  data
-  ? Number(data.balance)
-  : 0;
+    data
+    ? Number(data.balance)
+    : 0;
 
 
   setSaldo(balance);
@@ -1088,9 +1106,9 @@ async function loadSaldo(userId){
 }
 
 
-/* =================================
-   TAMPILKAN SALDO
-================================= */
+/* =========================================
+   SET SALDO
+========================================= */
 
 function setSaldo(amount){
 
@@ -1114,9 +1132,530 @@ function setSaldo(amount){
 }
 
 
-/* =================================
+/* =========================================
+   COPY REKENING
+========================================= */
+
+async function copyRekening(){
+
+  try{
+
+    await navigator.clipboard.writeText(
+      REKENING_DEPOSIT.nomor
+    );
+
+    showMessage(
+      "Nomor rekening berhasil disalin.",
+      "success"
+    );
+
+  }catch(error){
+
+    alert(
+      "Nomor rekening: " +
+      REKENING_DEPOSIT.nomor
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   FILE
+========================================= */
+
+document.getElementById(
+  "bukti"
+).addEventListener(
+  "change",
+  function(){
+
+    const file =
+    this.files[0];
+
+    if(!file){
+
+      document.getElementById(
+        "fileName"
+      ).textContent =
+      "Belum ada file dipilih.";
+
+      return;
+
+    }
+
+
+    document.getElementById(
+      "fileName"
+    ).textContent =
+    "📎 " + file.name;
+
+  }
+);
+
+
+/* =========================================
+   SUBMIT DEPOSIT
+========================================= */
+
+document.getElementById(
+  "depositForm"
+).addEventListener(
+  "submit",
+  async function(e){
+
+    e.preventDefault();
+
+
+    if(!currentUser){
+
+      showMessage(
+        "Session login tidak ditemukan. Silakan login kembali.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const nominal =
+    Number(
+      document.getElementById(
+        "nominal"
+      ).value
+    );
+
+
+    const file =
+    document.getElementById(
+      "bukti"
+    ).files[0];
+
+
+    if(!nominal || nominal < 25000){
+
+      showMessage(
+        "Minimal deposit adalah Rp25.000.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!file){
+
+      showMessage(
+        "Silakan upload bukti transfer.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+      showMessage(
+        "Bukti transfer harus berupa gambar.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const maxSize =
+    5 * 1024 * 1024;
+
+
+    if(file.size > maxSize){
+
+      showMessage(
+        "Ukuran bukti transfer maksimal 5 MB.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const submitBtn =
+    document.getElementById(
+      "submitBtn"
+    );
+
+
+    submitBtn.disabled = true;
+
+    submitBtn.textContent =
+    "MENGIRIM...";
+
+
+    try{
+
+      /*
+       * Upload bukti ke Supabase Storage
+       */
+
+      const fileExt =
+      file.name
+      .split(".")
+      .pop();
+
+
+      const filePath =
+      currentUser.id +
+      "/" +
+      Date.now() +
+      "." +
+      fileExt;
+
+
+      const {
+        error:uploadError
+      } =
+      await client.storage
+      .from("deposit-bukti")
+      .upload(
+        filePath,
+        file,
+        {
+          cacheControl:"3600",
+          upsert:false
+        }
+      );
+
+
+      if(uploadError){
+
+        throw uploadError;
+
+      }
+
+
+      /*
+       * Ambil URL file
+       */
+
+      const {
+        data:urlData
+      } =
+      client.storage
+      .from("deposit-bukti")
+      .getPublicUrl(
+        filePath
+      );
+
+
+      const buktiUrl =
+      urlData.publicUrl;
+
+
+      /*
+       * Simpan pengajuan deposit
+       */
+
+      const {
+        error:depositError
+      } =
+      await client
+      .from("deposits")
+      .insert({
+
+        user_id:
+        currentUser.id,
+
+        amount:
+        nominal,
+
+        proof_url:
+        buktiUrl,
+
+        status:
+        "pending"
+
+      });
+
+
+      if(depositError){
+
+        throw depositError;
+
+      }
+
+
+      showMessage(
+        "Deposit berhasil diajukan. Silakan tunggu verifikasi admin.",
+        "success"
+      );
+
+
+      document.getElementById(
+        "depositForm"
+      ).reset();
+
+
+      document.getElementById(
+        "fileName"
+      ).textContent =
+      "Belum ada file dipilih.";
+
+
+      await loadHistory(
+        currentUser.id
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "Deposit error:",
+        error
+      );
+
+
+      showMessage(
+        "Deposit gagal: " +
+        (error.message ||
+        "Terjadi kesalahan."),
+        "error"
+      );
+
+
+    }finally{
+
+      submitBtn.disabled = false;
+
+      submitBtn.textContent =
+      "AJUKAN DEPOSIT";
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   RIWAYAT DEPOSIT
+========================================= */
+
+async function loadHistory(userId){
+
+  const historyList =
+  document.getElementById(
+    "historyList"
+  );
+
+
+  historyList.innerHTML =
+  '<div class="loading">Memuat...</div>';
+
+
+  const {
+    data,
+    error
+  } = await client
+    .from("deposits")
+    .select(
+      "amount,status,created_at"
+    )
+    .eq(
+      "user_id",
+      userId
+    )
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    )
+    .limit(20);
+
+
+  if(error){
+
+    console.error(
+      "History error:",
+      error
+    );
+
+
+    historyList.innerHTML =
+    '<div class="empty">Belum ada riwayat deposit.</div>';
+
+    return;
+
+  }
+
+
+  if(!data || data.length === 0){
+
+    historyList.innerHTML =
+    '<div class="empty">Belum ada pengajuan deposit.</div>';
+
+    return;
+
+  }
+
+
+  historyList.innerHTML =
+  "";
+
+
+  data.forEach(
+    deposit => {
+
+      const row =
+      document.createElement(
+        "div"
+      );
+
+
+      row.className =
+      "history-row";
+
+
+      const date =
+      new Date(
+        deposit.created_at
+      ).toLocaleString(
+        "id-ID"
+      );
+
+
+      const amount =
+      new Intl.NumberFormat(
+        "id-ID"
+      ).format(
+        Number(
+          deposit.amount
+        )
+      );
+
+
+      let statusText =
+      "MENUNGGU";
+
+      let statusClass =
+      "status-pending";
+
+
+      if(
+        deposit.status ===
+        "approved"
+      ){
+
+        statusText =
+        "DISETUJUI";
+
+        statusClass =
+        "status-approved";
+
+      }
+
+
+      if(
+        deposit.status ===
+        "rejected"
+      ){
+
+        statusText =
+        "DITOLAK";
+
+        statusClass =
+        "status-rejected";
+
+      }
+
+
+      row.innerHTML = `
+
+        <div>
+          ${date}
+        </div>
+
+        <div>
+          Rp${amount}
+        </div>
+
+        <div class="${statusClass}">
+          ${statusText}
+        </div>
+
+        <div>
+          ${deposit.status === "approved"
+            ? "Saldo masuk"
+            : deposit.status === "rejected"
+            ? "Pengajuan ditolak"
+            : "Menunggu admin"}
+        </div>
+
+      `;
+
+
+      historyList.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+  text,
+  type
+){
+
+  const message =
+  document.getElementById(
+    "message"
+  );
+
+
+  message.textContent =
+  text;
+
+
+  message.className =
+  "message " +
+  type;
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+
+  setTimeout(
+    () => {
+
+      message.className =
+      "message";
+
+    },
+    5000
+  );
+
+}
+
+
+/* =========================================
    LOGOUT
-================================= */
+========================================= */
 
 async function logout(){
 
@@ -1128,37 +1667,9 @@ async function logout(){
 }
 
 
-/* =================================
-   PRODUK
-================================= */
-
-function pilih(nama){
-
-  alert(
-    nama +
-    "\n\nFitur pembelian akan segera tersedia."
-  );
-
-}
-
-
-/* =================================
-   CS
-================================= */
-
-function cs(){
-
-  alert(
-    "Customer Service MAC645\n\n" +
-    "Silakan hubungi admin untuk bantuan."
-  );
-
-}
-
-
-/* =================================
+/* =========================================
    MULAI
-================================= */
+========================================= */
 
 checkLogin();
 
@@ -1166,3 +1677,4 @@ checkLogin();
 
 </body>
 </html>
+```
