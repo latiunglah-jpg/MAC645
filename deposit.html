@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,544 +13,290 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#071b12;
-  color:#fff;
-  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7f5;
+  color:#17251d;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-/* TOP */
-.top{
-  height:35px;
-  background:#123c23;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.running{
-  white-space:nowrap;
-  animation:run 18s linear infinite;
-}
-
-@keyframes run{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
-}
-
-/* HEADER */
 header{
-  background:#0b2918;
-  border-bottom:1px solid #285936;
-}
-
-.header{
-  max-width:1100px;
-  margin:auto;
-  min-height:72px;
-  padding:10px 18px;
+  background:#10251a;
+  color:white;
+  padding:18px 6%;
   display:flex;
+  justify-content:space-between;
   align-items:center;
   gap:20px;
 }
 
 .logo{
-  font-size:32px;
+  font-size:25px;
   font-weight:900;
 }
 
 .logo span{
-  color:#aaff38;
+  color:#b7ff3c;
 }
 
-.account{
-  color:#9eb3a3;
-  font-size:11px;
-}
-
-.account strong{
-  display:block;
-  color:#fff;
-  font-size:13px;
-  margin-top:4px;
-}
-
-.header-right{
-  margin-left:auto;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.mini-saldo{
-  background:#173c22;
-  border:1px solid #38643e;
-  color:#aaff38;
-  padding:10px 14px;
-  border-radius:7px;
-  font-size:12px;
+.back{
+  color:white;
+  text-decoration:none;
+  background:#1d3828;
+  padding:10px 16px;
+  border-radius:10px;
   font-weight:bold;
 }
 
-.logout{
-  background:transparent;
-  border:1px solid #aaff38;
-  color:#aaff38;
-  padding:10px 14px;
-  border-radius:7px;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:bold;
-}
-
-/* NAV */
-.navbar{
-  background:#102f1b;
-  border-top:1px solid #1e4728;
-}
-
-.nav{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  overflow-x:auto;
-  padding:0 18px;
-}
-
-.nav a{
-  padding:15px 17px;
-  font-size:12px;
-  font-weight:bold;
-  white-space:nowrap;
-}
-
-.nav a:hover,
-.nav .active{
-  color:#aaff38;
-  background:#194a27;
-}
-
-/* MAIN */
 .container{
-  max-width:1100px;
-  margin:auto;
-  padding:25px 18px 60px;
+  width:min(900px,92%);
+  margin:35px auto;
 }
 
-/* TITLE */
-.page-title{
+.card{
+  background:white;
+  border-radius:18px;
+  padding:25px;
   margin-bottom:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,.07);
 }
 
-.page-title h1{
-  font-size:28px;
+h1{
   margin-bottom:8px;
 }
 
-.page-title h1 span{
-  color:#aaff38;
+.subtitle{
+  color:#718078;
+  margin-bottom:25px;
 }
 
-.page-title p{
-  color:#9caf9f;
-  font-size:13px;
-}
-
-/* GRID */
-.deposit-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-/* CARD */
-.card{
-  background:#102a19;
-  border:1px solid #285634;
-  border-radius:13px;
+.balance{
+  background:#10251a;
+  color:white;
+  border-radius:16px;
   padding:22px;
+  margin-bottom:20px;
 }
 
-.card-title{
-  font-size:16px;
-  margin-bottom:17px;
-  font-weight:800;
+.balance small{
+  color:#b8c6be;
 }
 
-.card-title span{
-  color:#aaff38;
-}
-
-/* SALDO */
-.saldo-card{
-  background:
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(170,255,56,.18),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #123d1f,
-      #173f22
-    );
-}
-
-.saldo-label{
-  color:#9caf9f;
-  font-size:11px;
-}
-
-.saldo{
-  margin-top:7px;
-  color:#aaff38;
+.balance strong{
+  display:block;
   font-size:30px;
-  font-weight:900;
-}
-
-.saldo-info{
   margin-top:7px;
-  color:#9caf9f;
-  font-size:11px;
+  color:#b7ff3c;
 }
 
-/* REKENING */
-.bank-box{
-  background:#0b2114;
-  border:1px solid #315e38;
-  border-radius:10px;
-  padding:17px;
+.account{
+  border:2px dashed #d9e3dc;
+  border-radius:14px;
+  padding:20px;
+  margin-top:15px;
 }
 
-.bank-name{
-  color:#aaff38;
-  font-size:12px;
-  font-weight:bold;
-  margin-bottom:13px;
-}
-
-.bank-label{
-  color:#829586;
-  font-size:10px;
-  margin-top:10px;
-}
-
-.bank-value{
-  font-size:20px;
-  font-weight:900;
-  margin-top:4px;
-  letter-spacing:1px;
-}
-
-.owner{
-  font-size:13px;
-  margin-top:4px;
-}
-
-.copy-btn{
-  margin-top:14px;
-  width:100%;
-  border:1px solid #aaff38;
-  background:transparent;
-  color:#aaff38;
-  padding:11px;
-  border-radius:7px;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.copy-btn:hover{
-  background:#aaff38;
-  color:#10210e;
-}
-
-/* FORM */
-.form-group{
-  margin-bottom:16px;
-}
-
-.form-group label{
-  display:block;
-  color:#b8c8bb;
-  font-size:11px;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-.input{
-  width:100%;
-  background:#081b10;
-  border:1px solid #315b38;
-  color:#fff;
-  padding:13px;
-  border-radius:8px;
-  outline:none;
-  font-size:13px;
-}
-
-.input:focus{
-  border-color:#aaff38;
-}
-
-.nominal-info{
-  margin-top:7px;
-  color:#829586;
-  font-size:10px;
-}
-
-/* FILE */
-.file-box{
-  border:1px dashed #47714d;
-  background:#0b2114;
-  border-radius:8px;
-  padding:15px;
-}
-
-.file-box input{
-  width:100%;
-  color:#9caf9f;
-  font-size:11px;
-}
-
-.file-name{
-  margin-top:8px;
-  color:#aaff38;
-  font-size:10px;
-}
-
-/* BUTTON */
-.submit-btn{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:8px;
-  background:#aaff38;
-  color:#10210e;
-  font-size:12px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.submit-btn:hover{
-  opacity:.9;
-}
-
-.submit-btn:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-}
-
-/* MESSAGE */
-.message{
-  display:none;
-  padding:12px;
-  border-radius:8px;
-  font-size:11px;
-  margin-bottom:15px;
-}
-
-.message.success{
-  display:block;
-  background:#123c23;
-  border:1px solid #3e8148;
-  color:#baff73;
-}
-
-.message.error{
-  display:block;
-  background:#351515;
-  border:1px solid #803737;
-  color:#ff9c9c;
-}
-
-/* STEPS */
-.steps{
-  display:grid;
-  gap:12px;
-}
-
-.step{
+.account-row{
   display:flex;
-  align-items:flex-start;
-  gap:12px;
+  justify-content:space-between;
+  gap:15px;
+  padding:10px 0;
+  border-bottom:1px solid #edf1ee;
 }
 
-.step-number{
-  min-width:28px;
-  height:28px;
-  border-radius:50%;
-  background:#aaff38;
-  color:#10210e;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:900;
-}
-
-.step-text strong{
-  display:block;
-  font-size:12px;
-  margin-bottom:3px;
-}
-
-.step-text span{
-  color:#8fa394;
-  font-size:10px;
-  line-height:1.5;
-}
-
-/* WARNING */
-.warning{
-  margin-top:18px;
-  padding:13px;
-  background:#302914;
-  border:1px solid #62562d;
-  border-radius:8px;
-  color:#e2d394;
-  font-size:10px;
-  line-height:1.6;
-}
-
-/* HISTORY */
-.history{
-  margin-top:20px;
-}
-
-.history-box{
-  overflow-x:auto;
-  border:1px solid #285634;
-  border-radius:10px;
-}
-
-.history-row{
-  display:grid;
-  grid-template-columns:1.2fr 1fr 1fr 1fr;
-  padding:13px;
-  border-bottom:1px solid #244b2d;
-  font-size:11px;
-  min-width:600px;
-}
-
-.history-row:last-child{
+.account-row:last-child{
   border-bottom:0;
 }
 
-.history-head{
-  background:#173a20;
-  color:#aebcaf;
+.account-label{
+  color:#718078;
+}
+
+.account-value{
+  font-weight:bold;
+  text-align:right;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.copy-btn{
+  margin-top:15px;
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  background:#edf7e5;
+  color:#274019;
   font-weight:bold;
 }
 
-.status-pending{
-  color:#ffc44d;
+input[type="number"],
+input[type="file"]{
+  width:100%;
+  padding:14px;
+  margin-top:8px;
+  border:1px solid #d8e1db;
+  border-radius:10px;
+  background:white;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:20px;
+}
+
+.submit{
+  width:100%;
+  margin-top:22px;
+  padding:15px;
+  border-radius:11px;
+  background:#10251a;
+  color:white;
+  font-size:16px;
   font-weight:bold;
 }
 
-.status-approved{
-  color:#aaff38;
+.submit:hover{
+  background:#1c3c29;
+}
+
+.submit:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.info{
+  background:#fff8df;
+  border:1px solid #f0df9c;
+  padding:15px;
+  border-radius:12px;
+  margin-top:18px;
+  line-height:1.6;
+  color:#675719;
+}
+
+.message{
+  margin-top:15px;
+  padding:13px;
+  border-radius:10px;
+  display:none;
+  line-height:1.5;
+}
+
+.success{
+  display:block;
+  background:#e9f8e8;
+  color:#246023;
+}
+
+.error{
+  display:block;
+  background:#ffe9e9;
+  color:#9b2525;
+}
+
+.history-title{
+  margin-bottom:15px;
+}
+
+.deposit-item{
+  border:1px solid #e4ebe6;
+  border-radius:13px;
+  padding:16px;
+  margin-bottom:12px;
+}
+
+.deposit-top{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:8px;
+}
+
+.amount{
+  font-weight:bold;
+  font-size:18px;
+}
+
+.status{
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
   font-weight:bold;
 }
 
-.status-rejected{
-  color:#ff7777;
-  font-weight:bold;
+.pending{
+  background:#fff3cd;
+  color:#856404;
+}
+
+.approved{
+  background:#dff5df;
+  color:#237023;
+}
+
+.rejected{
+  background:#ffe0e0;
+  color:#a32323;
+}
+
+.proof-btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:9px 13px;
+  border-radius:9px;
+  background:#10251a;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
 }
 
 .empty{
+  color:#7c8981;
   text-align:center;
-  color:#829586;
   padding:20px;
-  font-size:11px;
 }
 
-/* FOOTER */
-footer{
-  background:#06150c;
-  border-top:1px solid #244d2e;
-  padding:28px 18px;
-}
-
-.footer{
-  max-width:1100px;
-  margin:auto;
-  text-align:center;
-}
-
-.footer h3{
-  font-size:14px;
-  margin-bottom:7px;
-}
-
-.footer h3 span{
-  color:#aaff38;
-}
-
-.footer p{
-  color:#718575;
-  font-size:10px;
-}
-
-/* LOADING */
 .loading{
   text-align:center;
-  padding:20px;
-  color:#829586;
-  font-size:11px;
-}
-
-/* MOBILE */
-@media(max-width:800px){
-
-  .account{
-    display:none;
-  }
-
-  .deposit-grid{
-    grid-template-columns:1fr;
-  }
-
+  padding:15px;
+  color:#718078;
 }
 
 @media(max-width:600px){
-
-  .header{
-    padding:10px 13px;
+  header{
+    padding:15px 4%;
   }
 
   .logo{
-    font-size:27px;
-  }
-
-  .mini-saldo{
-    display:none;
+    font-size:21px;
   }
 
   .container{
-    padding:20px 13px 45px;
-  }
-
-  .page-title h1{
-    font-size:23px;
+    width:94%;
+    margin:20px auto;
   }
 
   .card{
-    padding:17px;
+    padding:18px;
   }
 
-  .saldo{
-    font-size:26px;
+  .account-row{
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .account-value{
+    text-align:left;
+  }
+
+  .deposit-top{
+    flex-direction:column;
+    gap:8px;
   }
 }
 </style>
@@ -559,413 +304,111 @@ footer{
 
 <body>
 
-<!-- TOP -->
-<div class="top">
-  <div class="running">
-    📢 MAC645 — Deposit minimal Rp25.000. Silakan transfer ke rekening resmi MAC645.
-  </div>
-</div>
-
-
-<!-- HEADER -->
 <header>
+  <div class="logo">MAC<span>645</span></div>
+  <a href="dashboard.html" class="back">← Dashboard</a>
+</header>
 
-  <div class="header">
+<div class="container">
 
-    <a href="dashboard.html" class="logo">
-      MAC<span>645</span>
-    </a>
+  <div class="card">
+    <h1>💰 Deposit Saldo</h1>
+    <p class="subtitle">
+      Tambahkan saldo MAC645 dengan melakukan transfer ke rekening tujuan.
+    </p>
 
-    <div class="account">
-      AKUN SAYA
-      <strong id="userEmail">Memuat...</strong>
+    <div class="balance">
+      <small>Saldo Saat Ini</small>
+      <strong id="saldo">Rp0</strong>
     </div>
 
-    <div class="header-right">
+    <h3>🏦 Rekening Deposit</h3>
 
-      <div class="mini-saldo" id="saldoHeader">
-        💰 Saldo Rp0
+    <div class="account">
+
+      <div class="account-row">
+        <div class="account-label">Bank</div>
+        <div class="account-value" id="bank">Memuat...</div>
       </div>
 
-      <button class="logout" onclick="logout()">
-        KELUAR
+      <div class="account-row">
+        <div class="account-label">Nomor Rekening</div>
+        <div class="account-value" id="nomor">Memuat...</div>
+      </div>
+
+      <div class="account-row">
+        <div class="account-label">Atas Nama</div>
+        <div class="account-value" id="nama">Memuat...</div>
+      </div>
+
+      <button class="copy-btn" onclick="copyRekening()">
+        📋 Salin Nomor Rekening
       </button>
 
     </div>
 
+    <div class="info">
+      <b>Perhatian:</b><br>
+      • Minimal deposit <b>Rp25.000</b><br>
+      • Transfer sesuai nominal yang dimasukkan<br>
+      • Setelah transfer, upload bukti pembayaran<br>
+      • Deposit akan diproses oleh admin MAC645
+    </div>
   </div>
 
 
-  <nav class="navbar">
-
-    <div class="nav">
-
-      <a href="dashboard.html">
-        🏠 Dashboard
-      </a>
-
-      <a href="dashboard.html#produk">
-        Produk
-      </a>
-
-      <a href="dashboard.html#kategori">
-        Kategori
-      </a>
-
-      <a href="deposit.html" class="active">
-        💰 Deposit
-      </a>
-
-      <a href="dashboard.html#transaksi">
-        📋 Transaksi
-      </a>
-
-    </div>
-
-  </nav>
-
-</header>
-
-
-<!-- MAIN -->
-<main class="container">
-
-  <div class="page-title">
-
-    <h1>
-      💰 Deposit <span>MAC645</span>
-    </h1>
-
-    <p>
-      Tambahkan saldo akun kamu dengan melakukan transfer ke rekening resmi MAC645.
-    </p>
-
-  </div>
-
-
-  <div id="message" class="message"></div>
-
-
-  <div class="deposit-grid">
-
-
-    <!-- KIRI -->
-    <div>
-
-
-      <!-- SALDO -->
-      <div class="card saldo-card">
-
-        <div class="saldo-label">
-          SALDO UTAMA
-        </div>
-
-        <div class="saldo" id="saldoUtama">
-          Rp0
-        </div>
-
-        <div class="saldo-info">
-          Saldo akan bertambah setelah deposit disetujui admin.
-        </div>
-
-      </div>
-
-
-      <!-- REKENING -->
-      <div class="card" style="margin-top:18px;">
-
-        <div class="card-title">
-          🏦 Rekening <span>Tujuan</span>
-        </div>
-
-        <div class="bank-box">
-
-          <div class="bank-name">
-            BANK MAC645
-          </div>
-
-          <div class="bank-label">
-            NOMOR REKENING
-          </div>
-
-          <div class="bank-value" id="nomorRekening">
-            1234567890
-          </div>
-
-          <div class="bank-label">
-            ATAS NAMA
-          </div>
-
-          <div class="owner" id="namaPemilik">
-            MAC645 DIGITAL STORE
-          </div>
-
-          <button class="copy-btn" onclick="copyRekening()">
-            📋 SALIN NO. REKENING
-          </button>
-
-        </div>
-
-
-        <div class="warning">
-          ⚠️ Pastikan nama rekening dan nomor rekening sudah benar sebelum melakukan transfer.
-          Jangan transfer ke rekening lain yang mengatasnamakan MAC645.
-        </div>
-
-      </div>
-
-
-      <!-- CARA -->
-      <div class="card" style="margin-top:18px;">
-
-        <div class="card-title">
-          📌 Cara <span>Deposit</span>
-        </div>
-
-        <div class="steps">
-
-          <div class="step">
-
-            <div class="step-number">
-              1
-            </div>
-
-            <div class="step-text">
-
-              <strong>Masukkan nominal</strong>
-
-              <span>
-                Masukkan jumlah uang yang kamu transfer.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="step">
-
-            <div class="step-number">
-              2
-            </div>
-
-            <div class="step-text">
-
-              <strong>Transfer ke rekening MAC645</strong>
-
-              <span>
-                Transfer sesuai nominal ke rekening tujuan yang tertera.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="step">
-
-            <div class="step-number">
-              3
-            </div>
-
-            <div class="step-text">
-
-              <strong>Upload bukti transfer</strong>
-
-              <span>
-                Upload screenshot atau foto bukti pembayaran.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="step">
-
-            <div class="step-number">
-              4
-            </div>
-
-            <div class="step-text">
-
-              <strong>Tunggu verifikasi admin</strong>
-
-              <span>
-                Saldo akan masuk setelah pengajuan disetujui.
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- KANAN -->
-    <div>
-
-
-      <!-- FORM -->
-      <div class="card">
-
-        <div class="card-title">
-          📝 Ajukan <span>Deposit</span>
-        </div>
-
-
-        <form id="depositForm">
-
-
-          <div class="form-group">
-
-            <label>
-              NOMINAL DEPOSIT
-            </label>
-
-            <input
-              type="number"
-              id="nominal"
-              class="input"
-              placeholder="Contoh: 50000"
-              min="25000"
-              step="1000"
-              required
-            >
-
-            <div class="nominal-info">
-              Minimal deposit Rp25.000
-            </div>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              BUKTI TRANSFER
-            </label>
-
-            <div class="file-box">
-
-              <input
-                type="file"
-                id="bukti"
-                accept="image/*"
-                required
-              >
-
-              <div class="file-name" id="fileName">
-                Belum ada file dipilih.
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <button
-            type="submit"
-            class="submit-btn"
-            id="submitBtn"
-          >
-            AJUKAN DEPOSIT
-          </button>
-
-
-        </form>
-
-      </div>
-
-
-      <!-- INFO -->
-      <div class="card" style="margin-top:18px;">
-
-        <div class="card-title">
-          🔐 Informasi <span>Keamanan</span>
-        </div>
-
-        <p style="
-          color:#8fa394;
-          font-size:11px;
-          line-height:1.7;
-        ">
-          Jangan pernah memberikan password akun kepada siapapun.
-          MAC645 tidak akan meminta password melalui chat.
-          Pastikan melakukan transfer hanya ke rekening resmi yang tampil di halaman ini.
-        </p>
-
-      </div>
-
-    </div>
+  <div class="card">
+
+    <h2>📤 Kirim Deposit</h2>
+
+    <label for="amount">Nominal Deposit</label>
+
+    <input
+      type="number"
+      id="amount"
+      min="25000"
+      placeholder="Contoh: 50000"
+    >
+
+    <label for="proof">Bukti Transfer</label>
+
+    <input
+      type="file"
+      id="proof"
+      accept="image/*"
+    >
+
+    <small style="display:block;margin-top:7px;color:#7b887f;">
+      Format gambar JPG, JPEG, PNG. Maksimal 5 MB.
+    </small>
+
+    <button
+      class="submit"
+      id="submitBtn"
+      onclick="kirimDeposit()"
+    >
+      KIRIM DEPOSIT
+    </button>
+
+    <div id="message" class="message"></div>
 
   </div>
 
 
-  <!-- HISTORY -->
-  <section class="history">
+  <div class="card">
 
-    <div class="card">
+    <h2 class="history-title">📋 Riwayat Deposit</h2>
 
-      <div class="card-title">
-        📋 Riwayat <span>Deposit</span>
-      </div>
-
-      <div class="history-box">
-
-        <div class="history-row history-head">
-
-          <div>TANGGAL</div>
-          <div>NOMINAL</div>
-          <div>STATUS</div>
-          <div>KETERANGAN</div>
-
-        </div>
-
-        <div id="historyList">
-
-          <div class="loading">
-            Memuat riwayat deposit...
-          </div>
-
-        </div>
-
-      </div>
-
+    <div id="history">
+      <div class="loading">Memuat riwayat...</div>
     </div>
-
-  </section>
-
-</main>
-
-
-<!-- FOOTER -->
-<footer>
-
-  <div class="footer">
-
-    <h3>
-      MAC<span>645</span>
-    </h3>
-
-    <p>
-      Marketplace produk digital — Pulsa, Data, PLN, E-Wallet, Game dan layanan digital.
-    </p>
 
   </div>
 
-</footer>
+</div>
 
 
 <script>
-
-/* =========================================
-   SUPABASE
-========================================= */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -973,187 +416,168 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
-const client =
-window.supabase.createClient(
+const supabaseClient =
+supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 
-/* =========================================
-   PENGATURAN REKENING DEPOSIT
-   GANTI BAGIAN INI DENGAN REKENING KAMU
-========================================= */
+// ========================================
+// REKENING DEPOSIT
+// ========================================
 
-const REKENING_DEPOSIT = {
-
-  bank:
-  "BANK MAC645",
-
-  nomor:
-  "1234567890",
-
-  nama:
-  "MAC645 DIGITAL STORE"
-
+let rekening = {
+  bank: "BANK MAC645",
+  nomor: "1234567890",
+  nama: "MAC645 DIGITAL STORE"
 };
 
 
-/* =========================================
-   TAMPILKAN REKENING
-========================================= */
+// ========================================
+// FORMAT RUPIAH
+// ========================================
 
-document.getElementById("nomorRekening")
-.textContent = REKENING_DEPOSIT.nomor;
+function rupiah(value){
 
-document.getElementById("namaPemilik")
-.textContent = REKENING_DEPOSIT.nama;
-
-
-/* =========================================
-   SESSION
-========================================= */
-
-let currentUser = null;
-
-
-/* =========================================
-   CEK LOGIN
-========================================= */
-
-async function checkLogin(){
-
-  const {
-    data,
-    error
-  } = await client.auth.getSession();
-
-
-  if(
-    error ||
-    !data.session
-  ){
-
-    window.location.href =
-    "mac.html";
-
-    return;
-
-  }
-
-
-  currentUser =
-  data.session.user;
-
-
-  document.getElementById(
-    "userEmail"
-  ).textContent =
-  currentUser.email ||
-  "User MAC645";
-
-
-  await loadSaldo(
-    currentUser.id
-  );
-
-
-  await loadHistory(
-    currentUser.id
-  );
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(value || 0);
 
 }
 
 
-/* =========================================
-   LOAD SALDO
-========================================= */
+// ========================================
+// PESAN
+// ========================================
 
-async function loadSaldo(userId){
+function showMessage(text,type){
+
+  const el =
+    document.getElementById("message");
+
+  el.className =
+    "message " + type;
+
+  el.innerHTML = text;
+
+}
+
+
+// ========================================
+// CEK LOGIN
+// ========================================
+
+async function cekLogin(){
+
+  const {
+    data:{
+      session
+    }
+  } = await supabaseClient
+    .auth
+    .getSession();
+
+  if(!session){
+
+    window.location.href =
+      "mac.html";
+
+    return null;
+  }
+
+  return session;
+
+}
+
+
+// ========================================
+// LOAD REKENING
+// ========================================
+
+async function loadRekening(){
 
   const {
     data,
     error
-  } = await client
-    .from("wallets")
-    .select("balance")
-    .eq("user_id",userId)
+  } = await supabaseClient
+    .from("payment_accounts")
+    .select("*")
+    .eq("is_active",true)
+    .order("slot",{ascending:true})
+    .limit(1)
     .maybeSingle();
-
 
   if(error){
 
-    console.error(
-      "Saldo error:",
+    console.log(
+      "Gagal mengambil rekening:",
       error
     );
 
-    setSaldo(0);
+    // fallback
+    document.getElementById("bank").textContent =
+      rekening.bank;
+
+    document.getElementById("nomor").textContent =
+      rekening.nomor;
+
+    document.getElementById("nama").textContent =
+      rekening.nama;
 
     return;
+  }
+
+  if(data){
+
+    rekening.bank =
+      data.bank || rekening.bank;
+
+    rekening.nomor =
+      data.account_number || rekening.nomor;
+
+    rekening.nama =
+      data.account_name || rekening.nama;
 
   }
 
+  document.getElementById("bank").textContent =
+    rekening.bank;
 
-  const balance =
-    data
-    ? Number(data.balance)
-    : 0;
+  document.getElementById("nomor").textContent =
+    rekening.nomor;
 
-
-  setSaldo(balance);
-
-}
-
-
-/* =========================================
-   SET SALDO
-========================================= */
-
-function setSaldo(amount){
-
-  const formatted =
-  new Intl.NumberFormat(
-    "id-ID"
-  ).format(amount);
-
-
-  document.getElementById(
-    "saldoUtama"
-  ).textContent =
-  "Rp" + formatted;
-
-
-  document.getElementById(
-    "saldoHeader"
-  ).textContent =
-  "💰 Saldo Rp" + formatted;
+  document.getElementById("nama").textContent =
+    rekening.nama;
 
 }
 
 
-/* =========================================
-   COPY REKENING
-========================================= */
+// ========================================
+// COPY REKENING
+// ========================================
 
 async function copyRekening(){
 
   try{
 
     await navigator.clipboard.writeText(
-      REKENING_DEPOSIT.nomor
+      rekening.nomor
     );
 
-    showMessage(
-      "Nomor rekening berhasil disalin.",
-      "success"
+    alert(
+      "Nomor rekening berhasil disalin!"
     );
 
   }catch(error){
 
     alert(
-      "Nomor rekening: " +
-      REKENING_DEPOSIT.nomor
+      "Gagal menyalin nomor rekening."
     );
 
   }
@@ -1161,167 +585,174 @@ async function copyRekening(){
 }
 
 
-/* =========================================
-   FILE
-========================================= */
+// ========================================
+// LOAD SALDO
+// ========================================
 
-document.getElementById(
-  "bukti"
-).addEventListener(
-  "change",
-  function(){
+async function loadSaldo(userId){
 
-    const file =
-    this.files[0];
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from("wallets")
+    .select("balance")
+    .eq("user_id",userId)
+    .maybeSingle();
 
-    if(!file){
+  if(error){
 
-      document.getElementById(
-        "fileName"
-      ).textContent =
-      "Belum ada file dipilih.";
+    console.log(error);
 
-      return;
-
-    }
-
-
-    document.getElementById(
-      "fileName"
-    ).textContent =
-    "📎 " + file.name;
-
+    return;
   }
-);
+
+  document.getElementById("saldo")
+    .textContent =
+    rupiah(data?.balance || 0);
+
+}
 
 
-/* =========================================
-   SUBMIT DEPOSIT
-========================================= */
+// ========================================
+// KIRIM DEPOSIT
+// ========================================
 
-document.getElementById(
-  "depositForm"
-).addEventListener(
-  "submit",
-  async function(e){
+async function kirimDeposit(){
 
-    e.preventDefault();
+  const btn =
+    document.getElementById("submitBtn");
 
-
-    if(!currentUser){
-
-      showMessage(
-        "Session login tidak ditemukan. Silakan login kembali.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    const nominal =
+  const amount =
     Number(
-      document.getElementById(
-        "nominal"
-      ).value
+      document.getElementById("amount").value
     );
 
-
-    const file =
-    document.getElementById(
-      "bukti"
-    ).files[0];
+  const file =
+    document.getElementById("proof").files[0];
 
 
-    if(!nominal || nominal < 25000){
+  // CEK NOMINAL
 
-      showMessage(
-        "Minimal deposit adalah Rp25.000.",
-        "error"
-      );
+  if(!amount || amount < 25000){
 
-      return;
-
-    }
-
-
-    if(!file){
-
-      showMessage(
-        "Silakan upload bukti transfer.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(!file.type.startsWith("image/")){
-
-      showMessage(
-        "Bukti transfer harus berupa gambar.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    const maxSize =
-    5 * 1024 * 1024;
-
-
-    if(file.size > maxSize){
-
-      showMessage(
-        "Ukuran bukti transfer maksimal 5 MB.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    const submitBtn =
-    document.getElementById(
-      "submitBtn"
+    showMessage(
+      "❌ Minimal deposit adalah Rp25.000.",
+      "error"
     );
 
-
-    submitBtn.disabled = true;
-
-    submitBtn.textContent =
-    "MENGIRIM...";
+    return;
+  }
 
 
-    try{
+  // CEK FILE
 
-      /*
-       * Upload bukti ke Supabase Storage
-       */
+  if(!file){
 
-      const fileExt =
+    showMessage(
+      "❌ Silakan pilih bukti transfer terlebih dahulu.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  // CEK UKURAN
+
+  if(file.size > 5 * 1024 * 1024){
+
+    showMessage(
+      "❌ Ukuran file maksimal 5 MB.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  // CEK FORMAT
+
+  if(!file.type.startsWith("image/")){
+
+    showMessage(
+      "❌ Bukti transfer harus berupa gambar.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  btn.disabled = true;
+
+  btn.textContent =
+    "MENGUPLOAD...";
+
+
+  try{
+
+    const {
+      data:{
+        session
+      }
+    } = await supabaseClient
+      .auth
+      .getSession();
+
+
+    if(!session){
+
+      window.location.href =
+        "mac.html";
+
+      return;
+    }
+
+
+    const user =
+      session.user;
+
+
+    // ====================================
+    // NAMA FILE AMAN
+    // ====================================
+
+    const extension =
       file.name
-      .split(".")
-      .pop();
+        .split(".")
+        .pop()
+        .toLowerCase();
 
-
-      const filePath =
-      currentUser.id +
-      "/" +
+    const fileName =
+      "bukti-" +
       Date.now() +
+      "-" +
+      Math.random()
+        .toString(36)
+        .substring(2,8) +
       "." +
-      fileExt;
+      extension;
 
 
-      const {
-        error:uploadError
-      } =
-      await client.storage
+    // ====================================
+    // PATH PRIVATE STORAGE
+    // USER ID / FILE
+    // ====================================
+
+    const filePath =
+      user.id + "/" + fileName;
+
+
+    // ====================================
+    // UPLOAD
+    // ====================================
+
+    const {
+      error:
+      uploadError
+    } = await supabaseClient
+      .storage
       .from("deposit-bukti")
       .upload(
         filePath,
@@ -1333,348 +764,308 @@ document.getElementById(
       );
 
 
-      if(uploadError){
+    if(uploadError){
 
-        throw uploadError;
+      throw uploadError;
 
-      }
-
-
-      /*
-       * Ambil URL file
-       */
-
-      const {
-        data:urlData
-      } =
-      client.storage
-      .from("deposit-bukti")
-      .getPublicUrl(
-        filePath
-      );
+    }
 
 
-      const buktiUrl =
-      urlData.publicUrl;
+    btn.textContent =
+      "MENYIMPAN DEPOSIT...";
 
 
-      /*
-       * Simpan pengajuan deposit
-       */
+    // ====================================
+    // SIMPAN DATA DEPOSIT
+    // ====================================
 
-      const {
-        error:depositError
-      } =
-      await client
+    const {
+      error:
+      depositError
+    } = await supabaseClient
       .from("deposits")
       .insert({
 
-        user_id:
-        currentUser.id,
+        user_id:user.id,
 
-        amount:
-        nominal,
+        amount:amount,
 
-        proof_url:
-        buktiUrl,
+        status:"pending",
 
-        status:
-        "pending"
+        // PRIVATE STORAGE PATH
+        proof_url:filePath
 
       });
 
 
-      if(depositError){
+    if(depositError){
 
-        throw depositError;
+      // Kalau database gagal,
+      // hapus file yang sudah terupload
 
-      }
+      await supabaseClient
+        .storage
+        .from("deposit-bukti")
+        .remove([filePath]);
 
-
-      showMessage(
-        "Deposit berhasil diajukan. Silakan tunggu verifikasi admin.",
-        "success"
-      );
-
-
-      document.getElementById(
-        "depositForm"
-      ).reset();
-
-
-      document.getElementById(
-        "fileName"
-      ).textContent =
-      "Belum ada file dipilih.";
-
-
-      await loadHistory(
-        currentUser.id
-      );
-
-
-    }catch(error){
-
-      console.error(
-        "Deposit error:",
-        error
-      );
-
-
-      showMessage(
-        "Deposit gagal: " +
-        (error.message ||
-        "Terjadi kesalahan."),
-        "error"
-      );
-
-
-    }finally{
-
-      submitBtn.disabled = false;
-
-      submitBtn.textContent =
-      "AJUKAN DEPOSIT";
+      throw depositError;
 
     }
 
+
+    showMessage(
+      "✅ Deposit berhasil dikirim!<br>" +
+      "Menunggu persetujuan admin.",
+      "success"
+    );
+
+
+    document.getElementById("amount")
+      .value = "";
+
+    document.getElementById("proof")
+      .value = "";
+
+
+    await loadHistory();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "❌ Deposit gagal: " +
+      (error.message || "Terjadi kesalahan."),
+      "error"
+    );
+
   }
-);
 
 
-/* =========================================
-   RIWAYAT DEPOSIT
-========================================= */
+  btn.disabled = false;
 
-async function loadHistory(userId){
+  btn.textContent =
+    "KIRIM DEPOSIT";
 
-  const historyList =
-  document.getElementById(
-    "historyList"
-  );
+}
 
 
-  historyList.innerHTML =
-  '<div class="loading">Memuat...</div>';
+// ========================================
+// LOAD RIWAYAT
+// ========================================
+
+async function loadHistory(){
+
+  const history =
+    document.getElementById("history");
+
+
+  const {
+    data:{
+      session
+    }
+  } = await supabaseClient
+    .auth
+    .getSession();
+
+
+  if(!session){
+
+    return;
+  }
 
 
   const {
     data,
     error
-  } = await client
+  } = await supabaseClient
     .from("deposits")
     .select(
-      "amount,status,created_at"
+      "id,amount,status,created_at,proof_url"
     )
     .eq(
       "user_id",
-      userId
+      session.user.id
     )
     .order(
       "created_at",
       {
         ascending:false
       }
-    )
-    .limit(20);
+    );
 
 
   if(error){
 
-    console.error(
-      "History error:",
-      error
-    );
+    history.innerHTML =
+      `<div class="empty">
+        Gagal memuat riwayat deposit.
+      </div>`;
 
-
-    historyList.innerHTML =
-    '<div class="empty">Belum ada riwayat deposit.</div>';
+    console.error(error);
 
     return;
-
   }
 
 
   if(!data || data.length === 0){
 
-    historyList.innerHTML =
-    '<div class="empty">Belum ada pengajuan deposit.</div>';
+    history.innerHTML =
+      `<div class="empty">
+        Belum ada riwayat deposit.
+      </div>`;
 
     return;
-
   }
 
 
-  historyList.innerHTML =
-  "";
+  history.innerHTML = "";
 
 
-  data.forEach(
-    deposit => {
+  for(const item of data){
 
-      const row =
-      document.createElement(
-        "div"
-      );
+    let statusClass =
+      "pending";
 
-
-      row.className =
-      "history-row";
-
-
-      const date =
-      new Date(
-        deposit.created_at
-      ).toLocaleString(
-        "id-ID"
-      );
-
-
-      const amount =
-      new Intl.NumberFormat(
-        "id-ID"
-      ).format(
-        Number(
-          deposit.amount
-        )
-      );
-
-
-      let statusText =
+    let statusText =
       "MENUNGGU";
 
-      let statusClass =
-      "status-pending";
 
+    if(item.status === "approved"){
 
-      if(
-        deposit.status ===
-        "approved"
-      ){
+      statusClass =
+        "approved";
 
-        statusText =
+      statusText =
         "DISETUJUI";
 
-        statusClass =
-        "status-approved";
+    }
 
-      }
+
+    if(item.status === "rejected"){
+
+      statusClass =
+        "rejected";
+
+      statusText =
+        "DITOLAK";
+
+    }
+
+
+    const tanggal =
+      new Date(item.created_at)
+        .toLocaleString(
+          "id-ID"
+        );
+
+
+    let proofButton = "";
+
+
+    // ==================================
+    // SIGNED URL PRIVATE FILE
+    // ==================================
+
+    if(item.proof_url){
+
+      const {
+        data:
+        signedData,
+        error:
+        signedError
+      } = await supabaseClient
+        .storage
+        .from("deposit-bukti")
+        .createSignedUrl(
+          item.proof_url,
+          3600
+        );
 
 
       if(
-        deposit.status ===
-        "rejected"
+        !signedError &&
+        signedData?.signedUrl
       ){
 
-        statusText =
-        "DITOLAK";
-
-        statusClass =
-        "status-rejected";
+        proofButton =
+          `<a
+             class="proof-btn"
+             href="${signedData.signedUrl}"
+             target="_blank"
+          >
+             🖼️ Lihat Bukti
+           </a>`;
 
       }
 
-
-      row.innerHTML = `
-
-        <div>
-          ${date}
-        </div>
-
-        <div>
-          Rp${amount}
-        </div>
-
-        <div class="${statusClass}">
-          ${statusText}
-        </div>
-
-        <div>
-          ${deposit.status === "approved"
-            ? "Saldo masuk"
-            : deposit.status === "rejected"
-            ? "Pengajuan ditolak"
-            : "Menunggu admin"}
-        </div>
-
-      `;
-
-
-      historyList.appendChild(
-        row
-      );
-
     }
-  );
+
+
+    history.innerHTML += `
+
+      <div class="deposit-item">
+
+        <div class="deposit-top">
+
+          <div class="amount">
+            ${rupiah(item.amount)}
+          </div>
+
+          <div class="status ${statusClass}">
+            ${statusText}
+          </div>
+
+        </div>
+
+        <div style="
+          color:#7a877f;
+          font-size:13px;
+        ">
+          ${tanggal}
+        </div>
+
+        ${proofButton}
+
+      </div>
+
+    `;
+
+  }
 
 }
 
 
-/* =========================================
-   MESSAGE
-========================================= */
+// ========================================
+// START
+// ========================================
 
-function showMessage(
-  text,
-  type
-){
+async function init(){
 
-  const message =
-  document.getElementById(
-    "message"
+  const session =
+    await cekLogin();
+
+  if(!session){
+
+    return;
+  }
+
+
+  await loadRekening();
+
+  await loadSaldo(
+    session.user.id
   );
 
-
-  message.textContent =
-  text;
-
-
-  message.className =
-  "message " +
-  type;
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-
-  setTimeout(
-    () => {
-
-      message.className =
-      "message";
-
-    },
-    5000
-  );
+  await loadHistory();
 
 }
 
 
-/* =========================================
-   LOGOUT
-========================================= */
-
-async function logout(){
-
-  await client.auth.signOut();
-
-  window.location.href =
-  "mac.html";
-
-}
-
-
-/* =========================================
-   MULAI
-========================================= */
-
-checkLogin();
+init();
 
 </script>
 
 </body>
 </html>
-```
