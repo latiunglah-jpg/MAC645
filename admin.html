@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,305 +13,238 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#07130d;
-  color:#fff;
-  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f6f4;
+  color:#17251d;
 }
 
-/* HEADER */
 header{
-  background:#0b1b12;
-  border-bottom:1px solid #23442e;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-
-.navbar{
-  max-width:1250px;
-  margin:auto;
-  padding:17px 20px;
+  background:#10251a;
+  color:white;
+  padding:18px 5%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:20px;
 }
 
 .logo{
-  font-size:27px;
+  font-size:25px;
   font-weight:900;
 }
 
 .logo span{
-  color:#aaff38;
-}
-
-.admin-label{
-  color:#aaff38;
-  font-size:13px;
-  font-weight:bold;
+  color:#b7ff3c;
 }
 
 .logout{
-  border:none;
-  background:#aaff38;
-  color:#07130d;
-  padding:10px 15px;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* MAIN */
-.container{
-  max-width:1250px;
-  margin:auto;
-  padding:30px 20px 60px;
-}
-
-.page-title{
-  margin-bottom:25px;
-}
-
-.page-title h1{
-  font-size:30px;
-  margin-bottom:8px;
-}
-
-.page-title p{
-  color:#829188;
-}
-
-/* STATS */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:25px;
-}
-
-.stat{
-  background:#0d2015;
-  border:1px solid #203c29;
-  border-radius:15px;
-  padding:20px;
-}
-
-.stat-title{
-  color:#829188;
-  font-size:13px;
-}
-
-.stat-number{
-  font-size:27px;
-  font-weight:900;
-  margin-top:8px;
-}
-
-/* TOOLBAR */
-.toolbar{
-  display:flex;
-  gap:10px;
-  margin-bottom:18px;
-}
-
-.toolbar input{
-  flex:1;
-  background:#0d2015;
-  border:1px solid #294832;
+  border:0;
+  background:#263d30;
   color:white;
-  border-radius:10px;
-  padding:13px;
-  outline:none;
-}
-
-.toolbar select{
-  background:#0d2015;
-  color:white;
-  border:1px solid #294832;
-  border-radius:10px;
-  padding:13px;
-}
-
-/* DEPOSITS */
-.deposit-list{
-  display:grid;
-  gap:15px;
-}
-
-.deposit-card{
-  background:#0d2015;
-  border:1px solid #203c29;
-  border-radius:16px;
-  padding:20px;
-}
-
-.deposit-top{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  align-items:flex-start;
-}
-
-.deposit-user{
-  font-weight:bold;
-  font-size:16px;
-}
-
-.deposit-id{
-  color:#718078;
-  font-size:11px;
-  margin-top:5px;
-  word-break:break-all;
-}
-
-.amount{
-  color:#aaff38;
-  font-size:23px;
-  font-weight:900;
-  margin-top:13px;
-}
-
-.date{
-  color:#87968c;
-  font-size:12px;
-  margin-top:6px;
-}
-
-/* STATUS */
-.status{
-  padding:7px 11px;
-  border-radius:8px;
-  font-size:11px;
-  font-weight:bold;
-  white-space:nowrap;
-}
-
-.status.pending{
-  background:#3b3211;
-  color:#ffd84d;
-}
-
-.status.approved{
-  background:#173b20;
-  color:#aaff38;
-}
-
-.status.rejected{
-  background:#3d1717;
-  color:#ff7777;
-}
-
-/* PROOF */
-.proof{
-  margin-top:18px;
-}
-
-.proof a{
-  display:inline-block;
-  text-decoration:none;
-  color:#07130d;
-  background:#aaff38;
-  padding:10px 14px;
-  border-radius:8px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-/* ACTION */
-.actions{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
-}
-
-.approve,
-.reject{
-  border:none;
-  padding:11px 18px;
+  padding:10px 16px;
   border-radius:9px;
   cursor:pointer;
   font-weight:bold;
 }
 
-.approve{
-  background:#aaff38;
-  color:#07130d;
+.container{
+  width:min(1200px,94%);
+  margin:30px auto;
 }
 
-.reject{
-  background:#351919;
-  color:#ff7777;
-  border:1px solid #6a2c2c;
+h1{
+  margin-bottom:6px;
 }
 
-.approve:hover{
-  opacity:.85;
+.subtitle{
+  color:#718078;
+  margin-bottom:25px;
 }
 
-.reject:hover{
-  background:#491e1e;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:25px;
 }
 
-/* EMPTY */
-.empty{
-  background:#0d2015;
-  border:1px solid #203c29;
+.stat{
+  background:white;
+  padding:20px;
   border-radius:15px;
-  padding:45px;
-  text-align:center;
+  box-shadow:0 6px 25px rgba(0,0,0,.06);
+}
+
+.stat small{
   color:#718078;
 }
 
-/* LOADING */
-.loading{
-  text-align:center;
-  color:#aaff38;
-  padding:30px;
+.stat strong{
+  display:block;
+  font-size:28px;
+  margin-top:8px;
 }
 
-/* FOOTER */
-footer{
-  border-top:1px solid #193522;
-  padding:25px;
-  text-align:center;
-  color:#617067;
+.filters{
+  background:white;
+  padding:18px;
+  border-radius:15px;
+  margin-bottom:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+input,
+select{
+  padding:12px;
+  border:1px solid #d8e1db;
+  border-radius:9px;
+  outline:none;
+}
+
+input{
+  flex:1;
+  min-width:220px;
+}
+
+.deposit{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.deposit-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+.amount{
+  font-size:22px;
+  font-weight:900;
+}
+
+.date{
+  color:#7b877f;
   font-size:13px;
+  margin-top:5px;
 }
 
-/* MOBILE */
-@media(max-width:900px){
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
+.status{
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
 }
 
-@media(max-width:600px){
+.pending{
+  background:#fff1c7;
+  color:#826100;
+}
 
-  .navbar{
-    flex-wrap:wrap;
-  }
+.approved{
+  background:#def5df;
+  color:#247126;
+}
 
-  .admin-label{
-    order:3;
-    width:100%;
-  }
+.rejected{
+  background:#ffe1e1;
+  color:#a12424;
+}
+
+.user-info{
+  background:#f6f8f6;
+  border-radius:10px;
+  padding:13px;
+  margin-bottom:15px;
+  word-break:break-all;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:0;
+  padding:11px 15px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.proof{
+  background:#172f20;
+  color:white;
+}
+
+.approve{
+  background:#b7ff3c;
+  color:#17251d;
+}
+
+.reject{
+  background:#ffe0e0;
+  color:#a12424;
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.empty{
+  background:white;
+  padding:35px;
+  text-align:center;
+  border-radius:15px;
+  color:#718078;
+}
+
+.message{
+  padding:13px;
+  border-radius:10px;
+  margin-bottom:20px;
+  display:none;
+}
+
+.success{
+  display:block;
+  background:#e4f7e5;
+  color:#246326;
+}
+
+.error{
+  display:block;
+  background:#ffe4e4;
+  color:#982525;
+}
+
+.loading{
+  background:white;
+  padding:30px;
+  text-align:center;
+  border-radius:15px;
+  color:#718078;
+}
+
+@media(max-width:700px){
 
   .stats{
     grid-template-columns:1fr;
   }
 
-  .toolbar{
-    flex-direction:column;
-  }
-
-  .deposit-top{
+  .deposit-header{
     flex-direction:column;
   }
 
@@ -320,11 +252,10 @@ footer{
     flex-direction:column;
   }
 
-  .approve,
-  .reject{
+  .btn{
+    text-align:center;
     width:100%;
   }
-
 }
 </style>
 </head>
@@ -333,117 +264,69 @@ footer{
 
 <header>
 
-  <div class="navbar">
-
-    <div class="logo">
-      MAC<span>645</span>
-    </div>
-
-    <div class="admin-label">
-      ADMIN PANEL
-    </div>
-
-    <button class="logout" id="logoutBtn">
-      Keluar
-    </button>
-
+  <div class="logo">
+    MAC<span>645</span> ADMIN
   </div>
+
+  <button
+    class="logout"
+    onclick="logout()"
+  >
+    Logout
+  </button>
 
 </header>
 
 
-<main class="container">
+<div class="container">
 
-  <div class="page-title">
+  <h1>Panel Admin</h1>
 
-    <h1>
-      Dashboard Admin 🛡️
-    </h1>
+  <p class="subtitle">
+    Kelola deposit dan saldo pengguna MAC645.
+  </p>
 
-    <p>
-      Kelola deposit dan saldo pengguna MAC645.
-    </p>
 
-  </div>
+  <div id="message" class="message"></div>
 
 
   <!-- STATISTIK -->
 
-  <section class="stats">
+  <div class="stats">
 
     <div class="stat">
-
-      <div class="stat-title">
-        TOTAL DEPOSIT
-      </div>
-
-      <div
-        class="stat-number"
-        id="totalDeposit">
-        0
-      </div>
-
+      <small>Total Deposit</small>
+      <strong id="totalDeposit">0</strong>
     </div>
-
 
     <div class="stat">
-
-      <div class="stat-title">
-        MENUNGGU
-      </div>
-
-      <div
-        class="stat-number"
-        id="pendingDeposit">
-        0
-      </div>
-
+      <small>Menunggu</small>
+      <strong id="pendingDeposit">0</strong>
     </div>
-
 
     <div class="stat">
-
-      <div class="stat-title">
-        DISETUJUI
-      </div>
-
-      <div
-        class="stat-number"
-        id="approvedDeposit">
-        0
-      </div>
-
+      <small>Total Disetujui</small>
+      <strong id="approvedDeposit">0</strong>
     </div>
 
-
-    <div class="stat">
-
-      <div class="stat-title">
-        DITOLAK
-      </div>
-
-      <div
-        class="stat-number"
-        id="rejectedDeposit">
-        0
-      </div>
-
-    </div>
-
-  </section>
+  </div>
 
 
   <!-- FILTER -->
 
-  <div class="toolbar">
+  <div class="filters">
 
     <input
       type="text"
-      id="searchInput"
-      placeholder="Cari user atau ID deposit..."
+      id="search"
+      placeholder="Cari ID user atau nominal..."
+      oninput="renderDeposits()"
     >
 
-    <select id="statusFilter">
+    <select
+      id="statusFilter"
+      onchange="renderDeposits()"
+    >
 
       <option value="all">
         Semua Status
@@ -466,29 +349,16 @@ footer{
   </div>
 
 
-  <!-- LIST -->
-
-  <section id="depositList">
-
+  <div id="depositList">
     <div class="loading">
-      Memuat data deposit...
+      Memuat deposit...
     </div>
+  </div>
 
-  </section>
-
-</main>
-
-
-<footer>
-  © 2026 MAC645 DIGITAL STORE — ADMIN PANEL
-</footer>
+</div>
 
 
 <script>
-
-/* ==================================
-   SUPABASE
-================================== */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -496,25 +366,21 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
-const client =
-window.supabase.createClient(
+const supabaseClient =
+supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 
-/* ==================================
-   DATA
-================================== */
-
 let deposits = [];
 
 
-/* ==================================
-   RUPIAH
-================================== */
+// ========================================
+// FORMAT RUPIAH
+// ========================================
 
-function rupiah(number){
+function rupiah(value){
 
   return new Intl.NumberFormat(
     "id-ID",
@@ -523,33 +389,32 @@ function rupiah(number){
       currency:"IDR",
       maximumFractionDigits:0
     }
-  ).format(number || 0);
+  ).format(value || 0);
 
 }
 
 
-/* ==================================
-   DATE
-================================== */
+// ========================================
+// MESSAGE
+// ========================================
 
-function formatDate(date){
+function showMessage(text,type){
 
-  if(!date) return "-";
+  const el =
+    document.getElementById("message");
 
-  return new Date(date).toLocaleString(
-    "id-ID",
-    {
-      dateStyle:"medium",
-      timeStyle:"short"
-    }
-  );
+  el.className =
+    "message " + type;
+
+  el.innerHTML =
+    text;
 
 }
 
 
-/* ==================================
-   CHECK ADMIN
-================================== */
+// ========================================
+// CEK SESSION + ADMIN
+// ========================================
 
 async function checkAdmin(){
 
@@ -557,7 +422,10 @@ async function checkAdmin(){
     data:{
       session
     }
-  } = await client.auth.getSession();
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
 
 
   if(!session){
@@ -565,95 +433,112 @@ async function checkAdmin(){
     window.location.href =
       "mac.html";
 
-    return null;
-
+    return false;
   }
 
 
-  const {
-    data:profile,
-    error
-  } = await client
-    .from("profiles")
-    .select("role")
-    .eq("id",session.user.id)
-    .maybeSingle();
-
-
-  if(error){
-
-    alert(
-      "Gagal memeriksa admin: " +
-      error.message
-    );
-
-    return null;
-
-  }
-
-
-  if(
-    !profile ||
-    profile.role !== "admin"
-  ){
-
-    alert(
-      "AKSES DITOLAK\n\n" +
-      "Akun kamu bukan admin."
-    );
-
-    window.location.href =
-      "dashboard.html";
-
-    return null;
-
-  }
-
-
-  return session;
-
-}
-
-
-/* ==================================
-   LOAD DEPOSIT
-================================== */
-
-async function loadDeposits(){
+  // Cek tabel admin_users
 
   const {
     data,
     error
-  } = await client
-    .from("deposits")
-    .select("*")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+  } =
+    await supabaseClient
+      .from("admin_users")
+      .select("user_id")
+      .eq(
+        "user_id",
+        session.user.id
+      )
+      .maybeSingle();
 
 
   if(error){
 
     console.error(error);
 
-    document.getElementById(
-      "depositList"
-    ).innerHTML = `
-      <div class="empty">
-        Gagal memuat deposit.<br><br>
-        ${error.message}
-      </div>
-    `;
+    showMessage(
+      "❌ Gagal memeriksa akses admin: " +
+      error.message,
+      "error"
+    );
 
-    return;
-
+    return false;
   }
 
 
-  deposits = data || [];
+  if(!data){
+
+    showMessage(
+      "❌ Akses ditolak. Akun ini bukan admin.",
+      "error"
+    );
+
+    setTimeout(function(){
+
+      window.location.href =
+        "dashboard.html";
+
+    },2000);
+
+    return false;
+  }
+
+
+  return true;
+
+}
+
+
+// ========================================
+// LOAD DEPOSIT
+// ========================================
+
+async function loadDeposits(){
+
+  const list =
+    document.getElementById("depositList");
+
+  list.innerHTML =
+    `<div class="loading">
+      Memuat deposit...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("deposits")
+      .select(
+        "id,user_id,amount,status,created_at,proof_url"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    list.innerHTML =
+      `<div class="empty">
+        ❌ Gagal memuat deposit.<br><br>
+        ${error.message}
+      </div>`;
+
+    return;
+  }
+
+
+  deposits =
+    data || [];
+
 
   updateStats();
 
@@ -662,49 +547,51 @@ async function loadDeposits(){
 }
 
 
-/* ==================================
-   STATISTICS
-================================== */
+// ========================================
+// STATISTIK
+// ========================================
 
 function updateStats(){
+
+  const total =
+    deposits.length;
+
+  const pending =
+    deposits.filter(
+      x => x.status === "pending"
+    ).length;
+
+  const approved =
+    deposits.filter(
+      x => x.status === "approved"
+    ).length;
+
 
   document.getElementById(
     "totalDeposit"
   ).textContent =
-    deposits.length;
+    total;
 
 
   document.getElementById(
     "pendingDeposit"
   ).textContent =
-    deposits.filter(
-      d => d.status === "pending"
-    ).length;
+    pending;
 
 
   document.getElementById(
     "approvedDeposit"
   ).textContent =
-    deposits.filter(
-      d => d.status === "approved"
-    ).length;
-
-
-  document.getElementById(
-    "rejectedDeposit"
-  ).textContent =
-    deposits.filter(
-      d => d.status === "rejected"
-    ).length;
+    approved;
 
 }
 
 
-/* ==================================
-   RENDER
-================================== */
+// ========================================
+// RENDER
+// ========================================
 
-function renderDeposits(){
+async function renderDeposits(){
 
   const list =
     document.getElementById(
@@ -712,382 +599,402 @@ function renderDeposits(){
     );
 
 
-  const keyword =
+  const search =
     document.getElementById(
-      "searchInput"
+      "search"
     ).value
-      .toLowerCase()
-      .trim();
+     .toLowerCase()
+     .trim();
 
 
-  const status =
+  const filter =
     document.getElementById(
       "statusFilter"
     ).value;
 
 
-  const filtered =
-    deposits.filter(
-      function(deposit){
+  let filtered =
+    deposits.filter(item => {
 
-        const text =
-          (
-            deposit.user_id +
-            " " +
-            deposit.id
-          ).toLowerCase();
+      const matchStatus =
+        filter === "all" ||
+        item.status === filter;
 
 
-        const matchSearch =
-          !keyword ||
-          text.includes(keyword);
+      const matchSearch =
+        !search ||
+        String(item.user_id)
+          .toLowerCase()
+          .includes(search) ||
+        String(item.amount)
+          .includes(search);
 
 
-        const matchStatus =
-          status === "all" ||
-          deposit.status === status;
+      return matchStatus &&
+             matchSearch;
 
-
-        return (
-          matchSearch &&
-          matchStatus
-        );
-
-      }
-    );
+    });
 
 
   if(filtered.length === 0){
 
-    list.innerHTML = `
-      <div class="empty">
-        Tidak ada data deposit.
-      </div>
-    `;
+    list.innerHTML =
+      `<div class="empty">
+        Tidak ada deposit ditemukan.
+      </div>`;
 
     return;
-
   }
 
 
-  list.innerHTML =
-    filtered.map(
-      function(deposit){
-
-        let statusClass =
-          deposit.status || "pending";
+  list.innerHTML = "";
 
 
-        let actionButtons = "";
+  for(const item of filtered){
+
+    let statusClass =
+      "pending";
+
+    let statusText =
+      "MENUNGGU";
 
 
-        if(deposit.status === "pending"){
+    if(item.status === "approved"){
 
-          actionButtons = `
+      statusClass =
+        "approved";
 
-            <div class="actions">
+      statusText =
+        "DISETUJUI";
 
-              <button
-                class="approve"
-                onclick="approveDeposit('${deposit.id}')">
-                ✓ SETUJUI
-              </button>
-
-              <button
-                class="reject"
-                onclick="rejectDeposit('${deposit.id}')">
-                ✕ TOLAK
-              </button>
-
-            </div>
-
-          `;
-
-        }
+    }
 
 
-        return `
+    if(item.status === "rejected"){
 
-          <div class="deposit-card">
+      statusClass =
+        "rejected";
 
-            <div class="deposit-top">
+      statusText =
+        "DITOLAK";
 
-              <div>
-
-                <div class="deposit-user">
-                  User ID
-                </div>
-
-                <div class="deposit-id">
-                  ${deposit.user_id}
-                </div>
-
-                <div class="amount">
-                  ${rupiah(deposit.amount)}
-                </div>
-
-                <div class="date">
-                  ${formatDate(deposit.created_at)}
-                </div>
-
-              </div>
+    }
 
 
-              <div class="status ${statusClass}">
-                ${(deposit.status || "pending").toUpperCase()}
-              </div>
-
-            </div>
-
-
-            ${
-              deposit.proof_url
-              ?
-              `
-                <div class="proof">
-
-                  <a
-                    href="${deposit.proof_url}"
-                    target="_blank">
-                    📷 LIHAT BUKTI TRANSFER
-                  </a>
-
-                </div>
-              `
-              :
-              `
-                <div
-                  style="
-                    margin-top:15px;
-                    color:#ff7777;
-                    font-size:12px;
-                  ">
-                  Tidak ada bukti transfer.
-                </div>
-              `
-            }
+    const tanggal =
+      new Date(
+        item.created_at
+      ).toLocaleString(
+        "id-ID"
+      );
 
 
-            ${actionButtons}
+    // ====================================
+    // BUAT SIGNED URL
+    // ====================================
 
-          </div>
+    let proofButton = "";
 
+
+    if(item.proof_url){
+
+      const {
+        data:
+        signedData,
+        error:
+        signedError
+      } =
+        await supabaseClient
+          .storage
+          .from("deposit-bukti")
+          .createSignedUrl(
+            item.proof_url,
+            3600
+          );
+
+
+      if(
+        !signedError &&
+        signedData?.signedUrl
+      ){
+
+        proofButton = `
+          <a
+            class="btn proof"
+            href="${signedData.signedUrl}"
+            target="_blank"
+          >
+            🖼️ Lihat Bukti Transfer
+          </a>
+        `;
+
+      }else{
+
+        proofButton = `
+          <span
+            class="btn"
+            style="
+              background:#eee;
+              color:#777;
+            "
+          >
+            Bukti tidak tersedia
+          </span>
         `;
 
       }
-    ).join("");
+
+    }
+
+
+    let actionButtons = "";
+
+
+    if(item.status === "pending"){
+
+      actionButtons = `
+
+        <button
+          class="btn approve"
+          onclick="approveDeposit(${item.id})"
+        >
+          ✅ ACC DEPOSIT
+        </button>
+
+        <button
+          class="btn reject"
+          onclick="rejectDeposit(${item.id})"
+        >
+          ❌ TOLAK
+        </button>
+
+      `;
+
+    }
+
+
+    list.innerHTML += `
+
+      <div class="deposit">
+
+        <div class="deposit-header">
+
+          <div>
+
+            <div class="amount">
+              ${rupiah(item.amount)}
+            </div>
+
+            <div class="date">
+              ${tanggal}
+            </div>
+
+          </div>
+
+          <div class="status ${statusClass}">
+            ${statusText}
+          </div>
+
+        </div>
+
+
+        <div class="user-info">
+
+          <b>User ID:</b><br>
+
+          ${item.user_id}
+
+        </div>
+
+
+        <div class="actions">
+
+          ${proofButton}
+
+          ${actionButtons}
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
 
 }
 
 
-/* ==================================
-   APPROVE
-================================== */
+// ========================================
+// APPROVE
+// ========================================
 
 async function approveDeposit(id){
 
-  const deposit =
-    deposits.find(
-      d => d.id === id
-    );
-
-
-  if(!deposit){
-
-    alert("Deposit tidak ditemukan.");
-
-    return;
-
-  }
-
-
-  if(deposit.status !== "pending"){
-
-    alert(
-      "Deposit ini sudah diproses."
-    );
-
-    return;
-
-  }
-
-
-  const confirmApprove =
+  const yakin =
     confirm(
-      "SETUJUI DEPOSIT?\n\n" +
-      "Nominal: " +
-      rupiah(deposit.amount) +
-      "\n\n" +
+      "ACC deposit ini?\n\n" +
       "Saldo user akan otomatis bertambah."
     );
 
 
-  if(!confirmApprove) return;
-
-
-  const {
-    data,
-    error
-  } = await client.rpc(
-    "approve_deposit",
-    {
-      p_deposit_id:id
-    }
-  );
-
-
-  if(error){
-
-    alert(
-      "Gagal menyetujui:\n\n" +
-      error.message
-    );
+  if(!yakin){
 
     return;
-
   }
 
 
-  alert(
-    "DEPOSIT BERHASIL DISETUJUI!\n\n" +
-    "Saldo user otomatis bertambah " +
-    rupiah(deposit.amount)
-  );
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .rpc(
+          "approve_deposit",
+          {
+            p_deposit_id:id
+          }
+        );
 
 
-  await loadDeposits();
+    if(error){
+
+      throw error;
+
+    }
+
+
+    console.log(
+      "Approve result:",
+      data
+    );
+
+
+    showMessage(
+      "✅ Deposit berhasil disetujui. Saldo user sudah ditambahkan.",
+      "success"
+    );
+
+
+    await loadDeposits();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "❌ Gagal ACC deposit: " +
+      error.message,
+      "error"
+    );
+
+  }
 
 }
 
 
-/* ==================================
-   REJECT
-================================== */
+// ========================================
+// REJECT
+// ========================================
 
 async function rejectDeposit(id){
 
-  const deposit =
-    deposits.find(
-      d => d.id === id
-    );
-
-
-  if(!deposit){
-
-    alert("Deposit tidak ditemukan.");
-
-    return;
-
-  }
-
-
-  if(deposit.status !== "pending"){
-
-    alert(
-      "Deposit ini sudah diproses."
-    );
-
-    return;
-
-  }
-
-
-  const confirmReject =
+  const yakin =
     confirm(
       "Tolak deposit ini?"
     );
 
 
-  if(!confirmReject) return;
-
-
-  const {
-    data,
-    error
-  } = await client.rpc(
-    "reject_deposit",
-    {
-      p_deposit_id:id
-    }
-  );
-
-
-  if(error){
-
-    alert(
-      "Gagal menolak:\n\n" +
-      error.message
-    );
+  if(!yakin){
 
     return;
-
   }
 
 
-  alert(
-    "Deposit berhasil ditolak."
-  );
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .rpc(
+          "reject_deposit",
+          {
+            p_deposit_id:id
+          }
+        );
 
 
-  await loadDeposits();
+    if(error){
+
+      throw error;
+
+    }
+
+
+    console.log(
+      "Reject result:",
+      data
+    );
+
+
+    showMessage(
+      "✅ Deposit berhasil ditolak.",
+      "success"
+    );
+
+
+    await loadDeposits();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "❌ Gagal menolak deposit: " +
+      error.message,
+      "error"
+    );
+
+  }
 
 }
 
 
-/* ==================================
-   SEARCH
-================================== */
+// ========================================
+// LOGOUT
+// ========================================
 
-document.getElementById(
-  "searchInput"
-).addEventListener(
-  "input",
-  renderDeposits
-);
+async function logout(){
 
+  await supabaseClient
+    .auth
+    .signOut();
 
-/* ==================================
-   FILTER
-================================== */
+  window.location.href =
+    "mac.html";
 
-document.getElementById(
-  "statusFilter"
-).addEventListener(
-  "change",
-  renderDeposits
-);
+}
 
 
-/* ==================================
-   LOGOUT
-================================== */
+// ========================================
+// START
+// ========================================
 
-document.getElementById(
-  "logoutBtn"
-).addEventListener(
-  "click",
-  async function(){
+async function init(){
 
-    await client.auth.signOut();
-
-    window.location.href =
-      "mac.html";
-
-  }
-);
-
-
-/* ==================================
-   START
-================================== */
-
-async function start(){
-
-  const session =
+  const isAdmin =
     await checkAdmin();
 
 
-  if(!session) return;
+  if(!isAdmin){
+
+    return;
+  }
 
 
   await loadDeposits();
@@ -1095,10 +1002,9 @@ async function start(){
 }
 
 
-start();
+init();
 
 </script>
 
 </body>
 </html>
-```
