@@ -1,417 +1,604 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MAC645 - Login</title>
+<title>MAC645 - Login</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0b1020;
-      color: white;
-    }
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at top,#173b29 0%,#0b1510 45%,#07100b 100%);
+  color:white;
+}
 
-    .box {
-      width: 380px;
-      max-width: 90%;
-      padding: 35px;
-      background: #11182b;
-      border: 1px solid #263352;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4);
-    }
+.container{
+  width:100%;
+  max-width:420px;
+  padding:20px;
+}
 
-    h1 {
-      text-align: center;
-      margin: 0 0 8px;
-    }
+.login-box{
+  background:rgba(16,37,26,.96);
+  border:1px solid rgba(183,255,60,.15);
+  border-radius:22px;
+  padding:32px;
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+}
 
-    h1 span {
-      color: #00e5ff;
-    }
+.logo{
+  text-align:center;
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #8f9ab0;
-      margin-bottom: 30px;
-    }
+.logo span{
+  color:#b7ff3c;
+}
 
-    input {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      border: 1px solid #303d5c;
-      background: #0b1020;
-      color: white;
-      outline: none;
-      font-size: 15px;
-    }
+.subtitle{
+  text-align:center;
+  color:#9caea3;
+  margin-top:8px;
+  margin-bottom:28px;
+}
 
-    input:focus {
-      border-color: #00e5ff;
-    }
+label{
+  display:block;
+  margin-bottom:7px;
+  color:#dce6df;
+  font-size:14px;
+  font-weight:bold;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      border: 0;
-      border-radius: 10px;
-      background: #00e5ff;
-      color: #061018;
-      font-weight: bold;
-      cursor: pointer;
-      margin-bottom: 12px;
-      font-size: 15px;
-    }
+input{
+  width:100%;
+  padding:14px;
+  margin-bottom:17px;
+  border:1px solid #304638;
+  border-radius:11px;
+  background:#0b1710;
+  color:white;
+  outline:none;
+  font-size:15px;
+}
 
-    button:hover {
-      opacity: .9;
-    }
+input:focus{
+  border-color:#b7ff3c;
+  box-shadow:0 0 0 3px rgba(183,255,60,.08);
+}
 
-    button:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-    }
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:11px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:800;
+  transition:.2s;
+}
 
-    .register {
-      background: transparent;
-      color: #00e5ff;
-      border: 1px solid #00e5ff;
-    }
+.login-btn{
+  background:#b7ff3c;
+  color:#12200f;
+  margin-bottom:12px;
+}
 
-    #pesan {
-      text-align: center;
-      margin-top: 15px;
-      color: #aab3c5;
-      font-size: 14px;
-      min-height: 20px;
-      line-height: 1.5;
-    }
+.login-btn:hover{
+  transform:translateY(-1px);
+  background:#c4ff5d;
+}
 
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #8f9ab0;
-      text-decoration: none;
-      font-size: 14px;
-    }
+.register-btn{
+  background:transparent;
+  color:#b7ff3c;
+  border:1px solid #b7ff3c;
+}
 
-    .back:hover {
-      color: #00e5ff;
-    }
-  </style>
+.register-btn:hover{
+  background:rgba(183,255,60,.08);
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
+}
+
+#pesan{
+  min-height:45px;
+  margin-top:18px;
+  text-align:center;
+  font-size:14px;
+  line-height:1.5;
+  color:#aebdb4;
+}
+
+.back{
+  display:block;
+  margin-top:20px;
+  text-align:center;
+  color:#8d9e94;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.back:hover{
+  color:#b7ff3c;
+}
+
+.divider{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:20px 0;
+  color:#65756b;
+  font-size:12px;
+}
+
+.divider::before,
+.divider::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:#2c4033;
+}
+
+.footer{
+  text-align:center;
+  color:#596a60;
+  font-size:12px;
+  margin-top:22px;
+}
+
+@media(max-width:480px){
+
+  .container{
+    padding:15px;
+  }
+
+  .login-box{
+    padding:25px 20px;
+  }
+
+  .logo{
+    font-size:30px;
+  }
+
+}
+</style>
 </head>
 
 <body>
 
-  <div class="box">
+<div class="container">
 
-    <h1>MAC<span>645</span></h1>
+  <div class="login-box">
+
+    <div class="logo">
+      MAC<span>645</span>
+    </div>
 
     <div class="subtitle">
-      Login ke akun kamu
+      Login ke akun MAC645
     </div>
+
+
+    <label for="email">
+      Email
+    </label>
 
     <input
       type="email"
       id="email"
-      placeholder="Email"
+      placeholder="Masukkan email"
       autocomplete="email"
     >
+
+
+    <label for="password">
+      Password
+    </label>
 
     <input
       type="password"
       id="password"
-      placeholder="Password"
+      placeholder="Masukkan password"
       autocomplete="current-password"
     >
 
-    <button id="loginBtn" onclick="login()">
+
+    <button
+      class="login-btn"
+      id="loginBtn"
+      onclick="login()"
+    >
       LOGIN
     </button>
 
+
     <button
+      class="register-btn"
       id="registerBtn"
-      class="register"
       onclick="register()"
     >
       DAFTAR AKUN BARU
     </button>
 
+
     <div id="pesan"></div>
 
-    <a class="back" href="index.html">
+
+    <a
+      href="index.html"
+      class="back"
+    >
       ← Kembali ke halaman utama
     </a>
 
   </div>
 
 
-  <script>
+  <div class="footer">
+    MAC645 DIGITAL STORE
+  </div>
 
-    // ==============================
-    // SUPABASE MAC645
-    // ==============================
+</div>
 
-    const SUPABASE_URL =
-      "https://jblilyzqozodjslgylso.supabase.co";
 
-    const SUPABASE_KEY =
-      "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+<script>
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+// ========================================
+// SUPABASE
+// ========================================
 
+const SUPABASE_URL =
+"https://jblilyzqozodjslgylso.supabase.co";
 
-    // ==============================
-    // ELEMENT
-    // ==============================
+const SUPABASE_KEY =
+"sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
-    const emailInput =
-      document.getElementById("email");
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
-    const passwordInput =
-      document.getElementById("password");
 
-    const pesan =
-      document.getElementById("pesan");
+// ========================================
+// ELEMENT
+// ========================================
 
-    const loginBtn =
-      document.getElementById("loginBtn");
+const emailInput =
+document.getElementById("email");
 
-    const registerBtn =
-      document.getElementById("registerBtn");
+const passwordInput =
+document.getElementById("password");
 
+const pesan =
+document.getElementById("pesan");
 
-    // ==============================
-    // PESAN
-    // ==============================
+const loginBtn =
+document.getElementById("loginBtn");
 
-    function tampilPesan(text) {
-      pesan.innerText = text;
-    }
+const registerBtn =
+document.getElementById("registerBtn");
 
 
-    // ==============================
-    // REGISTER
-    // ==============================
+// ========================================
+// PESAN
+// ========================================
 
-    async function register() {
+function tampilPesan(text){
 
-      const email =
-        emailInput.value.trim();
+  pesan.innerText = text;
 
-      const password =
-        passwordInput.value;
+}
 
-      if (!email || !password) {
 
-        tampilPesan(
-          "Email dan password wajib diisi."
-        );
+// ========================================
+// REGISTER
+// ========================================
 
-        return;
-      }
+async function register(){
 
-      if (!email.includes("@")) {
+  const email =
+    emailInput.value.trim();
 
-        tampilPesan(
-          "Masukkan email yang benar."
-        );
+  const password =
+    passwordInput.value;
 
-        return;
-      }
 
-      if (password.length < 6) {
+  if(!email || !password){
 
-        tampilPesan(
-          "Password minimal 6 karakter."
-        );
-
-        return;
-      }
-
-      registerBtn.disabled = true;
-      loginBtn.disabled = true;
-
-      tampilPesan(
-        "Mendaftarkan akun..."
-      );
-
-      try {
-
-        const { data, error } =
-          await supabaseClient.auth.signUp({
-            email: email,
-            password: password
-          });
-
-        if (error) {
-
-          tampilPesan(
-            "Gagal daftar: " + error.message
-          );
-
-          return;
-        }
-
-        if (
-          data.user &&
-          data.user.identities &&
-          data.user.identities.length === 0
-        ) {
-
-          tampilPesan(
-            "Email tersebut sudah terdaftar."
-          );
-
-          return;
-        }
-
-        tampilPesan(
-          "Akun berhasil dibuat! Silakan login."
-        );
-
-      } catch (error) {
-
-        tampilPesan(
-          "Terjadi kesalahan: " + error.message
-        );
-
-      } finally {
-
-        registerBtn.disabled = false;
-        loginBtn.disabled = false;
-
-      }
-    }
-
-
-    // ==============================
-    // LOGIN
-    // ==============================
-
-    async function login() {
-
-      const email =
-        emailInput.value.trim();
-
-      const password =
-        passwordInput.value;
-
-      if (!email || !password) {
-
-        tampilPesan(
-          "Email dan password wajib diisi."
-        );
-
-        return;
-      }
-
-      if (!email.includes("@")) {
-
-        tampilPesan(
-          "Masukkan email yang benar."
-        );
-
-        return;
-      }
-
-      loginBtn.disabled = true;
-      registerBtn.disabled = true;
-
-      tampilPesan(
-        "Sedang login..."
-      );
-
-      try {
-
-        const { data, error } =
-          await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-          });
-
-        if (error) {
-
-          tampilPesan(
-            "Login gagal: " + error.message
-          );
-
-          return;
-        }
-
-        if (!data.session) {
-
-          tampilPesan(
-            "Login gagal: sesi tidak ditemukan."
-          );
-
-          return;
-        }
-
-        tampilPesan(
-          "Login berhasil! Membuka dashboard..."
-        );
-
-        setTimeout(function () {
-
-          window.location.href =
-            "dashboard.html";
-
-        }, 800);
-
-      } catch (error) {
-
-        tampilPesan(
-          "Terjadi kesalahan: " + error.message
-        );
-
-      } finally {
-
-        loginBtn.disabled = false;
-        registerBtn.disabled = false;
-
-      }
-    }
-
-
-    // ==============================
-    // ENTER = LOGIN
-    // ==============================
-
-    passwordInput.addEventListener(
-      "keydown",
-      function(event) {
-
-        if (event.key === "Enter") {
-          login();
-        }
-
-      }
+    tampilPesan(
+      "Email dan password wajib diisi."
     );
 
-  </script>
+    return;
+  }
+
+
+  if(!email.includes("@")){
+
+    tampilPesan(
+      "Masukkan email yang benar."
+    );
+
+    return;
+  }
+
+
+  if(password.length < 6){
+
+    tampilPesan(
+      "Password minimal 6 karakter."
+    );
+
+    return;
+  }
+
+
+  loginBtn.disabled = true;
+  registerBtn.disabled = true;
+
+  tampilPesan(
+    "Sedang membuat akun..."
+  );
+
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .auth
+      .signUp({
+        email:email,
+        password:password
+      });
+
+
+    if(error){
+
+      tampilPesan(
+        "Gagal daftar: " +
+        error.message
+      );
+
+      return;
+    }
+
+
+    if(
+      data.user &&
+      data.user.identities &&
+      data.user.identities.length === 0
+    ){
+
+      tampilPesan(
+        "Email tersebut sudah terdaftar."
+      );
+
+      return;
+    }
+
+
+    tampilPesan(
+      "Akun berhasil dibuat. Silakan login."
+    );
+
+
+    passwordInput.value = "";
+
+
+  }catch(error){
+
+    tampilPesan(
+      "Terjadi kesalahan: " +
+      error.message
+    );
+
+  }finally{
+
+    loginBtn.disabled = false;
+    registerBtn.disabled = false;
+
+  }
+
+}
+
+
+// ========================================
+// LOGIN
+// ========================================
+
+async function login(){
+
+  const email =
+    emailInput.value.trim();
+
+  const password =
+    passwordInput.value;
+
+
+  if(!email || !password){
+
+    tampilPesan(
+      "Email dan password wajib diisi."
+    );
+
+    return;
+  }
+
+
+  if(!email.includes("@")){
+
+    tampilPesan(
+      "Masukkan email yang benar."
+    );
+
+    return;
+  }
+
+
+  loginBtn.disabled = true;
+  registerBtn.disabled = true;
+
+
+  tampilPesan(
+    "Sedang login..."
+  );
+
+
+  try{
+
+    // ====================================
+    // LOGIN SUPABASE
+    // ====================================
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .auth
+      .signInWithPassword({
+        email:email,
+        password:password
+      });
+
+
+    if(error){
+
+      tampilPesan(
+        "Login gagal: " +
+        error.message
+      );
+
+      loginBtn.disabled = false;
+      registerBtn.disabled = false;
+
+      return;
+    }
+
+
+    if(!data.session){
+
+      tampilPesan(
+        "Login gagal: sesi tidak ditemukan."
+      );
+
+      loginBtn.disabled = false;
+      registerBtn.disabled = false;
+
+      return;
+    }
+
+
+    tampilPesan(
+      "Login berhasil! Membuka dashboard..."
+    );
+
+
+    // ====================================
+    // SELALU KE DASHBOARD
+    // ====================================
+
+    window.location.replace(
+      "dashboard.html"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    tampilPesan(
+      "Terjadi kesalahan: " +
+      error.message
+    );
+
+
+    loginBtn.disabled = false;
+    registerBtn.disabled = false;
+
+  }
+
+}
+
+
+// ========================================
+// ENTER UNTUK LOGIN
+// ========================================
+
+passwordInput.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      event.preventDefault();
+
+      login();
+
+    }
+
+  }
+);
+
+
+// ========================================
+// JIKA SUDAH LOGIN
+// ========================================
+
+async function cekSession(){
+
+  const {
+    data:{
+      session
+    }
+  } =
+  await supabaseClient
+    .auth
+    .getSession();
+
+
+  // Kalau sudah login dan membuka mac.html,
+  // langsung masuk dashboard.
+
+  if(session){
+
+    window.location.replace(
+      "dashboard.html"
+    );
+
+  }
+
+}
+
+
+cekSession();
+
+</script>
 
 </body>
 </html>
-```
