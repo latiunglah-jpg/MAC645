@@ -3,1129 +3,1092 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MAC645 - Marketplace Produk Digital</title>
+<title>MAC645 - Digital Store</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
   font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#071b12;
-  color:white;
+  background:#07130b;
+  color:#fff;
+  min-height:100vh;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+button,input,select{
+  font:inherit;
 }
 
-/* TOPBAR */
-.topbar{
-  background:#123f25;
-  height:32px;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.marquee{
-  white-space:nowrap;
-  animation:jalan 18s linear infinite;
-}
-
-@keyframes jalan{
-  from{transform:translateX(100%);}
-  to{transform:translateX(-100%);}
+button{
+  cursor:pointer;
 }
 
 /* HEADER */
 header{
-  background:#0b2918;
-  border-bottom:1px solid #285d35;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#0b1e11;
+  border-bottom:1px solid #214d2b;
 }
 
-.header-main{
-  max-width:1250px;
+.navbar{
+  max-width:1200px;
   margin:auto;
-  min-height:72px;
-  padding:10px 18px;
-
+  min-height:70px;
+  padding:12px 20px;
   display:flex;
   align-items:center;
   gap:25px;
 }
 
 .logo{
-  font-size:34px;
+  font-size:25px;
   font-weight:900;
   color:#fff;
-  letter-spacing:-2px;
-  min-width:145px;
+  white-space:nowrap;
 }
 
 .logo span{
-  color:#9cff32;
+  color:#aaff38;
 }
 
-.header-info{
-  display:flex;
-  gap:15px;
-  align-items:center;
-  color:#d8eadc;
-  font-size:12px;
+.search{
+  flex:1;
 }
 
-.header-info div{
-  padding-right:15px;
-  border-right:1px solid #396045;
-}
-
-/* AUTH */
-.auth{
-  margin-left:auto;
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.auth input{
-  width:135px;
-  background:#194b27;
-  border:1px solid #35663e;
-  color:white;
-  border-radius:5px;
-  padding:11px 10px;
+.search input{
+  width:100%;
+  padding:12px 16px;
+  border-radius:25px;
+  border:1px solid #315d3b;
   outline:none;
-  font-size:12px;
+  background:#102819;
+  color:#fff;
 }
 
-.auth input:focus{
-  border-color:#9cff32;
+.search input::placeholder{
+  color:#78917e;
 }
 
-.auth input::placeholder{
-  color:#9caf9e;
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.login,
-.register,
-.logout{
-  border:0;
-  border-radius:5px;
-  padding:11px 17px;
-  cursor:pointer;
-  font-weight:bold;
-  font-size:12px;
+.nav-item{
+  color:#d8e8db;
+  text-decoration:none;
+  padding:9px 10px;
+  font-size:13px;
+  border-radius:7px;
 }
 
-.login{
-  background:transparent;
-  color:white;
-  border:1px solid #9cff32;
+.nav-item:hover{
+  background:#183b22;
+  color:#aaff38;
 }
 
-.register{
-  background:#9cff32;
-  color:#10220f;
-}
-
-.logout{
-  background:#e53935;
-  color:white;
-}
-
-.user-info{
+.user-area{
   display:none;
   align-items:center;
   gap:10px;
 }
 
-.user-name{
-  background:#194b27;
-  border:1px solid #35663e;
-  padding:10px 12px;
-  border-radius:5px;
-  font-size:12px;
-}
-
-.balance-top{
+.balance{
   color:#aaff38;
-  font-weight:bold;
-}
-
-/* NAVBAR */
-.navbar{
-  background:#102f1b;
-  border-bottom:1px solid #285d35;
-}
-
-.nav-inner{
-  max-width:1250px;
-  margin:auto;
-  min-height:48px;
-  padding:0 18px;
-
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-.nav-item{
-  padding:15px 14px;
-  color:#e4eee5;
   font-size:13px;
   font-weight:bold;
-  transition:.2s;
 }
 
-.nav-item:hover,
-.nav-item.active{
-  background:#194b27;
-  color:#9cff32;
-}
-
-/* CONTENT */
-.container{
-  max-width:1250px;
-  margin:auto;
-  padding:18px;
-}
-
-/* BANNER */
-.banner{
-  min-height:310px;
-  border-radius:12px;
-  overflow:hidden;
-  position:relative;
-
-  background:
-    radial-gradient(
-      circle at 80% 30%,
-      rgba(166,255,45,.35),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 20% 100%,
-      rgba(0,255,180,.2),
-      transparent 35%
-    ),
-    linear-gradient(
-      120deg,
-      #123e1f,
-      #1c651e,
-      #0d3219
-    );
-
-  border:1px solid #39733e;
-
-  display:flex;
-  align-items:center;
-  padding:40px;
-}
-
-.banner-content{
-  max-width:650px;
-  z-index:2;
-}
-
-.banner-small{
-  color:#aaff38;
-  font-size:14px;
-  font-weight:bold;
-  margin-bottom:10px;
-  text-transform:uppercase;
-}
-
-.banner h1{
-  font-size:43px;
-  line-height:1.05;
-  margin-bottom:15px;
-}
-
-.banner h1 span{
-  color:#aaff38;
-}
-
-.banner p{
-  color:#d2e4d4;
-  font-size:15px;
-  line-height:1.6;
-  margin-bottom:22px;
-}
-
-.banner-button{
-  display:inline-block;
-  background:#aaff38;
-  color:#10210e;
-  padding:13px 25px;
+.logout{
+  border:1px solid #47754f;
+  background:#14351e;
+  color:#fff;
+  padding:8px 12px;
   border-radius:7px;
-  font-size:13px;
+}
+
+/* MAIN */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:35px 20px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#0e2917,#153b20);
+  border:1px solid #285b34;
+  border-radius:20px;
+  padding:45px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.hero small{
+  color:#aaff38;
+  font-weight:bold;
+}
+
+.hero h1{
+  font-size:42px;
+  line-height:1.1;
+  margin:15px 0;
+}
+
+.hero h1 span{
+  color:#aaff38;
+}
+
+.hero p{
+  color:#9db4a1;
+  max-width:600px;
+  line-height:1.7;
+}
+
+.hero-btn{
+  margin-top:22px;
+  padding:13px 22px;
+  border:0;
+  border-radius:8px;
+  background:#aaff38;
+  color:#10200f;
   font-weight:900;
 }
 
-.banner-decoration{
-  position:absolute;
-  right:50px;
-  bottom:-20px;
-  font-size:180px;
-  opacity:.22;
+.hero-icon{
+  font-size:90px;
 }
 
 /* SECTION */
 .section{
-  margin-top:25px;
+  margin-top:35px;
 }
 
 .section-title{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:14px;
+  margin-bottom:18px;
 }
 
 .section-title h2{
-  font-size:20px;
+  font-size:23px;
 }
 
-.section-title a{
-  color:#aaff38;
+.section-title span{
+  color:#809985;
   font-size:12px;
-  font-weight:bold;
 }
 
 /* CATEGORY */
-.category-grid{
+.categories{
   display:grid;
   grid-template-columns:repeat(6,1fr);
-  gap:10px;
+  gap:12px;
 }
 
 .category{
-  background:#102a19;
-  border:1px solid #285634;
-  border-radius:9px;
+  background:#0d2414;
+  border:1px solid #244d2d;
+  border-radius:12px;
   padding:20px 10px;
   text-align:center;
-  cursor:pointer;
   transition:.2s;
 }
 
 .category:hover{
   transform:translateY(-3px);
-  border-color:#aaff32;
-  background:#15381e;
+  border-color:#aaff38;
 }
 
 .category-icon{
-  font-size:35px;
+  font-size:30px;
   margin-bottom:10px;
 }
 
-.category h3{
+.category p{
   font-size:12px;
+  color:#c4d5c8;
 }
 
 /* PRODUCTS */
-.product-grid{
+.products{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 
 .product{
-  background:#102a19;
-  border:1px solid #285634;
-  border-radius:10px;
+  background:#0d2414;
+  border:1px solid #244d2d;
+  border-radius:13px;
   overflow:hidden;
-  cursor:pointer;
-  transition:.2s;
 }
 
-.product:hover{
-  transform:translateY(-4px);
-  border-color:#aaff32;
-  box-shadow:0 10px 25px rgba(0,0,0,.3);
-}
-
-.product-image{
-  height:135px;
+.product-img{
+  height:130px;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  background:
-    radial-gradient(
-      circle,
-      #285e30,
-      #102a19
-    );
-
-  font-size:58px;
+  font-size:50px;
+  background:#122f1a;
 }
 
-.product-info{
-  padding:14px;
+.product-body{
+  padding:16px;
 }
 
-.product-info h3{
-  font-size:13px;
-  margin-bottom:8px;
+.product-body h3{
+  font-size:15px;
+  margin-bottom:7px;
+}
+
+.product-body p{
+  color:#7f9885;
+  font-size:12px;
 }
 
 .price{
   color:#aaff38;
-  font-size:16px;
+  font-size:18px;
+  font-weight:bold;
+  margin:14px 0;
+}
+
+.buy{
+  width:100%;
+  padding:10px;
+  border:0;
+  border-radius:7px;
+  background:#aaff38;
+  color:#10200f;
+  font-weight:bold;
+}
+
+/* ACCOUNT */
+.account-box{
+  background:#0d2414;
+  border:1px solid #244d2d;
+  border-radius:15px;
+  padding:25px;
+}
+
+.account-box p{
+  color:#91a695;
+  margin-top:8px;
+}
+
+/* LOGIN */
+.login-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.82);
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:#0d2414;
+  border:1px solid #39733e;
+  border-radius:17px;
+  padding:28px;
+}
+
+.login-box h2{
+  color:#aaff38;
+  margin-bottom:7px;
+}
+
+.login-box p{
+  color:#879e8d;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+.login-box label{
+  display:block;
+  font-size:12px;
+  color:#cfe0d2;
+  margin:13px 0 7px;
+}
+
+.login-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid #315d3b;
+  border-radius:8px;
+  background:#122f1a;
+  color:#fff;
+  outline:none;
+}
+
+.login-btn{
+  width:100%;
+  margin-top:18px;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:#aaff38;
+  color:#10200f;
   font-weight:900;
 }
 
-.product-info small{
-  display:block;
-  margin-top:5px;
-  color:#9caf9e;
-  font-size:10px;
+.register-btn{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border:1px solid #466f4d;
+  border-radius:8px;
+  background:#14351e;
+  color:#fff;
 }
 
-/* PROMO */
-.promo{
-  background:
-    linear-gradient(
-      120deg,
-      #174d25,
-      #102a19
-    );
+.close-login{
+  float:right;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:25px;
+}
 
-  border:1px solid #315f39;
-  border-radius:12px;
-
-  padding:25px;
-
-  display:flex;
+/* WITHDRAW */
+.withdraw-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.82);
+  z-index:5000;
   align-items:center;
-  justify-content:space-between;
-  gap:20px;
+  justify-content:center;
+  padding:18px;
 }
 
-.promo h2{
-  font-size:21px;
-  margin-bottom:8px;
+.withdraw-box{
+  width:100%;
+  max-width:500px;
+  max-height:92vh;
+  overflow:auto;
+  background:#102a19;
+  border:1px solid #39733e;
+  border-radius:16px;
+  padding:25px;
+  position:relative;
+  box-shadow:0 25px 80px rgba(0,0,0,.6);
 }
 
-.promo p{
-  color:#b7cabb;
-  font-size:13px;
+.withdraw-box h2{
+  color:#aaff38;
+  margin-bottom:6px;
 }
 
-.promo-button{
+.withdraw-subtitle{
+  color:#9caf9e;
+  font-size:12px;
+  margin-bottom:18px;
+}
+
+.withdraw-close{
+  position:absolute;
+  right:14px;
+  top:12px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#194b27;
+  color:#fff;
+  font-size:25px;
+}
+
+.withdraw-balance{
+  background:#0b2918;
+  border:1px solid #285d35;
+  border-radius:10px;
+  padding:15px;
+  margin-bottom:18px;
+}
+
+.withdraw-balance span{
+  display:block;
+  color:#9caf9e;
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+.withdraw-balance strong{
+  color:#aaff38;
+  font-size:23px;
+}
+
+.withdraw-box label{
+  display:block;
+  margin:13px 0 7px;
+  color:#d8eadc;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.withdraw-box input,
+.withdraw-box select{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #35663e;
+  background:#194b27;
+  color:#fff;
+  outline:none;
+}
+
+.withdraw-box input:focus,
+.withdraw-box select:focus{
+  border-color:#aaff38;
+}
+
+.withdraw-submit{
+  width:100%;
+  margin-top:20px;
+  padding:13px;
+  border:0;
+  border-radius:8px;
   background:#aaff38;
   color:#10210e;
-  padding:12px 20px;
-  border-radius:7px;
+  font-weight:900;
+}
+
+.withdraw-submit:disabled{
+  opacity:.55;
+}
+
+.withdraw-history{
+  margin-top:24px;
+  border-top:1px solid #285d35;
+  padding-top:20px;
+}
+
+.withdraw-history h3{
+  font-size:15px;
+  margin-bottom:12px;
+}
+
+.withdraw-item{
+  background:#0b2918;
+  border:1px solid #285d35;
+  border-radius:9px;
+  padding:12px;
+  margin-bottom:8px;
+  font-size:12px;
+}
+
+.withdraw-item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.withdraw-status{
   font-weight:bold;
+}
+
+.status-pending{
+  color:#ffd54a;
+}
+
+.status-approved{
+  color:#aaff38;
+}
+
+.status-rejected{
+  color:#ff6b6b;
+}
+
+.withdraw-empty{
+  color:#8fa693;
   font-size:12px;
 }
 
 /* FOOTER */
 footer{
-  margin-top:35px;
-  background:#06150c;
-  border-top:1px solid #244d2e;
-  padding:35px 18px;
-}
-
-.footer-inner{
-  max-width:1250px;
-  margin:auto;
-
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:30px;
-}
-
-footer h3{
-  margin-bottom:12px;
-  font-size:15px;
-}
-
-footer p,
-footer a{
-  color:#8fa693;
+  margin-top:60px;
+  padding:30px 20px;
+  text-align:center;
+  color:#607764;
+  border-top:1px solid #1c3e25;
   font-size:12px;
-  line-height:2;
-  display:block;
-}
-
-/* CS */
-.cs{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-
-  width:58px;
-  height:58px;
-
-  border-radius:50%;
-
-  background:#aaff38;
-  color:#10210e;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:25px;
-  font-weight:bold;
-
-  box-shadow:0 5px 25px rgba(0,0,0,.4);
-
-  z-index:999;
-  cursor:pointer;
-}
-
-.cs-label{
-  position:fixed;
-  right:88px;
-  bottom:29px;
-
-  background:white;
-  color:#172019;
-
-  padding:9px 14px;
-  border-radius:8px;
-
-  font-size:11px;
-  font-weight:bold;
-
-  box-shadow:0 5px 20px rgba(0,0,0,.25);
-}
-
-/* LOGIN STATUS */
-#loginStatus{
-  position:fixed;
-  top:45px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#fff;
-  color:#111;
-  padding:10px 18px;
-  border-radius:8px;
-  box-shadow:0 5px 20px rgba(0,0,0,.3);
-  font-size:12px;
-  font-weight:bold;
-  display:none;
-  z-index:2000;
 }
 
 /* MOBILE */
-@media(max-width:950px){
+@media(max-width:900px){
+  .navbar{
+    flex-wrap:wrap;
+  }
 
-  .header-info{
+  .search{
+    order:3;
+    flex-basis:100%;
+  }
+
+  .nav-links{
+    overflow-x:auto;
+    max-width:100%;
+  }
+
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{
+    padding:30px;
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+
+  .hero-icon{
     display:none;
   }
-
-  .category-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .product-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .footer-inner{
-    grid-template-columns:1fr 1fr;
-  }
-
 }
 
-@media(max-width:650px){
-
-  .header-main{
-    flex-wrap:wrap;
+@media(max-width:600px){
+  .navbar{
+    padding:10px;
     gap:10px;
   }
 
   .logo{
-    font-size:28px;
+    font-size:21px;
   }
 
-  .auth{
+  .user-area{
+    margin-left:auto;
+  }
+
+  .nav-links{
     width:100%;
-    margin-left:0;
-  }
-
-  .auth input{
-    width:100%;
-  }
-
-  .login,
-  .register{
-    padding:9px 13px;
-    font-size:11px;
-  }
-
-  .nav-inner{
-    overflow-x:auto;
   }
 
   .nav-item{
     white-space:nowrap;
   }
 
-  .banner{
-    min-height:300px;
-    padding:25px;
+  .container{
+    padding:20px 12px;
   }
 
-  .banner h1{
-    font-size:30px;
+  .hero{
+    padding:25px 20px;
   }
 
-  .banner-decoration{
-    font-size:100px;
-    right:20px;
+  .hero h1{
+    font-size:29px;
   }
 
-  .category-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .product-grid{
+  .categories{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .promo{
-    display:block;
-  }
-
-  .promo-button{
-    display:inline-block;
-    margin-top:15px;
-  }
-
-  .footer-inner{
+  .products{
     grid-template-columns:1fr;
   }
-
-  .cs-label{
-    display:none;
-  }
-
-}
-
-@media(max-width:400px){
-
-  .category-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .product-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .banner h1{
-    font-size:26px;
-  }
-
 }
 </style>
 </head>
 
 <body>
 
-<div id="loginStatus"></div>
-
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="marquee">
-    📢 INFORMASI MAC645 — Selamat datang di MAC645! Nikmati kemudahan pembelian pulsa dan produk digital.
-  </div>
-</div>
-
-<!-- HEADER -->
 <header>
-
-  <div class="header-main">
+  <div class="navbar">
 
     <div class="logo">
       MAC<span>645</span>
     </div>
 
-    <div class="header-info">
-
-      <div>🕒 Layanan 24 Jam</div>
-      <div>🔒 Transaksi Aman</div>
-      <div>⚡ Proses Cepat</div>
-
+    <div class="search">
+      <input type="text" placeholder="Cari produk digital...">
     </div>
 
-    <!-- LOGIN AREA -->
-    <div class="auth" id="authArea">
-
-      <input
-        type="email"
-        id="email"
-        placeholder="Email"
-      >
-
-      <input
-        type="password"
-        id="password"
-        placeholder="Kata Sandi"
-      >
-
-      <button
-        class="login"
-        onclick="loginUser()"
-      >
-        MASUK
-      </button>
-
-      <button
-        class="register"
-        onclick="registerUser()"
-      >
-        DAFTAR
-      </button>
-
-    </div>
-
-    <!-- USER AREA -->
-    <div class="user-info" id="userArea">
-
-      <div class="user-name" id="userEmail">
-        👤 User
-      </div>
-
-      <div class="balance-top" id="topBalance">
-        Saldo Rp0
-      </div>
-
-      <button
-        class="logout"
-        onclick="logoutUser()"
-      >
-        LOGOUT
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- NAVIGATION -->
-  <nav class="navbar">
-
-    <div class="nav-inner">
-
-      <a class="nav-item active" href="index.html">
-        🏠 Beranda
-      </a>
-
-      <a class="nav-item" href="#produk">
-        Produk
-      </a>
-
-      <a class="nav-item" href="#kategori">
-        Kategori
-      </a>
-
-      <a class="nav-item" href="#promo">
-        Promo
-      </a>
-
-      <a class="nav-item" href="#akun">
-        Akun Saya
-      </a>
+    <div class="nav-links">
+      <a class="nav-item" href="#beranda">Beranda</a>
+      <a class="nav-item" href="#produk">Produk</a>
+      <a class="nav-item" href="#kategori">Kategori</a>
 
       <a class="nav-item" href="deposit.html">
         Deposit
       </a>
 
-      <a class="nav-item" href="#bantuan">
-        Bantuan
+      <a class="nav-item" href="#"
+         onclick="bukaWithdraw();return false;">
+        💸 Withdraw
       </a>
 
+      <a class="nav-item" href="#akun"
+         onclick="cekLogin();return false;">
+        Akun Saya
+      </a>
     </div>
 
-  </nav>
+    <div id="authArea">
+      <button class="login-btn"
+              style="width:auto;padding:9px 15px"
+              onclick="bukaLogin()">
+        LOGIN
+      </button>
+    </div>
 
+    <div id="userArea" class="user-area">
+      <div>
+        <div id="userEmail"
+             style="font-size:11px;color:#91a695">
+          -
+        </div>
+
+        <div id="saldoUser"
+             class="balance">
+          Saldo Rp0
+        </div>
+      </div>
+
+      <button class="logout"
+              onclick="logoutUser()">
+        Keluar
+      </button>
+    </div>
+
+  </div>
 </header>
 
-<!-- CONTENT -->
-<main class="container">
 
-  <!-- BANNER -->
-<!-- BANNER MAC645 ELEGAN -->
-<section class="banner">
-<div class="BIG">
-      ✦ MAC645 PASTI GACOR!
-    </div>
+<main id="beranda">
 
-  <div class="banner-content">
+  <div class="container">
 
-    
-    <h1>
-      
-      
-    
-
-  
-      
-  
-
-    <div class="banner-actions">
-
-      <a class="banner-button" href="#produk">
-    
-      </a>
-
-      <a class="banner-button-outline" href="deposit.html">
-         DAFTAR SEKARANG 
-      </a>
-
-    </div>
-
-  </div>
-
-  <div class="banner-decoration">
-    <div class="banner-circle">
-      ✦
-    </div>
-    <div class="banner-card">
-      <span>MAC</span>
-      645
-    </div>
-  </div>
-
-</section>
-
-  <!-- KATEGORI -->
-  <section
-    class="section"
-    id="kategori"
-  >
-
-    <div class="section-title">
-      <h2>Kategori Produk</h2>
-    </div>
-
-    <div class="category-grid">
-
-      <div
-        class="category"
-        onclick="cekLogin('Pulsa')"
-      >
-        <div class="category-icon">📱</div>
-        <h3>Pulsa</h3>
-      </div>
-
-      <div
-        class="category"
-        onclick="cekLogin('Paket Data')"
-      >
-        <div class="category-icon">🌐</div>
-        <h3>Paket Data</h3>
-      </div>
-
-      <div
-        class="category"
-        onclick="cekLogin('Token PLN')"
-      >
-        <div class="category-icon">⚡</div>
-        <h3>Token PLN</h3>
-      </div>
-
-      <div
-        class="category"
-        onclick="cekLogin('E-Wallet')"
-      >
-        <div class="category-icon">💳</div>
-        <h3>E-Wallet</h3>
-      </div>
-
-      <div
-        class="category"
-        onclick="cekLogin('Voucher Game')"
-      >
-        <div class="category-icon">🎮</div>
-        <h3>Voucher Game</h3>
-      </div>
-
-      <div
-        class="category"
-        onclick="cekLogin('Streaming')"
-      >
-        <div class="category-icon">🎬</div>
-        <h3>Streaming</h3>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- PRODUK -->
-  <section
-    class="section"
-    id="produk"
-  >
-
-    <div class="section-title">
-
-      <h2>⭐ Produk Populer</h2>
-
-      <a href="#produk">
-        Lihat Semua →
-      </a>
-
-    </div>
-
-    <div class="product-grid">
-
-      <div
-        class="product"
-        onclick="cekLogin('Pulsa 10.000')"
-      >
-
-        <div class="product-image">📱</div>
-
-        <div class="product-info">
-
-          <h3>Pulsa 10.000</h3>
-
-          <div class="price">
-            Rp10.500
-          </div>
-
-          <small>
-            Semua operator
-          </small>
-
-        </div>
-
-      </div>
-
-      <div
-        class="product"
-        onclick="cekLogin('Paket Data 10GB')"
-      >
-
-        <div class="product-image">🌐</div>
-
-        <div class="product-info">
-
-          <h3>Paket Data 10GB</h3>
-
-          <div class="price">
-            Rp25.000
-          </div>
-
-          <small>
-            Masa aktif 30 hari
-          </small>
-
-        </div>
-
-      </div>
-
-      <div
-        class="product"
-        onclick="cekLogin('Token PLN 50.000')"
-      >
-
-        <div class="product-image">⚡</div>
-
-        <div class="product-info">
-
-          <h3>Token PLN 50.000</h3>
-
-          <div class="price">
-            Rp50.000
-          </div>
-
-          <small>
-            Tersedia 24 jam
-          </small>
-
-        </div>
-
-      </div>
-
-      <div
-        class="product"
-        onclick="cekLogin('E-Wallet 50.000')"
-      >
-
-        <div class="product-image">💳</div>
-
-        <div class="product-info">
-
-          <h3>E-Wallet 50.000</h3>
-
-          <div class="price">
-            Rp50.000
-          </div>
-
-          <small>
-            Proses otomatis
-          </small>
-
-        </div>
-
-      </div>
-
-      <div
-        class="product"
-        onclick="cekLogin('Voucher Game 20.000')"
-      >
-
-        <div class="product-image">🎮</div>
-
-        <div class="product-info">
-
-          <h3>Voucher Game 20.000</h3>
-
-          <div class="price">
-            Rp20.000
-          </div>
-
-          <small>
-            Proses cepat
-          </small>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- PROMO -->
-  <section
-    class="section"
-    id="promo"
-  >
-
-    <div class="promo">
+    <section class="hero">
 
       <div>
+        <small>MAC645 DIGITAL STORE</small>
 
-        <h2>
-          🎁 Mulai Belanja di MAC645
-        </h2>
+        <h1>
+          Semua Produk Digital
+          <br>
+          <span>Dalam Satu Tempat</span>
+        </h1>
 
-        <p id="promoText">
-          Login atau daftar akun untuk mulai menggunakan layanan MAC645.
+        <p>
+          Beli pulsa, paket data, token PLN,
+          e-wallet, voucher game dan berbagai
+          produk digital dengan mudah.
+        </p>
+
+        <button class="hero-btn"
+                onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">
+          BELI SEKARANG
+        </button>
+      </div>
+
+      <div class="hero-icon">
+        🛍️
+      </div>
+
+    </section>
+
+
+    <section id="kategori"
+             class="section">
+
+      <div class="section-title">
+        <h2>Kategori Produk</h2>
+        <span>Produk digital pilihan</span>
+      </div>
+
+      <div class="categories">
+
+        <div class="category">
+          <div class="category-icon">📱</div>
+          <p>Pulsa</p>
+        </div>
+
+        <div class="category">
+          <div class="category-icon">📶</div>
+          <p>Paket Data</p>
+        </div>
+
+        <div class="category">
+          <div class="category-icon">⚡</div>
+          <p>Token PLN</p>
+        </div>
+
+        <div class="category">
+          <div class="category-icon">💳</div>
+          <p>E-Wallet</p>
+        </div>
+
+        <div class="category">
+          <div class="category-icon">🎮</div>
+          <p>Voucher Game</p>
+        </div>
+
+        <div class="category">
+          <div class="category-icon">🎬</div>
+          <p>Streaming</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section id="produk"
+             class="section">
+
+      <div class="section-title">
+        <h2>Produk Populer</h2>
+        <span>Produk MAC645</span>
+      </div>
+
+      <div class="products">
+
+        <div class="product">
+          <div class="product-img">📱</div>
+
+          <div class="product-body">
+            <h3>Pulsa 10.000</h3>
+            <p>Pulsa semua operator</p>
+
+            <div class="price">
+              Rp10.500
+            </div>
+
+            <button class="buy"
+                    onclick="cekLogin()">
+              BELI
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product">
+          <div class="product-img">📶</div>
+
+          <div class="product-body">
+            <h3>Paket Data 10GB</h3>
+            <p>Paket internet</p>
+
+            <div class="price">
+              Rp25.000
+            </div>
+
+            <button class="buy"
+                    onclick="cekLogin()">
+              BELI
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product">
+          <div class="product-img">🎮</div>
+
+          <div class="product-body">
+            <h3>Voucher Game</h3>
+            <p>Top up game</p>
+
+            <div class="price">
+              Rp20.000
+            </div>
+
+            <button class="buy"
+                    onclick="cekLogin()">
+              BELI
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product">
+          <div class="product-img">💳</div>
+
+          <div class="product-body">
+            <h3>E-Wallet 50.000</h3>
+            <p>Saldo e-wallet</p>
+
+            <div class="price">
+              Rp50.000
+            </div>
+
+            <button class="buy"
+                    onclick="cekLogin()">
+              BELI
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product">
+          <div class="product-img">⚡</div>
+
+          <div class="product-body">
+            <h3>Token PLN 50.000</h3>
+            <p>Token listrik</p>
+
+            <div class="price">
+              Rp50.000
+            </div>
+
+            <button class="buy"
+                    onclick="cekLogin()">
+              BELI
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product">
+          <div class="product-img">🎬</div>
+
+          <div class="product-body">
+            <h3>Streaming</h3>
+            <p>Voucher streaming</p>
+
+            <div class="price">
+              Rp30.000
+            </div>
+
+            <button class="buy"
+                    onclick="cekLogin()">
+              BELI
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section id="akun"
+             class="section">
+
+      <div class="section-title">
+        <h2>Akun Saya</h2>
+      </div>
+
+      <div class="account-box">
+
+        <h3 id="accountTitle">
+          Belum Login
+        </h3>
+
+        <p id="accountDescription">
+          Silakan login untuk melihat saldo,
+          melakukan transaksi dan withdraw.
         </p>
 
       </div>
 
-      <button
-        class="promo-button"
-        onclick="cekLogin('Belanja')"
-      >
-        MULAI BELANJA
-      </button>
+    </section>
 
-    </div>
-
-  </section>
+  </div>
 
 </main>
 
-<!-- FOOTER -->
-<footer id="bantuan">
 
-  <div class="footer-inner">
+<footer>
+  MAC645 DIGITAL STORE © 2026
+</footer>
 
-    <div>
 
-      <h3>MAC645</h3>
+<!-- LOGIN -->
+<div id="loginModal"
+     class="login-overlay">
 
-      <p>
-        Marketplace produk digital untuk
-        kebutuhan pulsa, paket data,
-        game dan produk digital lainnya.
-      </p>
+  <div class="login-box">
+
+    <button class="close-login"
+            onclick="tutupLogin()">
+      ×
+    </button>
+
+    <h2>MAC645</h2>
+
+    <p>
+      Login atau daftar akun baru.
+    </p>
+
+    <label>Email</label>
+
+    <input type="email"
+           id="email"
+           placeholder="Email kamu">
+
+    <label>Password</label>
+
+    <input type="password"
+           id="password"
+           placeholder="Password">
+
+    <button class="login-btn"
+            onclick="loginUser()">
+      LOGIN
+    </button>
+
+    <button class="register-btn"
+            onclick="registerUser()">
+      DAFTAR AKUN BARU
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- WITHDRAW -->
+<div id="withdrawModal"
+     class="withdraw-overlay">
+
+  <div class="withdraw-box">
+
+    <button class="withdraw-close"
+            onclick="tutupWithdraw()">
+      ×
+    </button>
+
+    <h2>💸 Withdraw Saldo</h2>
+
+    <p class="withdraw-subtitle">
+      Tarik saldo MAC645 ke rekening atau
+      e-wallet kamu.
+    </p>
+
+    <div class="withdraw-balance">
+
+      <span>
+        Saldo tersedia
+      </span>
+
+      <strong id="withdrawBalance">
+        Rp0
+      </strong>
 
     </div>
 
-    <div>
 
-      <h3>Produk</h3>
+    <label>
+      Nominal Withdraw
+    </label>
 
-      <a href="#produk">Pulsa</a>
-      <a href="#produk">Paket Data</a>
-      <a href="#produk">Token PLN</a>
-      <a href="#produk">E-Wallet</a>
+    <input type="number"
+           id="withdrawAmount"
+           min="10000"
+           placeholder="Contoh: 100000">
 
-    </div>
 
-    <div>
+    <label>
+      Bank / E-Wallet
+    </label>
 
-      <h3>Akun</h3>
+    <select id="withdrawBank">
 
-      <a href="#"
-         onclick="cekLogin('Akun')">
-        Akun Saya
-      </a>
+      <option value="">
+        Pilih tujuan
+      </option>
 
-      <a href="deposit.html">
-        Deposit
-      </a>
+      <option value="BCA">BCA</option>
+      <option value="BRI">BRI</option>
+      <option value="BNI">BNI</option>
+      <option value="Mandiri">Mandiri</option>
+      <option value="BSI">BSI</option>
+      <option value="CIMB Niaga">
+        CIMB Niaga
+      </option>
 
-    </div>
+      <option value="DANA">
+        DANA
+      </option>
 
-    <div>
+      <option value="OVO">
+        OVO
+      </option>
 
-      <h3>Bantuan</h3>
+      <option value="GoPay">
+        GoPay
+      </option>
 
-      <a href="#">
-        Cara Belanja
-      </a>
+      <option value="ShopeePay">
+        ShopeePay
+      </option>
 
-      <a href="#">
-        Pembayaran
-      </a>
+    </select>
 
-      <a href="#"
-         onclick="hubungiCS()">
-        Hubungi Kami
-      </a>
+
+    <label>
+      Nomor Rekening / E-Wallet
+    </label>
+
+    <input type="text"
+           id="withdrawAccount"
+           inputmode="numeric"
+           placeholder="Masukkan nomor">
+
+
+    <label>
+      Nama Pemilik
+    </label>
+
+    <input type="text"
+           id="withdrawName"
+           placeholder="Sesuai rekening">
+
+
+    <button id="withdrawSubmit"
+            class="withdraw-submit"
+            onclick="ajukanWithdraw()">
+
+      AJUKAN WITHDRAW
+
+    </button>
+
+
+    <div class="withdraw-history">
+
+      <h3>
+        Riwayat Withdraw
+      </h3>
+
+      <div id="withdrawHistory">
+        Belum dimuat.
+      </div>
 
     </div>
 
   </div>
 
-</footer>
-
-<!-- CS -->
-<div
-  class="cs-label"
-  id="csLabel"
->
-  💬 Layanan CS
 </div>
 
-<div
-  class="cs"
-  onclick="hubungiCS()"
->
-  💬
-</div>
 
 <script>
 
-/* ==========================================
+/* =====================================
    SUPABASE
-========================================== */
+===================================== */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -1140,77 +1103,39 @@ supabase.createClient(
 );
 
 
-/* ==========================================
+/* =====================================
    NOTIFIKASI
-========================================== */
+===================================== */
 
 function notif(message){
+  alert(message);
+}
 
-  const box =
-    document.getElementById("loginStatus");
 
-  box.textContent = message;
-  box.style.display = "block";
+/* =====================================
+   LOGIN MODAL
+===================================== */
 
-  setTimeout(function(){
+function bukaLogin(){
 
-    box.style.display = "none";
+  document.getElementById(
+    "loginModal"
+  ).style.display="flex";
 
-  },3000);
+}
+
+function tutupLogin(){
+
+  document.getElementById(
+    "loginModal"
+  ).style.display="none";
 
 }
 
 
-/* ==========================================
-   LOGIN
-========================================== */
-
-async function loginUser(){
-
-  const email =
-    document.getElementById("email").value.trim();
-
-  const password =
-    document.getElementById("password").value;
-
-  if(!email || !password){
-
-    notif("⚠️ Email dan kata sandi wajib diisi.");
-
-    return;
-  }
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.auth.signInWithPassword({
-
-    email:email,
-    password:password
-
-  });
-
-  if(error){
-
-    notif("❌ Login gagal: " + error.message);
-
-    return;
-  }
-
-  notif("✅ Login berhasil!");
-
-  document.getElementById("email").value = "";
-  document.getElementById("password").value = "";
-
-  await tampilkanUser(data.user);
-
-}
-
-
-/* ==========================================
+/* =====================================
    REGISTER
-========================================== */
+===================================== */
 
 async function registerUser(){
 
@@ -1222,115 +1147,152 @@ async function registerUser(){
 
   if(!email || !password){
 
-    notif("⚠️ Isi email dan kata sandi terlebih dahulu.");
+    notif(
+      "Email dan password wajib diisi."
+    );
 
     return;
   }
 
   if(password.length < 6){
 
-    notif("⚠️ Kata sandi minimal 6 karakter.");
+    notif(
+      "Password minimal 6 karakter."
+    );
 
     return;
   }
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.auth.signUp({
 
-    email:email,
-    password:password
+  const {data,error} =
+    await supabaseClient.auth.signUp({
 
-  });
+      email:email,
+
+      password:password
+
+    });
+
 
   if(error){
 
-    notif("❌ Daftar gagal: " + error.message);
+    notif(
+      "Daftar gagal: " +
+      error.message
+    );
 
     return;
   }
 
-  if(data.session){
 
-    notif("✅ Pendaftaran berhasil!");
-
-    await tampilkanUser(data.user);
-
-  }else{
-
-    notif(
-      "✅ Pendaftaran berhasil. Cek email untuk konfirmasi akun."
-    );
-
-  }
+  notif(
+    "✅ Pendaftaran berhasil. " +
+    "Silakan cek email untuk konfirmasi jika diminta."
+  );
 
 }
 
 
-/* ==========================================
+/* =====================================
+   LOGIN
+===================================== */
+
+async function loginUser(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+
+  if(!email || !password){
+
+    notif(
+      "Email dan password wajib diisi."
+    );
+
+    return;
+  }
+
+
+  const {data,error} =
+    await supabaseClient.auth.signInWithPassword({
+
+      email:email,
+
+      password:password
+
+    });
+
+
+  if(error){
+
+    notif(
+      "Login gagal: " +
+      error.message
+    );
+
+    return;
+  }
+
+
+  tutupLogin();
+
+  await tampilkanUser(
+    data.user
+  );
+
+}
+
+
+/* =====================================
    TAMPILKAN USER
-========================================== */
+===================================== */
 
 async function tampilkanUser(user){
 
-  if(!user){
-    return;
-  }
-
-  document.getElementById("authArea")
-    .style.display = "none";
-
-  document.getElementById("userArea")
-    .style.display = "flex";
-
-  document.getElementById("userEmail")
-    .textContent =
-    "👤 " + (user.email || "User");
-
-  await loadSaldo(user.id);
-
-  document.getElementById("promoText")
-    .textContent =
-    "Akun kamu sudah login. Silakan pilih produk digital yang ingin dibeli.";
-
-}
+  if(!user) return;
 
 
-/* ==========================================
-   CEK SESSION SAAT HALAMAN DIBUKA
-========================================== */
+  document.getElementById(
+    "authArea"
+  ).style.display="none";
 
-async function cekSession(){
 
-  const {
-    data
-  } =
-  await supabaseClient.auth.getSession();
+  document.getElementById(
+    "userArea"
+  ).style.display="flex";
 
-  if(data.session){
 
-    await tampilkanUser(
-      data.session.user
-    );
+  document.getElementById(
+    "userEmail"
+  ).textContent =
+    user.email || "-";
 
-  }else{
 
-    document.getElementById("authArea")
-      .style.display = "flex";
+  document.getElementById(
+    "accountTitle"
+  ).textContent =
+    "Akun Aktif";
 
-    document.getElementById("userArea")
-      .style.display = "none";
 
-  }
+  document.getElementById(
+    "accountDescription"
+  ).textContent =
+    user.email || "-";
+
+
+  await loadSaldo(
+    user.id
+  );
 
 }
 
 
-/* ==========================================
+/* =====================================
    SALDO
-========================================== */
+===================================== */
 
 async function loadSaldo(userId){
 
@@ -1338,112 +1300,620 @@ async function loadSaldo(userId){
     data,
     error
   } =
-  await supabaseClient
-    .from("wallets")
-    .select("balance")
-    .eq("user_id",userId)
-    .maybeSingle();
+    await supabaseClient
+      .from("wallets")
+      .select("balance")
+      .eq("user_id",userId)
+      .maybeSingle();
+
 
   if(error){
 
     console.error(
-      "Gagal mengambil saldo:",
+      "Saldo:",
       error
     );
-
-    document.getElementById("topBalance")
-      .textContent =
-      "Saldo Rp0";
 
     return;
   }
 
-  const saldo =
-    data?.balance || 0;
 
-  document.getElementById("topBalance")
-    .textContent =
+  const saldo =
+    Number(
+      data?.balance || 0
+    );
+
+
+  document.getElementById(
+    "saldoUser"
+  ).textContent =
     "Saldo Rp" +
-    Number(saldo).toLocaleString("id-ID");
+    saldo.toLocaleString("id-ID");
 
 }
 
 
-/* ==========================================
+/* =====================================
    LOGOUT
-========================================== */
+===================================== */
 
 async function logoutUser(){
 
   await supabaseClient.auth.signOut();
 
-  document.getElementById("userArea")
-    .style.display = "none";
+  document.getElementById(
+    "authArea"
+  ).style.display="block";
 
-  document.getElementById("authArea")
-    .style.display = "flex";
 
-  document.getElementById("promoText")
-    .textContent =
-    "Login atau daftar akun untuk mulai menggunakan layanan MAC645.";
+  document.getElementById(
+    "userArea"
+  ).style.display="none";
 
-  notif("✅ Kamu sudah logout.");
+
+  document.getElementById(
+    "saldoUser"
+  ).textContent="Saldo Rp0";
+
+
+  document.getElementById(
+    "accountTitle"
+  ).textContent="Belum Login";
+
+
+  document.getElementById(
+    "accountDescription"
+  ).textContent =
+    "Silakan login untuk melihat saldo, melakukan transaksi dan withdraw.";
 
 }
 
 
-/* ==========================================
-   PRODUK
-========================================== */
+/* =====================================
+   CEK LOGIN
+===================================== */
 
-async function cekLogin(product){
+async function cekLogin(){
 
   const {
     data
   } =
-  await supabaseClient.auth.getSession();
+    await supabaseClient.auth.getSession();
+
 
   if(!data.session){
 
-    notif(
-      "🔐 Silakan login terlebih dahulu untuk membeli " +
-      product + "."
-    );
+    bukaLogin();
 
-    document.getElementById("email").focus();
+    return false;
 
-    return;
   }
 
-  notif(
-    "🛒 " +
-    product +
-    " dipilih. Sistem pembelian akan kita sambungkan berikutnya."
+
+  return true;
+
+}
+
+
+/* =====================================
+   WITHDRAW
+===================================== */
+
+let currentWithdrawBalance=0;
+
+
+async function getCurrentSession(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  if(error){
+
+    console.error(error);
+
+    return null;
+
+  }
+
+
+  return data.session || null;
+
+}
+
+
+async function bukaWithdraw(){
+
+  const session =
+    await getCurrentSession();
+
+
+  if(!session){
+
+    notif(
+      "🔐 Silakan login terlebih dahulu."
+    );
+
+    bukaLogin();
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "withdrawModal"
+  ).style.display="flex";
+
+
+  await loadWithdrawBalance(
+    session.user.id
+  );
+
+
+  await loadWithdrawHistory(
+    session.user.id
   );
 
 }
 
 
-/* ==========================================
-   CUSTOMER SERVICE
-========================================== */
+function tutupWithdraw(){
 
-function hubungiCS(){
-
-  alert(
-    "Layanan Customer Service MAC645\n\n" +
-    "Silakan hubungi admin untuk bantuan."
-  );
+  document.getElementById(
+    "withdrawModal"
+  ).style.display="none";
 
 }
 
 
-/* ==========================================
-   AUTH STATE
-========================================== */
+/* =====================================
+   LOAD SALDO WITHDRAW
+===================================== */
+
+async function loadWithdrawBalance(userId){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("wallets")
+      .select("balance")
+      .eq("user_id",userId)
+      .maybeSingle();
+
+
+  if(error){
+
+    console.error(
+      "Saldo withdraw:",
+      error
+    );
+
+    return;
+
+  }
+
+
+  currentWithdrawBalance =
+    Number(
+      data?.balance || 0
+    );
+
+
+  document.getElementById(
+    "withdrawBalance"
+  ).textContent =
+    "Rp" +
+    currentWithdrawBalance
+      .toLocaleString("id-ID");
+
+}
+
+
+/* =====================================
+   AJUKAN WITHDRAW
+===================================== */
+
+async function ajukanWithdraw(){
+
+  const session =
+    await getCurrentSession();
+
+
+  if(!session){
+
+    notif(
+      "🔐 Silakan login terlebih dahulu."
+    );
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "withdrawSubmit"
+    );
+
+
+  const amount =
+    Number(
+      document.getElementById(
+        "withdrawAmount"
+      ).value
+    );
+
+
+  const bank =
+    document.getElementById(
+      "withdrawBank"
+    ).value;
+
+
+  const accountNumber =
+    document.getElementById(
+      "withdrawAccount"
+    ).value.trim();
+
+
+  const accountName =
+    document.getElementById(
+      "withdrawName"
+    ).value.trim();
+
+
+  if(
+    !Number.isFinite(amount) ||
+    amount < 10000
+  ){
+
+    notif(
+      "⚠️ Minimal withdraw Rp10.000."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    amount >
+    currentWithdrawBalance
+  ){
+
+    notif(
+      "❌ Saldo tidak mencukupi."
+    );
+
+    return;
+
+  }
+
+
+  if(!bank){
+
+    notif(
+      "⚠️ Pilih bank atau e-wallet."
+    );
+
+    return;
+
+  }
+
+
+  if(!accountNumber){
+
+    notif(
+      "⚠️ Nomor rekening wajib diisi."
+    );
+
+    return;
+
+  }
+
+
+  if(!accountName){
+
+    notif(
+      "⚠️ Nama pemilik wajib diisi."
+    );
+
+    return;
+
+  }
+
+
+  button.disabled=true;
+
+  button.textContent=
+    "MEMPROSES...";
+
+
+  try{
+
+    const {
+      error
+    } =
+    await supabaseClient.rpc(
+      "request_withdrawal",
+      {
+        p_amount:amount,
+        p_bank:bank,
+        p_account_number:
+          accountNumber,
+        p_account_name:
+          accountName
+      }
+    );
+
+
+    if(error){
+
+      console.error(
+        "Withdraw gagal:",
+        error
+      );
+
+      notif(
+        "❌ Withdraw gagal: " +
+        error.message
+      );
+
+      return;
+
+    }
+
+
+    notif(
+      "✅ Pengajuan withdraw berhasil dan menunggu persetujuan admin."
+    );
+
+
+    document.getElementById(
+      "withdrawAmount"
+    ).value="";
+
+
+    document.getElementById(
+      "withdrawBank"
+    ).value="";
+
+
+    document.getElementById(
+      "withdrawAccount"
+    ).value="";
+
+
+    document.getElementById(
+      "withdrawName"
+    ).value="";
+
+
+    await loadWithdrawBalance(
+      session.user.id
+    );
+
+
+    await loadSaldo(
+      session.user.id
+    );
+
+
+    await loadWithdrawHistory(
+      session.user.id
+    );
+
+  }
+
+  finally{
+
+    button.disabled=false;
+
+    button.textContent=
+      "AJUKAN WITHDRAW";
+
+  }
+
+}
+
+
+/* =====================================
+   RIWAYAT WITHDRAW
+===================================== */
+
+async function loadWithdrawHistory(
+  userId
+){
+
+  const container =
+    document.getElementById(
+      "withdrawHistory"
+    );
+
+
+  container.innerHTML=
+    "Memuat riwayat...";
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("withdrawals")
+      .select(
+        "id,amount,bank,account_number,account_name,status,created_at"
+      )
+      .eq("user_id",userId)
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(20);
+
+
+  if(error){
+
+    console.error(
+      "Riwayat withdraw:",
+      error
+    );
+
+
+    container.innerHTML=
+      '<div class="withdraw-empty">Gagal mengambil riwayat.</div>';
+
+
+    return;
+
+  }
+
+
+  if(!data || !data.length){
+
+    container.innerHTML=
+      '<div class="withdraw-empty">Belum ada pengajuan withdraw.</div>';
+
+
+    return;
+
+  }
+
+
+  container.innerHTML=
+    data.map(item=>{
+
+      const status =
+        String(
+          item.status || ""
+        ).toLowerCase();
+
+
+      let cls=
+        "status-pending";
+
+      let text=
+        "PENDING";
+
+
+      if(
+        status ===
+        "approved"
+      ){
+
+        cls=
+          "status-approved";
+
+        text=
+          "BERHASIL";
+
+      }
+
+
+      if(
+        status ===
+        "rejected"
+      ){
+
+        cls=
+          "status-rejected";
+
+        text=
+          "DITOLAK";
+
+      }
+
+
+      const date =
+        new Date(
+          item.created_at
+        ).toLocaleString(
+          "id-ID"
+        );
+
+
+      const account =
+        String(
+          item.account_number || ""
+        );
+
+
+      return `
+
+        <div class="withdraw-item">
+
+          <div class="withdraw-item-top">
+
+            <strong>
+              Rp${Number(
+                item.amount || 0
+              ).toLocaleString("id-ID")}
+            </strong>
+
+            <span
+              class="withdraw-status ${cls}">
+              ${text}
+            </span>
+
+          </div>
+
+          <div
+            style="margin-top:7px;color:#9caf9e">
+
+            ${item.bank || "-"}
+            ••••${account.slice(-4)}
+
+          </div>
+
+          <div
+            style="margin-top:5px;color:#708975">
+
+            ${date}
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================
+   SESSION SAAT HALAMAN DIBUKA
+===================================== */
+
+async function cekSessionAwal(){
+
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  if(data.session){
+
+    await tampilkanUser(
+      data.session.user
+    );
+
+  }
+
+}
+
 
 supabaseClient.auth.onAuthStateChange(
-  async function(event,session){
+  async(event,session)=>{
 
     if(session){
 
@@ -1451,13 +1921,29 @@ supabaseClient.auth.onAuthStateChange(
         session.user
       );
 
-    }else{
+    }
 
-      document.getElementById("userArea")
-        .style.display = "none";
+  }
+);
 
-      document.getElementById("authArea")
-        .style.display = "flex";
+
+/* =====================================
+   MODAL CLICK OUTSIDE
+===================================== */
+
+document.addEventListener(
+  "click",
+  function(e){
+
+    const modal =
+      document.getElementById(
+        "withdrawModal"
+      );
+
+
+    if(e.target === modal){
+
+      tutupWithdraw();
 
     }
 
@@ -1465,18 +1951,24 @@ supabaseClient.auth.onAuthStateChange(
 );
 
 
-/* ==========================================
-   START
-========================================== */
-
 document.addEventListener(
-  "DOMContentLoaded",
-  function(){
+  "keydown",
+  function(e){
 
-    cekSession();
+    if(e.key === "Escape"){
+
+      tutupWithdraw();
+      tutupLogin();
+
+    }
 
   }
 );
+
+
+/* START */
+
+cekSessionAwal();
 
 </script>
 
