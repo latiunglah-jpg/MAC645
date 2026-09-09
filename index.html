@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>MAC645 - Digital Store</title>
 
@@ -10,11 +15,19 @@
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
   font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
@@ -33,33 +46,37 @@ button{
   cursor:pointer;
 }
 
-/* =========================
+
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:#0b1e11;
-  border-bottom:1px solid #214d2b;
+  background:#08190e;
+  border-bottom:1px solid #244d2d;
+  backdrop-filter:blur(12px);
 }
 
 .navbar{
-  max-width:1200px;
+  max-width:1250px;
+  min-height:68px;
   margin:auto;
-  min-height:70px;
-  padding:12px 20px;
+  padding:10px 18px;
+
   display:flex;
   align-items:center;
-  gap:25px;
+  gap:18px;
 }
 
 .logo{
   font-size:25px;
   font-weight:900;
-  color:#fff;
   white-space:nowrap;
+  color:#fff;
+  letter-spacing:-1px;
 }
 
 .logo span{
@@ -68,16 +85,26 @@ header{
 
 .search{
   flex:1;
+  min-width:130px;
 }
 
 .search input{
   width:100%;
-  padding:12px 16px;
-  border-radius:25px;
+  height:38px;
+
+  padding:0 16px;
+
+  border-radius:22px;
   border:1px solid #315d3b;
-  outline:none;
+
   background:#102819;
   color:#fff;
+
+  outline:none;
+}
+
+.search input:focus{
+  border-color:#aaff38;
 }
 
 .search input::placeholder{
@@ -87,374 +114,526 @@ header{
 .nav-links{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:2px;
 }
 
 .nav-item{
+  display:block;
+
+  padding:9px 9px;
+
   color:#d8e8db;
   text-decoration:none;
-  padding:9px 10px;
-  font-size:13px;
+
+  font-size:12px;
+
   border-radius:7px;
+
+  white-space:nowrap;
 }
 
 .nav-item:hover{
-  background:#183b22;
+  background:#173a21;
   color:#aaff38;
+}
+
+#authArea{
+  flex-shrink:0;
+}
+
+#userArea{
+  flex-shrink:0;
 }
 
 .user-area{
   display:none;
   align-items:center;
-  gap:10px;
+  gap:8px;
+}
+
+.user-email{
+  max-width:120px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size:10px;
+  color:#91a695;
 }
 
 .balance{
   color:#aaff38;
-  font-size:13px;
-  font-weight:bold;
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
 }
 
 .logout{
   border:1px solid #47754f;
   background:#14351e;
   color:#fff;
+
   padding:8px 12px;
+
   border-radius:7px;
+
+  font-size:12px;
 }
 
-/* =========================
+.logout:hover{
+  background:#1c4927;
+}
+
+
+/* =====================================================
    MAIN
-========================= */
+===================================================== */
 
 .container{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
-  padding:35px 20px;
+  padding:24px 15px 45px;
 }
+
+
+/* =====================================================
+   BANNER
+===================================================== */
 
 .hero{
-  background:linear-gradient(135deg,#0e2917,#153b20);
+  width:100%;
   border:1px solid #285b34;
-  border-radius:20px;
-  padding:45px;
+  border-radius:16px;
+  overflow:hidden;
+  background:#07130b;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+.banner-image{
+  display:block;
+
+  width:100%;
+  height:auto;
+
+  aspect-ratio:1024 / 304;
+
+  object-fit:cover;
+
+  background:#07130b;
+}
+
+.banner-error{
+  min-height:220px;
+
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:30px;
+  justify-content:center;
+
+  padding:25px;
+
+  text-align:center;
+
+  color:#8fa693;
+  font-size:13px;
 }
 
-.hero small{
-  color:#aaff38;
-  font-weight:bold;
-}
 
-.hero h1{
-  font-size:42px;
-  line-height:1.1;
-  margin:15px 0;
-}
-
-.hero h1 span{
-  color:#aaff38;
-}
-
-.hero p{
-  color:#9db4a1;
-  max-width:600px;
-  line-height:1.7;
-}
-
-.hero-btn{
-  margin-top:22px;
-  padding:13px 22px;
-  border:0;
-  border-radius:8px;
-  background:#aaff38;
-  color:#10200f;
-  font-weight:900;
-}
-
-.hero-icon{
-  font-size:90px;
-}
-
-/* =========================
+/* =====================================================
    SECTION
-========================= */
+===================================================== */
 
 .section{
-  margin-top:35px;
+  margin-top:32px;
 }
 
 .section-title{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+
+  margin-bottom:15px;
 }
 
 .section-title h2{
-  font-size:23px;
+  font-size:21px;
 }
 
 .section-title span{
   color:#809985;
-  font-size:12px;
+  font-size:11px;
 }
 
-/* =========================
+
+/* =====================================================
    CATEGORY
-========================= */
+===================================================== */
 
 .categories{
   display:grid;
   grid-template-columns:repeat(6,1fr);
-  gap:12px;
+  gap:9px;
 }
 
 .category{
-  background:#0d2414;
+  min-height:85px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  background:#0c2515;
   border:1px solid #244d2d;
-  border-radius:12px;
-  padding:20px 10px;
-  text-align:center;
+
+  border-radius:10px;
+
   transition:.2s;
 }
 
 .category:hover{
   transform:translateY(-3px);
   border-color:#aaff38;
+  background:#10301a;
 }
 
 .category-icon{
-  font-size:30px;
-  margin-bottom:10px;
+  font-size:25px;
+  margin-bottom:7px;
 }
 
 .category p{
-  font-size:12px;
+  font-size:11px;
   color:#c4d5c8;
 }
 
-/* =========================
+
+/* =====================================================
    PRODUCTS
-========================= */
+===================================================== */
 
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  gap:14px;
 }
 
 .product{
-  background:#0d2414;
+  background:#0c2414;
+
   border:1px solid #244d2d;
-  border-radius:13px;
+  border-radius:12px;
+
   overflow:hidden;
+
+  transition:.2s;
+}
+
+.product:hover{
+  transform:translateY(-3px);
+  border-color:#396e43;
 }
 
 .product-img{
-  height:130px;
+  height:120px;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:50px;
-  background:#122f1a;
+
+  background:#102d19;
+
+  font-size:48px;
 }
 
 .product-body{
-  padding:16px;
+  padding:15px;
 }
 
 .product-body h3{
-  font-size:15px;
-  margin-bottom:7px;
+  font-size:14px;
+  margin-bottom:6px;
 }
 
 .product-body p{
   color:#7f9885;
-  font-size:12px;
+  font-size:11px;
 }
 
 .price{
   color:#aaff38;
-  font-size:18px;
+
+  font-size:17px;
   font-weight:bold;
-  margin:14px 0;
+
+  margin:13px 0;
 }
 
 .buy{
   width:100%;
+
   padding:10px;
+
   border:0;
   border-radius:7px;
+
   background:#aaff38;
   color:#10200f;
-  font-weight:bold;
+
+  font-weight:900;
+
+  transition:.2s;
 }
 
-/* =========================
+.buy:hover{
+  background:#c1ff70;
+}
+
+
+/* =====================================================
    ACCOUNT
-========================= */
+===================================================== */
 
 .account-box{
-  background:#0d2414;
+  background:#0c2414;
+
   border:1px solid #244d2d;
-  border-radius:15px;
-  padding:25px;
+  border-radius:13px;
+
+  padding:22px;
+}
+
+.account-box h3{
+  font-size:16px;
 }
 
 .account-box p{
   color:#91a695;
   margin-top:8px;
+  font-size:12px;
 }
 
-/* =========================
-   LOGIN
-========================= */
+
+/* =====================================================
+   BUTTON LOGIN
+===================================================== */
+
+.login-btn{
+  width:100%;
+
+  padding:11px;
+
+  border:0;
+  border-radius:8px;
+
+  background:#aaff38;
+  color:#10200f;
+
+  font-weight:900;
+}
+
+.login-btn:hover{
+  background:#c1ff70;
+}
+
+.register-btn{
+  width:100%;
+
+  margin-top:10px;
+
+  padding:11px;
+
+  border:1px solid #466f4d;
+  border-radius:8px;
+
+  background:#14351e;
+  color:#fff;
+
+  font-weight:bold;
+}
+
+.register-btn:hover{
+  background:#1c4826;
+}
+
+
+/* =====================================================
+   LOGIN MODAL
+===================================================== */
 
 .login-overlay{
   display:none;
+
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.82);
+
   z-index:3000;
+
+  background:rgba(0,0,0,.82);
+
   align-items:center;
   justify-content:center;
-  padding:20px;
+
+  padding:18px;
 }
 
 .login-box{
   width:100%;
-  max-width:420px;
+  max-width:410px;
+
   background:#0d2414;
+
   border:1px solid #39733e;
   border-radius:17px;
-  padding:28px;
+
+  padding:25px;
+
+  box-shadow:0 25px 80px rgba(0,0,0,.65);
 }
 
 .login-box h2{
   color:#aaff38;
-  margin-bottom:7px;
+  font-size:24px;
+  margin-bottom:6px;
 }
 
 .login-box p{
   color:#879e8d;
   font-size:12px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .login-box label{
   display:block;
+
   font-size:12px;
   color:#cfe0d2;
+
   margin:13px 0 7px;
 }
 
 .login-box input{
   width:100%;
+
   padding:12px;
+
   border:1px solid #315d3b;
   border-radius:8px;
+
   background:#122f1a;
   color:#fff;
+
   outline:none;
 }
 
-.login-btn{
-  width:100%;
-  margin-top:18px;
-  padding:12px;
-  border:0;
-  border-radius:8px;
-  background:#aaff38;
-  color:#10200f;
-  font-weight:900;
-}
-
-.register-btn{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  border:1px solid #466f4d;
-  border-radius:8px;
-  background:#14351e;
-  color:#fff;
+.login-box input:focus{
+  border-color:#aaff38;
 }
 
 .close-login{
   float:right;
+
   border:0;
   background:none;
+
   color:#fff;
+
   font-size:25px;
+
+  line-height:1;
 }
 
-/* =========================
-   WITHDRAW
-========================= */
+
+/* =====================================================
+   WITHDRAW MODAL
+===================================================== */
 
 .withdraw-overlay{
   display:none;
+
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.82);
+
   z-index:5000;
+
+  background:rgba(0,0,0,.84);
+
   align-items:center;
   justify-content:center;
-  padding:18px;
+
+  padding:15px;
 }
 
 .withdraw-box{
   width:100%;
   max-width:500px;
+
   max-height:92vh;
   overflow:auto;
+
+  position:relative;
+
   background:#102a19;
+
   border:1px solid #39733e;
   border-radius:16px;
-  padding:25px;
-  position:relative;
-  box-shadow:0 25px 80px rgba(0,0,0,.6);
+
+  padding:23px;
+
+  box-shadow:0 25px 80px rgba(0,0,0,.65);
 }
 
 .withdraw-box h2{
   color:#aaff38;
   margin-bottom:6px;
+  font-size:21px;
 }
 
 .withdraw-subtitle{
   color:#9caf9e;
   font-size:12px;
-  margin-bottom:18px;
+  margin-bottom:17px;
 }
 
 .withdraw-close{
   position:absolute;
-  right:14px;
-  top:12px;
-  width:36px;
-  height:36px;
+
+  right:12px;
+  top:11px;
+
+  width:35px;
+  height:35px;
+
   border:0;
   border-radius:50%;
+
   background:#194b27;
   color:#fff;
-  font-size:25px;
+
+  font-size:24px;
+}
+
+.withdraw-close:hover{
+  background:#28663a;
 }
 
 .withdraw-balance{
   background:#0b2918;
+
   border:1px solid #285d35;
   border-radius:10px;
-  padding:15px;
-  margin-bottom:18px;
+
+  padding:14px;
+
+  margin-bottom:17px;
 }
 
 .withdraw-balance span{
   display:block;
+
   color:#9caf9e;
+
   font-size:11px;
+
   margin-bottom:5px;
 }
 
@@ -465,8 +644,11 @@ header{
 
 .withdraw-box label{
   display:block;
+
   margin:13px 0 7px;
+
   color:#d8eadc;
+
   font-size:12px;
   font-weight:bold;
 }
@@ -474,11 +656,16 @@ header{
 .withdraw-box input,
 .withdraw-box select{
   width:100%;
+
   padding:12px;
+
   border-radius:8px;
+
   border:1px solid #35663e;
+
   background:#194b27;
   color:#fff;
+
   outline:none;
 }
 
@@ -489,13 +676,22 @@ header{
 
 .withdraw-submit{
   width:100%;
-  margin-top:20px;
+
+  margin-top:19px;
+
   padding:13px;
+
   border:0;
   border-radius:8px;
+
   background:#aaff38;
   color:#10210e;
+
   font-weight:900;
+}
+
+.withdraw-submit:hover{
+  background:#c1ff70;
 }
 
 .withdraw-submit:disabled{
@@ -503,10 +699,17 @@ header{
   cursor:not-allowed;
 }
 
+
+/* =====================================================
+   WITHDRAW HISTORY
+===================================================== */
+
 .withdraw-history{
-  margin-top:24px;
+  margin-top:23px;
+
   border-top:1px solid #285d35;
-  padding-top:20px;
+
+  padding-top:19px;
 }
 
 .withdraw-history h3{
@@ -516,16 +719,23 @@ header{
 
 .withdraw-item{
   background:#0b2918;
+
   border:1px solid #285d35;
   border-radius:9px;
+
   padding:12px;
+
   margin-bottom:8px;
+
   font-size:12px;
 }
 
 .withdraw-item-top{
   display:flex;
+
   justify-content:space-between;
+  align-items:center;
+
   gap:10px;
 }
 
@@ -550,32 +760,32 @@ header{
   font-size:12px;
 }
 
-/* =========================
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
-  margin-top:60px;
-  padding:30px 20px;
+  padding:28px 15px;
+
   text-align:center;
+
   color:#607764;
+
   border-top:1px solid #1c3e25;
-  font-size:12px;
+
+  font-size:11px;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media(max-width:900px){
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
 
   .navbar{
-    flex-wrap:wrap;
-  }
-
-  .search{
-    order:3;
-    flex-basis:100%;
+    gap:10px;
   }
 
   .nav-links{
@@ -591,53 +801,43 @@ footer{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .hero{
-    padding:30px;
-  }
-
-  .hero h1{
-    font-size:32px;
-  }
-
-  .hero-icon{
-    display:none;
-  }
-
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
 
   .navbar{
-    padding:10px;
-    gap:10px;
+    flex-wrap:wrap;
   }
 
-  .logo{
-    font-size:21px;
-  }
-
-  .user-area{
-    margin-left:auto;
+  .search{
+    order:3;
+    flex-basis:100%;
   }
 
   .nav-links{
     width:100%;
+    order:4;
   }
 
-  .nav-item{
-    white-space:nowrap;
+  #authArea,
+  #userArea{
+    margin-left:auto;
   }
 
   .container{
-    padding:20px 12px;
+    padding:16px 10px 35px;
   }
 
-  .hero{
-    padding:25px 20px;
+  .categories{
+    grid-template-columns:repeat(3,1fr);
   }
 
-  .hero h1{
-    font-size:29px;
+}
+
+@media(max-width:500px){
+
+  .logo{
+    font-size:22px;
   }
 
   .categories{
@@ -648,31 +848,53 @@ footer{
     grid-template-columns:1fr;
   }
 
+  .section-title h2{
+    font-size:18px;
+  }
+
+  .section-title span{
+    display:none;
+  }
+
+  .user-email{
+    display:none;
+  }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      HEADER
-========================= -->
+===================================================== -->
 
 <header>
 
   <div class="navbar">
 
+
     <div class="logo">
       MAC<span>645</span>
     </div>
 
+
     <div class="search">
+
       <input
         type="text"
+        id="searchProduct"
         placeholder="Cari produk digital..."
+        oninput="searchProducts()"
       >
+
     </div>
+
 
     <div class="nav-links">
 
@@ -683,12 +905,14 @@ footer{
         Beranda
       </a>
 
+
       <a
         class="nav-item"
         href="#produk"
       >
         Produk
       </a>
+
 
       <a
         class="nav-item"
@@ -697,12 +921,14 @@ footer{
         Kategori
       </a>
 
+
       <a
         class="nav-item"
         href="deposit.html"
       >
         Deposit
       </a>
+
 
       <a
         class="nav-item"
@@ -711,6 +937,7 @@ footer{
       >
         💸 Withdraw
       </a>
+
 
       <a
         class="nav-item"
@@ -722,17 +949,19 @@ footer{
 
     </div>
 
+
     <div id="authArea">
 
       <button
         class="login-btn"
-        style="width:auto;padding:9px 15px"
+        style="width:auto;padding:9px 14px"
         onclick="bukaLogin()"
       >
         LOGIN
       </button>
 
     </div>
+
 
     <div
       id="userArea"
@@ -743,10 +972,11 @@ footer{
 
         <div
           id="userEmail"
-          style="font-size:11px;color:#91a695"
+          class="user-email"
         >
           -
         </div>
+
 
         <div
           id="saldoUser"
@@ -757,6 +987,7 @@ footer{
 
       </div>
 
+
       <button
         class="logout"
         onclick="logoutUser()"
@@ -766,100 +997,54 @@ footer{
 
     </div>
 
+
   </div>
 
 </header>
 
 
-<!-- =========================
+
+<!-- =====================================================
      MAIN
-========================= -->
+===================================================== -->
 
 <main id="beranda">
 
   <div class="container">
 
-    <!-- HERO -->
 
-   <section class="hero" style="
-  padding:0;
-  overflow:hidden;
-  border-radius:20px;
-  border:1px solid #285b34;
-  background:none;
-">
+    <!-- =================================================
+         BANNER BARU
+    ================================================== -->
 
-  <img
-    src="banner-bonus.jpg"
-    alt="MAC645 Bonus New Member"
-    style="
-      display:block;
-      width:100%;
-      height:auto;
-      min-height:220px;
-      object-fit:cover;
-    "src="banner-bonus.jpg"
-  alt="MAC645 Bonus New Member"
-  style="width:100%;height:auto;display:block;"
+    <section class="hero">
 
-  >
+      <img
+        src="https://latiunglah-jpg.github.io/MAC645/banner-bonus.jpg?v=3"
+        alt="MAC645 Bonus New Member"
+        class="banner-image"
+        onerror="this.style.display='none';document.getElementById('bannerError').style.display='flex';"
+      >
 
-</section>
 
-      <div class="categories">
+      <div
+        id="bannerError"
+        class="banner-error"
+        style="display:none;"
+      >
 
-        <div class="category">
-          <div class="category-icon">
-            📱
-          </div>
-          <p>
-            Pulsa
-          </p>
-        </div>
+        <div>
 
-        <div class="category">
-          <div class="category-icon">
-            📶
-          </div>
-          <p>
-            Paket Data
-          </p>
-        </div>
+          <strong
+            style="display:block;color:#aaff38;margin-bottom:8px;"
+          >
+            Banner MAC645 belum dapat dimuat
+          </strong>
 
-        <div class="category">
-          <div class="category-icon">
-            ⚡
-          </div>
-          <p>
-            Token PLN
-          </p>
-        </div>
+          Pastikan file
+          <b>banner-bonus.jpg</b>
+          ada di repository MAC645.
 
-        <div class="category">
-          <div class="category-icon">
-            💳
-          </div>
-          <p>
-            E-Wallet
-          </p>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">
-            🎮
-          </div>
-          <p>
-            Voucher Game
-          </p>
-        </div>
-
-        <div class="category">
-          <div class="category-icon">
-            🎬
-          </div>
-          <p>
-            Streaming
-          </p>
         </div>
 
       </div>
@@ -867,7 +1052,119 @@ footer{
     </section>
 
 
-    <!-- PRODUK -->
+
+    <!-- =================================================
+         KATEGORI
+    ================================================== -->
+
+    <section
+      id="kategori"
+      class="section"
+    >
+
+      <div class="section-title">
+
+        <h2>
+          Kategori Produk
+        </h2>
+
+        <span>
+          Produk digital pilihan
+        </span>
+
+      </div>
+
+
+      <div class="categories">
+
+
+        <div class="category">
+
+          <div class="category-icon">
+            📱
+          </div>
+
+          <p>
+            Pulsa
+          </p>
+
+        </div>
+
+
+        <div class="category">
+
+          <div class="category-icon">
+            📶
+          </div>
+
+          <p>
+            Paket Data
+          </p>
+
+        </div>
+
+
+        <div class="category">
+
+          <div class="category-icon">
+            ⚡
+          </div>
+
+          <p>
+            Token PLN
+          </p>
+
+        </div>
+
+
+        <div class="category">
+
+          <div class="category-icon">
+            💳
+          </div>
+
+          <p>
+            E-Wallet
+          </p>
+
+        </div>
+
+
+        <div class="category">
+
+          <div class="category-icon">
+            🎮
+          </div>
+
+          <p>
+            Voucher Game
+          </p>
+
+        </div>
+
+
+        <div class="category">
+
+          <div class="category-icon">
+            🎬
+          </div>
+
+          <p>
+            Streaming
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PRODUK
+    ================================================== -->
 
     <section
       id="produk"
@@ -886,12 +1183,19 @@ footer{
 
       </div>
 
-      <div class="products">
+
+      <div
+        id="productGrid"
+        class="products"
+      >
 
 
         <!-- PULSA -->
 
-        <div class="product">
+        <div
+          class="product"
+          data-product="pulsa 10000"
+        >
 
           <div class="product-img">
             📱
@@ -913,7 +1217,7 @@ footer{
 
             <button
               class="buy"
-              onclick="cekLogin()"
+              onclick="beliProduk('Pulsa 10.000')"
             >
               BELI
             </button>
@@ -923,9 +1227,12 @@ footer{
         </div>
 
 
-        <!-- DATA -->
+        <!-- PAKET DATA -->
 
-        <div class="product">
+        <div
+          class="product"
+          data-product="paket data 10gb"
+        >
 
           <div class="product-img">
             📶
@@ -947,7 +1254,7 @@ footer{
 
             <button
               class="buy"
-              onclick="cekLogin()"
+              onclick="beliProduk('Paket Data 10GB')"
             >
               BELI
             </button>
@@ -957,9 +1264,12 @@ footer{
         </div>
 
 
-        <!-- GAME -->
+        <!-- VOUCHER GAME -->
 
-        <div class="product">
+        <div
+          class="product"
+          data-product="voucher game"
+        >
 
           <div class="product-img">
             🎮
@@ -981,7 +1291,7 @@ footer{
 
             <button
               class="buy"
-              onclick="cekLogin()"
+              onclick="beliProduk('Voucher Game')"
             >
               BELI
             </button>
@@ -993,7 +1303,10 @@ footer{
 
         <!-- EWALLET -->
 
-        <div class="product">
+        <div
+          class="product"
+          data-product="e wallet 50000"
+        >
 
           <div class="product-img">
             💳
@@ -1015,7 +1328,7 @@ footer{
 
             <button
               class="buy"
-              onclick="cekLogin()"
+              onclick="beliProduk('E-Wallet 50.000')"
             >
               BELI
             </button>
@@ -1027,7 +1340,10 @@ footer{
 
         <!-- PLN -->
 
-        <div class="product">
+        <div
+          class="product"
+          data-product="token pln 50000"
+        >
 
           <div class="product-img">
             ⚡
@@ -1049,7 +1365,7 @@ footer{
 
             <button
               class="buy"
-              onclick="cekLogin()"
+              onclick="beliProduk('Token PLN 50.000')"
             >
               BELI
             </button>
@@ -1061,7 +1377,10 @@ footer{
 
         <!-- STREAMING -->
 
-        <div class="product">
+        <div
+          class="product"
+          data-product="streaming"
+        >
 
           <div class="product-img">
             🎬
@@ -1083,7 +1402,7 @@ footer{
 
             <button
               class="buy"
-              onclick="cekLogin()"
+              onclick="beliProduk('Streaming')"
             >
               BELI
             </button>
@@ -1092,12 +1411,16 @@ footer{
 
         </div>
 
+
       </div>
 
     </section>
 
 
-    <!-- AKUN -->
+
+    <!-- =================================================
+         AKUN
+    ================================================== -->
 
     <section
       id="akun"
@@ -1112,11 +1435,13 @@ footer{
 
       </div>
 
+
       <div class="account-box">
 
         <h3 id="accountTitle">
           Belum Login
         </h3>
+
 
         <p id="accountDescription">
           Silakan login untuk melihat saldo,
@@ -1127,14 +1452,16 @@ footer{
 
     </section>
 
+
   </div>
 
 </main>
 
 
-<!-- =========================
+
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -1143,9 +1470,10 @@ footer{
 </footer>
 
 
-<!-- =========================
+
+<!-- =====================================================
      LOGIN MODAL
-========================= -->
+===================================================== -->
 
 <div
   id="loginModal"
@@ -1154,6 +1482,7 @@ footer{
 
   <div class="login-box">
 
+
     <button
       class="close-login"
       onclick="tutupLogin()"
@@ -1161,33 +1490,42 @@ footer{
       ×
     </button>
 
+
     <h2>
       MAC645
     </h2>
+
 
     <p>
       Login atau daftar akun baru.
     </p>
 
+
     <label>
       Email
     </label>
 
+
     <input
       type="email"
       id="email"
+      autocomplete="email"
       placeholder="Email kamu"
     >
+
 
     <label>
       Password
     </label>
 
+
     <input
       type="password"
       id="password"
+      autocomplete="current-password"
       placeholder="Password"
     >
+
 
     <button
       class="login-btn"
@@ -1196,6 +1534,7 @@ footer{
       LOGIN
     </button>
 
+
     <button
       class="register-btn"
       onclick="registerUser()"
@@ -1203,14 +1542,16 @@ footer{
       DAFTAR AKUN BARU
     </button>
 
+
   </div>
 
 </div>
 
 
-<!-- =========================
+
+<!-- =====================================================
      WITHDRAW MODAL
-========================= -->
+===================================================== -->
 
 <div
   id="withdrawModal"
@@ -1219,6 +1560,7 @@ footer{
 
   <div class="withdraw-box">
 
+
     <button
       class="withdraw-close"
       onclick="tutupWithdraw()"
@@ -1226,14 +1568,19 @@ footer{
       ×
     </button>
 
+
     <h2>
       💸 Withdraw Saldo
     </h2>
+
 
     <p class="withdraw-subtitle">
       Tarik saldo MAC645 ke rekening atau
       e-wallet kamu.
     </p>
+
+
+    <!-- SALDO -->
 
     <div class="withdraw-balance">
 
@@ -1248,18 +1595,12 @@ footer{
     </div>
 
 
+    <!-- NOMINAL -->
+
     <label>
       Nominal Withdraw
     </label>
 
-    <!--
-      INPUT WITHDRAW
-      Otomatis format:
-      10000     -> 10.000
-      50000     -> 50.000
-      100000    -> 100.000
-      1000000   -> 1.000.000
-    -->
 
     <input
       type="text"
@@ -1271,9 +1612,12 @@ footer{
     >
 
 
+    <!-- BANK -->
+
     <label>
       Bank / E-Wallet
     </label>
+
 
     <select id="withdrawBank">
 
@@ -1324,21 +1668,28 @@ footer{
     </select>
 
 
+    <!-- REKENING -->
+
     <label>
       Nomor Rekening / E-Wallet
     </label>
+
 
     <input
       type="text"
       id="withdrawAccount"
       inputmode="numeric"
+      autocomplete="off"
       placeholder="Masukkan nomor"
     >
 
 
+    <!-- NAMA -->
+
     <label>
       Nama Pemilik
     </label>
+
 
     <input
       type="text"
@@ -1346,6 +1697,8 @@ footer{
       placeholder="Sesuai rekening"
     >
 
+
+    <!-- BUTTON -->
 
     <button
       id="withdrawSubmit"
@@ -1356,21 +1709,28 @@ footer{
     </button>
 
 
+    <!-- HISTORY -->
+
     <div class="withdraw-history">
 
       <h3>
         Riwayat Withdraw
       </h3>
 
+
       <div id="withdrawHistory">
+
         Belum dimuat.
+
       </div>
 
     </div>
 
+
   </div>
 
 </div>
+
 
 
 <script>
@@ -1411,7 +1771,7 @@ function bukaLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display="flex";
+  ).style.display = "flex";
 
 }
 
@@ -1420,7 +1780,7 @@ function tutupLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display="none";
+  ).style.display = "none";
 
 }
 
@@ -1435,6 +1795,7 @@ async function registerUser(){
     document.getElementById(
       "email"
     ).value.trim();
+
 
   const password =
     document.getElementById(
@@ -1513,6 +1874,7 @@ async function loginUser(){
       "email"
     ).value.trim();
 
+
   const password =
     document.getElementById(
       "password"
@@ -1577,18 +1939,20 @@ async function loginUser(){
 async function tampilkanUser(user){
 
   if(!user){
+
     return;
+
   }
 
 
   document.getElementById(
     "authArea"
-  ).style.display="none";
+  ).style.display = "none";
 
 
   document.getElementById(
     "userArea"
-  ).style.display="flex";
+  ).style.display = "flex";
 
 
   document.getElementById(
@@ -1617,7 +1981,7 @@ async function tampilkanUser(user){
 
 
 /* =====================================================
-   SALDO
+   LOAD SALDO
 ===================================================== */
 
 async function loadSaldo(userId){
@@ -1676,12 +2040,12 @@ async function logoutUser(){
 
   document.getElementById(
     "authArea"
-  ).style.display="block";
+  ).style.display = "block";
 
 
   document.getElementById(
     "userArea"
-  ).style.display="none";
+  ).style.display = "none";
 
 
   document.getElementById(
@@ -1731,6 +2095,90 @@ async function cekLogin(){
 
 
 /* =====================================================
+   BELI PRODUK
+===================================================== */
+
+async function beliProduk(
+  namaProduk
+){
+
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  if(!data.session){
+
+    bukaLogin();
+
+    return;
+
+  }
+
+
+  notif(
+    "Produk " +
+    namaProduk +
+    " dipilih.\n\n" +
+    "Fitur pembelian otomatis akan kita sambungkan selanjutnya."
+  );
+
+}
+
+
+/* =====================================================
+   SEARCH PRODUK
+===================================================== */
+
+function searchProducts(){
+
+  const keyword =
+    document.getElementById(
+      "searchProduct"
+    ).value
+      .toLowerCase()
+      .trim();
+
+
+  const products =
+    document.querySelectorAll(
+      ".product"
+    );
+
+
+  products.forEach(
+    product => {
+
+      const name =
+        product
+          .dataset
+          .product
+          .toLowerCase();
+
+
+      if(
+        !keyword ||
+        name.includes(keyword)
+      ){
+
+        product.style.display =
+          "";
+
+      }else{
+
+        product.style.display =
+          "none";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =====================================================
    WITHDRAW
 ===================================================== */
 
@@ -1738,39 +2186,7 @@ let currentWithdrawBalance = 0;
 
 
 /* =====================================================
-   FORMAT NOMINAL WITHDRAW
-===================================================== */
-
-function formatWithdraw(input){
-
-  let angka =
-    String(
-      input.value || ""
-    )
-    .replace(/\D/g,"");
-
-
-  if(!angka){
-
-    input.value="";
-
-    return;
-
-  }
-
-
-  input.value =
-    Number(
-      angka
-    ).toLocaleString(
-      "id-ID"
-    );
-
-}
-
-
-/* =====================================================
-   GET CURRENT SESSION
+   SESSION
 ===================================================== */
 
 async function getCurrentSession(){
@@ -1824,7 +2240,8 @@ async function bukaWithdraw(){
 
   document.getElementById(
     "withdrawModal"
-  ).style.display="flex";
+  ).style.display =
+    "flex";
 
 
   await loadWithdrawBalance(
@@ -1847,7 +2264,8 @@ function tutupWithdraw(){
 
   document.getElementById(
     "withdrawModal"
-  ).style.display="none";
+  ).style.display =
+    "none";
 
 }
 
@@ -1856,7 +2274,9 @@ function tutupWithdraw(){
    LOAD SALDO WITHDRAW
 ===================================================== */
 
-async function loadWithdrawBalance(userId){
+async function loadWithdrawBalance(
+  userId
+){
 
   const {
     data,
@@ -1902,6 +2322,41 @@ async function loadWithdrawBalance(userId){
 
 
 /* =====================================================
+   FORMAT NOMINAL WITHDRAW
+===================================================== */
+
+function formatWithdraw(input){
+
+  let angka =
+    String(
+      input.value || ""
+    )
+    .replace(
+      /\D/g,
+      ""
+    );
+
+
+  if(!angka){
+
+    input.value = "";
+
+    return;
+
+  }
+
+
+  input.value =
+    Number(
+      angka
+    ).toLocaleString(
+      "id-ID"
+    );
+
+}
+
+
+/* =====================================================
    AJUKAN WITHDRAW
 ===================================================== */
 
@@ -1928,17 +2383,9 @@ async function ajukanWithdraw(){
     );
 
 
-  /*
-    PENTING:
-
-    Tampilan:
-    100.000
-
-    Diubah kembali menjadi:
-    100000
-
-    sebelum dikirim ke Supabase.
-  */
+  /* ---------------------------------
+     NOMINAL
+  --------------------------------- */
 
   const amountText =
     document.getElementById(
@@ -1955,11 +2402,19 @@ async function ajukanWithdraw(){
     );
 
 
+  /* ---------------------------------
+     BANK
+  --------------------------------- */
+
   const bank =
     document.getElementById(
       "withdrawBank"
     ).value;
 
+
+  /* ---------------------------------
+     REKENING
+  --------------------------------- */
 
   const accountNumber =
     document.getElementById(
@@ -1967,15 +2422,19 @@ async function ajukanWithdraw(){
     ).value.trim();
 
 
+  /* ---------------------------------
+     NAMA
+  --------------------------------- */
+
   const accountName =
     document.getElementById(
       "withdrawName"
     ).value.trim();
 
 
-  /* =========================
+  /* ---------------------------------
      VALIDASI NOMINAL
-  ========================= */
+  --------------------------------- */
 
   if(
     !Number.isFinite(amount) ||
@@ -1991,9 +2450,9 @@ async function ajukanWithdraw(){
   }
 
 
-  /* =========================
+  /* ---------------------------------
      VALIDASI SALDO
-  ========================= */
+  --------------------------------- */
 
   if(
     amount >
@@ -2009,9 +2468,9 @@ async function ajukanWithdraw(){
   }
 
 
-  /* =========================
+  /* ---------------------------------
      VALIDASI BANK
-  ========================= */
+  --------------------------------- */
 
   if(!bank){
 
@@ -2024,9 +2483,9 @@ async function ajukanWithdraw(){
   }
 
 
-  /* =========================
-     VALIDASI REKENING
-  ========================= */
+  /* ---------------------------------
+     VALIDASI NOMOR
+  --------------------------------- */
 
   if(!accountNumber){
 
@@ -2039,9 +2498,9 @@ async function ajukanWithdraw(){
   }
 
 
-  /* =========================
+  /* ---------------------------------
      VALIDASI NAMA
-  ========================= */
+  --------------------------------- */
 
   if(!accountName){
 
@@ -2054,11 +2513,11 @@ async function ajukanWithdraw(){
   }
 
 
-  /* =========================
+  /* ---------------------------------
      LOCK BUTTON
-  ========================= */
+  --------------------------------- */
 
-  button.disabled=true;
+  button.disabled = true;
 
   button.textContent =
     "MEMPROSES...";
@@ -2070,20 +2529,24 @@ async function ajukanWithdraw(){
       data,
       error
     } =
-    await supabaseClient.rpc(
-      "request_withdrawal",
-      {
-        p_amount:amount,
+      await supabaseClient.rpc(
+        "request_withdrawal",
+        {
 
-        p_bank:bank,
+          p_amount:
+            amount,
 
-        p_account_number:
-          accountNumber,
+          p_bank:
+            bank,
 
-        p_account_name:
-          accountName
-      }
-    );
+          p_account_number:
+            accountNumber,
+
+          p_account_name:
+            accountName
+
+        }
+      );
 
 
     if(error){
@@ -2103,38 +2566,45 @@ async function ajukanWithdraw(){
     }
 
 
-    notif(
-      "✅ Pengajuan withdraw berhasil dan menunggu persetujuan admin."
+    console.log(
+      "Withdrawal ID:",
+      data
     );
 
 
-    /* =========================
+    notif(
+      "✅ Pengajuan withdraw berhasil.\n\n" +
+      "Saldo langsung dipotong dan pengajuan menunggu persetujuan admin."
+    );
+
+
+    /* ---------------------------------
        RESET FORM
-    ========================= */
+    --------------------------------- */
 
     document.getElementById(
       "withdrawAmount"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "withdrawBank"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "withdrawAccount"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "withdrawName"
-    ).value="";
+    ).value = "";
 
 
-    /* =========================
-       REFRESH SALDO
-    ========================= */
+    /* ---------------------------------
+       REFRESH
+    --------------------------------- */
 
     await loadWithdrawBalance(
       session.user.id
@@ -2145,10 +2615,6 @@ async function ajukanWithdraw(){
       session.user.id
     );
 
-
-    /* =========================
-       REFRESH HISTORY
-    ========================= */
 
     await loadWithdrawHistory(
       session.user.id
@@ -2163,6 +2629,7 @@ async function ajukanWithdraw(){
       error
     );
 
+
     notif(
       "❌ Terjadi kesalahan: " +
       error.message
@@ -2172,7 +2639,7 @@ async function ajukanWithdraw(){
 
   finally{
 
-    button.disabled=false;
+    button.disabled = false;
 
     button.textContent =
       "AJUKAN WITHDRAW";
@@ -2257,6 +2724,7 @@ async function loadWithdrawHistory(
     data.map(
       item => {
 
+
         const status =
           String(
             item.status || ""
@@ -2313,6 +2781,14 @@ async function loadWithdrawHistory(
           );
 
 
+        const amount =
+          Number(
+            item.amount || 0
+          ).toLocaleString(
+            "id-ID"
+          );
+
+
         return `
 
           <div class="withdraw-item">
@@ -2320,9 +2796,7 @@ async function loadWithdrawHistory(
             <div class="withdraw-item-top">
 
               <strong>
-                Rp${Number(
-                  item.amount || 0
-                ).toLocaleString("id-ID")}
+                Rp${amount}
               </strong>
 
               <span
@@ -2333,17 +2807,30 @@ async function loadWithdrawHistory(
 
             </div>
 
-            <div
-              style="margin-top:7px;color:#9caf9e"
-            >
-              ${item.bank || "-"}
-              ••••${account.slice(-4)}
-            </div>
 
             <div
-              style="margin-top:5px;color:#708975"
+              style="
+                margin-top:7px;
+                color:#9caf9e;
+              "
             >
+
+              ${item.bank || "-"}
+
+              ••••${account.slice(-4)}
+
+            </div>
+
+
+            <div
+              style="
+                margin-top:5px;
+                color:#708975;
+              "
+            >
+
               ${date}
+
             </div>
 
           </div>
@@ -2357,7 +2844,7 @@ async function loadWithdrawHistory(
 
 
 /* =====================================================
-   SESSION SAAT HALAMAN DIBUKA
+   SESSION SAAT WEBSITE DIBUKA
 ===================================================== */
 
 async function cekSessionAwal(){
@@ -2402,12 +2889,12 @@ supabaseClient.auth.onAuthStateChange(
 
 
 /* =====================================================
-   MODAL CLICK OUTSIDE
+   KLIK DI LUAR MODAL WITHDRAW
 ===================================================== */
 
 document.addEventListener(
   "click",
-  function(e){
+  function(event){
 
     const modal =
       document.getElementById(
@@ -2416,7 +2903,7 @@ document.addEventListener(
 
 
     if(
-      e.target === modal
+      event.target === modal
     ){
 
       tutupWithdraw();
@@ -2428,15 +2915,15 @@ document.addEventListener(
 
 
 /* =====================================================
-   ESCAPE
+   TOMBOL ESCAPE
 ===================================================== */
 
 document.addEventListener(
   "keydown",
-  function(e){
+  function(event){
 
     if(
-      e.key === "Escape"
+      event.key === "Escape"
     ){
 
       tutupWithdraw();
@@ -2450,12 +2937,13 @@ document.addEventListener(
 
 
 /* =====================================================
-   START
+   START WEBSITE
 ===================================================== */
 
 cekSessionAwal();
 
 </script>
+
 
 </body>
 </html>
