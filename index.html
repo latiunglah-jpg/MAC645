@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAC645</title>
+<title>MAC645 -</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
   box-sizing:border-box;
@@ -42,48 +37,49 @@ button{
   cursor:pointer;
 }
 
-/* =========================================================
-   TOP ANNOUNCEMENT
-========================================================= */
+/* =========================
+   TOPBAR
+========================= */
 
-.top-announcement{
-  width:100%;
-  background:#17451f;
-  border-bottom:1px solid #2c6938;
-  color:#dff5df;
-  text-align:center;
-  padding:7px 12px;
-  font-size:11px;
-  font-weight:bold;
+.topbar{
+  background:#061008;
+  border-bottom:1px solid #173d21;
+  padding:8px 15px;
+  overflow:hidden;
 }
 
-/* =========================================================
+.marquee{
+  max-width:1200px;
+  margin:auto;
+  color:#aaff38;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
 header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:#081a0d;
-  border-bottom:1px solid #244d2d;
+  background:#0b1e11;
+  border-bottom:1px solid #214d2b;
 }
 
-.header-main{
-  max-width:1250px;
-  min-height:58px;
+.navbar{
+  max-width:1200px;
   margin:auto;
-  padding:8px 15px;
-
+  min-height:70px;
+  padding:12px 20px;
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:20px;
 }
 
-/* LOGO */
-
 .logo{
-  font-size:24px;
+  font-size:27px;
   font-weight:900;
   color:#fff;
   white-space:nowrap;
@@ -93,69 +89,62 @@ header{
   color:#aaff38;
 }
 
-/* NAV */
-
 .nav-links{
   display:flex;
   align-items:center;
-  gap:3px;
+  gap:5px;
   flex:1;
   overflow-x:auto;
-  scrollbar-width:none;
-}
-
-.nav-links::-webkit-scrollbar{
-  display:none;
 }
 
 .nav-item{
-  color:#dceadd;
+  color:#d8e8db;
   text-decoration:none;
   padding:9px 11px;
-  font-size:12px;
+  font-size:13px;
   border-radius:7px;
   white-space:nowrap;
 }
 
 .nav-item:hover{
-  background:#15371e;
+  background:#183b22;
   color:#aaff38;
 }
 
-/* LOGIN */
+.auth-area{
+  display:flex;
+  align-items:center;
+}
 
-.login-top{
+.header-login{
   border:0;
   background:#aaff38;
   color:#10200f;
-  padding:9px 18px;
-  border-radius:7px;
-  font-weight:900;
+  padding:10px 17px;
+  border-radius:8px;
   font-size:12px;
-  white-space:nowrap;
+  font-weight:900;
 }
-
-.login-top:hover{
-  background:#c0ff72;
-}
-
-/* USER AREA */
 
 .user-area{
   display:none;
   align-items:center;
   gap:10px;
-  white-space:nowrap;
+}
+
+.user-info{
+  text-align:right;
 }
 
 .user-email{
   font-size:10px;
-  color:#8fa994;
+  color:#91a695;
+  margin-bottom:3px;
 }
 
 .balance{
   color:#aaff38;
-  font-size:11px;
+  font-size:13px;
   font-weight:bold;
 }
 
@@ -163,121 +152,213 @@ header{
   border:1px solid #47754f;
   background:#14351e;
   color:#fff;
-  padding:8px 11px;
+  padding:8px 12px;
   border-radius:7px;
   font-size:11px;
 }
 
-/* =========================================================
+/* =========================
    MAIN
-========================================================= */
+========================= */
 
 .container{
-  max-width:1250px;
+  max-width:1200px;
   margin:auto;
-  padding:18px 15px 40px;
+  padding:30px 20px;
 }
 
-/* =========================================================
+/* =========================
    BANNER
-========================================================= */
+========================= */
 
-.banner-wrap{
-  width:100%;
+.hero{
+  background:linear-gradient(135deg,#0e2917,#153b20);
+  border:1px solid #285b34;
+  border-radius:20px;
   overflow:hidden;
-  border-radius:14px;
-  border:1px solid #39733e;
-  background:#07130b;
-  box-shadow:0 8px 30px rgba(0,0,0,.35);
-}
-
-.banner-wrap img{
-  display:block;
-  width:100%;
-  height:auto;
-  min-height:180px;
-  max-height:390px;
-  object-fit:cover;
-}
-
-.banner-error{
-  display:none;
-  min-height:180px;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#aaff38;
-  font-size:12px;
-  padding:20px;
-}
-
-/* =========================================================
-   SECTION
-========================================================= */
-
-.section{
-  margin-top:20px;
-}
-
-.section-header{
+  min-height:260px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:10px;
+  position:relative;
 }
 
-.section-header h2{
-  font-size:17px;
-  color:#fff;
+.hero-content{
+  padding:40px;
+  position:relative;
+  z-index:2;
 }
 
-.section-header span{
-  font-size:11px;
-  color:#78917e;
+.hero small{
+  color:#aaff38;
+  font-weight:bold;
+  font-size:12px;
 }
 
-/* =========================================================
-   GAME LIST
-========================================================= */
+.hero h1{
+  font-size:40px;
+  line-height:1.1;
+  margin:14px 0;
+}
 
-.game-scroll{
-  width:100%;
+.hero h1 span{
+  color:#aaff38;
+}
+
+.hero p{
+  color:#9db4a1;
+  max-width:600px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.hero-btn{
+  margin-top:20px;
+  padding:13px 22px;
+  border:0;
+  border-radius:8px;
+  background:#aaff38;
+  color:#10200f;
+  font-weight:900;
+}
+
+.hero-icon{
+  font-size:90px;
+  padding-right:50px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+  margin-top:35px;
+}
+
+.section-title{
   display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding:3px 2px 12px;
-  scrollbar-width:thin;
-  scrollbar-color:#39663f transparent;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:17px;
 }
 
-.game-scroll::-webkit-scrollbar{
+.section-title h2{
+  font-size:22px;
+}
+
+.section-title span{
+  color:#809985;
+  font-size:12px;
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+}
+
+.category{
+  background:#0d2414;
+  border:1px solid #244d2d;
+  border-radius:12px;
+  padding:20px 10px;
+  text-align:center;
+  transition:.2s;
+}
+
+.category:hover{
+  transform:translateY(-3px);
+  border-color:#aaff38;
+}
+
+.category-icon{
+  font-size:30px;
+  margin-bottom:9px;
+}
+
+.category p{
+  font-size:12px;
+  color:#c4d5c8;
+}
+
+/* =========================
+   GAME SECTION
+========================= */
+
+.game-section{
+  margin-top:38px;
+}
+
+.game-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.game-title h2{
+  font-size:22px;
+}
+
+.game-title span{
+  color:#809985;
+  font-size:12px;
+}
+
+/* Horizontal game list */
+
+.game-list{
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+  padding:4px 3px 15px;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+}
+
+.game-list::-webkit-scrollbar{
   height:5px;
 }
 
-.game-scroll::-webkit-scrollbar-track{
-  background:transparent;
+.game-list::-webkit-scrollbar-track{
+  background:#0c1e11;
 }
 
-.game-scroll::-webkit-scrollbar-thumb{
-  background:#39663f;
-  border-radius:10px;
+.game-list::-webkit-scrollbar-thumb{
+  background:#315d3b;
+  border-radius:20px;
 }
+
+/* Game card */
 
 .game-card{
-  flex:0 0 125px;
-  text-align:center;
+  flex:0 0 175px;
+  background:#0d2414;
+  border:1px solid #244d2d;
+  border-radius:15px;
+  overflow:hidden;
+  transition:.25s;
   cursor:pointer;
 }
 
+.game-card:hover{
+  transform:translateY(-5px);
+  border-color:#aaff38;
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
 .game-image{
-  width:125px;
-  height:125px;
-  border-radius:14px;
+  width:100%;
+  height:175px;
+  background:#122f1a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   overflow:hidden;
-  border:2px solid #5e963f;
-  background:#102819;
-  box-shadow:0 4px 12px rgba(0,0,0,.35);
-  transition:.2s;
 }
 
 .game-image img{
@@ -287,106 +368,147 @@ header{
   display:block;
 }
 
-.game-card:hover .game-image{
-  transform:translateY(-3px);
-  border-color:#aaff38;
-  box-shadow:0 7px 20px rgba(170,255,56,.15);
+.game-placeholder{
+  font-size:55px;
 }
 
 .game-name{
-  margin-top:6px;
-  color:#fff;
-  font-size:10px;
+  min-height:58px;
+  padding:11px;
+  display:flex;
+  align-items:center;
+  font-size:13px;
+  line-height:1.35;
   font-weight:bold;
-  line-height:1.3;
-  min-height:27px;
+  color:#fff;
 }
 
-/* =========================================================
-   ACCOUNT BOX
-========================================================= */
+/* =========================
+   PRODUCT
+========================= */
 
-.account-box{
-  background:#0b2112;
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.product{
+  background:#0d2414;
   border:1px solid #244d2d;
   border-radius:13px;
-  padding:20px;
+  overflow:hidden;
+}
+
+.product-img{
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+  background:#122f1a;
+}
+
+.product-body{
+  padding:15px;
+}
+
+.product-body h3{
+  font-size:15px;
+  margin-bottom:7px;
+}
+
+.product-body p{
+  color:#7f9885;
+  font-size:12px;
+}
+
+.price{
+  color:#aaff38;
+  font-size:17px;
+  font-weight:bold;
+  margin:13px 0;
+}
+
+.buy{
+  width:100%;
+  padding:10px;
+  border:0;
+  border-radius:7px;
+  background:#aaff38;
+  color:#10200f;
+  font-weight:bold;
+}
+
+/* =========================
+   ACCOUNT
+========================= */
+
+.account-box{
+  background:#0d2414;
+  border:1px solid #244d2d;
+  border-radius:15px;
+  padding:25px;
 }
 
 .account-box h3{
-  font-size:16px;
   color:#aaff38;
 }
 
 .account-box p{
-  margin-top:7px;
-  color:#8fa994;
-  font-size:12px;
+  color:#91a695;
+  margin-top:8px;
   line-height:1.6;
 }
 
-/* =========================================================
-   LOGIN MODAL
-========================================================= */
+/* =========================
+   LOGIN
+========================= */
 
 .login-overlay{
   display:none;
   position:fixed;
   inset:0;
-  z-index:3000;
   background:rgba(0,0,0,.82);
-
+  z-index:3000;
   align-items:center;
   justify-content:center;
-
-  padding:18px;
+  padding:20px;
 }
 
 .login-box{
   width:100%;
-  max-width:400px;
+  max-width:420px;
   background:#0d2414;
   border:1px solid #39733e;
-  border-radius:16px;
-  padding:25px;
+  border-radius:17px;
+  padding:28px;
   box-shadow:0 25px 80px rgba(0,0,0,.6);
-}
-
-.login-close{
-  float:right;
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:25px;
 }
 
 .login-box h2{
   color:#aaff38;
-  font-size:23px;
-  margin-bottom:6px;
+  margin-bottom:7px;
 }
 
-.login-box .subtitle{
-  color:#8fa994;
+.login-box p{
+  color:#879e8d;
   font-size:12px;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .login-box label{
   display:block;
-  color:#d7e8da;
   font-size:12px;
-  font-weight:bold;
-  margin:12px 0 6px;
+  color:#cfe0d2;
+  margin:13px 0 7px;
 }
 
 .login-box input{
   width:100%;
   padding:12px;
-
   border:1px solid #315d3b;
   border-radius:8px;
-
   background:#122f1a;
   color:#fff;
   outline:none;
@@ -396,47 +518,47 @@ header{
   border-color:#aaff38;
 }
 
-.login-button{
+.login-btn{
   width:100%;
   margin-top:18px;
   padding:12px;
-
   border:0;
   border-radius:8px;
-
   background:#aaff38;
   color:#10200f;
   font-weight:900;
 }
 
-.register-button{
+.register-btn{
   width:100%;
   margin-top:10px;
   padding:12px;
-
   border:1px solid #466f4d;
   border-radius:8px;
-
   background:#14351e;
   color:#fff;
-  font-weight:bold;
 }
 
-/* =========================================================
-   WITHDRAW MODAL
-========================================================= */
+.close-login{
+  float:right;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:27px;
+}
+
+/* =========================
+   WITHDRAW
+========================= */
 
 .withdraw-overlay{
   display:none;
   position:fixed;
   inset:0;
+  background:rgba(0,0,0,.82);
   z-index:5000;
-
-  background:rgba(0,0,0,.84);
-
   align-items:center;
   justify-content:center;
-
   padding:18px;
 }
 
@@ -444,56 +566,43 @@ header{
   width:100%;
   max-width:500px;
   max-height:92vh;
-
   overflow:auto;
-
-  position:relative;
-
   background:#102a19;
   border:1px solid #39733e;
   border-radius:16px;
-
   padding:25px;
-
-  box-shadow:0 25px 80px rgba(0,0,0,.65);
-}
-
-.withdraw-close{
-  position:absolute;
-  right:13px;
-  top:12px;
-
-  width:36px;
-  height:36px;
-
-  border:0;
-  border-radius:50%;
-
-  background:#194b27;
-  color:#fff;
-
-  font-size:24px;
+  position:relative;
+  box-shadow:0 25px 80px rgba(0,0,0,.6);
 }
 
 .withdraw-box h2{
   color:#aaff38;
-  font-size:20px;
+  margin-bottom:6px;
 }
 
 .withdraw-subtitle{
-  margin-top:5px;
-  margin-bottom:18px;
-
   color:#9caf9e;
   font-size:12px;
-  line-height:1.5;
+  margin-bottom:18px;
+}
+
+.withdraw-close{
+  position:absolute;
+  right:14px;
+  top:12px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#194b27;
+  color:#fff;
+  font-size:25px;
 }
 
 .withdraw-balance{
   background:#0b2918;
   border:1px solid #285d35;
   border-radius:10px;
-
   padding:15px;
   margin-bottom:18px;
 }
@@ -513,7 +622,6 @@ header{
 .withdraw-box label{
   display:block;
   margin:13px 0 7px;
-
   color:#d8eadc;
   font-size:12px;
   font-weight:bold;
@@ -523,13 +631,10 @@ header{
 .withdraw-box select{
   width:100%;
   padding:12px;
-
   border-radius:8px;
   border:1px solid #35663e;
-
   background:#194b27;
   color:#fff;
-
   outline:none;
 }
 
@@ -542,26 +647,21 @@ header{
   width:100%;
   margin-top:20px;
   padding:13px;
-
   border:0;
   border-radius:8px;
-
   background:#aaff38;
   color:#10210e;
-
   font-weight:900;
 }
 
 .withdraw-submit:disabled{
   opacity:.55;
-  cursor:not-allowed;
 }
 
 .withdraw-history{
   margin-top:24px;
-  padding-top:20px;
-
   border-top:1px solid #285d35;
+  padding-top:20px;
 }
 
 .withdraw-history h3{
@@ -573,10 +673,8 @@ header{
   background:#0b2918;
   border:1px solid #285d35;
   border-radius:9px;
-
   padding:12px;
   margin-bottom:8px;
-
   font-size:12px;
 }
 
@@ -607,210 +705,263 @@ header{
   font-size:12px;
 }
 
-/* =========================================================
+/* =========================
+   NOTIFICATION
+========================= */
+
+#loginStatus{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  color:#111;
+  padding:11px 18px;
+  border-radius:8px;
+  box-shadow:0 5px 20px rgba(0,0,0,.3);
+  font-size:12px;
+  font-weight:bold;
+  display:none;
+  z-index:9000;
+}
+
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 footer{
-  margin-top:35px;
-  padding:25px 15px;
-
+  margin-top:60px;
+  padding:30px 20px;
   text-align:center;
-
   color:#607764;
   border-top:1px solid #1c3e25;
-
-  font-size:11px;
+  font-size:12px;
 }
 
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
-@media(max-width:900px){
+@media(max-width:950px){
 
-  .header-main{
-    gap:10px;
-  }
-
-  .logo{
-    font-size:21px;
-  }
-
-  .nav-links{
-    gap:0;
-  }
-
-  .nav-item{
-    font-size:11px;
-    padding:8px 8px;
-  }
-
-  .game-card{
-    flex-basis:115px;
-  }
-
-  .game-image{
-    width:115px;
-    height:115px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .top-announcement{
-    font-size:9px;
-  }
-
-  .header-main{
-    padding:8px 10px;
+  .navbar{
     flex-wrap:wrap;
   }
 
   .nav-links{
     order:3;
     width:100%;
-    border-top:1px solid #183c22;
-    padding-top:5px;
+    flex-basis:100%;
   }
 
-  .auth-area{
-    margin-left:auto;
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .topbar{
+    padding:7px 10px;
+  }
+
+  .navbar{
+    padding:10px;
+    gap:10px;
+  }
+
+  .logo{
+    font-size:23px;
   }
 
   .container{
-    padding:12px 8px 30px;
+    padding:20px 12px;
   }
 
-  .banner-wrap{
-    border-radius:10px;
+  .hero{
+    min-height:280px;
   }
 
-  .banner-wrap img{
-    min-height:130px;
+  .hero-content{
+    padding:25px 20px;
   }
 
-  .section-header h2{
-    font-size:15px;
+  .hero h1{
+    font-size:28px;
+  }
+
+  .hero p{
+    font-size:12px;
+  }
+
+  .hero-icon{
+    display:none;
+  }
+
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .products{
+    grid-template-columns:1fr;
   }
 
   .game-card{
-    flex-basis:100px;
+    flex:0 0 145px;
   }
 
   .game-image{
-    width:100px;
-    height:100px;
-    border-radius:11px;
+    height:145px;
   }
 
   .game-name{
-    font-size:9px;
+    font-size:12px;
+  }
+
+  .section-title h2,
+  .game-title h2{
+    font-size:19px;
+  }
+
+  .section-title span,
+  .game-title span{
+    font-size:10px;
+  }
+
+  .user-area{
+    margin-left:auto;
   }
 
 }
 
 </style>
-
 </head>
+
 
 <body>
 
+<div id="loginStatus"></div>
 
-<!-- =======================================================
-     TOP ANNOUNCEMENT
-======================================================= -->
 
-<div class="top-announcement">
-  📢 SELAMAT DATANG DI MAC645 — DIGITAL STORE TERPERCAYA
+<!-- =========================
+     TOPBAR
+========================= -->
+
+<div class="topbar">
+
+  <div class="marquee">
+    📢 INFORMASI MAC645 — Selamat datang di MAC645! Nikmati kemudahan pembelian produk digital.
+  </div>
+
 </div>
 
 
-<!-- =======================================================
+<!-- =========================
      HEADER
-======================================================= -->
+========================= -->
 
 <header>
 
-  <div class="header-main">
+  <div class="navbar">
 
     <div class="logo">
       MAC<span>645</span>
     </div>
 
 
-    <nav class="nav-links">
+    <div class="nav-links">
 
       <a class="nav-item" href="#beranda">
         Beranda
-      </a>
-
-      <a class="nav-item" href="#game">
-        Game
       </a>
 
       <a class="nav-item" href="#produk">
         Produk
       </a>
 
+      <a class="nav-item" href="#kategori">
+        Kategori
+      </a>
+
       <a class="nav-item" href="deposit.html">
         Deposit
       </a>
 
-      <a class="nav-item"
-         href="#"
-         onclick="bukaWithdraw();return false;">
+      <a
+        class="nav-item"
+        href="#"
+        onclick="bukaWithdraw();return false;"
+      >
         💸 Withdraw
       </a>
 
-      <a class="nav-item"
-         href="#akun"
-         onclick="cekLogin();return false;">
+      <a
+        class="nav-item"
+        href="#akun"
+        onclick="cekLogin();return false;"
+      >
         Akun Saya
       </a>
 
-    </nav>
+    </div>
 
 
-    <!-- LOGIN -->
+    <!-- BELUM LOGIN -->
 
-    <div id="authArea">
+    <div
+      id="authArea"
+      class="auth-area"
+    >
 
       <button
-        class="login-top"
-        onclick="bukaLogin()">
+        class="header-login"
+        onclick="bukaLogin()"
+      >
         LOGIN
       </button>
 
     </div>
 
 
-    <!-- USER -->
+    <!-- SUDAH LOGIN -->
 
     <div
       id="userArea"
-      class="user-area">
+      class="user-area"
+    >
 
-      <div>
+      <div class="user-info">
 
         <div
           id="userEmail"
-          class="user-email">
+          class="user-email"
+        >
           -
         </div>
 
         <div
           id="saldoUser"
-          class="balance">
+          class="balance"
+        >
           Saldo Rp0
         </div>
 
       </div>
 
+
       <button
         class="logout"
-        onclick="logoutUser()">
+        onclick="logoutUser()"
+      >
         Keluar
       </button>
 
@@ -821,292 +972,745 @@ footer{
 </header>
 
 
-<!-- =======================================================
+
+<!-- =========================
      MAIN
-======================================================= -->
+========================= -->
 
 <main id="beranda">
 
-  <div class="container">
+<div class="container">
 
 
-    <!-- ===================================================
-         BANNER
-    =================================================== -->
+<!-- =========================
+     BANNER
+========================= -->
 
-    <section class="banner-wrap">
+<section class="hero">
 
-      <img
-        id="mainBanner"
-        src="banner-bonus.jpg"
-        alt="MAC645 Bonus New Member"
-        onerror="bannerError()"
-      >
+  <div class="hero-content">
 
-      <div
-        id="bannerError"
-        class="banner-error">
+    <small>
+      MAC645 DIGITAL STORE
+    </small>
 
-        <div>
+    <h1>
+      Semua Produk Digital
+      <br>
+      <span>Dalam Satu Tempat</span>
+    </h1>
 
-          <strong>
-            Banner MAC645 belum dapat dimuat
-          </strong>
+    <p>
+      Beli pulsa, paket data, token PLN,
+      e-wallet, voucher game dan berbagai
+      produk digital dengan mudah.
+    </p>
 
-          <br>
+    <button
+      class="hero-btn"
+      onclick="document.getElementById('game').scrollIntoView({behavior:'smooth'})"
+    >
+      BELI SEKARANG
+    </button>
 
-          <span>
-            Pastikan file
-            <b>banner-bonus.jpg</b>
-            ada di repository MAC645.
-          </span>
-
-        </div>
-
-      </div>
-
-    </section>
+  </div>
 
 
-    <!-- ===================================================
-         GAME POPULER
-    =================================================== -->
+  <div class="hero-icon">
+    🎮
+  </div>
 
-    <section
-      id="game"
-      class="section">
-
-      <div class="section-header">
-
-        <h2>
-          Game Populer
-        </h2>
-
-        <span>
-          Geser untuk melihat semua
-        </span>
-
-      </div>
+</section>
 
 
-      <div class="game-scroll">
+
+<!-- =========================
+     KATEGORI
+========================= -->
+
+<section
+  id="kategori"
+  class="section"
+>
+
+  <div class="section-title">
+
+    <h2>
+      Kategori Produk
+    </h2>
+
+    <span>
+      Produk digital pilihan
+    </span>
+
+  </div>
 
 
-        <!-- GAME 1 -->
+  <div class="categories">
 
-        <div
-          class="game-card"
-          onclick="cekLogin()">
+    <div class="category">
+      <div class="category-icon">📱</div>
+      <p>Pulsa</p>
+    </div>
 
-          <div class="game-image">
+    <div class="category">
+      <div class="category-icon">📶</div>
+      <p>Paket Data</p>
+    </div>
 
-            <img
-              src="mahjong3.jpg"
-              alt="Mahjong Wins 3 - Black Scatter">
+    <div class="category">
+      <div class="category-icon">⚡</div>
+      <p>Token PLN</p>
+    </div>
 
-          </div>
+    <div class="category">
+      <div class="category-icon">💳</div>
+      <p>E-Wallet</p>
+    </div>
 
-          <div class="game-name">
-            Mahjong Wins 3<br>
-            Black Scatter
-          </div>
+    <div class="category">
+      <div class="category-icon">🎮</div>
+      <p>Voucher Game</p>
+    </div>
 
-        </div>
+    <div class="category">
+      <div class="category-icon">🎬</div>
+      <p>Streaming</p>
+    </div>
 
+  </div>
 
-        <!-- GAME 2 -->
-
-        <div
-          class="game-card"
-          onclick="cekLogin()">
-
-          <div class="game-image">
-
-            <img
-              src="olympus 1000.jpg"
-              alt="Gates of Olympus 1000">
-
-          </div>
-
-          <div class="game-name">
-            Gates of Olympus<br>
-            1000
-          </div>
-
-        </div>
+</section>
 
 
-        <!-- GAME 3 -->
 
-        <div
-          class="game-card"
-          onclick="cekLogin()">
+<!-- =========================
+     11 GAME
+========================= -->
 
-          <div class="game-image">
+<section
+  id="game"
+  class="game-section"
+>
 
-            <img
-              src="olympus aja.jpg"
-              alt="Gates of Olympus Super Scatter">
+  <div class="game-title">
 
-          </div>
+    <h2>
+      🎮 Game Populer
+    </h2>
 
-          <div class="game-name">
-            Gates of Olympus<br>
-            Super Scatter
-          </div>
+    <span>
+      Geser untuk melihat semua
+    </span>
 
-        </div>
-
-
-        <!-- GAME 4 -->
-
-        <div
-          class="game-card"
-          onclick="cekLogin()">
-
-          <div class="game-image">
-
-            <img
-              src="mahjong 2.jpg"
-              alt="Mahjong Ways 2">
-
-          </div>
-
-          <div class="game-name">
-            Mahjong Ways 2
-          </div>
-
-        </div>
+  </div>
 
 
-        <!-- GAME 5 -->
+  <div class="game-list">
+
+
+    <!-- 1 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Mahjong Wins 3 - Black Scatter')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="mahjong3.jpg"
+          alt="Mahjong Wins 3 - Black Scatter"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
 
         <div
-          class="game-card"
-          onclick="cekLogin()">
-
-          <div class="game-image">
-
-            <img
-              src="mahjong ways.png"
-              alt="Mahjong Ways">
-
-          </div>
-
-          <div class="game-name">
-            Mahjong Ways
-          </div>
-
+          class="game-placeholder"
+          style="display:none"
+        >
+          🎰
         </div>
 
+      </div>
 
-        <!-- GAME 6 -->
+      <div class="game-name">
+        Mahjong Wins 3 - Black Scatter
+      </div>
+
+    </div>
+
+
+    <!-- 2 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Gates of Olympus 1000')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="olympus 1000.jpg"
+          alt="Gates of Olympus 1000"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
 
         <div
-          class="game-card"
-          onclick="cekLogin()">
-
-          <div class="game-image">
-
-            <img
-              src="wild bounty.jpg"
-              alt="Wild Bounty Showdown">
-
-          </div>
-
-          <div class="game-name">
-            Wild Bounty<br>
-            Showdown
-          </div>
-
+          class="game-placeholder"
+          style="display:none"
+        >
+          ⚡
         </div>
 
+      </div>
+
+      <div class="game-name">
+        Gates of Olympus 1000
+      </div>
+
+    </div>
+
+
+    <!-- 3 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Gates of Olympus Super Scatter')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="olympus aja.jpg"
+          alt="Gates of Olympus Super Scatter"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          ⚡
+        </div>
 
       </div>
 
-    </section>
+      <div class="game-name">
+        Gates of Olympus Super Scatter
+      </div>
+
+    </div>
 
 
-    <!-- ===================================================
-         PRODUK
-    =================================================== -->
+    <!-- 4 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Mahjong Ways 2')"
+    >
 
-    <section
-      id="produk"
-      class="section">
+      <div class="game-image">
 
-      <div class="section-header">
+        <img
+          src="mahjong 2.jpg"
+          alt="Mahjong Ways 2"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
 
-        <h2>
-          Produk MAC645
-        </h2>
-
-        <span>
-          Produk digital
-        </span>
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          🀄
+        </div>
 
       </div>
 
+      <div class="game-name">
+        Mahjong Ways 2
+      </div>
 
-      <div class="account-box">
+    </div>
 
-        <h3>
-          Semua kebutuhan digital dalam satu tempat
-        </h3>
 
-        <p>
-          Gunakan MAC645 untuk melakukan transaksi
-          produk digital dengan mudah.
-          Silakan login terlebih dahulu untuk
-          melakukan pembelian.
-        </p>
+    <!-- 5 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Mahjong Ways')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="mahjong ways.png"
+          alt="Mahjong Ways"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          🀄
+        </div>
 
       </div>
 
-    </section>
+      <div class="game-name">
+        Mahjong Ways
+      </div>
+
+    </div>
 
 
-    <!-- ===================================================
-         AKUN
-    =================================================== -->
+    <!-- 6 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Wild Bounty Showdown')"
+    >
 
-    <section
-      id="akun"
-      class="section">
+      <div class="game-image">
 
-      <div class="section-header">
+        <img
+          src="wild bounty.jpg"
+          alt="Wild Bounty Showdown"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
 
-        <h2>
-          Akun Saya
-        </h2>
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          🤠
+        </div>
 
       </div>
 
+      <div class="game-name">
+        Wild Bounty Showdown
+      </div>
 
-      <div class="account-box">
+    </div>
 
-        <h3 id="accountTitle">
-          Belum Login
-        </h3>
 
-        <p id="accountDescription">
-          Silakan login untuk melihat saldo,
-          melakukan transaksi dan withdraw.
-        </p>
+    <!-- 7 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Lucky Neko')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="lucky neko.jpg"
+          alt="Lucky Neko"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          🐱
+        </div>
 
       </div>
 
-    </section>
+      <div class="game-name">
+        Lucky Neko
+      </div>
+
+    </div>
+
+
+    <!-- 8 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Treasures of Aztec')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="treasures of aztec.jpg"
+          alt="Treasures of Aztec"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          🗿
+        </div>
+
+      </div>
+
+      <div class="game-name">
+        Treasures of Aztec
+      </div>
+
+    </div>
+
+
+    <!-- 9 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Wild Ape #3258')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="wild ape 3258.jpg"
+          alt="Wild Ape #3258"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          🦍
+        </div>
+
+      </div>
+
+      <div class="game-name">
+        Wild Ape #3258
+      </div>
+
+    </div>
+
+
+    <!-- 10 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Gates of Gatot Kaca 1000')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="gates gatot kaca 1000.jpg"
+          alt="Gates of Gatot Kaca 1000"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          ⚡
+        </div>
+
+      </div>
+
+      <div class="game-name">
+        Gates of Gatot Kaca 1000
+      </div>
+
+    </div>
+
+
+    <!-- 11 -->
+    <div
+      class="game-card"
+      onclick="pilihGame('Starlight Princess Super Scatter')"
+    >
+
+      <div class="game-image">
+
+        <img
+          src="starlight princess super scatter.jpg"
+          alt="Starlight Princess Super Scatter"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none"
+        >
+          👑
+        </div>
+
+      </div>
+
+      <div class="game-name">
+        Starlight Princess Super Scatter
+      </div>
+
+    </div>
 
 
   </div>
 
+</section>
+
+
+
+<!-- =========================
+     PRODUK DIGITAL
+========================= -->
+
+<section
+  id="produk"
+  class="section"
+>
+
+  <div class="section-title">
+
+    <h2>
+      Produk Digital
+    </h2>
+
+    <span>
+      Produk MAC645
+    </span>
+
+  </div>
+
+
+  <div class="products">
+
+
+    <div class="product">
+
+      <div class="product-img">
+        📱
+      </div>
+
+      <div class="product-body">
+
+        <h3>
+          Pulsa 10.000
+        </h3>
+
+        <p>
+          Pulsa semua operator
+        </p>
+
+        <div class="price">
+          Rp10.500
+        </div>
+
+        <button
+          class="buy"
+          onclick="cekLogin()"
+        >
+          BELI
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        📶
+      </div>
+
+      <div class="product-body">
+
+        <h3>
+          Paket Data 10GB
+        </h3>
+
+        <p>
+          Paket internet
+        </p>
+
+        <div class="price">
+          Rp25.000
+        </div>
+
+        <button
+          class="buy"
+          onclick="cekLogin()"
+        >
+          BELI
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        🎮
+      </div>
+
+      <div class="product-body">
+
+        <h3>
+          Voucher Game
+        </h3>
+
+        <p>
+          Top up game
+        </p>
+
+        <div class="price">
+          Rp20.000
+        </div>
+
+        <button
+          class="buy"
+          onclick="cekLogin()"
+        >
+          BELI
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        💳
+      </div>
+
+      <div class="product-body">
+
+        <h3>
+          E-Wallet 50.000
+        </h3>
+
+        <p>
+          Saldo e-wallet
+        </p>
+
+        <div class="price">
+          Rp50.000
+        </div>
+
+        <button
+          class="buy"
+          onclick="cekLogin()"
+        >
+          BELI
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        ⚡
+      </div>
+
+      <div class="product-body">
+
+        <h3>
+          Token PLN 50.000
+        </h3>
+
+        <p>
+          Token listrik
+        </p>
+
+        <div class="price">
+          Rp50.000
+        </div>
+
+        <button
+          class="buy"
+          onclick="cekLogin()"
+        >
+          BELI
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        🎬
+      </div>
+
+      <div class="product-body">
+
+        <h3>
+          Streaming
+        </h3>
+
+        <p>
+          Voucher streaming
+        </p>
+
+        <div class="price">
+          Rp30.000
+        </div>
+
+        <button
+          class="buy"
+          onclick="cekLogin()"
+        >
+          BELI
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     AKUN
+========================= -->
+
+<section
+  id="akun"
+  class="section"
+>
+
+  <div class="section-title">
+
+    <h2>
+      Akun Saya
+    </h2>
+
+  </div>
+
+
+  <div class="account-box">
+
+    <h3 id="accountTitle">
+      Belum Login
+    </h3>
+
+    <p id="accountDescription">
+      Silakan login untuk melihat saldo,
+      melakukan transaksi dan withdraw.
+    </p>
+
+  </div>
+
+</section>
+
+
+</div>
+
 </main>
 
 
-<!-- =======================================================
+
+<!-- =========================
      FOOTER
-======================================================= -->
+========================= -->
 
 <footer>
 
@@ -1115,28 +1719,30 @@ footer{
 </footer>
 
 
-<!-- =======================================================
+
+<!-- =========================
      LOGIN MODAL
-======================================================= -->
+========================= -->
 
 <div
   id="loginModal"
-  class="login-overlay">
+  class="login-overlay"
+>
 
   <div class="login-box">
 
     <button
-      class="login-close"
-      onclick="tutupLogin()">
+      class="close-login"
+      onclick="tutupLogin()"
+    >
       ×
     </button>
-
 
     <h2>
       MAC645
     </h2>
 
-    <p class="subtitle">
+    <p>
       Login atau daftar akun baru.
     </p>
 
@@ -1149,7 +1755,6 @@ footer{
       type="email"
       id="email"
       placeholder="Email kamu"
-      autocomplete="email"
     >
 
 
@@ -1161,20 +1766,21 @@ footer{
       type="password"
       id="password"
       placeholder="Password"
-      autocomplete="current-password"
     >
 
 
     <button
-      class="login-button"
-      onclick="loginUser()">
+      class="login-btn"
+      onclick="loginUser()"
+    >
       LOGIN
     </button>
 
 
     <button
-      class="register-button"
-      onclick="registerUser()">
+      class="register-btn"
+      onclick="registerUser()"
+    >
       DAFTAR AKUN BARU
     </button>
 
@@ -1183,20 +1789,22 @@ footer{
 </div>
 
 
-<!-- =======================================================
+
+<!-- =========================
      WITHDRAW MODAL
-======================================================= -->
+========================= -->
 
 <div
   id="withdrawModal"
-  class="withdraw-overlay">
+  class="withdraw-overlay"
+>
 
   <div class="withdraw-box">
 
-
     <button
       class="withdraw-close"
-      onclick="tutupWithdraw()">
+      onclick="tutupWithdraw()"
+    >
       ×
     </button>
 
@@ -1205,14 +1813,11 @@ footer{
       💸 Withdraw Saldo
     </h2>
 
-
     <p class="withdraw-subtitle">
       Tarik saldo MAC645 ke rekening atau
       e-wallet kamu.
     </p>
 
-
-    <!-- SALDO -->
 
     <div class="withdraw-balance">
 
@@ -1227,8 +1832,6 @@ footer{
     </div>
 
 
-    <!-- NOMINAL -->
-
     <label>
       Nominal Withdraw
     </label>
@@ -1237,13 +1840,10 @@ footer{
       type="text"
       id="withdrawAmount"
       inputmode="numeric"
-      autocomplete="off"
       placeholder="Contoh: 100.000"
       oninput="formatWithdraw(this)"
     >
 
-
-    <!-- BANK -->
 
     <label>
       Bank / E-Wallet
@@ -1298,8 +1898,6 @@ footer{
     </select>
 
 
-    <!-- NOMOR -->
-
     <label>
       Nomor Rekening / E-Wallet
     </label>
@@ -1312,8 +1910,6 @@ footer{
     >
 
 
-    <!-- NAMA -->
-
     <label>
       Nama Pemilik
     </label>
@@ -1325,19 +1921,14 @@ footer{
     >
 
 
-    <!-- SUBMIT -->
-
     <button
       id="withdrawSubmit"
       class="withdraw-submit"
-      onclick="ajukanWithdraw()">
-
+      onclick="submitWithdraw()"
+    >
       AJUKAN WITHDRAW
-
     </button>
 
-
-    <!-- HISTORY -->
 
     <div class="withdraw-history">
 
@@ -1346,26 +1937,22 @@ footer{
       </h3>
 
       <div id="withdrawHistory">
-        Belum dimuat.
+        Belum ada pengajuan withdraw.
       </div>
 
     </div>
-
 
   </div>
 
 </div>
 
 
-<!-- =======================================================
-     JAVASCRIPT
-======================================================= -->
 
 <script>
 
-/* =========================================================
+/* =========================
    SUPABASE
-========================================================= */
+========================= */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -1374,49 +1961,42 @@ const SUPABASE_KEY =
 "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
 const supabaseClient =
-supabase.createClient(
+window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 
-/* =========================================================
+/* =========================
    NOTIFIKASI
-========================================================= */
+========================= */
 
 function notif(message){
 
-  alert(message);
+  const box =
+    document.getElementById("loginStatus");
+
+  box.textContent = message;
+  box.style.display = "block";
+
+  setTimeout(function(){
+
+    box.style.display = "none";
+
+  },3500);
 
 }
 
 
-/* =========================================================
-   BANNER ERROR
-========================================================= */
-
-function bannerError(){
-
-  document.getElementById(
-    "mainBanner"
-  ).style.display="none";
-
-  document.getElementById(
-    "bannerError"
-  ).style.display="flex";
-
-}
-
-
-/* =========================================================
+/* =========================
    LOGIN MODAL
-========================================================= */
+========================= */
 
 function bukaLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display="flex";
+  ).style.display = "flex";
 
 }
 
@@ -1425,109 +2005,35 @@ function tutupLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display="none";
+  ).style.display = "none";
 
 }
 
 
-/* =========================================================
-   REGISTER
-========================================================= */
-
-async function registerUser(){
-
-  const email =
-    document.getElementById(
-      "email"
-    ).value.trim();
-
-  const password =
-    document.getElementById(
-      "password"
-    ).value;
-
-
-  if(!email || !password){
-
-    notif(
-      "Email dan password wajib diisi."
-    );
-
-    return;
-
-  }
-
-
-  if(password.length < 6){
-
-    notif(
-      "Password minimal 6 karakter."
-    );
-
-    return;
-
-  }
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient.auth.signUp({
-
-      email:email,
-
-      password:password
-
-    });
-
-
-  if(error){
-
-    notif(
-      "Daftar gagal: " +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  notif(
-    "✅ Pendaftaran berhasil. " +
-    "Silakan cek email untuk konfirmasi jika diminta."
-  );
-
-}
-
-
-/* =========================================================
+/* =========================
    LOGIN
-========================================================= */
+========================= */
 
 async function loginUser(){
 
   const email =
-    document.getElementById(
-      "email"
-    ).value.trim();
+    document.getElementById("email").value.trim();
 
   const password =
-    document.getElementById(
-      "password"
-    ).value;
+    document.getElementById("password").value;
 
 
   if(!email || !password){
 
     notif(
-      "Email dan password wajib diisi."
+      "Email dan password wajib diisi!"
     );
 
     return;
-
   }
+
+
+  notif("Sedang login...");
 
 
   const {
@@ -1546,49 +2052,132 @@ async function loginUser(){
   if(error){
 
     notif(
-      "Login gagal: " +
+      "❌ Login gagal: " +
       error.message
     );
 
     return;
-
   }
 
 
   tutupLogin();
 
+
   await tampilkanUser(
     data.user
+  );
+
+
+  notif(
+    "✅ Login berhasil!"
   );
 
 }
 
 
-/* =========================================================
-   TAMPILKAN USER
-========================================================= */
+/* =========================
+   REGISTER
+========================= */
 
-async function tampilkanUser(user){
+async function registerUser(){
 
-  if(!user){
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+
+  if(!email || !password){
+
+    notif(
+      "Email dan password wajib diisi!"
+    );
+
     return;
   }
 
 
+  if(password.length < 6){
+
+    notif(
+      "Password minimal 6 karakter!"
+    );
+
+    return;
+  }
+
+
+  notif("Mendaftarkan akun...");
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.auth.signUp({
+
+      email:email,
+
+      password:password
+
+    });
+
+
+  if(error){
+
+    notif(
+      "❌ Daftar gagal: " +
+      error.message
+    );
+
+    return;
+  }
+
+
+  if(data.session){
+
+    tutupLogin();
+
+    await tampilkanUser(
+      data.user
+    );
+
+    notif(
+      "✅ Akun berhasil dibuat!"
+    );
+
+  }else{
+
+    notif(
+      "✅ Akun dibuat. Silakan cek email untuk konfirmasi."
+    );
+
+  }
+
+}
+
+
+/* =========================
+   TAMPILKAN USER
+========================= */
+
+async function tampilkanUser(user){
+
   document.getElementById(
     "authArea"
-  ).style.display="none";
+  ).style.display = "none";
 
 
   document.getElementById(
     "userArea"
-  ).style.display="flex";
+  ).style.display = "flex";
 
 
   document.getElementById(
     "userEmail"
   ).textContent =
-    user.email || "-";
+    user.email || "User MAC645";
 
 
   document.getElementById(
@@ -1600,7 +2189,7 @@ async function tampilkanUser(user){
   document.getElementById(
     "accountDescription"
   ).textContent =
-    user.email || "-";
+    "Akun kamu sudah login dan dapat menggunakan saldo serta fitur withdraw.";
 
 
   await loadSaldo(
@@ -1610,9 +2199,9 @@ async function tampilkanUser(user){
 }
 
 
-/* =========================================================
+/* =========================
    LOAD SALDO
-========================================================= */
+========================= */
 
 async function loadSaldo(userId){
 
@@ -1623,45 +2212,91 @@ async function loadSaldo(userId){
     await supabaseClient
       .from("wallets")
       .select("balance")
-      .eq(
-        "user_id",
-        userId
-      )
+      .eq("user_id",userId)
       .maybeSingle();
 
 
   if(error){
 
     console.error(
-      "Saldo:",
+      "Saldo error:",
       error
     );
 
-    return;
+    setSaldo(0);
 
+    return;
   }
 
 
-  const saldo =
-    Number(
-      data?.balance || 0
-    );
+  const balance =
+    data
+      ? Number(data.balance)
+      : 0;
 
 
-  document.getElementById(
-    "saldoUser"
-  ).textContent =
-    "Saldo Rp" +
-    saldo.toLocaleString(
-      "id-ID"
-    );
+  setSaldo(
+    balance
+  );
 
 }
 
 
-/* =========================================================
+/* =========================
+   SET SALDO
+========================= */
+
+function setSaldo(amount){
+
+  const text =
+    "Saldo Rp" +
+    Number(amount || 0)
+      .toLocaleString("id-ID");
+
+
+  const saldo =
+    document.getElementById(
+      "saldoUser"
+    );
+
+  if(saldo){
+
+    saldo.textContent =
+      text;
+
+  }
+
+}
+
+
+/* =========================
+   CEK LOGIN
+========================= */
+
+async function cekLogin(){
+
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  if(!data.session){
+
+    bukaLogin();
+
+    return false;
+  }
+
+
+  return true;
+
+}
+
+
+/* =========================
    LOGOUT
-========================================================= */
+========================= */
 
 async function logoutUser(){
 
@@ -1670,12 +2305,17 @@ async function logoutUser(){
 
   document.getElementById(
     "authArea"
-  ).style.display="block";
+  ).style.display = "flex";
 
 
   document.getElementById(
     "userArea"
-  ).style.display="none";
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "userEmail"
+  ).textContent = "-";
 
 
   document.getElementById(
@@ -1695,14 +2335,43 @@ async function logoutUser(){
   ).textContent =
     "Silakan login untuk melihat saldo, melakukan transaksi dan withdraw.";
 
+
+  notif(
+    "Kamu sudah logout."
+  );
+
 }
 
 
-/* =========================================================
-   CEK LOGIN
-========================================================= */
+/* =========================
+   GAME
+========================= */
 
-async function cekLogin(){
+async function pilihGame(gameName){
+
+  const login =
+    await cekLogin();
+
+
+  if(!login){
+
+    return;
+  }
+
+
+  notif(
+    "🎮 Kamu memilih " +
+    gameName
+  );
+
+}
+
+
+/* =========================
+   WITHDRAW
+========================= */
+
+async function bukaWithdraw(){
 
   const {
     data
@@ -1714,102 +2383,69 @@ async function cekLogin(){
 
     bukaLogin();
 
-    return false;
-
-  }
-
-
-  return true;
-
-}
-
-
-/* =========================================================
-   WITHDRAW BALANCE
-========================================================= */
-
-let currentWithdrawBalance = 0;
-
-
-async function getCurrentSession(){
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient.auth.getSession();
-
-
-  if(error){
-
-    console.error(error);
-
-    return null;
-
-  }
-
-
-  return data.session || null;
-
-}
-
-
-/* =========================================================
-   BUKA WITHDRAW
-========================================================= */
-
-async function bukaWithdraw(){
-
-  const session =
-    await getCurrentSession();
-
-
-  if(!session){
-
-    notif(
-      "🔐 Silakan login terlebih dahulu."
-    );
-
-    bukaLogin();
-
     return;
-
   }
 
 
   document.getElementById(
     "withdrawModal"
-  ).style.display="flex";
+  ).style.display = "flex";
 
 
   await loadWithdrawBalance(
-    session.user.id
+    data.session.user.id
   );
 
 
   await loadWithdrawHistory(
-    session.user.id
+    data.session.user.id
   );
 
 }
 
 
-/* =========================================================
+/* =========================
    TUTUP WITHDRAW
-========================================================= */
+========================= */
 
 function tutupWithdraw(){
 
   document.getElementById(
     "withdrawModal"
-  ).style.display="none";
+  ).style.display = "none";
 
 }
 
 
-/* =========================================================
-   LOAD WITHDRAW BALANCE
-========================================================= */
+/* =========================
+   FORMAT NOMINAL
+========================= */
+
+function formatWithdraw(input){
+
+  let value =
+    input.value
+      .replace(/\D/g,"");
+
+
+  if(!value){
+
+    input.value = "";
+
+    return;
+  }
+
+
+  input.value =
+    Number(value)
+      .toLocaleString("id-ID");
+
+}
+
+
+/* =========================
+   LOAD SALDO WITHDRAW
+========================= */
 
 async function loadWithdrawBalance(userId){
 
@@ -1820,94 +2456,47 @@ async function loadWithdrawBalance(userId){
     await supabaseClient
       .from("wallets")
       .select("balance")
-      .eq(
-        "user_id",
-        userId
-      )
+      .eq("user_id",userId)
       .maybeSingle();
 
 
   if(error){
 
     console.error(
-      "Saldo withdraw:",
       error
     );
 
-    return;
+    document.getElementById(
+      "withdrawBalance"
+    ).textContent =
+      "Rp0";
 
+    return;
   }
 
 
-  currentWithdrawBalance =
-    Number(
-      data?.balance || 0
-    );
+  const balance =
+    data
+      ? Number(data.balance)
+      : 0;
 
 
   document.getElementById(
     "withdrawBalance"
   ).textContent =
     "Rp" +
-    currentWithdrawBalance.toLocaleString(
+    balance.toLocaleString(
       "id-ID"
     );
 
 }
 
 
-/* =========================================================
-   FORMAT NOMINAL WITHDRAW
-========================================================= */
+/* =========================
+   SUBMIT WITHDRAW
+========================= */
 
-function formatWithdraw(input){
-
-  let angka =
-    String(
-      input.value || ""
-    )
-    .replace(/\D/g,"");
-
-
-  if(!angka){
-
-    input.value="";
-
-    return;
-
-  }
-
-
-  input.value =
-    Number(
-      angka
-    ).toLocaleString(
-      "id-ID"
-    );
-
-}
-
-
-/* =========================================================
-   AJUKAN WITHDRAW
-========================================================= */
-
-async function ajukanWithdraw(){
-
-  const session =
-    await getCurrentSession();
-
-
-  if(!session){
-
-    notif(
-      "🔐 Silakan login terlebih dahulu."
-    );
-
-    return;
-
-  }
-
+async function submitWithdraw(){
 
   const button =
     document.getElementById(
@@ -1915,17 +2504,40 @@ async function ajukanWithdraw(){
     );
 
 
-  const rawAmount =
+  const {
+    data:sessionData
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  if(!sessionData.session){
+
+    notif(
+      "Silakan login terlebih dahulu."
+    );
+
+    bukaLogin();
+
+    return;
+  }
+
+
+  const session =
+    sessionData.session;
+
+
+  const amountInput =
     document.getElementById(
       "withdrawAmount"
-    ).value
-    .replace(/\./g,"")
-    .replace(/,/g,"");
+    ).value;
 
 
   const amount =
     Number(
-      rawAmount
+      amountInput
+        .replace(/\./g,"")
+        .replace(/,/g,"")
+        .replace(/\D/g,"")
     );
 
 
@@ -1947,90 +2559,65 @@ async function ajukanWithdraw(){
     ).value.trim();
 
 
-  if(
-    !Number.isFinite(amount) ||
-    amount < 10000
-  ){
+  if(!amount || amount < 10000){
 
     notif(
-      "⚠️ Minimal withdraw Rp10.000."
+      "❌ Minimal withdraw Rp10.000."
     );
 
     return;
-
-  }
-
-
-  if(
-    amount >
-    currentWithdrawBalance
-  ){
-
-    notif(
-      "❌ Saldo tidak mencukupi."
-    );
-
-    return;
-
   }
 
 
   if(!bank){
 
     notif(
-      "⚠️ Pilih bank atau e-wallet."
+      "❌ Pilih bank atau e-wallet."
     );
 
     return;
-
   }
 
 
   if(!accountNumber){
 
     notif(
-      "⚠️ Nomor rekening wajib diisi."
+      "❌ Nomor rekening wajib diisi."
     );
 
     return;
-
   }
 
 
   if(!accountName){
 
     notif(
-      "⚠️ Nama pemilik wajib diisi."
+      "❌ Nama pemilik wajib diisi."
     );
 
     return;
-
   }
 
 
-  button.disabled=true;
+  button.disabled = true;
 
-  button.textContent=
+  button.textContent =
     "MEMPROSES...";
 
 
   try{
 
     const {
+      data,
       error
     } =
       await supabaseClient.rpc(
         "request_withdrawal",
         {
           p_amount:amount,
-
           p_bank:bank,
-
-          p_account_number:
-            accountNumber,
-
-          p_account_name:
-            accountName
+          p_account_number:accountNumber,
+          p_account_name:accountName
         }
       );
 
@@ -2042,14 +2629,12 @@ async function ajukanWithdraw(){
         error
       );
 
-
       notif(
         "❌ Withdraw gagal: " +
         error.message
       );
 
       return;
-
     }
 
 
@@ -2060,22 +2645,22 @@ async function ajukanWithdraw(){
 
     document.getElementById(
       "withdrawAmount"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "withdrawBank"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "withdrawAccount"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "withdrawName"
-    ).value="";
+    ).value = "";
 
 
     await loadWithdrawBalance(
@@ -2094,11 +2679,25 @@ async function ajukanWithdraw(){
 
   }
 
+  catch(error){
+
+    console.error(
+      "Withdraw error:",
+      error
+    );
+
+    notif(
+      "❌ Terjadi kesalahan: " +
+      error.message
+    );
+
+  }
+
   finally{
 
-    button.disabled=false;
+    button.disabled = false;
 
-    button.textContent=
+    button.textContent =
       "AJUKAN WITHDRAW";
 
   }
@@ -2106,13 +2705,11 @@ async function ajukanWithdraw(){
 }
 
 
-/* =========================================================
+/* =========================
    RIWAYAT WITHDRAW
-========================================================= */
+========================= */
 
-async function loadWithdrawHistory(
-  userId
-){
+async function loadWithdrawHistory(userId){
 
   const container =
     document.getElementById(
@@ -2158,20 +2755,15 @@ async function loadWithdrawHistory(
       '<div class="withdraw-empty">Gagal mengambil riwayat.</div>';
 
     return;
-
   }
 
 
-  if(
-    !data ||
-    !data.length
-  ){
+  if(!data || !data.length){
 
     container.innerHTML =
       '<div class="withdraw-empty">Belum ada pengajuan withdraw.</div>';
 
     return;
-
   }
 
 
@@ -2248,7 +2840,8 @@ async function loadWithdrawHistory(
               </strong>
 
               <span
-                class="withdraw-status ${cls}">
+                class="withdraw-status ${cls}"
+              >
                 ${text}
               </span>
 
@@ -2256,26 +2849,17 @@ async function loadWithdrawHistory(
 
 
             <div
-              style="
-                margin-top:7px;
-                color:#9caf9e;
-              ">
-
+              style="margin-top:7px;color:#9caf9e"
+            >
               ${item.bank || "-"}
-
               ••••${account.slice(-4)}
-
             </div>
 
 
             <div
-              style="
-                margin-top:5px;
-                color:#708975;
-              ">
-
+              style="margin-top:5px;color:#708975"
+            >
               ${date}
-
             </div>
 
           </div>
@@ -2288,9 +2872,9 @@ async function loadWithdrawHistory(
 }
 
 
-/* =========================================================
-   SESSION SAAT HALAMAN DIBUKA
-========================================================= */
+/* =========================
+   CEK SESSION SAAT BUKA
+========================= */
 
 async function cekSessionAwal(){
 
@@ -2306,20 +2890,28 @@ async function cekSessionAwal(){
       data.session.user
     );
 
+  }else{
+
+    document.getElementById(
+      "authArea"
+    ).style.display = "flex";
+
+
+    document.getElementById(
+      "userArea"
+    ).style.display = "none";
+
   }
 
 }
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
+/* =========================
+   SESSION BERUBAH
+========================= */
 
 supabaseClient.auth.onAuthStateChange(
-  async(
-    event,
-    session
-  ) => {
+  async function(event,session){
 
     if(session){
 
@@ -2327,46 +2919,41 @@ supabaseClient.auth.onAuthStateChange(
         session.user
       );
 
+    }else{
+
+      document.getElementById(
+        "authArea"
+      ).style.display = "flex";
+
+
+      document.getElementById(
+        "userArea"
+      ).style.display = "none";
+
     }
 
   }
 );
 
 
-/* =========================================================
-   CLICK OUTSIDE MODAL
-========================================================= */
+/* =========================
+   START
+========================= */
 
-document.addEventListener(
+cekSessionAwal();
+
+
+/* =========================
+   TUTUP MODAL KLIK LUAR
+========================= */
+
+document.getElementById(
+  "loginModal"
+).addEventListener(
   "click",
   function(e){
 
-    const withdraw =
-      document.getElementById(
-        "withdrawModal"
-      );
-
-
-    const login =
-      document.getElementById(
-        "loginModal"
-      );
-
-
-    if(
-      e.target ===
-      withdraw
-    ){
-
-      tutupWithdraw();
-
-    }
-
-
-    if(
-      e.target ===
-      login
-    ){
+    if(e.target === this){
 
       tutupLogin();
 
@@ -2376,31 +2963,20 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   ESC
-========================================================= */
-
-document.addEventListener(
-  "keydown",
+document.getElementById(
+  "withdrawModal"
+).addEventListener(
+  "click",
   function(e){
 
-    if(e.key === "Escape"){
+    if(e.target === this){
 
       tutupWithdraw();
-
-      tutupLogin();
 
     }
 
   }
 );
-
-
-/* =========================================================
-   START
-========================================================= */
-
-cekSessionAwal();
 
 </script>
 
