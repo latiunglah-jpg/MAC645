@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>MAC645 - Digital Store</title>
 
@@ -16,9 +11,9 @@
 
 <style>
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -47,51 +42,45 @@ button{
   cursor:pointer;
 }
 
+/* =========================================================
+   TOP ANNOUNCEMENT
+========================================================= */
 
-/* =====================================================
-   TOPBAR
-===================================================== */
-
-.topbar{
-  background:#061008;
-  border-bottom:1px solid #173d21;
-  padding:8px 15px;
-  overflow:hidden;
+.top-announcement{
+  width:100%;
+  background:#17451f;
+  border-bottom:1px solid #2c6938;
+  color:#dff5df;
+  text-align:center;
+  padding:7px 12px;
+  font-size:11px;
+  font-weight:bold;
 }
 
-.marquee{
-  max-width:1200px;
-  margin:auto;
-  color:#aaff38;
-  font-size:12px;
-  white-space:nowrap;
-}
-
-
-/* =====================================================
+/* =========================================================
    HEADER
-===================================================== */
+========================================================= */
 
 header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:#0b1e11;
-  border-bottom:1px solid #214d2b;
+  background:#081a0d;
+  border-bottom:1px solid #244d2d;
 }
 
-.navbar{
-  max-width:1200px;
+.header-main{
+  max-width:1250px;
+  min-height:58px;
   margin:auto;
-  min-height:70px;
-  padding:12px 20px;
+  padding:8px 15px;
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:18px;
 }
 
 .logo{
-  font-size:27px;
+  font-size:24px;
   font-weight:900;
   color:#fff;
   white-space:nowrap;
@@ -104,59 +93,60 @@ header{
 .nav-links{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:3px;
   flex:1;
   overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.nav-links::-webkit-scrollbar{
+  display:none;
 }
 
 .nav-item{
-  color:#d8e8db;
+  color:#dceadd;
   text-decoration:none;
   padding:9px 11px;
-  font-size:13px;
+  font-size:12px;
   border-radius:7px;
   white-space:nowrap;
 }
 
 .nav-item:hover{
-  background:#183b22;
+  background:#15371e;
   color:#aaff38;
 }
 
-.auth-area{
-  display:flex;
-  align-items:center;
-}
-
-.header-login{
+.login-top{
   border:0;
   background:#aaff38;
   color:#10200f;
-  padding:10px 17px;
-  border-radius:8px;
-  font-size:12px;
+  padding:9px 18px;
+  border-radius:7px;
   font-weight:900;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.login-top:hover{
+  background:#c0ff72;
 }
 
 .user-area{
   display:none;
   align-items:center;
   gap:10px;
-}
-
-.user-info{
-  text-align:right;
+  white-space:nowrap;
 }
 
 .user-email{
   font-size:10px;
-  color:#91a695;
-  margin-bottom:3px;
+  color:#8fa994;
 }
 
 .balance{
   color:#aaff38;
-  font-size:13px;
+  font-size:11px;
   font-weight:bold;
 }
 
@@ -164,294 +154,121 @@ header{
   border:1px solid #47754f;
   background:#14351e;
   color:#fff;
-  padding:8px 12px;
+  padding:8px 11px;
   border-radius:7px;
   font-size:11px;
 }
 
-
-/* =====================================================
+/* =========================================================
    MAIN
-===================================================== */
+========================================================= */
 
 .container{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
-  padding:30px 20px;
+  padding:18px 15px 40px;
 }
 
+/* =========================================================
+   BANNER
+========================================================= */
 
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
+.banner-wrap{
   width:100%;
-  background:#0d2414;
-  border:1px solid #285b34;
-  border-radius:20px;
   overflow:hidden;
-  position:relative;
-  min-height:260px;
+  border-radius:14px;
+  border:1px solid #39733e;
+  background:#07130b;
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
-.hero-photo{
-  width:100%;
-  height:330px;
-  position:relative;
-  overflow:hidden;
-  background:#122f1a;
-}
-
-.hero-photo img{
-  width:100%;
-  height:100%;
+.banner-wrap img{
   display:block;
+  width:100%;
+  height:auto;
+  min-height:180px;
+  max-height:390px;
   object-fit:cover;
-  object-position:center;
 }
 
-.hero-photo::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    90deg,
-    rgba(0,0,0,.25),
-    rgba(0,0,0,0)
-  );
-  pointer-events:none;
+.banner-error{
+  display:none;
+  min-height:180px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#aaff38;
+  font-size:12px;
+  padding:20px;
 }
 
-
-/* =====================================================
+/* =========================================================
    SECTION
-===================================================== */
+========================================================= */
 
 .section{
-  margin-top:35px;
+  margin-top:25px;
 }
 
-.section-title{
+.section-header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:17px;
+  justify-content:space-between;
+  margin-bottom:12px;
 }
 
-.section-title h2{
-  font-size:22px;
-}
-
-.section-title span{
-  color:#809985;
-  font-size:12px;
-}
-
-
-/* =====================================================
-   JACKPOT HIJAU ELEGAN
-===================================================== */
-
-.jackpot-section{
-  width:100%;
-  margin-top:35px;
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  border:1px solid rgba(73,170,91,.40);
-  background:#07140b;
-  box-shadow:
-    0 12px 40px rgba(0,0,0,.45),
-    0 0 30px rgba(34,139,62,.12);
-}
-
-.jackpot-image{
-  width:100%;
-  height:420px;
-  display:block;
-  object-fit:cover;
-
-  filter:
-    hue-rotate(65deg)
-    saturate(1.12)
-    brightness(.82)
-    contrast(1.08);
-
-  transition:transform .5s ease;
-}
-
-.jackpot-section::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(3,25,12,.72) 0%,
-      rgba(8,55,24,.30) 45%,
-      rgba(4,35,15,.60) 100%
-    );
-
-  mix-blend-mode:multiply;
-}
-
-.jackpot-section::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:2;
-
-  border-radius:20px;
-
-  box-shadow:
-    inset 0 0 50px rgba(48,180,75,.18),
-    inset 0 0 120px rgba(10,70,28,.25);
-}
-
-.jackpot-section:hover .jackpot-image{
-  transform:scale(1.02);
-}
-/* =====================================================
-   LOGO TENGAH JACKPOT - MAC645
-===================================================== */
-
-.mac645-jackpot-logo{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  z-index:10;
-
+.section-header h2{
+  font-size:18px;
   color:#fff;
-  font-size:52px;
-  font-weight:900;
-  letter-spacing:4px;
-  line-height:1;
-
-  padding:12px 25px;
-
-  background:rgba(7,20,11,.96);
-
-  border:2px solid #aaff38;
-  border-radius:12px;
-
-  text-shadow:
-    0 2px 5px rgba(0,0,0,.9),
-    0 0 15px rgba(170,255,56,.55);
-
-  box-shadow:
-    0 0 15px rgba(170,255,56,.35),
-    0 0 35px rgba(170,255,56,.18);
 }
 
-.mac645-jackpot-logo span{
-  color:#aaff38;
+.section-header span{
+  font-size:11px;
+  color:#78917e;
 }
 
-@media(max-width:650px){
-
-  .mac645-jackpot-logo{
-    font-size:32px;
-    letter-spacing:2px;
-    padding:9px 17px;
-    border-radius:9px;
-  }
-
-}
-
-@media(max-width:430px){
-
-  .mac645-jackpot-logo{
-    font-size:26px;
-    padding:8px 14px;
-  }
-
-}
-
-/* =====================================================
-   GAME SECTION
-===================================================== */
-
-.game-section{
-  margin-top:38px;
-}
-
-.game-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:15px;
-}
-
-.game-title h2{
-  font-size:22px;
-}
-
-.game-title span{
-  color:#809985;
-  font-size:12px;
-}
-
-
-/* =====================================================
+/* =========================================================
    GAME LIST
-===================================================== */
+========================================================= */
 
-.game-list{
+.game-scroll{
+  width:100%;
   display:flex;
-  gap:15px;
+  gap:13px;
   overflow-x:auto;
-  padding:4px 3px 15px;
-  scroll-behavior:smooth;
+  padding:3px 2px 14px;
   scrollbar-width:thin;
+  scrollbar-color:#39663f transparent;
 }
 
-.game-list::-webkit-scrollbar{
+.game-scroll::-webkit-scrollbar{
   height:5px;
 }
 
-.game-list::-webkit-scrollbar-track{
-  background:#0c1e11;
+.game-scroll::-webkit-scrollbar-track{
+  background:transparent;
 }
 
-.game-list::-webkit-scrollbar-thumb{
-  background:#315d3b;
-  border-radius:20px;
+.game-scroll::-webkit-scrollbar-thumb{
+  background:#39663f;
+  border-radius:10px;
 }
-
-
-/* =====================================================
-   GAME CARD
-===================================================== */
 
 .game-card{
-  flex:0 0 175px;
-  background:#0d2414;
-  border:1px solid #244d2d;
-  border-radius:15px;
-  overflow:hidden;
-  transition:.25s;
+  flex:0 0 125px;
+  text-align:center;
   cursor:pointer;
 }
 
-.game-card:hover{
-  transform:translateY(-5px);
-  border-color:#aaff38;
-  box-shadow:0 10px 25px rgba(0,0,0,.35);
-}
-
 .game-image{
-  width:100%;
-  height:175px;
-  background:#122f1a;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:125px;
+  height:125px;
+  border-radius:14px;
   overflow:hidden;
+  border:2px solid #5e963f;
+  background:#102819;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  transition:.2s;
 }
 
 .game-image img{
@@ -461,143 +278,278 @@ header{
   display:block;
 }
 
-.game-placeholder{
-  font-size:55px;
+.game-card:hover .game-image{
+  transform:translateY(-4px);
+  border-color:#aaff38;
+  box-shadow:
+    0 7px 20px rgba(170,255,56,.15);
 }
 
 .game-name{
-  min-height:58px;
-  padding:11px;
-  display:flex;
-  align-items:center;
-  font-size:13px;
-  line-height:1.35;
-  font-weight:bold;
+  margin-top:7px;
   color:#fff;
+  font-size:10px;
+  font-weight:bold;
+  line-height:1.3;
+  min-height:28px;
 }
 
+/* =========================================================
+   JACKPOT
+========================================================= */
 
-/* =====================================================
-   PRODUCT
-===================================================== */
+.jackpot-section{
+  width:100%;
+  margin-top:28px;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid rgba(73,170,91,.45);
+  background:#07140b;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.45),
+    0 0 30px rgba(34,139,62,.12);
+}
+
+.jackpot-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.12),
+      rgba(0,0,0,.38)
+    );
+  pointer-events:none;
+}
+
+.jackpot-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  border:1px solid rgba(170,255,56,.16);
+  border-radius:20px;
+  box-shadow:
+    inset 0 0 35px rgba(170,255,56,.08);
+  pointer-events:none;
+}
+
+.jackpot-image{
+  width:100%;
+  height:420px;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  filter:
+    hue-rotate(65deg)
+    saturate(1.12)
+    brightness(.82)
+    contrast(1.08);
+}
+
+.jackpot-center{
+  position:absolute;
+  z-index:10;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:min(560px,82%);
+  padding:27px 30px;
+  text-align:center;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3,18,8,.97),
+      rgba(5,28,12,.96)
+    );
+
+  border:2px solid #aaff38;
+  border-radius:18px;
+
+  box-shadow:
+    0 0 20px rgba(170,255,56,.35),
+    0 0 55px rgba(170,255,56,.18),
+    inset 0 0 30px rgba(170,255,56,.08);
+
+  backdrop-filter:blur(5px);
+}
+
+.mac645-title{
+  font-size:58px;
+  font-weight:900;
+  letter-spacing:6px;
+  line-height:1;
+  color:#fff;
+  text-shadow:
+    0 3px 8px rgba(0,0,0,.9),
+    0 0 18px rgba(170,255,56,.45);
+}
+
+.mac645-title span{
+  color:#aaff38;
+}
+
+.jackpot-number{
+  margin-top:18px;
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#fff;
+  text-shadow:
+    0 0 10px rgba(255,255,255,.35),
+    0 0 25px rgba(170,255,56,.30);
+  transition:transform .15s ease;
+}
+
+.jackpot-number.pop{
+  transform:scale(1.06);
+}
+
+.jackpot-label{
+  margin-top:8px;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:5px;
+  color:#aaff38;
+}
+
+/* =========================================================
+   ACCOUNT / PRODUCT
+========================================================= */
+
+.account-box{
+  background:#0b2112;
+  border:1px solid #244d2d;
+  border-radius:13px;
+  padding:20px;
+}
+
+.account-box h3{
+  font-size:16px;
+  color:#aaff38;
+}
+
+.account-box p{
+  margin-top:7px;
+  color:#8fa994;
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* =========================================================
+   PRODUCT CARDS
+========================================================= */
 
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  gap:14px;
 }
 
 .product{
-  background:#0d2414;
+  background:#0b2112;
   border:1px solid #244d2d;
   border-radius:13px;
   overflow:hidden;
 }
 
 .product-img{
-  height:120px;
+  height:100px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:50px;
-  background:#122f1a;
+  font-size:40px;
+  background:#102819;
 }
 
 .product-body{
-  padding:15px;
+  padding:14px;
 }
 
 .product-body h3{
-  font-size:15px;
-  margin-bottom:7px;
+  font-size:14px;
 }
 
 .product-body p{
-  color:#7f9885;
-  font-size:12px;
+  margin-top:5px;
+  color:#829a87;
+  font-size:11px;
 }
 
 .price{
+  margin-top:12px;
   color:#aaff38;
-  font-size:17px;
-  font-weight:bold;
-  margin:13px 0;
+  font-weight:900;
+  font-size:15px;
 }
 
 .buy{
   width:100%;
-  padding:10px;
+  margin-top:12px;
+  padding:9px;
   border:0;
   border-radius:7px;
   background:#aaff38;
   color:#10200f;
-  font-weight:bold;
+  font-size:11px;
+  font-weight:900;
 }
 
-
-/* =====================================================
-   ACCOUNT
-===================================================== */
-
-.account-box{
-  background:#0d2414;
-  border:1px solid #244d2d;
-  border-radius:15px;
-  padding:25px;
-}
-
-.account-box h3{
-  color:#aaff38;
-}
-
-.account-box p{
-  color:#91a695;
-  margin-top:8px;
-  line-height:1.6;
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
+/* =========================================================
+   LOGIN MODAL
+========================================================= */
 
 .login-overlay{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.82);
   z-index:3000;
+  background:rgba(0,0,0,.82);
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:18px;
 }
 
 .login-box{
   width:100%;
-  max-width:420px;
+  max-width:400px;
   background:#0d2414;
   border:1px solid #39733e;
-  border-radius:17px;
-  padding:28px;
+  border-radius:16px;
+  padding:25px;
   box-shadow:0 25px 80px rgba(0,0,0,.6);
+}
+
+.login-close{
+  float:right;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:25px;
 }
 
 .login-box h2{
   color:#aaff38;
-  margin-bottom:7px;
+  font-size:23px;
+  margin-bottom:6px;
 }
 
-.login-box p{
-  color:#879e8d;
+.login-box .subtitle{
+  color:#8fa994;
   font-size:12px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .login-box label{
   display:block;
+  color:#d7e8da;
   font-size:12px;
-  color:#cfe0d2;
-  margin:13px 0 7px;
+  font-weight:bold;
+  margin:12px 0 6px;
 }
 
 .login-box input{
@@ -614,46 +566,38 @@ header{
   border-color:#aaff38;
 }
 
-.login-btn{
+.login-button,
+.register-button{
   width:100%;
-  margin-top:18px;
   padding:12px;
-  border:0;
   border-radius:8px;
-  background:#aaff38;
-  color:#10200f;
   font-weight:900;
 }
 
-.register-btn{
-  width:100%;
+.login-button{
+  margin-top:18px;
+  border:0;
+  background:#aaff38;
+  color:#10200f;
+}
+
+.register-button{
   margin-top:10px;
-  padding:12px;
   border:1px solid #466f4d;
-  border-radius:8px;
   background:#14351e;
   color:#fff;
 }
 
-.close-login{
-  float:right;
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:27px;
-}
-
-
-/* =====================================================
+/* =========================================================
    WITHDRAW
-===================================================== */
+========================================================= */
 
 .withdraw-overlay{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.82);
   z-index:5000;
+  background:rgba(0,0,0,.84);
   align-items:center;
   justify-content:center;
   padding:18px;
@@ -664,28 +608,17 @@ header{
   max-width:500px;
   max-height:92vh;
   overflow:auto;
+  position:relative;
   background:#102a19;
   border:1px solid #39733e;
   border-radius:16px;
   padding:25px;
-  position:relative;
-  box-shadow:0 25px 80px rgba(0,0,0,.6);
-}
-
-.withdraw-box h2{
-  color:#aaff38;
-  margin-bottom:6px;
-}
-
-.withdraw-subtitle{
-  color:#9caf9e;
-  font-size:12px;
-  margin-bottom:18px;
+  box-shadow:0 25px 80px rgba(0,0,0,.65);
 }
 
 .withdraw-close{
   position:absolute;
-  right:14px;
+  right:13px;
   top:12px;
   width:36px;
   height:36px;
@@ -693,7 +626,20 @@ header{
   border-radius:50%;
   background:#194b27;
   color:#fff;
-  font-size:25px;
+  font-size:24px;
+}
+
+.withdraw-box h2{
+  color:#aaff38;
+  font-size:20px;
+}
+
+.withdraw-subtitle{
+  margin-top:5px;
+  margin-bottom:18px;
+  color:#9caf9e;
+  font-size:12px;
+  line-height:1.5;
 }
 
 .withdraw-balance{
@@ -753,12 +699,13 @@ header{
 
 .withdraw-submit:disabled{
   opacity:.55;
+  cursor:not-allowed;
 }
 
 .withdraw-history{
   margin-top:24px;
-  border-top:1px solid #285d35;
   padding-top:20px;
+  border-top:1px solid #285d35;
 }
 
 .withdraw-history h3{
@@ -802,550 +749,61 @@ header{
   font-size:12px;
 }
 
-
-/* =====================================================
-   NOTIFICATION
-===================================================== */
-
-#loginStatus{
-  position:fixed;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#fff;
-  color:#111;
-  padding:11px 18px;
-  border-radius:8px;
-  box-shadow:0 5px 20px rgba(0,0,0,.3);
-  font-size:12px;
-  font-weight:bold;
-  display:none;
-  z-index:9000;
-}
-
-
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 footer{
-  margin-top:60px;
-  padding:30px 20px;
+  margin-top:35px;
+  padding:25px 15px;
   text-align:center;
   color:#607764;
   border-top:1px solid #1c3e25;
-  font-size:12px;
+  font-size:11px;
 }
 
-
-/* =====================================================
+/* =========================================================
    RESPONSIVE
-===================================================== */
+========================================================= */
 
-@media(max-width:950px){
-
-  .navbar{
-    flex-wrap:wrap;
-  }
-
-  .nav-links{
-    order:3;
-    width:100%;
-    flex-basis:100%;
-  }
+@media(max-width:1000px){
 
   .products{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .jackpot-image{
-    height:330px;
-  }
-
 }
 
+@media(max-width:900px){
 
-@media(max-width:650px){
-
-  .topbar{
-    padding:7px 10px;
-  }
-
-  .navbar{
-    padding:10px;
+  .header-main{
     gap:10px;
   }
 
   .logo{
-    font-size:23px;
+    font-size:21px;
   }
 
-  .container{
-    padding:20px 12px;
+  .nav-links{
+    gap:0;
   }
 
-  .hero{
-    min-height:200px;
-    border-radius:15px;
-  }
-
-  .hero-photo{
-    height:200px;
-  }
-
-  .products{
-    grid-template-columns:1fr;
+  .nav-item{
+    font-size:11px;
+    padding:8px;
   }
 
   .game-card{
-    flex:0 0 145px;
+    flex-basis:115px;
   }
 
   .game-image{
-    height:145px;
-  }
-
-  .game-name{
-    font-size:12px;
-  }
-
-  .section-title h2,
-  .game-title h2{
-    font-size:19px;
-  }
-
-  .section-title span,
-  .game-title span{
-    font-size:10px;
-  }
-
-  .user-area{
-    margin-left:auto;
-  }
-
-  .jackpot-section{
-    margin-top:25px;
-    border-radius:15px;
-  }
-
-  .jackpot-image{
-    height:230px;
+    width:115px;
+    height:115px;
   }
 
 }
 
-
-@media(max-width:430px){
-
-  .hero-photo{
-    height:180px;
-  }
-
-  .game-card{
-    flex:0 0 135px;
-  }
-
-  .game-image{
-    height:135px;
-  }
-
-  .jackpot-image{
-    height:200px;
-  }
-
-}
-
-
-/* =====================================================
-   IMAGE ERROR
-===================================================== */
-
-.image-error{
-  display:none;
-  font-size:45px;
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<div id="loginStatus"></div>
-
-
-<!-- =====================================================
-     TOPBAR
-===================================================== -->
-
-<div class="topbar">
-
-  <div class="marquee">
-
-    📢 INFORMASI MAC645 — Selamat datang di MAC645!
-    Nikmati kemudahan pembelian produk digital.
-
-  </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-  <div class="navbar">
-
-
-    <div class="logo">
-      MAC<span>645</span>
-    </div>
-
-
-    <div class="nav-links">
-
-      <a
-        class="nav-item"
-        href="#beranda"
-      >
-        Beranda
-      </a>
-
-
-      <a
-        class="nav-item"
-        href="#produk"
-      >
-        Produk
-      </a>
-
-
-      <a
-        class="nav-item"
-        href="#kategori"
-      >
-        Jackpot
-      </a>
-
-
-      <a
-        class="nav-item"
-        href="deposit.html"
-      >
-        Deposit
-      </a>
-
-
-      <a
-        class="nav-item"
-        href="#"
-        onclick="bukaWithdraw();return false;"
-      >
-        💸 Withdraw
-      </a>
-
-
-      <a
-        class="nav-item"
-        href="#akun"
-        onclick="cekLogin();return false;"
-      >
-        Akun Saya
-      </a>
-
-    </div>
-
-
-    <!-- BELUM LOGIN -->
-
-    <div
-      id="authArea"
-      class="auth-area"
-    >
-
-      <button
-        class="header-login"
-        onclick="bukaLogin()"
-      >
-        LOGIN
-      </button>
-
-    </div>
-
-
-    <!-- SUDAH LOGIN -->
-
-    <div
-      id="userArea"
-      class="user-area"
-    >
-
-      <div class="user-info">
-
-        <div
-          id="userEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-
-        <div
-          id="saldoUser"
-          class="balance"
-        >
-          Saldo Rp0
-        </div>
-
-      </div>
-
-
-      <button
-        class="logout"
-        onclick="logoutUser()"
-      >
-        Keluar
-      </button>
-
-    </div>
-
-
-  </div>
-
-</header>
-
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main id="beranda">
-
-<div class="container">
-
-
-<!-- =====================================================
-     BANNER FOTO
-===================================================== -->
-
-<section class="hero">
-
-  <div class="hero-photo">
-
-    <img
-      src="banner-bonus.jpg"
-      alt="MAC645 Banner"
-      onerror="this.style.display='none';document.getElementById('bannerFallback').style.display='flex';"
-    >
-
-
-    <div
-      id="bannerFallback"
-      style="
-        display:none;
-        width:100%;
-        height:100%;
-        align-items:center;
-        justify-content:center;
-        flex-direction:column;
-        gap:10px;
-        color:#aaff38;
-        text-align:center;
-      "
-    >
-
-      <strong style="font-size:28px;">
-        MAC645
-      </strong>
-
-      <span style="color:#9db4a1;">
-        Digital Store
-      </span>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     JACKPOT
-===================================================== -->
-
-<section id="kategori" class="jackpot-section">
-
-  <img
-    class="jackpot-image"
-    src="https://lobi89trabas.com/_next/image?url=https%3A%2F%2Flobi89trabas.com%2Fstorage%2Fwebpersonalize%2F2f8faa22-a748-4e89-a6c2-4eb9a1a4af11.gif&w=3840&q=75"
-    alt="MAC645 Jackpot"
-  >
-
-  <!-- PENUTUP TULISAN LAMA -->
-  <div class="jackpot-center">
-
-    <div class="mac645-title">
-      MAC<span>645</span>
-    </div>
-
-    <div class="jackpot-number" id="jackpotNumber">
-      6,529,679,168
-    </div>
-
-    <div class="jackpot-label">
-      JACKPOT
-    </div>
-
-  </div>
-
-</section>
-  <style>
-/* ==============================
-   MAC645 JACKPOT
-================================ */
-
-.jackpot-section{
-  width:100%;
-  margin-top:35px;
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  border:1px solid rgba(73,170,91,.40);
-  background:#07140b;
-  box-shadow:
-    0 12px 40px rgba(0,0,0,.45),
-    0 0 30px rgba(34,139,62,.12);
-}
-
-.jackpot-image{
-  width:100%;
-  height:420px;
-  display:block;
-  object-fit:cover;
-
-  filter:
-    hue-rotate(65deg)
-    saturate(1.12)
-    brightness(.82)
-    contrast(1.08);
-
-  transition:transform .5s ease;
-}
-
-.jackpot-section:hover .jackpot-image{
-  transform:scale(1.02);
-}
-
-/* Lapisan gelap untuk menutup tulisan LOBI89 */
-.jackpot-section::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(3,25,12,.72) 0%,
-      rgba(8,55,24,.30) 45%,
-      rgba(4,35,15,.60) 100%
-    );
-
-  mix-blend-mode:multiply;
-}
-
-/* Bingkai bagian tengah */
-.jackpot-center{
-  position:absolute;
-  z-index:10;
-
-  top:50%;
-  left:50%;
-
-  transform:translate(-50%,-50%);
-
-  width:min(560px,80%);
-  padding:25px 35px;
-
-  text-align:center;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,18,8,.97),
-      rgba(5,28,12,.96)
-    );
-
-  border:2px solid #aaff38;
-  border-radius:18px;
-
-  box-shadow:
-    0 0 20px rgba(170,255,56,.35),
-    0 0 55px rgba(170,255,56,.18),
-    inset 0 0 30px rgba(170,255,56,.08);
-
-  backdrop-filter:blur(4px);
-}
-
-/* MAC645 */
-.mac645-title{
-  font-size:58px;
-  font-weight:1000;
-  letter-spacing:6px;
-  line-height:1;
-
-  color:#ffffff;
-
-  text-shadow:
-    0 3px 8px rgba(0,0,0,.9),
-    0 0 18px rgba(170,255,56,.45);
-}
-
-.mac645-title span{
-  color:#aaff38;
-}
-
-/* Angka jackpot */
-.jackpot-number{
-  margin-top:18px;
-
-  font-size:42px;
-  font-weight:900;
-  letter-spacing:2px;
-
-  color:#ffffff;
-
-  text-shadow:
-    0 0 10px rgba(255,255,255,.35),
-    0 0 25px rgba(170,255,56,.30);
-
-  transition:transform .15s ease;
-}
-
-/* Efek saat angka berubah */
-.jackpot-number.pop{
-  transform:scale(1.06);
-}
-
-/* Label */
-.jackpot-label{
-  margin-top:8px;
-
-  font-size:14px;
-  font-weight:800;
-  letter-spacing:5px;
-
-  color:#aaff38;
-}
-
-/* Responsive */
 @media(max-width:650px){
 
   .jackpot-image{
@@ -1353,7 +811,7 @@ footer{
   }
 
   .jackpot-center{
-    width:82%;
+    width:84%;
     padding:20px 15px;
   }
 
@@ -1371,39 +829,271 @@ footer{
     font-size:11px;
     letter-spacing:3px;
   }
+
+}
+
+@media(max-width:600px){
+
+  .top-announcement{
+    font-size:9px;
+  }
+
+  .header-main{
+    padding:8px 10px;
+    flex-wrap:wrap;
+  }
+
+  .nav-links{
+    order:3;
+    width:100%;
+    border-top:1px solid #183c22;
+    padding-top:5px;
+  }
+
+  .container{
+    padding:12px 8px 30px;
+  }
+
+  .banner-wrap{
+    border-radius:10px;
+  }
+
+  .banner-wrap img{
+    min-height:130px;
+  }
+
+  .section-header h2{
+    font-size:15px;
+  }
+
+  .game-card{
+    flex-basis:100px;
+  }
+
+  .game-image{
+    width:100px;
+    height:100px;
+    border-radius:11px;
+  }
+
+  .game-name{
+    font-size:9px;
+  }
+
 }
 
 @media(max-width:430px){
+
+  .products{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .product-body{
+    padding:10px;
+  }
+
+  .product-img{
+    height:80px;
+  }
 
   .jackpot-image{
     height:250px;
   }
 
   .jackpot-center{
-    width:84%;
+    width:88%;
     padding:17px 10px;
   }
 
   .mac645-title{
     font-size:30px;
+    letter-spacing:3px;
   }
 
   .jackpot-number{
     font-size:21px;
+    letter-spacing:0;
   }
 
 }
-<!-- =====================================================
-     GAME POPULER
-===================================================== -->
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =======================================================
+     TOP
+======================================================= -->
+
+<div class="top-announcement">
+  📢 SELAMAT DATANG DI MAC645 — DIGITAL STORE TERPERCAYA
+</div>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+  <div class="header-main">
+
+    <div class="logo">
+      MAC<span>645</span>
+    </div>
+
+    <nav class="nav-links">
+
+      <a class="nav-item" href="#beranda">
+        Beranda
+      </a>
+
+      <a class="nav-item" href="#game">
+        Game
+      </a>
+
+      <a class="nav-item" href="#produk">
+        Produk
+      </a>
+
+      <a class="nav-item" href="#jackpot">
+        Jackpot
+      </a>
+
+      <a class="nav-item" href="deposit.html">
+        Deposit
+      </a>
+
+      <a
+        class="nav-item"
+        href="#"
+        onclick="bukaWithdraw();return false;"
+      >
+        💸 Withdraw
+      </a>
+
+      <a
+        class="nav-item"
+        href="#akun"
+        onclick="cekLogin();return false;"
+      >
+        Akun Saya
+      </a>
+
+    </nav>
+
+
+    <div id="authArea">
+
+      <button
+        class="login-top"
+        onclick="bukaLogin()"
+      >
+        LOGIN
+      </button>
+
+    </div>
+
+
+    <div
+      id="userArea"
+      class="user-area"
+    >
+
+      <div>
+
+        <div
+          id="userEmail"
+          class="user-email"
+        >
+          -
+        </div>
+
+        <div
+          id="saldoUser"
+          class="balance"
+        >
+          Saldo Rp0
+        </div>
+
+      </div>
+
+      <button
+        class="logout"
+        onclick="logoutUser()"
+      >
+        Keluar
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main id="beranda">
+
+<div class="container">
+
+
+<!-- =======================================================
+     BANNER
+======================================================= -->
+
+<section class="banner-wrap">
+
+  <img
+    id="mainBanner"
+    src="banner-bonus.jpg"
+    alt="MAC645 Bonus New Member"
+    onerror="bannerError()"
+  >
+
+  <div
+    id="bannerError"
+    class="banner-error"
+  >
+
+    <div>
+
+      <strong>
+        Banner MAC645 belum dapat dimuat
+      </strong>
+
+      <br>
+
+      <span>
+        Pastikan file
+        <b>banner-bonus.jpg</b>
+        ada di repository MAC645.
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     GAME POPULER — 11 GAME
+======================================================= -->
 
 <section
   id="game"
-  class="game-section"
+  class="section"
 >
 
-
-  <div class="game-title">
+  <div class="section-header">
 
     <h2>
       🎮 Game Populer
@@ -1416,14 +1106,14 @@ footer{
   </div>
 
 
-  <div class="game-list">
+  <div class="game-scroll">
 
 
     <!-- GAME 1 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Mahjong Wins 3 - Black Scatter')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1431,32 +1121,23 @@ footer{
         <img
           src="mahjong3.jpg"
           alt="Mahjong Wins 3 - Black Scatter"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          🎰
-        </div>
 
       </div>
 
-
       <div class="game-name">
-        Mahjong Wins 3 - Black Scatter
+        Mahjong Wins 3<br>
+        Black Scatter
       </div>
 
     </div>
-
 
 
     <!-- GAME 2 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Gates of Olympus 1000')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1464,32 +1145,23 @@ footer{
         <img
           src="olympus 1000.jpg"
           alt="Gates of Olympus 1000"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          ⚡
-        </div>
 
       </div>
 
-
       <div class="game-name">
-        Gates of Olympus 1000
+        Gates of Olympus<br>
+        1000
       </div>
 
     </div>
-
 
 
     <!-- GAME 3 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Gates of Olympus Super Scatter')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1497,32 +1169,23 @@ footer{
         <img
           src="olympus aja.jpg"
           alt="Gates of Olympus Super Scatter"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          ⚡
-        </div>
 
       </div>
 
-
       <div class="game-name">
-        Gates of Olympus Super Scatter
+        Gates of Olympus<br>
+        Super Scatter
       </div>
 
     </div>
-
 
 
     <!-- GAME 4 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Mahjong Ways 2')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1530,18 +1193,9 @@ footer{
         <img
           src="mahjong 2.jpg"
           alt="Mahjong Ways 2"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          🀄
-        </div>
 
       </div>
-
 
       <div class="game-name">
         Mahjong Ways 2
@@ -1550,12 +1204,11 @@ footer{
     </div>
 
 
-
     <!-- GAME 5 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Mahjong Ways')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1563,18 +1216,9 @@ footer{
         <img
           src="mahjong ways.png"
           alt="Mahjong Ways"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          🀄
-        </div>
 
       </div>
-
 
       <div class="game-name">
         Mahjong Ways
@@ -1583,12 +1227,11 @@ footer{
     </div>
 
 
-
     <!-- GAME 6 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Wild Bounty Showdown')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1596,32 +1239,23 @@ footer{
         <img
           src="wild bounty.jpg"
           alt="Wild Bounty Showdown"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          🤠
-        </div>
 
       </div>
 
-
       <div class="game-name">
-        Wild Bounty Showdown
+        Wild Bounty<br>
+        Showdown
       </div>
 
     </div>
-
 
 
     <!-- GAME 7 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Lucky Neko')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1629,18 +1263,9 @@ footer{
         <img
           src="lucky neko.jpg"
           alt="Lucky Neko"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          🐱
-        </div>
 
       </div>
-
 
       <div class="game-name">
         Lucky Neko
@@ -1649,12 +1274,11 @@ footer{
     </div>
 
 
-
     <!-- GAME 8 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Treasures of Aztec')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1662,18 +1286,9 @@ footer{
         <img
           src="Treasures of Aztec.jpg"
           alt="Treasures of Aztec"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          🗿
-        </div>
 
       </div>
-
 
       <div class="game-name">
         Treasures of Aztec
@@ -1682,12 +1297,11 @@ footer{
     </div>
 
 
-
     <!-- GAME 9 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Wild Ape #3258')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1695,18 +1309,9 @@ footer{
         <img
           src="Wild-Ape-3258.jpg"
           alt="Wild Ape #3258"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          🦍
-        </div>
 
       </div>
-
 
       <div class="game-name">
         Wild Ape #3258
@@ -1715,12 +1320,11 @@ footer{
     </div>
 
 
-
     <!-- GAME 10 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Gates of Gatot Kaca 1000')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1728,32 +1332,23 @@ footer{
         <img
           src="Gates-of-Gatot-Kaca-1000.jpg"
           alt="Gates of Gatot Kaca 1000"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          ⚡
-        </div>
 
       </div>
 
-
       <div class="game-name">
-        Gates of Gatot Kaca 1000
+        Gates of Gatot Kaca<br>
+        1000
       </div>
 
     </div>
-
 
 
     <!-- GAME 11 -->
 
     <div
       class="game-card"
-      onclick="pilihGame('Starlight Princess Super Scatter')"
+      onclick="cekLogin()"
     >
 
       <div class="game-image">
@@ -1761,21 +1356,13 @@ footer{
         <img
           src="starlight princess super scatter.jpg"
           alt="Starlight Princess Super Scatter"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
         >
-
-        <div
-          class="game-placeholder"
-          style="display:none"
-        >
-          👑
-        </div>
 
       </div>
 
-
       <div class="game-name">
-        Starlight Princess Super Scatter
+        Starlight Princess<br>
+        Super Scatter
       </div>
 
     </div>
@@ -1786,25 +1373,61 @@ footer{
 </section>
 
 
+<!-- =======================================================
+     JACKPOT MAC645
+======================================================= -->
 
-<!-- =====================================================
-     PRODUK DIGITAL
-===================================================== -->
+<section
+  id="jackpot"
+  class="jackpot-section"
+>
+
+  <img
+    class="jackpot-image"
+    src="https://lobi89trabas.com/_next/image?url=https%3A%2F%2Flobi89trabas.com%2Fstorage%2Fwebpersonalize%2F2f8faa22-a748-4e89-a6c2-4eb9a1a4af11.gif&w=3840&q=75"
+    alt="MAC645 Jackpot"
+  >
+
+
+  <div class="jackpot-center">
+
+    <div class="mac645-title">
+      MAC<span>645</span>
+    </div>
+
+    <div
+      class="jackpot-number"
+      id="jackpotNumber"
+    >
+      6,529,679,168
+    </div>
+
+    <div class="jackpot-label">
+      JACKPOT
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     PRODUK
+======================================================= -->
 
 <section
   id="produk"
   class="section"
 >
 
-
-  <div class="section-title">
+  <div class="section-header">
 
     <h2>
-      Produk Digital
+      Produk MAC645
     </h2>
 
     <span>
-      Produk MAC645
+      Produk digital
     </span>
 
   </div>
@@ -1812,8 +1435,6 @@ footer{
 
   <div class="products">
 
-
-    <!-- PULSA -->
 
     <div class="product">
 
@@ -1847,9 +1468,6 @@ footer{
     </div>
 
 
-
-    <!-- DATA -->
-
     <div class="product">
 
       <div class="product-img">
@@ -1882,27 +1500,24 @@ footer{
     </div>
 
 
-
-    <!-- GAME -->
-
     <div class="product">
 
       <div class="product-img">
-        🎮
+        ⚡
       </div>
 
       <div class="product-body">
 
         <h3>
-          Voucher Game
+          Token PLN 50.000
         </h3>
 
         <p>
-          Top up game
+          Token listrik PLN
         </p>
 
         <div class="price">
-          Rp20.000
+          Rp50.000
         </div>
 
         <button
@@ -1916,9 +1531,6 @@ footer{
 
     </div>
 
-
-
-    <!-- EWALLET -->
 
     <div class="product">
 
@@ -1952,93 +1564,21 @@ footer{
     </div>
 
 
-
-    <!-- PLN -->
-
-    <div class="product">
-
-      <div class="product-img">
-        ⚡
-      </div>
-
-      <div class="product-body">
-
-        <h3>
-          Token PLN 50.000
-        </h3>
-
-        <p>
-          Token listrik
-        </p>
-
-        <div class="price">
-          Rp50.000
-        </div>
-
-        <button
-          class="buy"
-          onclick="cekLogin()"
-        >
-          BELI
-        </button>
-
-      </div>
-
-    </div>
-
-
-
-    <!-- STREAMING -->
-
-    <div class="product">
-
-      <div class="product-img">
-        🎬
-      </div>
-
-      <div class="product-body">
-
-        <h3>
-          Streaming
-        </h3>
-
-        <p>
-          Voucher streaming
-        </p>
-
-        <div class="price">
-          Rp30.000
-        </div>
-
-        <button
-          class="buy"
-          onclick="cekLogin()"
-        >
-          BELI
-        </button>
-
-      </div>
-
-    </div>
-
-
   </div>
 
 </section>
 
 
-
-<!-- =====================================================
+<!-- =======================================================
      AKUN
-===================================================== -->
+======================================================= -->
 
 <section
   id="akun"
   class="section"
 >
 
-
-  <div class="section-title">
+  <div class="section-header">
 
     <h2>
       Akun Saya
@@ -2052,7 +1592,6 @@ footer{
     <h3 id="accountTitle">
       Belum Login
     </h3>
-
 
     <p id="accountDescription">
       Silakan login untuk melihat saldo,
@@ -2069,22 +1608,18 @@ footer{
 </main>
 
 
-
-<!-- =====================================================
+<!-- =======================================================
      FOOTER
-===================================================== -->
+======================================================= -->
 
 <footer>
-
   MAC645 DIGITAL STORE © 2026
-
 </footer>
 
 
-
-<!-- =====================================================
+<!-- =======================================================
      LOGIN MODAL
-===================================================== -->
+======================================================= -->
 
 <div
   id="loginModal"
@@ -2094,19 +1629,17 @@ footer{
   <div class="login-box">
 
     <button
-      class="close-login"
+      class="login-close"
       onclick="tutupLogin()"
     >
       ×
     </button>
 
-
     <h2>
       MAC645
     </h2>
 
-
-    <p>
+    <p class="subtitle">
       Login atau daftar akun baru.
     </p>
 
@@ -2115,11 +1648,11 @@ footer{
       Email
     </label>
 
-
     <input
       type="email"
       id="email"
       placeholder="Email kamu"
+      autocomplete="email"
     >
 
 
@@ -2127,16 +1660,16 @@ footer{
       Password
     </label>
 
-
     <input
       type="password"
       id="password"
       placeholder="Password"
+      autocomplete="current-password"
     >
 
 
     <button
-      class="login-btn"
+      class="login-button"
       onclick="loginUser()"
     >
       LOGIN
@@ -2144,7 +1677,7 @@ footer{
 
 
     <button
-      class="register-btn"
+      class="register-button"
       onclick="registerUser()"
     >
       DAFTAR AKUN BARU
@@ -2155,10 +1688,9 @@ footer{
 </div>
 
 
-
-<!-- =====================================================
+<!-- =======================================================
      WITHDRAW MODAL
-===================================================== -->
+======================================================= -->
 
 <div
   id="withdrawModal"
@@ -2166,6 +1698,7 @@ footer{
 >
 
   <div class="withdraw-box">
+
 
     <button
       class="withdraw-close"
@@ -2192,7 +1725,6 @@ footer{
         Saldo tersedia
       </span>
 
-
       <strong id="withdrawBalance">
         Rp0
       </strong>
@@ -2204,11 +1736,11 @@ footer{
       Nominal Withdraw
     </label>
 
-
     <input
       type="text"
       id="withdrawAmount"
       inputmode="numeric"
+      autocomplete="off"
       placeholder="Contoh: 100.000"
       oninput="formatWithdraw(this)"
     >
@@ -2217,7 +1749,6 @@ footer{
     <label>
       Bank / E-Wallet
     </label>
-
 
     <select id="withdrawBank">
 
@@ -2272,7 +1803,6 @@ footer{
       Nomor Rekening / E-Wallet
     </label>
 
-
     <input
       type="text"
       id="withdrawAccount"
@@ -2285,7 +1815,6 @@ footer{
       Nama Pemilik
     </label>
 
-
     <input
       type="text"
       id="withdrawName"
@@ -2296,7 +1825,7 @@ footer{
     <button
       id="withdrawSubmit"
       class="withdraw-submit"
-      onclick="submitWithdraw()"
+      onclick="ajukanWithdraw()"
     >
       AJUKAN WITHDRAW
     </button>
@@ -2308,24 +1837,27 @@ footer{
         Riwayat Withdraw
       </h3>
 
-
       <div id="withdrawHistory">
-        Belum ada pengajuan withdraw.
+        Belum dimuat.
       </div>
 
     </div>
+
 
   </div>
 
 </div>
 
 
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
 
 <script>
 
-/* =====================================================
+/* =========================================================
    SUPABASE
-===================================================== */
+========================================================= */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -2334,47 +1866,47 @@ const SUPABASE_KEY =
 "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
 const supabaseClient =
-window.supabase.createClient(
+supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 
-/* =====================================================
+/* =========================================================
    NOTIFIKASI
-===================================================== */
+========================================================= */
 
 function notif(message){
+  alert(message);
+}
 
-  const box =
-    document.getElementById("loginStatus");
 
-  box.textContent =
-    message;
+/* =========================================================
+   BANNER
+========================================================= */
 
-  box.style.display =
-    "block";
+function bannerError(){
 
-  setTimeout(function(){
+  document.getElementById(
+    "mainBanner"
+  ).style.display="none";
 
-    box.style.display =
-      "none";
-
-  },3500);
+  document.getElementById(
+    "bannerError"
+  ).style.display="flex";
 
 }
 
 
-/* =====================================================
+/* =========================================================
    LOGIN MODAL
-===================================================== */
+========================================================= */
 
 function bukaLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display =
-    "flex";
+  ).style.display="flex";
 
 }
 
@@ -2383,83 +1915,14 @@ function tutupLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display =
-    "none";
+  ).style.display="none";
 
 }
 
 
-/* =====================================================
-   LOGIN
-===================================================== */
-
-async function loginUser(){
-
-  const email =
-    document.getElementById(
-      "email"
-    ).value.trim();
-
-  const password =
-    document.getElementById(
-      "password"
-    ).value;
-
-  if(!email || !password){
-
-    notif(
-      "Email dan password wajib diisi!"
-    );
-
-    return;
-
-  }
-
-  notif(
-    "Sedang login..."
-  );
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient.auth.signInWithPassword({
-
-      email:email,
-
-      password:password
-
-    });
-
-
-  if(error){
-
-    notif(
-      "❌ Login gagal: " +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  tutupLogin();
-
-  await tampilkanUser(
-    data.user
-  );
-
-  notif(
-    "✅ Login berhasil!"
-  );
-
-}
-
-
-/* =====================================================
+/* =========================================================
    REGISTER
-===================================================== */
+========================================================= */
 
 async function registerUser(){
 
@@ -2477,7 +1940,7 @@ async function registerUser(){
   if(!email || !password){
 
     notif(
-      "Email dan password wajib diisi!"
+      "Email dan password wajib diisi."
     );
 
     return;
@@ -2488,17 +1951,12 @@ async function registerUser(){
   if(password.length < 6){
 
     notif(
-      "Password minimal 6 karakter!"
+      "Password minimal 6 karakter."
     );
 
     return;
 
   }
-
-
-  notif(
-    "Mendaftarkan akun..."
-  );
 
 
   const {
@@ -2508,7 +1966,6 @@ async function registerUser(){
     await supabaseClient.auth.signUp({
 
       email:email,
-
       password:password
 
     });
@@ -2517,7 +1974,7 @@ async function registerUser(){
   if(error){
 
     notif(
-      "❌ Daftar gagal: " +
+      "Daftar gagal: " +
       error.message
     );
 
@@ -2526,52 +1983,100 @@ async function registerUser(){
   }
 
 
-  if(data.session){
-
-    tutupLogin();
-
-    await tampilkanUser(
-      data.user
-    );
-
-    notif(
-      "✅ Akun berhasil dibuat!"
-    );
-
-  }else{
-
-    notif(
-      "✅ Akun dibuat. Silakan cek email untuk konfirmasi."
-    );
-
-  }
+  notif(
+    "✅ Pendaftaran berhasil. " +
+    "Silakan cek email untuk konfirmasi jika diminta."
+  );
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function loginUser(){
+
+  const email =
+    document.getElementById(
+      "email"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "password"
+    ).value;
+
+
+  if(!email || !password){
+
+    notif(
+      "Email dan password wajib diisi."
+    );
+
+    return;
+
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.auth.signInWithPassword({
+
+      email:email,
+      password:password
+
+    });
+
+
+  if(error){
+
+    notif(
+      "Login gagal: " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  tutupLogin();
+
+  await tampilkanUser(
+    data.user
+  );
+
+}
+
+
+/* =========================================================
    TAMPILKAN USER
-===================================================== */
+========================================================= */
 
 async function tampilkanUser(user){
 
+  if(!user){
+    return;
+  }
+
+
   document.getElementById(
     "authArea"
-  ).style.display =
-    "none";
+  ).style.display="none";
 
 
   document.getElementById(
     "userArea"
-  ).style.display =
-    "flex";
+  ).style.display="flex";
 
 
   document.getElementById(
     "userEmail"
   ).textContent =
-    user.email ||
-    "User MAC645";
+    user.email || "-";
 
 
   document.getElementById(
@@ -2583,7 +2088,7 @@ async function tampilkanUser(user){
   document.getElementById(
     "accountDescription"
   ).textContent =
-    "Akun kamu sudah login dan dapat menggunakan saldo serta fitur withdraw.";
+    user.email || "-";
 
 
   await loadSaldo(
@@ -2593,9 +2098,9 @@ async function tampilkanUser(user){
 }
 
 
-/* =====================================================
+/* =========================================================
    LOAD SALDO
-===================================================== */
+========================================================= */
 
 async function loadSaldo(userId){
 
@@ -2616,64 +2121,74 @@ async function loadSaldo(userId){
   if(error){
 
     console.error(
-      "Saldo error:",
+      "Saldo:",
       error
     );
-
-    setSaldo(0);
 
     return;
 
   }
 
 
-  const balance =
-    data
-      ? Number(data.balance)
-      : 0;
-
-
-  setSaldo(
-    balance
-  );
-
-}
-
-
-/* =====================================================
-   SET SALDO
-===================================================== */
-
-function setSaldo(amount){
-
-  const text =
-    "Saldo Rp" +
+  const saldo =
     Number(
-      amount || 0
-    ).toLocaleString(
+      data?.balance || 0
+    );
+
+
+  document.getElementById(
+    "saldoUser"
+  ).textContent =
+    "Saldo Rp" +
+    saldo.toLocaleString(
       "id-ID"
     );
 
-
-  const saldo =
-    document.getElementById(
-      "saldoUser"
-    );
+}
 
 
-  if(saldo){
+/* =========================================================
+   LOGOUT
+========================================================= */
 
-    saldo.textContent =
-      text;
+async function logoutUser(){
 
-  }
+  await supabaseClient.auth.signOut();
+
+
+  document.getElementById(
+    "authArea"
+  ).style.display="block";
+
+
+  document.getElementById(
+    "userArea"
+  ).style.display="none";
+
+
+  document.getElementById(
+    "saldoUser"
+  ).textContent =
+    "Saldo Rp0";
+
+
+  document.getElementById(
+    "accountTitle"
+  ).textContent =
+    "Belum Login";
+
+
+  document.getElementById(
+    "accountDescription"
+  ).textContent =
+    "Silakan login untuk melihat saldo, melakukan transaksi dan withdraw.";
 
 }
 
 
-/* =====================================================
+/* =========================================================
    CEK LOGIN
-===================================================== */
+========================================================= */
 
 async function cekLogin(){
 
@@ -2697,96 +2212,51 @@ async function cekLogin(){
 }
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-async function logoutUser(){
-
-  await supabaseClient.auth.signOut();
-
-
-  document.getElementById(
-    "authArea"
-  ).style.display =
-    "flex";
-
-
-  document.getElementById(
-    "userArea"
-  ).style.display =
-    "none";
-
-
-  document.getElementById(
-    "userEmail"
-  ).textContent =
-    "-";
-
-
-  document.getElementById(
-    "saldoUser"
-  ).textContent =
-    "Saldo Rp0";
-
-
-  document.getElementById(
-    "accountTitle"
-  ).textContent =
-    "Belum Login";
-
-
-  document.getElementById(
-    "accountDescription"
-  ).textContent =
-    "Silakan login untuk melihat saldo, melakukan transaksi dan withdraw.";
-
-
-  notif(
-    "Kamu sudah logout."
-  );
-
-}
-
-
-/* =====================================================
-   GAME
-===================================================== */
-
-async function pilihGame(gameName){
-
-  const login =
-    await cekLogin();
-
-
-  if(!login){
-
-    return;
-
-  }
-
-
-  notif(
-    "🎮 Kamu memilih " +
-    gameName
-  );
-
-}
-
-
-/* =====================================================
+/* =========================================================
    WITHDRAW
-===================================================== */
+========================================================= */
 
-async function bukaWithdraw(){
+let currentWithdrawBalance = 0;
+
+
+async function getCurrentSession(){
 
   const {
-    data
+    data,
+    error
   } =
     await supabaseClient.auth.getSession();
 
 
-  if(!data.session){
+  if(error){
+
+    console.error(error);
+
+    return null;
+
+  }
+
+
+  return data.session || null;
+
+}
+
+
+/* =========================================================
+   BUKA WITHDRAW
+========================================================= */
+
+async function bukaWithdraw(){
+
+  const session =
+    await getCurrentSession();
+
+
+  if(!session){
+
+    notif(
+      "🔐 Silakan login terlebih dahulu."
+    );
 
     bukaLogin();
 
@@ -2797,71 +2267,37 @@ async function bukaWithdraw(){
 
   document.getElementById(
     "withdrawModal"
-  ).style.display =
-    "flex";
+  ).style.display="flex";
 
 
   await loadWithdrawBalance(
-    data.session.user.id
+    session.user.id
   );
 
 
   await loadWithdrawHistory(
-    data.session.user.id
+    session.user.id
   );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    TUTUP WITHDRAW
-===================================================== */
+========================================================= */
 
 function tutupWithdraw(){
 
   document.getElementById(
     "withdrawModal"
-  ).style.display =
-    "none";
+  ).style.display="none";
 
 }
 
 
-/* =====================================================
-   FORMAT NOMINAL
-===================================================== */
-
-function formatWithdraw(input){
-
-  let value =
-    input.value.replace(
-      /\D/g,
-      ""
-    );
-
-
-  if(!value){
-
-    input.value =
-      "";
-
-    return;
-
-  }
-
-
-  input.value =
-    Number(value)
-      .toLocaleString(
-        "id-ID"
-      );
-
-}
-
-
-/* =====================================================
-   LOAD SALDO WITHDRAW
-===================================================== */
+/* =========================================================
+   LOAD WITHDRAW BALANCE
+========================================================= */
 
 async function loadWithdrawBalance(userId){
 
@@ -2882,43 +2318,84 @@ async function loadWithdrawBalance(userId){
   if(error){
 
     console.error(
+      "Saldo withdraw:",
       error
     );
-
-
-    document.getElementById(
-      "withdrawBalance"
-    ).textContent =
-      "Rp0";
-
 
     return;
 
   }
 
 
-  const balance =
-    data
-      ? Number(data.balance)
-      : 0;
+  currentWithdrawBalance =
+    Number(
+      data?.balance || 0
+    );
 
 
   document.getElementById(
     "withdrawBalance"
   ).textContent =
     "Rp" +
-    balance.toLocaleString(
+    currentWithdrawBalance.toLocaleString(
       "id-ID"
     );
 
 }
 
 
-/* =====================================================
-   SUBMIT WITHDRAW
-===================================================== */
+/* =========================================================
+   FORMAT WITHDRAW
+========================================================= */
 
-async function submitWithdraw(){
+function formatWithdraw(input){
+
+  let angka =
+    String(
+      input.value || ""
+    )
+    .replace(/\D/g,"");
+
+
+  if(!angka){
+
+    input.value="";
+
+    return;
+
+  }
+
+
+  input.value =
+    Number(
+      angka
+    ).toLocaleString(
+      "id-ID"
+    );
+
+}
+
+
+/* =========================================================
+   AJUKAN WITHDRAW
+========================================================= */
+
+async function ajukanWithdraw(){
+
+  const session =
+    await getCurrentSession();
+
+
+  if(!session){
+
+    notif(
+      "🔐 Silakan login terlebih dahulu."
+    );
+
+    return;
+
+  }
+
 
   const button =
     document.getElementById(
@@ -2926,41 +2403,17 @@ async function submitWithdraw(){
     );
 
 
-  const {
-    data:sessionData
-  } =
-    await supabaseClient.auth.getSession();
-
-
-  if(!sessionData.session){
-
-    notif(
-      "Silakan login terlebih dahulu."
-    );
-
-    bukaLogin();
-
-    return;
-
-  }
-
-
-  const session =
-    sessionData.session;
-
-
-  const amountInput =
+  const rawAmount =
     document.getElementById(
       "withdrawAmount"
-    ).value;
+    ).value
+    .replace(/\./g,"")
+    .replace(/,/g,"");
 
 
   const amount =
     Number(
-      amountInput
-        .replace(/\./g,"")
-        .replace(/,/g,"")
-        .replace(/\D/g,"")
+      rawAmount
     );
 
 
@@ -2983,12 +2436,26 @@ async function submitWithdraw(){
 
 
   if(
-    !amount ||
+    !Number.isFinite(amount) ||
     amount < 10000
   ){
 
     notif(
-      "❌ Minimal withdraw Rp10.000."
+      "⚠️ Minimal withdraw Rp10.000."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    amount >
+    currentWithdrawBalance
+  ){
+
+    notif(
+      "❌ Saldo tidak mencukupi."
     );
 
     return;
@@ -2999,7 +2466,7 @@ async function submitWithdraw(){
   if(!bank){
 
     notif(
-      "❌ Pilih bank atau e-wallet."
+      "⚠️ Pilih bank atau e-wallet."
     );
 
     return;
@@ -3010,7 +2477,7 @@ async function submitWithdraw(){
   if(!accountNumber){
 
     notif(
-      "❌ Nomor rekening wajib diisi."
+      "⚠️ Nomor rekening wajib diisi."
     );
 
     return;
@@ -3021,7 +2488,7 @@ async function submitWithdraw(){
   if(!accountName){
 
     notif(
-      "❌ Nama pemilik wajib diisi."
+      "⚠️ Nama pemilik wajib diisi."
     );
 
     return;
@@ -3029,28 +2496,28 @@ async function submitWithdraw(){
   }
 
 
-  button.disabled =
-    true;
+  button.disabled=true;
 
-  button.textContent =
+  button.textContent=
     "MEMPROSES...";
 
 
   try{
 
     const {
-      data,
       error
     } =
-    await supabaseClient.rpc(
-      "request_withdrawal",
-      {
-        p_amount:amount,
-        p_bank:bank,
-        p_account_number:accountNumber,
-        p_account_name:accountName
-      }
-    );
+      await supabaseClient.rpc(
+        "request_withdrawal",
+        {
+          p_amount:amount,
+          p_bank:bank,
+          p_account_number:
+            accountNumber,
+          p_account_name:
+            accountName
+        }
+      );
 
 
     if(error){
@@ -3077,26 +2544,22 @@ async function submitWithdraw(){
 
     document.getElementById(
       "withdrawAmount"
-    ).value =
-      "";
+    ).value="";
 
 
     document.getElementById(
       "withdrawBank"
-    ).value =
-      "";
+    ).value="";
 
 
     document.getElementById(
       "withdrawAccount"
-    ).value =
-      "";
+    ).value="";
 
 
     document.getElementById(
       "withdrawName"
-    ).value =
-      "";
+    ).value="";
 
 
     await loadWithdrawBalance(
@@ -3115,29 +2578,11 @@ async function submitWithdraw(){
 
   }
 
-
-  catch(error){
-
-    console.error(
-      "Withdraw error:",
-      error
-    );
-
-
-    notif(
-      "❌ Terjadi kesalahan: " +
-      error.message
-    );
-
-  }
-
-
   finally{
 
-    button.disabled =
-      false;
+    button.disabled=false;
 
-    button.textContent =
+    button.textContent=
       "AJUKAN WITHDRAW";
 
   }
@@ -3145,11 +2590,13 @@ async function submitWithdraw(){
 }
 
 
-/* =====================================================
+/* =========================================================
    RIWAYAT WITHDRAW
-===================================================== */
+========================================================= */
 
-async function loadWithdrawHistory(userId){
+async function loadWithdrawHistory(
+  userId
+){
 
   const container =
     document.getElementById(
@@ -3225,7 +2672,6 @@ async function loadWithdrawHistory(userId){
         let cls =
           "status-pending";
 
-
         let text =
           "PENDING";
 
@@ -3294,7 +2740,10 @@ async function loadWithdrawHistory(userId){
 
 
             <div
-              style="margin-top:7px;color:#9caf9e"
+              style="
+                margin-top:7px;
+                color:#9caf9e;
+              "
             >
               ${item.bank || "-"}
               ••••${account.slice(-4)}
@@ -3302,7 +2751,10 @@ async function loadWithdrawHistory(userId){
 
 
             <div
-              style="margin-top:5px;color:#708975"
+              style="
+                margin-top:5px;
+                color:#708975;
+              "
             >
               ${date}
             </div>
@@ -3317,9 +2769,63 @@ async function loadWithdrawHistory(userId){
 }
 
 
-/* =====================================================
-   CEK SESSION SAAT BUKA
-===================================================== */
+/* =========================================================
+   JACKPOT AUTO MOVEMENT
+========================================================= */
+
+let jackpotValue = 6529679168;
+
+const jackpotEl =
+  document.getElementById(
+    "jackpotNumber"
+  );
+
+
+function updateJackpot(){
+
+  const increase =
+    Math.floor(
+      Math.random() * 900000
+    ) + 100000;
+
+
+  jackpotValue += increase;
+
+
+  jackpotEl.textContent =
+    jackpotValue.toLocaleString(
+      "en-US"
+    );
+
+
+  jackpotEl.classList.add(
+    "pop"
+  );
+
+
+  setTimeout(
+    () => {
+
+      jackpotEl.classList.remove(
+        "pop"
+      );
+
+    },
+    180
+  );
+
+}
+
+
+setInterval(
+  updateJackpot,
+  2500
+);
+
+
+/* =========================================================
+   SESSION AWAL
+========================================================= */
 
 async function cekSessionAwal(){
 
@@ -3335,33 +2841,20 @@ async function cekSessionAwal(){
       data.session.user
     );
 
-  }else{
-
-    document.getElementById(
-      "authArea"
-    ).style.display =
-      "flex";
-
-
-    document.getElementById(
-      "userArea"
-    ).style.display =
-      "none";
-
   }
 
 }
 
 
-/* =====================================================
-   SESSION BERUBAH
-===================================================== */
+/* =========================================================
+   AUTH STATE
+========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
-  async function(
+  async(
     event,
     session
-  ){
+  ) => {
 
     if(session){
 
@@ -3369,44 +2862,45 @@ supabaseClient.auth.onAuthStateChange(
         session.user
       );
 
-    }else{
-
-      document.getElementById(
-        "authArea"
-      ).style.display =
-        "flex";
-
-
-      document.getElementById(
-        "userArea"
-      ).style.display =
-        "none";
-
     }
 
   }
 );
 
 
-/* =====================================================
-   START
-===================================================== */
+/* =========================================================
+   CLICK OUTSIDE MODAL
+========================================================= */
 
-cekSessionAwal();
-
-
-/* =====================================================
-   TUTUP MODAL KLIK LUAR
-===================================================== */
-
-document.getElementById(
-  "loginModal"
-).addEventListener(
+document.addEventListener(
   "click",
   function(e){
 
+    const withdraw =
+      document.getElementById(
+        "withdrawModal"
+      );
+
+
+    const login =
+      document.getElementById(
+        "loginModal"
+      );
+
+
     if(
-      e.target === this
+      e.target ===
+      withdraw
+    ){
+
+      tutupWithdraw();
+
+    }
+
+
+    if(
+      e.target ===
+      login
     ){
 
       tutupLogin();
@@ -3417,26 +2911,33 @@ document.getElementById(
 );
 
 
-document.getElementById(
-  "withdrawModal"
-).addEventListener(
-  "click",
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener(
+  "keydown",
   function(e){
 
-    if(
-      e.target === this
-    ){
+    if(e.key === "Escape"){
 
       tutupWithdraw();
+
+      tutupLogin();
 
     }
 
   }
 );
 
+
+/* =========================================================
+   START
+========================================================= */
+
+cekSessionAwal();
+
 </script>
 
-
 </body>
-
 </html>
