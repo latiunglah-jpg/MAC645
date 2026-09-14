@@ -295,34 +295,39 @@ header{
 }
 
 /* =========================================================
-   JACKPOT
-========================================================= */
-
-/* =========================================================
-   JACKPOT MAC645 — FIX RAPI & TIDAK KETUMPUK
+   JACKPOT HIJAU ELEGAN
 ========================================================= */
 
 .jackpot-section{
   position:relative;
   width:100%;
   height:420px;
-  margin-top:30px;
+  margin:30px 0;
   overflow:hidden;
 
   border-radius:20px;
-  border:1px solid rgba(170,255,56,.45);
 
-  background:#06120a;
+  background:
+    radial-gradient(
+      circle at center,
+      #174d32 0%,
+      #0d3523 38%,
+      #071e14 70%,
+      #03100a 100%
+    );
+
+  border:1px solid rgba(91,220,140,.45);
 
   box-shadow:
-    0 15px 45px rgba(0,0,0,.55),
-    0 0 35px rgba(120,255,70,.12);
+    0 15px 45px rgba(0,0,0,.6),
+    0 0 35px rgba(50,180,100,.20),
+    inset 0 0 50px rgba(40,160,90,.12);
 }
 
 
-/* GAMBAR BACKGROUND */
+/* BACKGROUND JACKPOT */
 
-.jackpot-image{
+.jackpot-bg{
   position:absolute;
   inset:0;
 
@@ -335,16 +340,18 @@ header{
   object-position:center;
 
   filter:
-    hue-rotate(65deg)
-    saturate(1.15)
-    brightness(.58)
+    hue-rotate(85deg)
+    saturate(.75)
+    brightness(.55)
     contrast(1.08);
+
+  opacity:.82;
 
   z-index:1;
 }
 
 
-/* OVERLAY SUPAYA TEKS JELAS */
+/* LAPISAN HIJAU */
 
 .jackpot-section::after{
   content:"";
@@ -353,11 +360,11 @@ header{
   inset:0;
 
   background:
-    radial-gradient(
-      circle at center,
-      rgba(0,0,0,.18) 0%,
-      rgba(0,0,0,.58) 70%,
-      rgba(0,0,0,.78) 100%
+    linear-gradient(
+      135deg,
+      rgba(3,35,20,.72),
+      rgba(15,75,42,.42),
+      rgba(2,25,14,.75)
     );
 
   z-index:2;
@@ -366,264 +373,94 @@ header{
 }
 
 
-/* KOTAK TENGAH */
+/* GLOW DI TENGAH */
 
-.jackpot-center{
+.jackpot-section::before{
+  content:"";
 
   position:absolute;
+  z-index:3;
 
   top:50%;
   left:50%;
 
+  width:min(720px,85%);
+  height:150px;
+
   transform:translate(-50%,-50%);
 
-  z-index:10;
+  border-radius:100px;
 
-  width:min(600px,86%);
+  background:rgba(46,170,95,.08);
 
-  min-height:210px;
-
-  padding:30px 25px;
-
-  display:flex;
-  flex-direction:column;
-
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,18,8,.97),
-      rgba(5,27,12,.97)
-    );
-
-  border:2px solid #aaff38;
-
-  border-radius:20px;
+  border:1px solid rgba(110,235,155,.20);
 
   box-shadow:
+    0 0 35px rgba(50,190,105,.20),
+    inset 0 0 30px rgba(60,200,110,.10);
 
-    0 0 18px rgba(170,255,56,.35),
-
-    0 0 45px rgba(170,255,56,.18),
-
-    inset 0 0 25px rgba(170,255,56,.08);
-
-}
-
-
-/* MAC645 */
-
-.mac645-title{
-
-  position:relative;
-
-  display:block;
-
-  margin:0;
-
-  font-size:58px;
-
-  line-height:1;
-
-  font-weight:1000;
-
-  letter-spacing:6px;
-
-  color:#ffffff;
-
-  text-align:center;
-
-  white-space:nowrap;
-
-  text-shadow:
-
-    0 3px 8px rgba(0,0,0,.95),
-
-    0 0 18px rgba(170,255,56,.45);
-}
-
-
-.mac645-title span{
-  color:#aaff38;
+  pointer-events:none;
 }
 
 
 /* ANGKA JACKPOT */
 
 .jackpot-number{
+  position:absolute;
 
-  position:relative;
+  z-index:5;
 
-  display:block;
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
 
   width:100%;
 
-  margin-top:20px;
+  padding:0 20px;
 
-  font-size:43px;
+  text-align:center;
 
-  line-height:1.1;
+  color:#8ff0b2;
+
+  font-size:64px;
 
   font-weight:1000;
 
+  line-height:1.1;
+
   letter-spacing:2px;
-
-  color:#ffffff;
-
-  text-align:center;
 
   white-space:nowrap;
 
   text-shadow:
-
-    0 0 8px rgba(255,255,255,.45),
-
-    0 0 20px rgba(170,255,56,.35);
+    0 2px 5px rgba(0,0,0,.95),
+    0 0 8px rgba(120,240,165,.65),
+    0 0 20px rgba(55,190,105,.55),
+    0 0 40px rgba(40,150,80,.25);
 
   transition:
-    transform .18s ease,
-    text-shadow .18s ease;
+    transform .12s ease,
+    text-shadow .12s ease;
 }
 
 
-/* ANIMASI ANGKA */
+/* EFEK SAAT ANGKA BERUBAH */
 
 .jackpot-number.pop{
 
-  transform:scale(1.055);
+  transform:
+    translate(-50%,-50%)
+    scale(1.035);
 
   text-shadow:
-
-    0 0 10px rgba(255,255,255,.7),
-
-    0 0 30px rgba(170,255,56,.65);
+    0 2px 5px rgba(0,0,0,.95),
+    0 0 10px rgba(150,255,190,.85),
+    0 0 25px rgba(70,210,120,.75),
+    0 0 45px rgba(50,180,100,.35);
 }
 
 
-/* LABEL JACKPOT */
-
-.jackpot-label{
-
-  position:relative;
-
-  display:block;
-
-  margin-top:12px;
-
-  font-size:14px;
-
-  line-height:1;
-
-  font-weight:900;
-
-  letter-spacing:6px;
-
-  color:#aaff38;
-
-  text-align:center;
-
-  white-space:nowrap;
-
-  text-shadow:
-    0 0 10px rgba(170,255,56,.45);
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media(max-width:700px){
-
-  .jackpot-section{
-    height:350px;
-  }
-
-  .jackpot-center{
-
-    width:86%;
-
-    min-height:175px;
-
-    padding:25px 18px;
-
-    border-radius:17px;
-
-  }
-
-  .mac645-title{
-    font-size:43px;
-    letter-spacing:4px;
-  }
-
-  .jackpot-number{
-    margin-top:16px;
-    font-size:31px;
-    letter-spacing:1px;
-  }
-
-  .jackpot-label{
-    margin-top:10px;
-    font-size:12px;
-    letter-spacing:4px;
-  }
-
-}
-
-
-/* =========================================================
-   HP
-========================================================= */
-
-@media(max-width:450px){
-
-  .jackpot-section{
-    height:285px;
-    border-radius:15px;
-  }
-
-  .jackpot-center{
-
-    width:90%;
-
-    min-height:145px;
-
-    padding:20px 12px;
-
-    border-radius:15px;
-
-  }
-
-  .mac645-title{
-    font-size:32px;
-    letter-spacing:3px;
-  }
-
-  .jackpot-number{
-
-    margin-top:14px;
-
-    font-size:23px;
-
-    letter-spacing:0;
-
-  }
-
-  .jackpot-label{
-
-    margin-top:9px;
-
-    font-size:10px;
-
-    letter-spacing:3px;
-
-  }
-
-}
 /* =========================================================
    ACCOUNT / PRODUCT
 ========================================================= */
@@ -1013,28 +850,13 @@ footer{
 
 @media(max-width:650px){
 
-  .jackpot-image{
+  .jackpot-section{
     height:300px;
   }
 
-  .jackpot-center{
-    width:84%;
-    padding:20px 15px;
-  }
-
-  .mac645-title{
-    font-size:38px;
-    letter-spacing:4px;
-  }
-
   .jackpot-number{
-    font-size:27px;
+    font-size:38px;
     letter-spacing:1px;
-  }
-
-  .jackpot-label{
-    font-size:11px;
-    letter-spacing:3px;
   }
 
 }
@@ -1104,23 +926,14 @@ footer{
     height:80px;
   }
 
-  .jackpot-image{
+  .jackpot-section{
     height:250px;
   }
 
-  .jackpot-center{
-    width:88%;
-    padding:17px 10px;
-  }
-
-  .mac645-title{
-    font-size:30px;
-    letter-spacing:3px;
-  }
-
   .jackpot-number{
-    font-size:21px;
+    font-size:29px;
     letter-spacing:0;
+    padding:0 10px;
   }
 
 }
@@ -1584,178 +1397,27 @@ footer{
      JACKPOT MAC645
 ======================================================= -->
 
-jackpot-section
-<style>
-/* =========================
-   JACKPOT HIJAU ELEGAN
-========================= */
+<section
+  id="jackpot"
+  class="jackpot-section"
+>
 
-.jackpot-section{
-  position:relative;
-  width:100%;
-  height:420px;
-  margin:30px 0;
-  overflow:hidden;
-  border-radius:20px;
+  <img
+    class="jackpot-bg"
+    src="https://ora78cinta.com/_next/image?url=https%3A%2F%2Fora78cinta.com%2Fstorage%2Fwebpersonalize%2F430af7f6-51e9-4a56-be93-74476da7ab08.gif&w=3840&q=75"
+    alt="MAC645 Jackpot"
+  >
 
-  /* BACKGROUND HIJAU GELAP */
-  background:
-    radial-gradient(
-      circle at center,
-      #174d32 0%,
-      #0d3523 38%,
-      #071e14 70%,
-      #03100a 100%
-    );
+  <div
+    id="jackpotNumber"
+    class="jackpot-number"
+  >
+    6,829,912,808
+  </div>
 
-  border:1px solid rgba(91,220,140,.45);
-
-  box-shadow:
-    0 15px 45px rgba(0,0,0,.6),
-    0 0 35px rgba(50,180,100,.20),
-    inset 0 0 50px rgba(40,160,90,.12);
-}
+</section>
 
 
-/* BACKGROUND GAMBAR */
-.jackpot-bg{
-  position:absolute;
-  inset:0;
-
-  width:100%;
-  height:100%;
-
-  display:block;
-
-  object-fit:cover;
-  object-position:center;
-
-  filter:
-    hue-rotate(85deg)
-    saturate(.75)
-    brightness(.55)
-    contrast(1.08);
-
-  opacity:.82;
-}
-
-
-/* LAPISAN HIJAU DI ATAS GAMBAR */
-.jackpot-section::after{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(3,35,20,.72),
-      rgba(15,75,42,.42),
-      rgba(2,25,14,.75)
-    );
-
-  pointer-events:none;
-}
-
-
-/* GLOW HIJAU DI TENGAH */
-.jackpot-section::before{
-  content:"";
-
-  position:absolute;
-  z-index:3;
-
-  top:50%;
-  left:50%;
-
-  width:min(720px,85%);
-  height:150px;
-
-  transform:translate(-50%,-50%);
-
-  border-radius:100px;
-
-  background:rgba(46,170,95,.08);
-
-  border:1px solid rgba(110,235,155,.20);
-
-  box-shadow:
-    0 0 35px rgba(50,190,105,.20),
-    inset 0 0 30px rgba(60,200,110,.10);
-
-  pointer-events:none;
-}
-
-
-/* =========================
-   ANGKA JACKPOT
-========================= */
-
-.jackpot-number{
-  position:absolute;
-  z-index:5;
-
-  top:50%;
-  left:50%;
-
-  transform:translate(-50%,-50%);
-
-  width:100%;
-  padding:0 20px;
-
-  text-align:center;
-
-  /* HIJAU ELEGAN */
-  color:#8ff0b2;
-
-  font-size:64px;
-  font-weight:1000;
-
-  line-height:1.1;
-  letter-spacing:2px;
-
-  text-shadow:
-    0 2px 5px rgba(0,0,0,.95),
-    0 0 8px rgba(120,240,165,.65),
-    0 0 20px rgba(55,190,105,.55),
-    0 0 40px rgba(40,150,80,.25);
-}
-
-
-/* =========================
-   TABLET / HP
-========================= */
-
-@media(max-width:700px){
-
-  .jackpot-section{
-    height:330px;
-    border-radius:16px;
-  }
-
-  .jackpot-number{
-    font-size:42px;
-    letter-spacing:1px;
-  }
-
-}
-
-
-@media(max-width:450px){
-
-  .jackpot-section{
-    height:250px;
-    border-radius:14px;
-  }
-
-  .jackpot-number{
-    font-size:29px;
-    letter-spacing:0;
-    padding:0 10px;
-  }
-
-}   
 <!-- =======================================================
      PRODUK
 ======================================================= -->
@@ -3118,7 +2780,7 @@ async function loadWithdrawHistory(
    JACKPOT AUTO MOVEMENT
 ========================================================= */
 
-let jackpotValue = 6529679168;
+let jackpotValue = 6829912808;
 
 const jackpotEl =
   document.getElementById(
@@ -3128,10 +2790,17 @@ const jackpotEl =
 
 function updateJackpot(){
 
+  if(!jackpotEl){
+    return;
+  }
+
+
+  /* KENAIKAN CEPAT */
+
   const increase =
     Math.floor(
-      Math.random() * 900000
-    ) + 100000;
+      Math.random() * 50000
+    ) + 10000;
 
 
   jackpotValue += increase;
@@ -3142,6 +2811,8 @@ function updateJackpot(){
       "en-US"
     );
 
+
+  /* EFEK ANGKA BERGERAK */
 
   jackpotEl.classList.add(
     "pop"
@@ -3156,15 +2827,17 @@ function updateJackpot(){
       );
 
     },
-    180
+    120
   );
 
 }
 
 
+/* BERUBAH SETIAP 0,5 DETIK */
+
 setInterval(
   updateJackpot,
-  2500
+  500
 );
 
 
