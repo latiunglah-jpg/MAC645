@@ -14,7 +14,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <style>
 
 /* =====================================================
@@ -183,7 +182,7 @@ header{
 
 
 /* =====================================================
-   HERO IMAGE
+   HERO
 ===================================================== */
 
 .hero{
@@ -251,37 +250,70 @@ header{
 
 
 /* =====================================================
-   CATEGORY
+   JACKPOT HIJAU ELEGAN
 ===================================================== */
 
-.categories{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:12px;
+.jackpot-section{
+  width:100%;
+  margin-top:35px;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid rgba(73,170,91,.40);
+  background:#07140b;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.45),
+    0 0 30px rgba(34,139,62,.12);
 }
 
-.category{
-  background:#0d2414;
-  border:1px solid #244d2d;
-  border-radius:12px;
-  padding:20px 10px;
-  text-align:center;
-  transition:.2s;
+.jackpot-image{
+  width:100%;
+  height:420px;
+  display:block;
+  object-fit:cover;
+
+  filter:
+    hue-rotate(65deg)
+    saturate(1.12)
+    brightness(.82)
+    contrast(1.08);
+
+  transition:transform .5s ease;
 }
 
-.category:hover{
-  transform:translateY(-3px);
-  border-color:#aaff38;
+.jackpot-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3,25,12,.72) 0%,
+      rgba(8,55,24,.30) 45%,
+      rgba(4,35,15,.60) 100%
+    );
+
+  mix-blend-mode:multiply;
 }
 
-.category-icon{
-  font-size:30px;
-  margin-bottom:9px;
+.jackpot-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+
+  border-radius:20px;
+
+  box-shadow:
+    inset 0 0 50px rgba(48,180,75,.18),
+    inset 0 0 120px rgba(10,70,28,.25);
 }
 
-.category p{
-  font-size:12px;
-  color:#c4d5c8;
+.jackpot-section:hover .jackpot-image{
+  transform:scale(1.02);
 }
 
 
@@ -767,12 +799,12 @@ footer{
     flex-basis:100%;
   }
 
-  .categories{
-    grid-template-columns:repeat(3,1fr);
-  }
-
   .products{
     grid-template-columns:repeat(2,1fr);
+  }
+
+  .jackpot-image{
+    height:330px;
   }
 
 }
@@ -806,10 +838,6 @@ footer{
     height:200px;
   }
 
-  .categories{
-    grid-template-columns:repeat(2,1fr);
-  }
-
   .products{
     grid-template-columns:1fr;
   }
@@ -840,6 +868,15 @@ footer{
     margin-left:auto;
   }
 
+  .jackpot-section{
+    margin-top:25px;
+    border-radius:15px;
+  }
+
+  .jackpot-image{
+    height:230px;
+  }
+
 }
 
 
@@ -855,6 +892,10 @@ footer{
 
   .game-image{
     height:135px;
+  }
+
+  .jackpot-image{
+    height:200px;
   }
 
 }
@@ -888,8 +929,8 @@ footer{
 
   <div class="marquee">
 
-    📢 INFORMASI MAC645 — Selamat datang di MAC645! Nikmati
-    kemudahan pembelian produk digital.
+    📢 INFORMASI MAC645 — Selamat datang di MAC645!
+    Nikmati kemudahan pembelian produk digital.
 
   </div>
 
@@ -907,14 +948,11 @@ footer{
 
 
     <div class="logo">
-
       MAC<span>645</span>
-
     </div>
 
 
     <div class="nav-links">
-
 
       <a
         class="nav-item"
@@ -936,7 +974,7 @@ footer{
         class="nav-item"
         href="#kategori"
       >
-        Kategori
+        Jackpot
       </a>
 
 
@@ -965,7 +1003,6 @@ footer{
         Akun Saya
       </a>
 
-
     </div>
 
 
@@ -980,9 +1017,7 @@ footer{
         class="header-login"
         onclick="bukaLogin()"
       >
-
         LOGIN
-
       </button>
 
     </div>
@@ -1019,9 +1054,7 @@ footer{
         class="logout"
         onclick="logoutUser()"
       >
-
         Keluar
-
       </button>
 
     </div>
@@ -1040,7 +1073,6 @@ footer{
 <main id="beranda">
 
 <div class="container">
-
 
 
 <!-- =====================================================
@@ -1073,15 +1105,11 @@ footer{
       "
     >
 
-      <strong
-        style="font-size:28px;"
-      >
+      <strong style="font-size:28px;">
         MAC645
       </strong>
 
-      <span
-        style="color:#9db4a1;"
-      >
+      <span style="color:#9db4a1;">
         Digital Store
       </span>
 
@@ -1094,50 +1122,22 @@ footer{
 
 
 <!-- =====================================================
-     KATEGORI
+     JACKPOT
 ===================================================== -->
 
 <section
   id="kategori"
-  class="section"
->
-
-<!-- =========================
-     JACKPOT BANNER
-========================= -->
-
-<section
-  id="kategori"
-  class="section jackpot-section"
+  class="jackpot-section"
 >
 
   <img
     class="jackpot-image"
-    src="https://lobi89trabas.com/_next/image?url=https%3A%2F%lobi89trabas.com%2Fstorage%2Fwebpersonalize%2F2f8faa22-a748-4e89-a6c2-4eb9a1a4af11.gif&w=3840&q=75"
+    src="https://lobi89trabas.com/_next/image?url=https%3A%2F%2Flobi89trabas.com%2Fstorage%2Fwebpersonalize%2F2f8faa22-a748-4e89-a6c2-4eb9a1a4af11.gif&w=3840&q=75"
     alt="Jackpot MAC645"
+    loading="lazy"
   >
 
 </section>
- /* =========================
-   JACKPOT BANNER
-========================= */
-
-<style>:.jackpot-section{
-  margin-top:35px;
-  width:100%;
-}
-
-.jackpot-image{
-  width:100%;
-  height:auto;
-  min-height:180px;
-  max-height:420px;
-  object-fit:cover;
-  display:block;
-  border-radius:18px;
-  border:1px solid #244d2d;
-  box-shadow:0 10px 35px rgba(0,0,0,.35);
-}
 
 
 
@@ -1165,7 +1165,6 @@ footer{
 
 
   <div class="game-list">
-
 
 
     <!-- GAME 1 -->
@@ -1403,7 +1402,7 @@ footer{
 
     <div
       class="game-card"
-      onclick="pilihGame('treasures of aztec')"
+      onclick="pilihGame('Treasures of Aztec')"
     >
 
       <div class="game-image">
@@ -1436,7 +1435,7 @@ footer{
 
     <div
       class="game-card"
-      onclick="pilihGame('Wild Ape 3258')"
+      onclick="pilihGame('Wild Ape #3258')"
     >
 
       <div class="game-image">
@@ -1560,7 +1559,6 @@ footer{
 
 
   <div class="products">
-
 
 
     <!-- PULSA -->
@@ -1841,9 +1839,7 @@ footer{
   class="login-overlay"
 >
 
-
   <div class="login-box">
-
 
     <button
       class="close-login"
@@ -1902,7 +1898,6 @@ footer{
       DAFTAR AKUN BARU
     </button>
 
-
   </div>
 
 </div>
@@ -1918,9 +1913,7 @@ footer{
   class="withdraw-overlay"
 >
 
-
   <div class="withdraw-box">
-
 
     <button
       class="withdraw-close"
@@ -1976,61 +1969,49 @@ footer{
 
     <select id="withdrawBank">
 
-
       <option value="">
         Pilih tujuan
       </option>
-
 
       <option value="BCA">
         BCA
       </option>
 
-
       <option value="BRI">
         BRI
       </option>
-
 
       <option value="BNI">
         BNI
       </option>
 
-
       <option value="Mandiri">
         Mandiri
       </option>
-
 
       <option value="BSI">
         BSI
       </option>
 
-
       <option value="CIMB Niaga">
         CIMB Niaga
       </option>
-
 
       <option value="DANA">
         DANA
       </option>
 
-
       <option value="OVO">
         OVO
       </option>
-
 
       <option value="GoPay">
         GoPay
       </option>
 
-
       <option value="ShopeePay">
         ShopeePay
       </option>
-
 
     </select>
 
@@ -2082,7 +2063,6 @@ footer{
 
     </div>
 
-
   </div>
 
 </div>
@@ -2098,17 +2078,14 @@ footer{
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
-
 
 const supabaseClient =
 window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
-
 
 
 /* =====================================================
@@ -2120,14 +2097,11 @@ function notif(message){
   const box =
     document.getElementById("loginStatus");
 
-
   box.textContent =
     message;
 
-
   box.style.display =
     "block";
-
 
   setTimeout(function(){
 
@@ -2137,7 +2111,6 @@ function notif(message){
   },3500);
 
 }
-
 
 
 /* =====================================================
@@ -2164,7 +2137,6 @@ function tutupLogin(){
 }
 
 
-
 /* =====================================================
    LOGIN
 ===================================================== */
@@ -2176,12 +2148,10 @@ async function loginUser(){
       "email"
     ).value.trim();
 
-
   const password =
     document.getElementById(
       "password"
     ).value;
-
 
   if(!email || !password){
 
@@ -2193,11 +2163,9 @@ async function loginUser(){
 
   }
 
-
   notif(
     "Sedang login..."
   );
-
 
   const {
     data,
@@ -2226,18 +2194,15 @@ async function loginUser(){
 
   tutupLogin();
 
-
   await tampilkanUser(
     data.user
   );
-
 
   notif(
     "✅ Login berhasil!"
   );
 
 }
-
 
 
 /* =====================================================
@@ -2250,7 +2215,6 @@ async function registerUser(){
     document.getElementById(
       "email"
     ).value.trim();
-
 
   const password =
     document.getElementById(
@@ -2314,11 +2278,9 @@ async function registerUser(){
 
     tutupLogin();
 
-
     await tampilkanUser(
       data.user
     );
-
 
     notif(
       "✅ Akun berhasil dibuat!"
@@ -2333,7 +2295,6 @@ async function registerUser(){
   }
 
 }
-
 
 
 /* =====================================================
@@ -2380,7 +2341,6 @@ async function tampilkanUser(user){
 }
 
 
-
 /* =====================================================
    LOAD SALDO
 ===================================================== */
@@ -2408,7 +2368,6 @@ async function loadSaldo(userId){
       error
     );
 
-
     setSaldo(0);
 
     return;
@@ -2427,7 +2386,6 @@ async function loadSaldo(userId){
   );
 
 }
-
 
 
 /* =====================================================
@@ -2461,7 +2419,6 @@ function setSaldo(amount){
 }
 
 
-
 /* =====================================================
    CEK LOGIN
 ===================================================== */
@@ -2486,7 +2443,6 @@ async function cekLogin(){
   return true;
 
 }
-
 
 
 /* =====================================================
@@ -2541,7 +2497,6 @@ async function logoutUser(){
 }
 
 
-
 /* =====================================================
    GAME
 ===================================================== */
@@ -2565,7 +2520,6 @@ async function pilihGame(gameName){
   );
 
 }
-
 
 
 /* =====================================================
@@ -2607,7 +2561,6 @@ async function bukaWithdraw(){
 }
 
 
-
 /* =====================================================
    TUTUP WITHDRAW
 ===================================================== */
@@ -2620,7 +2573,6 @@ function tutupWithdraw(){
     "none";
 
 }
-
 
 
 /* =====================================================
@@ -2653,7 +2605,6 @@ function formatWithdraw(input){
       );
 
 }
-
 
 
 /* =====================================================
@@ -2711,7 +2662,6 @@ async function loadWithdrawBalance(userId){
 }
 
 
-
 /* =====================================================
    SUBMIT WITHDRAW
 ===================================================== */
@@ -2736,9 +2686,7 @@ async function submitWithdraw(){
       "Silakan login terlebih dahulu."
     );
 
-
     bukaLogin();
-
 
     return;
 
@@ -2791,7 +2739,6 @@ async function submitWithdraw(){
       "❌ Minimal withdraw Rp10.000."
     );
 
-
     return;
 
   }
@@ -2802,7 +2749,6 @@ async function submitWithdraw(){
     notif(
       "❌ Pilih bank atau e-wallet."
     );
-
 
     return;
 
@@ -2815,7 +2761,6 @@ async function submitWithdraw(){
       "❌ Nomor rekening wajib diisi."
     );
 
-
     return;
 
   }
@@ -2827,7 +2772,6 @@ async function submitWithdraw(){
       "❌ Nama pemilik wajib diisi."
     );
 
-
     return;
 
   }
@@ -2835,7 +2779,6 @@ async function submitWithdraw(){
 
   button.disabled =
     true;
-
 
   button.textContent =
     "MEMPROSES...";
@@ -2847,15 +2790,15 @@ async function submitWithdraw(){
       data,
       error
     } =
-      await supabaseClient.rpc(
-        "request_withdrawal",
-        {
-          p_amount:amount,
-          p_bank:bank,
-          p_account_number:accountNumber,
-          p_account_name:accountName
-        }
-      );
+    await supabaseClient.rpc(
+      "request_withdrawal",
+      {
+        p_amount:amount,
+        p_bank:bank,
+        p_account_number:accountNumber,
+        p_account_name:accountName
+      }
+    );
 
 
     if(error){
@@ -2865,12 +2808,10 @@ async function submitWithdraw(){
         error
       );
 
-
       notif(
         "❌ Withdraw gagal: " +
         error.message
       );
-
 
       return;
 
@@ -2944,14 +2885,12 @@ async function submitWithdraw(){
     button.disabled =
       false;
 
-
     button.textContent =
       "AJUKAN WITHDRAW";
 
   }
 
 }
-
 
 
 /* =====================================================
@@ -3003,7 +2942,6 @@ async function loadWithdrawHistory(userId){
     container.innerHTML =
       '<div class="withdraw-empty">Gagal mengambil riwayat.</div>';
 
-
     return;
 
   }
@@ -3017,7 +2955,6 @@ async function loadWithdrawHistory(userId){
     container.innerHTML =
       '<div class="withdraw-empty">Belum ada pengajuan withdraw.</div>';
 
-
     return;
 
   }
@@ -3026,7 +2963,6 @@ async function loadWithdrawHistory(userId){
   container.innerHTML =
     data.map(
       item => {
-
 
         const status =
           String(
@@ -3050,7 +2986,6 @@ async function loadWithdrawHistory(userId){
           cls =
             "status-approved";
 
-
           text =
             "BERHASIL";
 
@@ -3064,7 +2999,6 @@ async function loadWithdrawHistory(userId){
 
           cls =
             "status-rejected";
-
 
           text =
             "DITOLAK";
@@ -3131,7 +3065,6 @@ async function loadWithdrawHistory(userId){
 }
 
 
-
 /* =====================================================
    CEK SESSION SAAT BUKA
 ===================================================== */
@@ -3166,7 +3099,6 @@ async function cekSessionAwal(){
   }
 
 }
-
 
 
 /* =====================================================
@@ -3204,13 +3136,11 @@ supabaseClient.auth.onAuthStateChange(
 );
 
 
-
 /* =====================================================
    START
 ===================================================== */
 
 cekSessionAwal();
-
 
 
 /* =====================================================
