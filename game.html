@@ -2,11 +2,16 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MAC645 - Game</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>MAC645 - GAME</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,1095 +19,1676 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background:
-        radial-gradient(circle at top left, rgba(0, 255, 170, 0.08), transparent 30%),
-        radial-gradient(circle at top right, rgba(0, 180, 255, 0.08), transparent 30%),
-        #07110e;
-      color: white;
+        radial-gradient(
+          circle at top,
+          #123b2d 0%,
+          #071b14 45%,
+          #04100c 100%
+        );
+
+      color: #ffffff;
+
       min-height: 100vh;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================= */
 
-    .header {
+    header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      height: 72px;
+      z-index: 1000;
+
+      width: 100%;
+
+      background:
+        rgba(4, 20, 14, 0.94);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: auto;
+
+      min-height: 72px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 6%;
-      background: rgba(5, 15, 12, 0.92);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(15px);
+
+      gap: 20px;
+
+      padding:
+        12px 20px;
     }
 
     .logo {
-      font-size: 28px;
+      text-decoration: none;
+
+      font-size: 27px;
       font-weight: 900;
+
       letter-spacing: 1px;
-      color: #00e89b;
+
+      color: #ffffff;
     }
 
     .logo span {
-      color: white;
+      color: #18d98a;
     }
 
     .back-btn {
-      text-decoration: none;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 10px 17px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        11px 18px;
+
       border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      transition: .2s;
+
+      text-decoration: none;
+
+      color: #ffffff;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      border:
+        1px solid rgba(255,255,255,0.1);
+
+      transition:
+        0.2s ease;
     }
 
     .back-btn:hover {
-      background: rgba(0,232,155,0.12);
-      border-color: #00e89b;
+      background:
+        rgba(24,217,138,0.15);
+
+      border-color:
+        rgba(24,217,138,0.35);
+
+      transform:
+        translateY(-1px);
     }
 
-    /* HERO */
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
-      padding: 60px 6% 30px;
-      max-width: 1500px;
+      max-width: 1400px;
+
       margin: auto;
+
+      padding:
+        50px 20px 25px;
     }
 
-    .small-title {
-      color: #00e89b;
+    .hero-small {
+      color: #18d98a;
+
       font-size: 13px;
-      font-weight: bold;
+
+      font-weight: 900;
+
       letter-spacing: 2px;
-      margin-bottom: 12px;
+
+      margin-bottom: 10px;
     }
 
     .hero h1 {
-      font-size: clamp(32px, 5vw, 60px);
-      line-height: 1;
-      margin-bottom: 16px;
+      font-size:
+        clamp(30px, 5vw, 52px);
+
+      line-height: 1.05;
+
+      font-weight: 900;
+
+      margin-bottom: 15px;
     }
 
     .hero h1 span {
-      color: #00e89b;
+      color: #18d98a;
     }
 
     .hero p {
-      color: #a8b6b1;
       max-width: 700px;
+
+      color:
+        rgba(255,255,255,0.66);
+
       line-height: 1.7;
-    }
 
-    /* TOOLBAR */
-
-    .toolbar {
-      max-width: 1500px;
-      margin: 10px auto 30px;
-      padding: 0 6%;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .search-box {
-      flex: 1;
-      min-width: 250px;
-      position: relative;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 15px 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: #0d1d18;
-      color: white;
-      outline: none;
       font-size: 15px;
     }
 
-    .search-box input:focus {
-      border-color: #00e89b;
-      box-shadow: 0 0 0 3px rgba(0,232,155,0.08);
-    }
 
-    .filter {
-      min-width: 200px;
-      padding: 15px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: #0d1d18;
-      color: white;
-      outline: none;
-    }
+    /* =========================
+       SEARCH
+    ========================= */
 
-    /* STATUS */
+    .search-area {
+      max-width: 1400px;
 
-    .status {
-      max-width: 1500px;
-      margin: 0 auto 20px;
-      padding: 0 6%;
-    }
-
-    .status-box {
-      padding: 14px 17px;
-      border-radius: 14px;
-      background: rgba(0,232,155,0.06);
-      border: 1px solid rgba(0,232,155,0.12);
-      color: #9fafa9;
-      font-size: 14px;
-    }
-
-    .status-box strong {
-      color: #00e89b;
-    }
-
-    /* GAME GRID */
-
-    .game-container {
-      max-width: 1500px;
       margin: auto;
-      padding: 0 6% 60px;
+
+      padding:
+        15px 20px 30px;
     }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+
+      left: 18px;
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      font-size: 19px;
+
+      opacity: 0.7;
+
+      pointer-events: none;
+    }
+
+    #searchInput {
+      width: 100%;
+
+      height: 58px;
+
+      border-radius: 16px;
+
+      border:
+        1px solid rgba(255,255,255,0.1);
+
+      outline: none;
+
+      padding:
+        0 20px 0 52px;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      color: #ffffff;
+
+      font-size: 15px;
+
+      transition:
+        0.2s ease;
+    }
+
+    #searchInput::placeholder {
+      color:
+        rgba(255,255,255,0.45);
+    }
+
+    #searchInput:focus {
+      border-color:
+        rgba(24,217,138,0.65);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(24,217,138,0.08);
+
+      background:
+        rgba(255,255,255,0.09);
+    }
+
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    .filter-area {
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding:
+        0 20px 25px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: none;
+
+      cursor: pointer;
+
+      padding:
+        10px 16px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      color:
+        rgba(255,255,255,0.72);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      font-weight: 700;
+
+      font-size: 13px;
+
+      transition:
+        0.2s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background:
+        #18d98a;
+
+      color:
+        #03120c;
+
+      border-color:
+        #18d98a;
+    }
+
+
+    /* =========================
+       GAME HEADER
+    ========================= */
+
+    .game-heading {
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding:
+        0 20px 20px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+    .game-heading h2 {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    #gameCount {
+      color:
+        rgba(255,255,255,0.5);
+
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       GAME GRID
+    ========================= */
 
     .game-grid {
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding:
+        0 20px 60px;
+
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+
+      grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
       gap: 18px;
     }
 
+
+    /* =========================
+       GAME CARD
+    ========================= */
+
     .game-card {
       position: relative;
+
       overflow: hidden;
+
       border-radius: 18px;
-      background: linear-gradient(145deg, #10231c, #091510);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: transform .25s, border-color .25s, box-shadow .25s;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.09),
+          rgba(255,255,255,0.035)
+        );
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      box-shadow:
+        0 12px 35px
+        rgba(0,0,0,0.25);
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+
+      min-width: 0;
     }
 
     .game-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0,232,155,0.45);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+      transform:
+        translateY(-5px);
+
+      border-color:
+        rgba(24,217,138,0.35);
+
+      box-shadow:
+        0 18px 45px
+        rgba(0,0,0,0.4);
     }
 
+
+    /* =========================
+       IMAGE
+    ========================= */
+
     .game-image {
-      width: 100%;
-      aspect-ratio: 1.25 / 1;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(0,232,155,.25), transparent 35%),
-        linear-gradient(135deg, #132c23, #08110e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
       position: relative;
+
+      width: 100%;
+
+      aspect-ratio:
+        1 / 1;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #123c2d,
+          #06150f
+        );
     }
 
     .game-image img {
       width: 100%;
       height: 100%;
+
+      display: block;
+
       object-fit: cover;
-      display: block;
+
+      transition:
+        transform 0.35s ease;
     }
 
-    .game-placeholder {
+    .game-card:hover
+    .game-image img {
+      transform:
+        scale(1.06);
+    }
+
+
+    /* fallback image */
+
+    .image-fallback {
+      width: 100%;
+      height: 100%;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
       text-align: center;
+
       padding: 20px;
-      color: #00e89b;
-      font-weight: 800;
-      font-size: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0f392b,
+          #06150f
+        );
     }
 
-    .game-placeholder small {
-      display: block;
-      margin-top: 8px;
-      color: #83958e;
-      font-size: 11px;
-      font-weight: normal;
+    .image-fallback .game-icon {
+      font-size: 45px;
+
+      margin-bottom: 8px;
     }
+
+    .image-fallback strong {
+      display: block;
+
+      font-size: 13px;
+
+      line-height: 1.4;
+    }
+
+
+    /* =========================
+       PROVIDER BADGE
+    ========================= */
+
+    .provider-badge {
+      position: absolute;
+
+      left: 10px;
+      top: 10px;
+
+      padding:
+        6px 9px;
+
+      border-radius: 8px;
+
+      background:
+        rgba(0,0,0,0.72);
+
+      backdrop-filter:
+        blur(8px);
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      color:
+        #ffffff;
+
+      max-width: 80%;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+
+    /* =========================
+       CARD INFO
+    ========================= */
 
     .game-info {
-      padding: 14px;
+      padding:
+        14px;
     }
 
     .game-name {
-      font-size: 15px;
-      font-weight: 800;
       min-height: 40px;
-      line-height: 1.35;
+
+      font-size: 14px;
+
+      font-weight: 900;
+
+      line-height: 1.4;
+
+      margin-bottom: 6px;
+
+      display:
+        -webkit-box;
+
+      -webkit-line-clamp: 2;
+
+      -webkit-box-orient:
+        vertical;
+
+      overflow: hidden;
     }
 
     .game-provider {
-      color: #879b94;
-      font-size: 12px;
-      margin-top: 6px;
+      color:
+        rgba(255,255,255,0.48);
+
+      font-size: 11px;
+
       margin-bottom: 12px;
     }
 
-    .play-btn {
+
+    /* =========================
+       MAIN BUTTON
+    ========================= */
+
+    .main-btn {
       width: 100%;
+
+      min-height: 42px;
+
       border: none;
+
       border-radius: 11px;
-      padding: 12px;
-      background: linear-gradient(135deg, #00e89b, #00b878);
-      color: #04120d;
-      font-weight: 900;
+
       cursor: pointer;
-      transition: .2s;
+
+      background:
+        linear-gradient(
+          135deg,
+          #18d98a,
+          #0fb96f
+        );
+
+      color:
+        #03120c;
+
+      font-size: 13px;
+
+      font-weight: 950;
+
+      letter-spacing: 0.5px;
+
+      transition:
+        0.2s ease;
+
+      box-shadow:
+        0 8px 20px
+        rgba(24,217,138,0.18);
     }
 
-    .play-btn:hover {
-      transform: scale(1.02);
-      filter: brightness(1.08);
+    .main-btn:hover {
+      transform:
+        translateY(-1px);
+
+      box-shadow:
+        0 12px 25px
+        rgba(24,217,138,0.3);
     }
 
-    .play-btn:disabled {
-      opacity: .5;
-      cursor: not-allowed;
+    .main-btn:active {
+      transform:
+        scale(0.98);
     }
 
-    /* EMPTY */
+    .main-btn:disabled {
+      opacity: 0.55;
 
-    .empty {
-      display: none;
-      text-align: center;
-      padding: 70px 20px;
-      color: #91a29c;
+      cursor:
+        wait;
+
+      transform:
+        none;
     }
 
-    .empty-icon {
-      font-size: 50px;
-      margin-bottom: 15px;
-    }
 
-    /* LOADING */
+    /* =========================
+       LOADING
+    ========================= */
 
     .loading {
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding:
+        70px 20px;
+
       text-align: center;
-      padding: 80px 20px;
-      color: #84968f;
+
+      color:
+        rgba(255,255,255,0.65);
     }
 
-    .loader {
+    .spinner {
       width: 42px;
       height: 42px;
-      border: 3px solid rgba(255,255,255,.1);
-      border-top-color: #00e89b;
+
+      margin:
+        0 auto 15px;
+
       border-radius: 50%;
-      animation: spin .8s linear infinite;
-      margin: 0 auto 18px;
+
+      border:
+        4px solid
+        rgba(255,255,255,0.1);
+
+      border-top-color:
+        #18d98a;
+
+      animation:
+        spin 0.8s linear infinite;
     }
 
     @keyframes spin {
       to {
-        transform: rotate(360deg);
+        transform:
+          rotate(360deg);
       }
     }
 
-    /* GAME VIEW */
 
-    .game-view {
+    /* =========================
+       EMPTY
+    ========================= */
+
+    .empty {
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding:
+        70px 20px;
+
+      text-align: center;
+
       display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: #000;
     }
 
-    .game-view iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    .empty-icon {
+      font-size: 50px;
+
+      margin-bottom: 12px;
     }
 
-    .game-close {
-      position: absolute;
-      z-index: 10;
-      top: 18px;
-      right: 18px;
-      border: none;
-      background: rgba(0,0,0,.75);
-      color: white;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      font-size: 22px;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,.2);
+    .empty h3 {
+      font-size: 20px;
+
+      margin-bottom: 8px;
     }
 
-    /* RESPONSIVE */
+    .empty p {
+      color:
+        rgba(255,255,255,0.5);
 
-    @media (max-width: 1200px) {
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-box {
+      max-width: 800px;
+
+      margin:
+        25px auto;
+
+      padding:
+        18px 20px;
+
+      border-radius: 14px;
+
+      background:
+        rgba(255,60,60,0.08);
+
+      border:
+        1px solid
+        rgba(255,80,80,0.25);
+
+      color:
+        #ffb0b0;
+
+      display: none;
+
+      line-height: 1.6;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top:
+        1px solid
+        rgba(255,255,255,0.06);
+
+      padding:
+        30px 20px;
+
+      text-align: center;
+
+      color:
+        rgba(255,255,255,0.35);
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1100px) {
+
       .game-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns:
+          repeat(4, minmax(0, 1fr));
       }
+
     }
 
-    @media (max-width: 900px) {
-      .game-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
 
-    @media (max-width: 650px) {
-      .header {
-        padding: 0 20px;
-      }
-
-      .hero,
-      .toolbar,
-      .status,
-      .game-container {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
+    @media (max-width: 850px) {
 
       .game-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-    }
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
 
-    @media (max-width: 420px) {
-      .game-grid {
-        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+      }
+
+      .game-info {
+        padding: 11px;
       }
 
       .game-name {
         font-size: 13px;
       }
 
-      .game-provider {
-        font-size: 10px;
+    }
+
+
+    @media (max-width: 600px) {
+
+      .header-inner {
+        min-height: 62px;
+
+        padding:
+          10px 14px;
       }
 
-      .play-btn {
+      .logo {
+        font-size: 23px;
+      }
+
+      .back-btn {
+        padding:
+          9px 12px;
+
         font-size: 12px;
       }
+
+      .hero {
+        padding:
+          35px 14px 20px;
+      }
+
+      .search-area {
+        padding:
+          10px 14px 20px;
+      }
+
+      .filter-area {
+        padding:
+          0 14px 20px;
+      }
+
+      .game-heading {
+        padding:
+          0 14px 15px;
+      }
+
+      .game-grid {
+        padding:
+          0 14px 45px;
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 11px;
+      }
+
+      .provider-badge {
+        font-size: 9px;
+
+        left: 7px;
+        top: 7px;
+      }
+
+      .game-info {
+        padding: 10px;
+      }
+
+      .game-name {
+        min-height: 37px;
+
+        font-size: 12px;
+      }
+
+      .game-provider {
+        font-size: 10px;
+
+        margin-bottom: 9px;
+      }
+
+      .main-btn {
+        min-height: 38px;
+
+        font-size: 11px;
+      }
+
     }
+
+
+    @media (max-width: 370px) {
+
+      .game-grid {
+        gap: 8px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .game-info {
+        padding: 8px;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
 
-    <div class="logo">
-      MAC<span>645</span>
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <a
+        href="index.html"
+        class="logo"
+      >
+        MAC<span>645</span>
+      </a>
+
+      <a
+        href="index.html"
+        class="back-btn"
+      >
+        ← KEMBALI
+      </a>
+
     </div>
-
-    <a href="index.html" class="back-btn">
-      ← Kembali
-    </a>
 
   </header>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================= -->
+
   <section class="hero">
 
-    <div class="small-title">
+    <div class="hero-small">
       MAC645 GAME CENTER
     </div>
 
     <h1>
-      Pilih Game<br>
+      Pilih Game
       <span>Favorit Kamu</span>
     </h1>
 
     <p>
-      Game yang tersedia ditampilkan langsung dari katalog
-      BigBang Sandbox. Pilih game lalu tekan MAIN untuk
-      membuka versi demo.
+      Jelajahi berbagai game yang tersedia
+      dan klik tombol MAIN untuk langsung
+      membuka game.
     </p>
 
   </section>
 
 
-  <!-- SEARCH -->
-  <div class="toolbar">
+  <!-- =========================
+       SEARCH
+  ========================= -->
+
+  <section class="search-area">
 
     <div class="search-box">
+
+      <div class="search-icon">
+        🔎
+      </div>
 
       <input
         type="text"
         id="searchInput"
-        placeholder="🔎 Cari nama game..."
+        placeholder="Cari game... contoh: Mahjong, Gates, PGSoft"
+        autocomplete="off"
       >
 
     </div>
 
-    <select id="providerFilter" class="filter">
-
-      <option value="all">
-        Semua Provider
-      </option>
-
-    </select>
-
-  </div>
+  </section>
 
 
-  <!-- STATUS -->
-  <div class="status">
+  <!-- =========================
+       FILTER
+  ========================= -->
 
-    <div class="status-box" id="statusBox">
-      Menghubungkan ke BigBang...
-    </div>
-
-  </div>
-
-
-  <!-- GAMES -->
-  <main class="game-container">
-
-    <div id="loading" class="loading">
-
-      <div class="loader"></div>
-
-      Mengambil katalog game...
-
-    </div>
-
-
-    <div
-      id="gameGrid"
-      class="game-grid"
-    ></div>
-
-
-    <div
-      id="empty"
-      class="empty"
-    >
-
-      <div class="empty-icon">
-        🎮
-      </div>
-
-      <h3>
-        Game tidak ditemukan
-      </h3>
-
-      <p>
-        Coba gunakan nama game atau provider lain.
-      </p>
-
-    </div>
-
-  </main>
-
-
-  <!-- GAME FULLSCREEN -->
-  <div
-    id="gameView"
-    class="game-view"
-  >
+  <div class="filter-area">
 
     <button
-      class="game-close"
-      onclick="closeGame()"
+      class="filter-btn active"
+      data-filter="all"
+      onclick="setFilter('all', this)"
     >
-      ×
+      SEMUA
     </button>
 
-    <iframe
-      id="gameFrame"
-      allow="fullscreen"
-      allowfullscreen
-    ></iframe>
+    <button
+      class="filter-btn"
+      data-filter="PGSoft"
+      onclick="setFilter('PGSoft', this)"
+    >
+      PGSOFT
+    </button>
+
+    <button
+      class="filter-btn"
+      data-filter="Pragmatic"
+      onclick="setFilter('Pragmatic', this)"
+    >
+      PRAGMATIC
+    </button>
 
   </div>
 
 
-<script>
+  <!-- =========================
+       HEADING
+  ========================= -->
 
-  /* =====================================================
-     MAC645 BIGBANG CONFIG
-     ===================================================== */
+  <div class="game-heading">
 
-  const BIGBANG_FUNCTION =
-    "https://jblilyzqozodjslgylso.supabase.co/functions/v1/bigbang-games";
+    <h2>
+      🎮 Semua Game
+    </h2>
 
+    <span id="gameCount">
+      Memuat...
+    </span>
 
-  /* =====================================================
-     GLOBAL
-     ===================================================== */
-
-  let allGames = [];
-  let filteredGames = [];
+  </div>
 
 
-  /* =====================================================
-     LOAD GAMES
-     ===================================================== */
+  <!-- =========================
+       ERROR
+  ========================= -->
 
-  async function loadGames() {
+  <div
+    id="errorBox"
+    class="error-box"
+  ></div>
+
+
+  <!-- =========================
+       LOADING
+  ========================= -->
+
+  <div
+    id="loading"
+    class="loading"
+  >
+
+    <div class="spinner"></div>
+
+    <div>
+      Mengambil daftar game...
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       GAME GRID
+  ========================= -->
+
+  <main
+    id="gameGrid"
+    class="game-grid"
+  ></main>
+
+
+  <!-- =========================
+       EMPTY
+  ========================= -->
+
+  <div
+    id="empty"
+    class="empty"
+  >
+
+    <div class="empty-icon">
+      🎮
+    </div>
+
+    <h3>
+      Game tidak ditemukan
+    </h3>
+
+    <p>
+      Coba gunakan kata pencarian lain.
+    </p>
+
+  </div>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    © 2026 MAC645 DIGITAL STORE
+
+  </footer>
+
+
+  <script>
+
+    /* =====================================================
+       SUPABASE EDGE FUNCTION
+       ===================================================== */
+
+    const API_URL =
+      "https://jblilyzqozodjslgylso.supabase.co/functions/v1/bigbang-games";
+
+
+    /* =====================================================
+       DATA
+       ===================================================== */
+
+    let allGames = [];
+
+    let currentFilter = "all";
+
+    let currentSearch = "";
+
+
+    /* =====================================================
+       ELEMENT
+       ===================================================== */
+
+    const gameGrid =
+      document.getElementById("gameGrid");
+
+    const searchInput =
+      document.getElementById("searchInput");
 
     const loading =
       document.getElementById("loading");
 
-    const status =
-      document.getElementById("statusBox");
+    const empty =
+      document.getElementById("empty");
 
-    try {
+    const errorBox =
+      document.getElementById("errorBox");
+
+    const gameCount =
+      document.getElementById("gameCount");
+
+
+    /* =====================================================
+       ESCAPE HTML
+       ===================================================== */
+
+    function escapeHTML(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =====================================================
+       GET GAME ID
+       ===================================================== */
+
+    function getGameId(game) {
+
+      return (
+        game.game_id ??
+        game.id ??
+        game.gameId ??
+        game.gameID ??
+        null
+      );
+
+    }
+
+
+    /* =====================================================
+       GET GAME NAME
+       ===================================================== */
+
+    function getGameName(game) {
+
+      return (
+        game.name ??
+        game.title ??
+        game.game_name ??
+        game.gameName ??
+        "Game"
+      );
+
+    }
+
+
+    /* =====================================================
+       GET PROVIDER
+       ===================================================== */
+
+    function getProvider(game) {
+
+      return (
+        game.provider ??
+        game.provider_name ??
+        game.providerName ??
+        "Unknown"
+      );
+
+    }
+
+
+    /* =====================================================
+       GET IMAGE
+       ===================================================== */
+
+    function getGameImage(game) {
+
+      return (
+        game.image ??
+        game.image_url ??
+        game.imageUrl ??
+        game.thumbnail ??
+        game.thumbnail_url ??
+        game.thumbnailUrl ??
+        game.cover ??
+        game.cover_url ??
+        game.coverUrl ??
+        game.banner ??
+        game.banner_url ??
+        ""
+      );
+
+    }
+
+
+    /* =====================================================
+       IMAGE FALLBACK
+       ===================================================== */
+
+    function imageError(img) {
+
+      img.style.display = "none";
+
+      const fallback =
+        img.parentElement.querySelector(
+          ".image-fallback"
+        );
+
+      if (fallback) {
+        fallback.style.display = "flex";
+      }
+
+    }
+
+
+    /* =====================================================
+       LOAD ALL GAMES
+       ===================================================== */
+
+    async function loadGames() {
 
       loading.style.display = "block";
 
-      status.innerHTML =
-        "Menghubungkan ke <strong>BigBang Sandbox...</strong>";
+      gameGrid.innerHTML = "";
+
+      empty.style.display = "none";
+
+      errorBox.style.display = "none";
+
+      gameCount.textContent =
+        "Memuat...";
 
 
-      /*
-        Ambil game batch pertama.
-      */
+      try {
 
-      const response =
-        await fetch(
-          BIGBANG_FUNCTION +
-          "?action=list&limit=100&offset=0"
-        );
+        const response =
+          await fetch(
+            API_URL + "?action=all",
+            {
+              method: "GET",
 
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
 
-      if (!response.ok) {
-
-        throw new Error(
-          "HTTP " + response.status
-        );
-
-      }
-
-
-      const result =
-        await response.json();
-
-
-      console.log(
-        "BIGBANG RESULT:",
-        result
-      );
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.error ||
-          "Gagal mengambil game"
-        );
-
-      }
-
-
-      allGames =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
-
-
-      filteredGames =
-        [...allGames];
-
-
-      loading.style.display =
-        "none";
-
-
-      status.innerHTML =
-        "Berhasil memuat <strong>" +
-        allGames.length +
-        "</strong> game dari BigBang Sandbox.";
-
-
-      createProviderFilter();
-
-      renderGames();
-
-
-    } catch (error) {
-
-      console.error(error);
-
-
-      loading.innerHTML = `
-
-        <div style="
-          font-size:45px;
-          margin-bottom:15px;
-        ">
-          ⚠️
-        </div>
-
-        <strong style="color:#ff6b6b;">
-          Gagal mengambil katalog game
-        </strong>
-
-        <p style="
-          margin-top:10px;
-          color:#879b94;
-        ">
-          ${escapeHtml(error.message)}
-        </p>
-
-        <button
-          onclick="loadGames()"
-          style="
-            margin-top:20px;
-            padding:12px 20px;
-            border:0;
-            border-radius:10px;
-            background:#00e89b;
-            cursor:pointer;
-            font-weight:bold;
-          "
-        >
-          Coba Lagi
-        </button>
-
-      `;
-
-      status.innerHTML =
-        "Koneksi ke BigBang gagal.";
-
-    }
-
-  }
-
-
-  /* =====================================================
-     PROVIDER FILTER
-     ===================================================== */
-
-  function createProviderFilter() {
-
-    const select =
-      document.getElementById(
-        "providerFilter"
-      );
-
-
-    const providers =
-      [
-        ...new Set(
-          allGames
-            .map(game =>
-              game.provider ||
-              game.provider_name ||
-              "Unknown"
-            )
-        )
-      ]
-      .sort();
-
-
-    providers.forEach(
-      provider => {
-
-        const option =
-          document.createElement(
-            "option"
+              cache: "no-store"
+            }
           );
 
-        option.value =
-          provider;
 
-        option.textContent =
-          provider;
+        if (!response.ok) {
 
-        select.appendChild(
-          option
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =====================================================
-     RENDER
-     ===================================================== */
-
-  function renderGames() {
-
-    const grid =
-      document.getElementById(
-        "gameGrid"
-      );
-
-    const empty =
-      document.getElementById(
-        "empty"
-      );
-
-
-    grid.innerHTML = "";
-
-
-    if (!filteredGames.length) {
-
-      empty.style.display =
-        "block";
-
-      return;
-
-    }
-
-
-    empty.style.display =
-      "none";
-
-
-    filteredGames.forEach(
-      game => {
-
-        const card =
-          createGameCard(game);
-
-        grid.appendChild(card);
-
-      }
-    );
-
-  }
-
-
-  /* =====================================================
-     GAME CARD
-     ===================================================== */
-
-  function createGameCard(game) {
-
-    const card =
-      document.createElement(
-        "div"
-      );
-
-    card.className =
-      "game-card";
-
-
-    const gameId =
-      game.id ??
-      game.game_id;
-
-
-    const gameName =
-      game.name ||
-      game.title ||
-      game.game_name ||
-      "Game";
-
-
-    const provider =
-      game.provider ||
-      game.provider_name ||
-      "Unknown";
-
-
-    /*
-      Coba beberapa kemungkinan
-      field gambar dari API.
-    */
-
-    const image =
-      game.image ||
-      game.image_url ||
-      game.thumbnail ||
-      game.thumbnail_url ||
-      game.cover ||
-      "";
-
-
-    let imageHTML = "";
-
-
-    if (image) {
-
-      imageHTML = `
-
-        <img
-          src="${escapeAttribute(image)}"
-          alt="${escapeAttribute(gameName)}"
-          loading="lazy"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
-        >
-
-        <div
-          class="game-placeholder"
-          style="display:none;"
-        >
-          🎮
-          <small>
-            ${escapeHtml(provider)}
-          </small>
-        </div>
-
-      `;
-
-    } else {
-
-      imageHTML = `
-
-        <div class="game-placeholder">
-
-          🎮
-
-          <small>
-            ${escapeHtml(provider)}
-          </small>
-
-        </div>
-
-      `;
-
-    }
-
-
-    card.innerHTML = `
-
-      <div class="game-image">
-
-        ${imageHTML}
-
-      </div>
-
-
-      <div class="game-info">
-
-        <div class="game-name">
-
-          ${escapeHtml(gameName)}
-
-        </div>
-
-
-        <div class="game-provider">
-
-          ${escapeHtml(provider)}
-
-        </div>
-
-
-        <button
-          class="play-btn"
-          onclick="launchGame(${Number(gameId)})"
-        >
-
-          ▶ MAIN DEMO
-
-        </button>
-
-      </div>
-
-    `;
-
-
-    return card;
-
-  }
-
-
-  /* =====================================================
-     SEARCH
-     ===================================================== */
-
-  document
-    .getElementById("searchInput")
-    .addEventListener(
-      "input",
-      applyFilter
-    );
-
-
-  document
-    .getElementById("providerFilter")
-    .addEventListener(
-      "change",
-      applyFilter
-    );
-
-
-  function applyFilter() {
-
-    const search =
-      document
-        .getElementById(
-          "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const provider =
-      document
-        .getElementById(
-          "providerFilter"
-        )
-        .value;
-
-
-    filteredGames =
-      allGames.filter(
-        game => {
-
-          const name =
-            (
-              game.name ||
-              game.title ||
-              game.game_name ||
-              ""
-            )
-            .toLowerCase();
-
-
-          const gameProvider =
-            game.provider ||
-            game.provider_name ||
-            "Unknown";
-
-
-          const matchSearch =
-            !search ||
-            name.includes(search);
-
-
-          const matchProvider =
-            provider === "all" ||
-            gameProvider === provider;
-
-
-          return (
-            matchSearch &&
-            matchProvider
+          throw new Error(
+            "Server game mengembalikan HTTP " +
+            response.status
           );
 
         }
-      );
 
 
-    renderGames();
+        const result =
+          await response.json();
 
-  }
+
+        console.log(
+          "BIGBANG GAMES:",
+          result
+        );
 
 
-  /* =====================================================
-     LAUNCH GAME
-     ===================================================== */
+        if (!result.success) {
 
-  async function launchGame(gameId) {
+          throw new Error(
+            result.error ||
+            "Gagal mengambil daftar game."
+          );
 
-    if (!gameId) {
+        }
 
-      alert(
-        "ID game tidak ditemukan."
-      );
 
-      return;
+        /*
+          Mendukung beberapa bentuk response
+        */
+
+        if (Array.isArray(result.data)) {
+
+          allGames =
+            result.data;
+
+        } else if (
+          Array.isArray(
+            result.games
+          )
+        ) {
+
+          allGames =
+            result.games;
+
+        } else if (
+          Array.isArray(
+            result.data?.games
+          )
+        ) {
+
+          allGames =
+            result.data.games;
+
+        } else {
+
+          allGames = [];
+
+        }
+
+
+        /*
+          Hapus game yang tidak mempunyai ID
+        */
+
+        allGames =
+          allGames.filter(
+            game =>
+              getGameId(game) !== null
+          );
+
+
+        loading.style.display = "none";
+
+
+        gameCount.textContent =
+          allGames.length +
+          " game";
+
+
+        renderGames();
+
+
+      } catch (error) {
+
+        console.error(
+          "LOAD GAME ERROR:",
+          error
+        );
+
+
+        loading.style.display = "none";
+
+
+        errorBox.style.display =
+          "block";
+
+
+        errorBox.innerHTML =
+          `
+          <strong>Game gagal dimuat.</strong>
+          <br>
+          ${escapeHTML(error.message)}
+          <br><br>
+          Pastikan Supabase Edge Function
+          <b>bigbang-games</b> sudah aktif.
+          `;
+
+
+        gameCount.textContent =
+          "Gagal memuat";
+
+      }
 
     }
 
 
-    const button =
-      event?.target;
+    /* =====================================================
+       RENDER GAME
+       ===================================================== */
+
+    function renderGames() {
+
+      const search =
+        currentSearch
+          .trim()
+          .toLowerCase();
 
 
-    if (button) {
+      const filtered =
+        allGames.filter(
+          game => {
 
-      button.disabled =
-        true;
+            const name =
+              getGameName(game)
+                .toLowerCase();
 
-      button.textContent =
-        "MEMBUKA...";
+            const provider =
+              getProvider(game)
+                .toLowerCase();
 
-    }
+
+            const matchSearch =
+              !search ||
+              name.includes(search) ||
+              provider.includes(search);
 
 
-    try {
+            const matchProvider =
+              currentFilter === "all" ||
+              providerMatches(
+                provider,
+                currentFilter
+              );
 
-      const response =
-        await fetch(
-          BIGBANG_FUNCTION +
-          "?action=launch",
-          {
-            method: "POST",
 
-            headers: {
-              "Content-Type":
-                "application/json"
-            },
-
-            body: JSON.stringify({
-
-              game_id:
-                Number(gameId),
-
-              demo:
-                true,
-
-              language:
-                "id",
-
-              return_url:
-                window.location.href
-
-            })
+            return (
+              matchSearch &&
+              matchProvider
+            );
 
           }
         );
 
 
-      const result =
-        await response.json();
+      gameGrid.innerHTML = "";
 
 
-      console.log(
-        "LAUNCH RESULT:",
-        result
-      );
+      gameCount.textContent =
+        filtered.length +
+        " game";
 
 
-      if (!response.ok) {
+      if (!filtered.length) {
 
-        throw new Error(
-          result.error ||
-          "Gagal membuka game"
-        );
+        empty.style.display =
+          "block";
+
+        return;
 
       }
 
 
-      /*
-        BigBang bisa mengembalikan
-        URL dalam beberapa struktur.
-      */
-
-      const gameUrl =
-        result.url ||
-        result.game_url ||
-        result.launch_url ||
-        result.data?.url ||
-        result.data?.game_url ||
-        result.data?.launch_url;
+      empty.style.display =
+        "none";
 
 
-      if (!gameUrl) {
+      const fragment =
+        document.createDocumentFragment();
 
-        console.log(
-          "Response launch:",
-          result
-        );
 
+      filtered.forEach(
+        game => {
+
+          const card =
+            createGameCard(game);
+
+          fragment.appendChild(card);
+
+        }
+      );
+
+
+      gameGrid.appendChild(
+        fragment
+      );
+
+    }
+
+
+    /* =====================================================
+       PROVIDER FILTER
+       ===================================================== */
+
+    function providerMatches(
+      provider,
+      filter
+    ) {
+
+      const p =
+        provider.toLowerCase();
+
+      const f =
+        filter.toLowerCase();
+
+
+      if (p === f) {
+        return true;
+      }
+
+
+      if (
+        p.includes(f)
+      ) {
+        return true;
+      }
+
+
+      return false;
+
+    }
+
+
+    /* =====================================================
+       CREATE GAME CARD
+       ===================================================== */
+
+    function createGameCard(game) {
+
+      const card =
+        document.createElement("article");
+
+
+      card.className =
+        "game-card";
+
+
+      const gameId =
+        getGameId(game);
+
+
+      const name =
+        getGameName(game);
+
+
+      const provider =
+        getProvider(game);
+
+
+      const image =
+        getGameImage(game);
+
+
+      card.dataset.gameId =
+        gameId;
+
+
+      card.innerHTML =
+        `
+
+        <div class="game-image">
+
+          ${
+            image
+              ?
+              `
+              <img
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(name)}"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                onerror="imageError(this)"
+              >
+              `
+              :
+              ""
+          }
+
+          <div
+            class="image-fallback"
+            style="${
+              image
+                ? "display:none"
+                : "display:flex"
+            }"
+          >
+
+            <div>
+
+              <div class="game-icon">
+                🎮
+              </div>
+
+              <strong>
+                ${escapeHTML(name)}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="provider-badge">
+
+            ${escapeHTML(provider)}
+
+          </div>
+
+        </div>
+
+
+        <div class="game-info">
+
+          <div class="game-name">
+
+            ${escapeHTML(name)}
+
+          </div>
+
+
+          <div class="game-provider">
+
+            ${escapeHTML(provider)}
+
+          </div>
+
+
+          <button
+            type="button"
+            class="main-btn"
+            onclick="launchGame('${escapeHTML(gameId)}', this)"
+          >
+            MAIN
+          </button>
+
+        </div>
+
+        `;
+
+
+      return card;
+
+    }
+
+
+    /* =====================================================
+       LAUNCH GAME
+       ===================================================== */
+
+    async function launchGame(
+      gameId,
+      button
+    ) {
+
+      if (!gameId) {
 
         alert(
-          "Game berhasil dipanggil, tetapi URL game tidak ditemukan. Cek Console browser."
+          "ID game tidak ditemukan."
         );
 
         return;
@@ -1110,129 +1696,488 @@
       }
 
 
-      openGame(
-        gameUrl
-      );
+      const originalText =
+        button
+          ? button.innerHTML
+          : "MAIN";
 
-
-    } catch (error) {
-
-      console.error(error);
-
-      alert(
-        "Gagal membuka game:\n\n" +
-        error.message
-      );
-
-    } finally {
 
       if (button) {
 
         button.disabled =
-          false;
+          true;
 
-        button.textContent =
-          "▶ MAIN DEMO";
+        button.innerHTML =
+          "MEMBUKA...";
+
+      }
+
+
+      try {
+
+        console.log(
+          "LAUNCH GAME ID:",
+          gameId
+        );
+
+
+        const response =
+          await fetch(
+            API_URL +
+            "?action=launch",
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify({
+
+                  game_id:
+                    Number(gameId),
+
+                  demo:
+                    true,
+
+                  language:
+                    "id",
+
+                  return_url:
+                    window.location.href
+
+                })
+
+            }
+          );
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          "BIGBANG LAUNCH:",
+          result
+        );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            result.error ||
+            "Server gagal membuat link game."
+          );
+
+        }
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.error ||
+            "Game gagal diluncurkan."
+          );
+
+        }
+
+
+        /*
+          Ambil URL game dari berbagai kemungkinan
+          struktur response BigBang
+        */
+
+        const gameUrl =
+          findGameUrl(result);
+
+
+        if (!gameUrl) {
+
+          console.error(
+            "URL GAME TIDAK DITEMUKAN:",
+            result
+          );
+
+
+          throw new Error(
+            "URL game tidak ditemukan dari response BigBang."
+          );
+
+        }
+
+
+        console.log(
+          "GAME URL:",
+          gameUrl
+        );
+
+
+        /*
+          INI BAGIAN PENTING.
+
+          Jangan iframe.
+
+          Langsung pindahkan browser
+          ke halaman game.
+        */
+
+        window.location.href =
+          gameUrl;
+
+
+      } catch (error) {
+
+        console.error(
+          "LAUNCH ERROR:",
+          error
+        );
+
+
+        alert(
+          "Game gagal dibuka.\n\n" +
+          error.message
+        );
+
+
+        if (button) {
+
+          button.disabled =
+            false;
+
+          button.innerHTML =
+            originalText;
+
+        }
 
       }
 
     }
 
-  }
+
+    /* =====================================================
+       FIND GAME URL
+       ===================================================== */
+
+    function findGameUrl(data) {
+
+      if (!data) {
+        return null;
+      }
 
 
-  /* =====================================================
-     OPEN GAME
-     ===================================================== */
+      /*
+        URL yang biasanya digunakan
+      */
 
-  function openGame(url) {
+      const directKeys = [
 
-    const view =
-      document.getElementById(
-        "gameView"
+        "launch_url",
+
+        "launchUrl",
+
+        "game_url",
+
+        "gameUrl",
+
+        "url"
+
+      ];
+
+
+      /*
+        Cek object utama
+      */
+
+      for (
+        const key of directKeys
+      ) {
+
+        if (
+          typeof data[key] ===
+          "string" &&
+          isHttpUrl(data[key])
+        ) {
+
+          return data[key];
+
+        }
+
+      }
+
+
+      /*
+        Cek data
+      */
+
+      if (
+        data.data &&
+        typeof data.data ===
+        "object"
+      ) {
+
+        for (
+          const key of directKeys
+        ) {
+
+          if (
+            typeof data.data[key] ===
+            "string" &&
+            isHttpUrl(
+              data.data[key]
+            )
+          ) {
+
+            return data.data[key];
+
+          }
+
+        }
+
+      }
+
+
+      /*
+        Kalau struktur response
+        lebih dalam, cari secara recursive.
+      */
+
+      return recursiveFindUrl(
+        data
       );
 
-    const frame =
-      document.getElementById(
-        "gameFrame"
+    }
+
+
+    /* =====================================================
+       RECURSIVE URL SEARCH
+       ===================================================== */
+
+    function recursiveFindUrl(
+      object
+    ) {
+
+      if (
+        !object ||
+        typeof object !==
+        "object"
+      ) {
+
+        return null;
+
+      }
+
+
+      if (
+        Array.isArray(object)
+      ) {
+
+        for (
+          const item of object
+        ) {
+
+          const found =
+            recursiveFindUrl(
+              item
+            );
+
+          if (found) {
+            return found;
+          }
+
+        }
+
+        return null;
+
+      }
+
+
+      for (
+        const key of
+        Object.keys(object)
+      ) {
+
+        const value =
+          object[key];
+
+
+        if (
+          typeof value ===
+          "string" &&
+          isHttpUrl(value)
+        ) {
+
+          const lower =
+            key.toLowerCase();
+
+
+          /*
+            Prioritaskan URL
+            yang berhubungan dengan game.
+          */
+
+          if (
+            lower.includes("url") ||
+            lower.includes("launch") ||
+            lower.includes("game")
+          ) {
+
+            return value;
+
+          }
+
+        }
+
+      }
+
+
+      for (
+        const key of
+        Object.keys(object)
+      ) {
+
+        const value =
+          object[key];
+
+
+        if (
+          value &&
+          typeof value ===
+          "object"
+        ) {
+
+          const found =
+            recursiveFindUrl(
+              value
+            );
+
+          if (found) {
+            return found;
+          }
+
+        }
+
+      }
+
+
+      return null;
+
+    }
+
+
+    /* =====================================================
+       CHECK URL
+       ===================================================== */
+
+    function isHttpUrl(
+      value
+    ) {
+
+      return (
+        typeof value ===
+        "string" &&
+        /^https?:\/\//i.test(
+          value
+        )
       );
 
-
-    frame.src =
-      url;
+    }
 
 
-    view.style.display =
-      "block";
+    /* =====================================================
+       FILTER BUTTON
+       ===================================================== */
+
+    function setFilter(
+      filter,
+      button
+    ) {
+
+      currentFilter =
+        filter;
 
 
-    document.body.style.overflow =
-      "hidden";
+      document
+        .querySelectorAll(
+          ".filter-btn"
+        )
+        .forEach(
+          btn => {
 
-  }
+            btn.classList.remove(
+              "active"
+            );
 
-
-  /* =====================================================
-     CLOSE GAME
-     ===================================================== */
-
-  function closeGame() {
-
-    const view =
-      document.getElementById(
-        "gameView"
-      );
-
-    const frame =
-      document.getElementById(
-        "gameFrame"
-      );
+          }
+        );
 
 
-    frame.src =
-      "about:blank";
+      if (button) {
+
+        button.classList.add(
+          "active"
+        );
+
+      }
 
 
-    view.style.display =
-      "none";
+      renderGames();
+
+    }
 
 
-    document.body.style.overflow =
-      "";
+    /* =====================================================
+       SEARCH
+       ===================================================== */
 
-  }
+    searchInput.addEventListener(
+      "input",
+      function () {
 
-
-  /* =====================================================
-     SECURITY HELPERS
-     ===================================================== */
-
-  function escapeHtml(value) {
-
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-
-  }
+        currentSearch =
+          this.value;
 
 
-  function escapeAttribute(value) {
+        renderGames();
 
-    return escapeHtml(value);
+      }
+    );
 
-  }
+
+    /* =====================================================
+       ENTER
+       ===================================================== */
+
+    searchInput.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (
+          event.key ===
+          "Escape"
+        ) {
+
+          this.value = "";
+
+          currentSearch = "";
+
+          renderGames();
+
+        }
+
+      }
+    );
 
 
-  /* =====================================================
-     START
-     ===================================================== */
+    /* =====================================================
+       START
+       ===================================================== */
 
-  loadGames();
+    loadGames();
 
-</script>
+  </script>
 
 </body>
 </html>
