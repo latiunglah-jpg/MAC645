@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAC645 - GACOR & TERPERCAYA DUNIA</title>
+<title>MAC645 - GACOR & TERPERCAYA DUNIA (FORM BOEL)</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -23,8 +23,15 @@ html{
 }
 
 body{
-  background:#07130b;
-  color:#fff;
+  background:
+    radial-gradient(
+      circle at 50% -15%,
+      #123c27 0%,
+      #071e13 38%,
+      #04140c 72%,
+      #020c07 100%
+    );
+  color:#f2fff5;
   min-height:100vh;
 }
 
@@ -38,23 +45,47 @@ button{
   cursor:pointer;
 }
 
+/* =========================================================
+   TOP ANNOUNCEMENT
+========================================================= */
+
 .top-announcement{
   width:100%;
-  background:#17451f;
-  border-bottom:1px solid #2c6938;
-  color:#dff5df;
+  background:
+    linear-gradient(
+      90deg,
+      #09291a,
+      #155b38,
+      #09291a
+    );
+  border-bottom:1px solid #2d7049;
+  color:#e2f9e9;
   text-align:center;
   padding:7px 12px;
   font-size:11px;
   font-weight:bold;
 }
 
+/* =========================================================
+   HEADER
+========================================================= */
+
 header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:#081a0d;
-  border-bottom:1px solid #244d2d;
+
+  background:
+    linear-gradient(
+      180deg,
+      #061b11,
+      #04150c
+    );
+
+  border-bottom:1px solid #235238;
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,.35);
 }
 
 .header-main{
@@ -70,12 +101,12 @@ header{
 .logo{
   font-size:24px;
   font-weight:900;
-  color:#fff;
+  color:#f5fff7;
   white-space:nowrap;
 }
 
 .logo span{
-  color:#aaff38;
+  color:#8fe85c;
 }
 
 .nav-links{
@@ -92,32 +123,54 @@ header{
 }
 
 .nav-item{
-  color:#dceadd;
+  color:#c9dfd0;
   text-decoration:none;
   padding:9px 11px;
   font-size:12px;
   border-radius:7px;
   white-space:nowrap;
+  transition:.2s;
 }
 
 .nav-item:hover{
-  background:#15371e;
-  color:#aaff38;
+  background:#123c27;
+  color:#9bea68;
 }
 
 .login-top{
   border:0;
-  background:#aaff38;
-  color:#10200f;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a4ef70,
+      #69cc4d
+    );
+
+  color:#06170d;
+
   padding:9px 18px;
   border-radius:7px;
+
   font-weight:900;
   font-size:12px;
   white-space:nowrap;
+
+  box-shadow:
+    0 4px 15px rgba(126,225,84,.12);
+
+  transition:.2s;
 }
 
 .login-top:hover{
-  background:#c0ff72;
+  background:
+    linear-gradient(
+      135deg,
+      #bcf891,
+      #7ddd5d
+    );
+
+  transform:translateY(-1px);
 }
 
 .user-area{
@@ -129,23 +182,34 @@ header{
 
 .user-email{
   font-size:10px;
-  color:#8fa994;
+  color:#88a995;
 }
 
 .balance{
-  color:#aaff38;
+  color:#9bea68;
   font-size:11px;
   font-weight:bold;
 }
 
 .logout{
-  border:1px solid #47754f;
-  background:#14351e;
-  color:#fff;
+  border:1px solid #3d7651;
+  background:#103522;
+  color:#effff3;
   padding:8px 11px;
   border-radius:7px;
   font-size:11px;
+  transition:.2s;
 }
+
+.logout:hover{
+  border-color:#91e968;
+  color:#aaf47b;
+  background:#16472c;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container{
   max-width:1250px;
@@ -153,13 +217,21 @@ header{
   padding:18px 15px 40px;
 }
 
+/* =========================================================
+   BANNER
+========================================================= */
+
 .banner-wrap{
   width:100%;
   overflow:hidden;
   border-radius:14px;
-  border:1px solid #39733e;
-  background:#07130b;
-  box-shadow:0 8px 30px rgba(0,0,0,.35);
+
+  border:1px solid #39734e;
+
+  background:#06150c;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.42);
 }
 
 .banner-wrap img{
@@ -177,10 +249,14 @@ header{
   align-items:center;
   justify-content:center;
   text-align:center;
-  color:#aaff38;
+  color:#9bea68;
   font-size:12px;
   padding:20px;
 }
+
+/* =========================================================
+   SECTION
+========================================================= */
 
 .section{
   margin-top:25px;
@@ -195,13 +271,17 @@ header{
 
 .section-header h2{
   font-size:18px;
-  color:#fff;
+  color:#f1fff5;
 }
 
 .section-header span{
   font-size:11px;
-  color:#78917e;
+  color:#789889;
 }
+
+/* =========================================================
+   GAME
+========================================================= */
 
 .game-scroll{
   width:100%;
@@ -209,8 +289,9 @@ header{
   gap:13px;
   overflow-x:auto;
   padding:3px 2px 14px;
+
   scrollbar-width:thin;
-  scrollbar-color:#39663f transparent;
+  scrollbar-color:#34734c transparent;
 }
 
 .game-scroll::-webkit-scrollbar{
@@ -222,7 +303,7 @@ header{
 }
 
 .game-scroll::-webkit-scrollbar-thumb{
-  background:#39663f;
+  background:#34734c;
   border-radius:10px;
 }
 
@@ -237,9 +318,14 @@ header{
   height:125px;
   border-radius:14px;
   overflow:hidden;
-  border:2px solid #5e963f;
-  background:#102819;
-  box-shadow:0 4px 12px rgba(0,0,0,.35);
+
+  border:2px solid #4a895b;
+
+  background:#0b2819;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.4);
+
   transition:.2s;
 }
 
@@ -252,18 +338,24 @@ header{
 
 .game-card:hover .game-image{
   transform:translateY(-4px);
-  border-color:#aaff38;
-  box-shadow:0 7px 20px rgba(170,255,56,.15);
+  border-color:#9bea68;
+
+  box-shadow:
+    0 7px 20px rgba(120,220,90,.16);
 }
 
 .game-name{
   margin-top:7px;
-  color:#fff;
+  color:#edf9f0;
   font-size:10px;
   font-weight:bold;
   line-height:1.3;
   min-height:28px;
 }
+
+/* =========================================================
+   JACKPOT
+========================================================= */
 
 .jackpot-section{
   position:relative;
@@ -276,17 +368,17 @@ header{
   background:
     radial-gradient(
       circle at center,
-      #174d32 0%,
-      #0d3523 38%,
-      #071e14 70%,
-      #03100a 100%
+      #1a603c 0%,
+      #10452b 35%,
+      #08291a 68%,
+      #03120a 100%
     );
 
-  border:1px solid rgba(91,220,140,.45);
+  border:1px solid rgba(95,220,140,.45);
 
   box-shadow:
-    0 15px 45px rgba(0,0,0,.6),
-    0 0 35px rgba(50,180,100,.20),
+    0 15px 45px rgba(0,0,0,.62),
+    0 0 35px rgba(50,180,100,.17),
     inset 0 0 50px rgba(40,160,90,.12);
 }
 
@@ -301,8 +393,8 @@ header{
 
   filter:
     hue-rotate(85deg)
-    saturate(.75)
-    brightness(.55)
+    saturate(.72)
+    brightness(.52)
     contrast(1.08);
 
   opacity:.82;
@@ -317,9 +409,9 @@ header{
   background:
     linear-gradient(
       135deg,
-      rgba(3,35,20,.72),
-      rgba(15,75,42,.42),
-      rgba(2,25,14,.75)
+      rgba(3,35,20,.75),
+      rgba(15,85,46,.38),
+      rgba(2,25,14,.78)
     );
 
   z-index:2;
@@ -342,6 +434,7 @@ header{
   border-radius:100px;
 
   background:rgba(46,170,95,.08);
+
   border:1px solid rgba(110,235,155,.20);
 
   box-shadow:
@@ -365,7 +458,7 @@ header{
 
   text-align:center;
 
-  color:#8ff0b2;
+  color:#9ff1b8;
 
   font-size:64px;
   font-weight:1000;
@@ -375,9 +468,9 @@ header{
 
   text-shadow:
     0 2px 5px rgba(0,0,0,.95),
-    0 0 8px rgba(120,240,165,.65),
-    0 0 20px rgba(55,190,105,.55),
-    0 0 40px rgba(40,150,80,.25);
+    0 0 8px rgba(120,240,165,.62),
+    0 0 20px rgba(55,190,105,.48),
+    0 0 40px rgba(40,150,80,.23);
 
   transition:
     transform .12s ease,
@@ -389,6 +482,10 @@ header{
     translate(-50%,-50%)
     scale(1.035);
 }
+
+/* =========================================================
+   PAYMENT SERVICES
+========================================================= */
 
 .payment-section{
   margin-top:25px;
@@ -406,27 +503,28 @@ header{
   background:
     linear-gradient(
       145deg,
-      #10341b,
-      #0b2112
+      #103b25,
+      #092419
     );
 
-  border:1px solid #315f39;
+  border:1px solid #326b48;
+
   border-radius:14px;
   padding:18px;
 
   box-shadow:
-    0 8px 25px rgba(0,0,0,.25);
+    0 8px 25px rgba(0,0,0,.3);
 
   transition:.2s;
 }
 
 .service-card:hover{
   transform:translateY(-3px);
-  border-color:#5b963f;
+  border-color:#63a86e;
 
   box-shadow:
-    0 10px 28px rgba(0,0,0,.35),
-    0 0 18px rgba(170,255,56,.08);
+    0 10px 28px rgba(0,0,0,.4),
+    0 0 18px rgba(150,235,100,.07);
 }
 
 .service-top{
@@ -452,20 +550,26 @@ header{
 
   border-radius:10px;
 
-  background:#17451f;
-  border:1px solid #3f7648;
+  background:
+    linear-gradient(
+      145deg,
+      #185b37,
+      #0d3521
+    );
+
+  border:1px solid #43805a;
 
   font-size:20px;
 }
 
 .service-title h3{
   font-size:16px;
-  color:#fff;
+  color:#f2fff5;
 }
 
 .service-title p{
   margin-top:4px;
-  color:#8fa994;
+  color:#8eaa98;
   font-size:11px;
 }
 
@@ -475,14 +579,14 @@ header{
 
 .service-time span{
   display:block;
-  color:#8fa994;
+  color:#8eaa98;
   font-size:10px;
 }
 
 .service-time strong{
   display:block;
   margin-top:3px;
-  color:#aaff38;
+  color:#9bea68;
   font-size:18px;
 }
 
@@ -494,16 +598,35 @@ header{
   border:0;
   border-radius:8px;
 
-  background:#aaff38;
-  color:#10200f;
+  background:
+    linear-gradient(
+      135deg,
+      #a5ef70,
+      #68cc4b
+    );
+
+  color:#07180e;
 
   font-size:11px;
   font-weight:900;
+
+  transition:.2s;
 }
 
 .service-button:hover{
-  background:#c0ff72;
+  background:
+    linear-gradient(
+      135deg,
+      #bdf891,
+      #7ddd5d
+    );
+
+  transform:translateY(-1px);
 }
+
+/* =========================================================
+   PAYMENT METHODS
+========================================================= */
 
 .payment-method-section{
   margin-top:20px;
@@ -511,16 +634,17 @@ header{
   background:
     linear-gradient(
       145deg,
-      #0d2a16,
-      #091b0f
+      #0c321f,
+      #061d12
     );
 
-  border:1px solid #315f39;
+  border:1px solid #326b48;
+
   border-radius:14px;
   padding:18px;
 
   box-shadow:
-    0 8px 25px rgba(0,0,0,.25);
+    0 8px 25px rgba(0,0,0,.3);
 }
 
 .payment-method-header{
@@ -533,11 +657,11 @@ header{
 
 .payment-method-header h3{
   font-size:15px;
-  color:#fff;
+  color:#f2fff5;
 }
 
 .payment-method-header span{
-  color:#8fa994;
+  color:#88a894;
   font-size:10px;
 }
 
@@ -561,14 +685,16 @@ header{
   background:
     linear-gradient(
       145deg,
-      #143820,
-      #0d2414
+      #124027,
+      #092719
     );
 
-  border:1px solid #315f39;
+  border:1px solid #326b48;
+
   border-radius:10px;
 
-  color:#dceadd;
+  color:#dcefe2;
+
   font-size:8px;
   font-weight:900;
   line-height:1.2;
@@ -578,20 +704,21 @@ header{
 
 .payment-method:hover{
   transform:translateY(-3px);
-  border-color:#aaff38;
+
+  border-color:#9bea68;
 
   background:
     linear-gradient(
       145deg,
-      #1b4925,
-      #12331a
+      #185532,
+      #0d3821
     );
 
-  color:#aaff38;
+  color:#a8f47b;
 
   box-shadow:
-    0 6px 18px rgba(0,0,0,.35),
-    0 0 14px rgba(170,255,56,.10);
+    0 6px 18px rgba(0,0,0,.38),
+    0 0 14px rgba(150,235,100,.08);
 }
 
 .payment-logo{
@@ -617,13 +744,17 @@ header{
   justify-content:center;
 
   background:#fff;
-  color:#12301a;
+  color:#12351f;
 
   border-radius:8px;
 
   font-size:10px;
   font-weight:900;
 }
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 .login-overlay{
   display:none;
@@ -633,7 +764,8 @@ header{
 
   z-index:6000;
 
-  background:rgba(0,0,0,.82);
+  background:
+    rgba(1,12,7,.86);
 
   align-items:center;
   justify-content:center;
@@ -650,21 +782,23 @@ header{
   background:
     linear-gradient(
       145deg,
-      #12351c,
-      #091b0f
+      #123d27,
+      #061d12
     );
 
-  border:1px solid #3f7648;
+  border:1px solid #43805a;
+
   border-radius:18px;
 
   padding:28px;
 
   box-shadow:
-    0 25px 80px rgba(0,0,0,.7);
+    0 25px 80px rgba(0,0,0,.78),
+    0 0 35px rgba(40,150,80,.08);
 }
 
 .login-box h2{
-  color:#aaff38;
+  color:#a5ef70;
   font-size:25px;
   font-weight:900;
 }
@@ -673,7 +807,7 @@ header{
   margin-top:5px;
   margin-bottom:20px;
 
-  color:#91a995;
+  color:#91aa99;
   font-size:12px;
 }
 
@@ -689,10 +823,16 @@ header{
   border:0;
   border-radius:50%;
 
-  background:#194b27;
+  background:#185331;
   color:#fff;
 
   font-size:22px;
+
+  transition:.2s;
+}
+
+.login-close:hover{
+  background:#236b40;
 }
 
 .login-box label{
@@ -700,7 +840,7 @@ header{
 
   margin:13px 0 7px;
 
-  color:#dceadd;
+  color:#dcefe2;
 
   font-size:12px;
   font-weight:bold;
@@ -711,20 +851,24 @@ header{
 
   padding:13px;
 
-  border:1px solid #35663e;
+  border:1px solid #39764f;
+
   border-radius:9px;
 
-  background:#0a2111;
+  background:#061d12;
+
   color:#fff;
 
   outline:none;
+
+  transition:.2s;
 }
 
 .login-box input:focus{
-  border-color:#aaff38;
+  border-color:#9bea68;
 
   box-shadow:
-    0 0 0 2px rgba(170,255,56,.08);
+    0 0 0 2px rgba(155,234,104,.10);
 }
 
 .login-button,
@@ -739,28 +883,54 @@ header{
 
   font-size:12px;
   font-weight:900;
+
+  transition:.2s;
 }
 
 .login-button{
   border:0;
-  background:#aaff38;
-  color:#10200f;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a5ef70,
+      #68cc4b
+    );
+
+  color:#06170d;
 }
 
 .login-button:hover{
-  background:#c0ff72;
+  background:
+    linear-gradient(
+      135deg,
+      #bdf891,
+      #7ddd5d
+    );
 }
 
 .register-button{
-  border:1px solid #46774e;
-  background:#14351e;
-  color:#dceadd;
+  border:1px solid #43805a;
+
+  background:
+    linear-gradient(
+      145deg,
+      #123d27,
+      #092719
+    );
+
+  color:#dcefe2;
 }
 
 .register-button:hover{
-  border-color:#aaff38;
-  color:#aaff38;
+  border-color:#9bea68;
+  color:#a8f47b;
+  background:#164a2d;
 }
+
+/* =========================================================
+   WITHDRAW
+========================================================= */
 
 .withdraw-overlay{
   display:none;
@@ -770,7 +940,8 @@ header{
 
   z-index:5000;
 
-  background:rgba(0,0,0,.84);
+  background:
+    rgba(1,12,7,.88);
 
   align-items:center;
   justify-content:center;
@@ -787,15 +958,21 @@ header{
 
   position:relative;
 
-  background:#102a19;
+  background:
+    linear-gradient(
+      145deg,
+      #103a25,
+      #061d12
+    );
 
-  border:1px solid #39733e;
+  border:1px solid #3b7851;
+
   border-radius:16px;
 
   padding:25px;
 
   box-shadow:
-    0 25px 80px rgba(0,0,0,.65);
+    0 25px 80px rgba(0,0,0,.72);
 }
 
 .withdraw-close{
@@ -810,14 +987,14 @@ header{
   border:0;
   border-radius:50%;
 
-  background:#194b27;
+  background:#185331;
   color:#fff;
 
   font-size:24px;
 }
 
 .withdraw-box h2{
-  color:#aaff38;
+  color:#a5ef70;
   font-size:20px;
 }
 
@@ -825,14 +1002,16 @@ header{
   margin-top:5px;
   margin-bottom:18px;
 
-  color:#9caf9e;
+  color:#93ad9c;
   font-size:12px;
   line-height:1.5;
 }
 
 .withdraw-balance{
-  background:#0b2918;
-  border:1px solid #285d35;
+  background:#06251a;
+
+  border:1px solid #2d6844;
+
   border-radius:10px;
 
   padding:15px;
@@ -842,13 +1021,14 @@ header{
 .withdraw-balance span{
   display:block;
 
-  color:#9caf9e;
+  color:#91aa99;
+
   font-size:11px;
   margin-bottom:5px;
 }
 
 .withdraw-balance strong{
-  color:#aaff38;
+  color:#a5ef70;
   font-size:23px;
 }
 
@@ -857,7 +1037,7 @@ header{
 
   margin:13px 0 7px;
 
-  color:#d8eadc;
+  color:#d8eee0;
 
   font-size:12px;
   font-weight:bold;
@@ -871,9 +1051,9 @@ header{
 
   border-radius:8px;
 
-  border:1px solid #35663e;
+  border:1px solid #39764f;
 
-  background:#194b27;
+  background:#0b3020;
 
   color:#fff;
 
@@ -882,7 +1062,7 @@ header{
 
 .withdraw-box input:focus,
 .withdraw-box select:focus{
-  border-color:#aaff38;
+  border-color:#9bea68;
 }
 
 .withdraw-submit{
@@ -895,9 +1075,14 @@ header{
   border:0;
   border-radius:8px;
 
-  background:#aaff38;
+  background:
+    linear-gradient(
+      135deg,
+      #a5ef70,
+      #68cc4b
+    );
 
-  color:#10210e;
+  color:#06170d;
 
   font-weight:900;
 }
@@ -911,7 +1096,7 @@ header{
   margin-top:24px;
   padding-top:20px;
 
-  border-top:1px solid #285d35;
+  border-top:1px solid #2a6040;
 }
 
 .withdraw-history h3{
@@ -920,9 +1105,9 @@ header{
 }
 
 .withdraw-item{
-  background:#0b2918;
+  background:#06251a;
 
-  border:1px solid #285d35;
+  border:1px solid #285f3d;
 
   border-radius:9px;
 
@@ -943,21 +1128,25 @@ header{
 }
 
 .status-pending{
-  color:#ffd54a;
+  color:#ffd85a;
 }
 
 .status-approved{
-  color:#aaff38;
+  color:#a5ef70;
 }
 
 .status-rejected{
-  color:#ff6b6b;
+  color:#ff7070;
 }
 
 .withdraw-empty{
-  color:#8fa693;
+  color:#819c89;
   font-size:12px;
 }
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
   margin-top:35px;
@@ -966,12 +1155,38 @@ footer{
 
   text-align:center;
 
-  color:#607764;
+  color:#678273;
 
-  border-top:1px solid #1c3e25;
+  border-top:1px solid #1d452c;
 
   font-size:11px;
 }
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+  width:7px;
+  height:7px;
+}
+
+::-webkit-scrollbar-track{
+  background:#03120a;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#28633f;
+  border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#3c8958;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1000px){
 
@@ -1793,10 +2008,9 @@ function tutupLogin(){
 
 }
 
-
 /* =========================================================
    DAFTAR AKUN
-   SEKARANG TOMBOL DAFTAR MEMBUKA register.html
+   LOGIN -> DAFTAR AKUN BARU -> register.html
 ========================================================= */
 
 function registerUser(){
@@ -1805,7 +2019,6 @@ function registerUser(){
     "register.html";
 
 }
-
 
 /* =========================================================
    LOGIN
@@ -2522,7 +2735,6 @@ async function loadWithdrawHistory(userId){
 
 }
 
-
 /* =========================================================
    PAYMENT METHOD
 ========================================================= */
@@ -2651,7 +2863,7 @@ const paymentMethods = [
 
   {
     name:"BANK SINARMAS",
-    logo:"https://www.google.com/s2/favicons?domain=bankmaspion.co.id&sz=128",
+    logo:"https://www.google.com/s2/favicons?domain=banksinarmas.com&sz=128",
     fallback:"SM"
   },
 
@@ -2931,6 +3143,10 @@ function renderPaymentMethods(){
 
 }
 
+/* =========================================================
+   JACKPOT
+========================================================= */
+
 let jackpotValue =
   6829912808;
 
@@ -2979,6 +3195,10 @@ setInterval(
   updateJackpot,
   500
 );
+
+/* =========================================================
+   SESSION
+========================================================= */
 
 async function cekSessionAwal(){
 
@@ -3035,6 +3255,10 @@ supabaseClient.auth.onAuthStateChange(
 
   }
 );
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
 
 document.addEventListener(
   "click",
@@ -3095,6 +3319,10 @@ document.addEventListener(
 
   }
 );
+
+/* =========================================================
+   START
+========================================================= */
 
 renderPaymentMethods();
 
