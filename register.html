@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MAC645 - Daftar</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at top left,rgba(24,180,120,.12),transparent 35%),
+        radial-gradient(circle at bottom right,rgba(0,120,255,.08),transparent 35%),
+        #07110d;
+      color:#fff;
+      min-height:100vh;
+      padding:30px 15px;
+    }
+
+    .container{
+      width:100%;
+      max-width:720px;
+      margin:auto;
+    }
+
+    .top{
+      text-align:center;
+      margin-bottom:25px;
+    }
+
+    .logo{
+      font-size:38px;
+      font-weight:900;
+      letter-spacing:2px;
+      color:#fff;
+      margin-bottom:8px;
+    }
+
+    .logo span{
+      color:#18d68a;
+    }
+
+    .subtitle{
+      color:#9baaa3;
+      font-size:14px;
+    }
+
+    .register-box{
+      background:rgba(15,28,23,.96);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:30px;
+      box-shadow:0 20px 60px rgba(0,0,0,.4);
+    }
+
+    .section-title{
+      font-size:18px;
+      font-weight:800;
+      margin-bottom:20px;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .section-title::before{
+      content:"";
+      width:4px;
+      height:22px;
+      border-radius:10px;
+      background:#18d68a;
+    }
+
+    .section{
+      margin-bottom:30px;
+    }
+
+    .form-group{
+      margin-bottom:17px;
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      color:#dbe5e0;
+      margin-bottom:8px;
+    }
+
+    .required{
+      color:#ff5d6c;
+    }
+
+    .optional{
+      color:#87968f;
+      font-weight:500;
+      font-size:11px;
+    }
+
+    .input-wrap{
+      position:relative;
+    }
+
+    input,
+    select{
+      width:100%;
+      height:50px;
+      border-radius:12px;
+      border:1px solid #293a33;
+      background:#0a1712;
+      color:#fff;
+      padding:0 15px;
+      font-size:14px;
+      outline:none;
+      transition:.2s;
+    }
+
+    input::placeholder{
+      color:#66756e;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:#18d68a;
+      box-shadow:0 0 0 3px rgba(24,214,138,.09);
+    }
+
+    select{
+      cursor:pointer;
+    }
+
+    select option{
+      background:#0a1712;
+      color:#fff;
+    }
+
+    .password-input{
+      padding-right:50px;
+    }
+
+    .toggle-password{
+      position:absolute;
+      right:0;
+      top:0;
+      height:50px;
+      width:48px;
+      border:0;
+      background:transparent;
+      color:#83928b;
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    .toggle-password:hover{
+      color:#18d68a;
+    }
+
+    .bank-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+    }
+
+    .hint{
+      color:#718078;
+      font-size:11px;
+      margin-top:7px;
+      line-height:1.5;
+    }
+
+    .password-status{
+      display:none;
+      font-size:12px;
+      margin-top:7px;
+    }
+
+    .password-status.show{
+      display:block;
+    }
+
+    .password-status.good{
+      color:#18d68a;
+    }
+
+    .password-status.bad{
+      color:#ff6572;
+    }
+
+    .captcha-box{
+      margin-top:10px;
+      border:1px dashed #33483e;
+      border-radius:12px;
+      min-height:65px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#76867e;
+      font-size:12px;
+      background:#0a1712;
+    }
+
+    .captcha-box input{
+      width:auto;
+      height:auto;
+      margin-right:9px;
+      accent-color:#18d68a;
+    }
+
+    .agree{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      margin:20px 0;
+      color:#899890;
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    .agree input{
+      width:17px;
+      height:17px;
+      min-width:17px;
+      margin-top:1px;
+      accent-color:#18d68a;
+    }
+
+    .agree a{
+      color:#18d68a;
+      text-decoration:none;
+    }
+
+    .register-btn{
+      width:100%;
+      height:53px;
+      border:none;
+      border-radius:13px;
+      background:linear-gradient(135deg,#18d68a,#0da96b);
+      color:#04100b;
+      font-size:15px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .register-btn:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.05);
+    }
+
+    .register-btn:disabled{
+      cursor:not-allowed;
+      opacity:.6;
+      transform:none;
+    }
+
+    .message{
+      display:none;
+      border-radius:11px;
+      padding:13px 15px;
+      margin-bottom:18px;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .message.show{
+      display:block;
+    }
+
+    .message.error{
+      background:rgba(255,70,85,.10);
+      border:1px solid rgba(255,70,85,.25);
+      color:#ff8992;
+    }
+
+    .message.success{
+      background:rgba(24,214,138,.10);
+      border:1px solid rgba(24,214,138,.25);
+      color:#65e6af;
+    }
+
+    .bottom{
+      text-align:center;
+      margin-top:22px;
+      color:#819088;
+      font-size:13px;
+    }
+
+    .bottom a{
+      color:#18d68a;
+      font-weight:800;
+      text-decoration:none;
+    }
+
+    .back-home{
+      display:block;
+      text-align:center;
+      margin-top:15px;
+      color:#73827b;
+      font-size:12px;
+      text-decoration:none;
+    }
+
+    .back-home:hover{
+      color:#18d68a;
+    }
+
+    .loading{
+      display:none;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+
+    .loading.show{
+      display:flex;
+    }
+
+    .spinner{
+      width:16px;
+      height:16px;
+      border:2px solid rgba(0,0,0,.25);
+      border-top-color:#04100b;
+      border-radius:50%;
+      animation:spin .7s linear infinite;
+    }
+
+    @keyframes spin{
+      to{
+        transform:rotate(360deg);
+      }
+    }
+
+    @media(max-width:600px){
+
+      body{
+        padding:18px 10px;
+      }
+
+      .register-box{
+        padding:22px 17px;
+        border-radius:18px;
+      }
+
+      .logo{
+        font-size:32px;
+      }
+
+      .bank-row{
+        grid-template-columns:1fr;
+        gap:0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="top">
+    <div class="logo">
+      MAC<span>645</span>
+    </div>
+
+    <div class="subtitle">
+      Buat akun baru MAC645
+    </div>
+  </div>
+
+
+  <div class="register-box">
+
+    <div id="message" class="message"></div>
+
+
+    <!-- ========================= -->
+    <!-- INFORMASI PENGGUNA -->
+    <!-- ========================= -->
+
+    <div class="section">
+
+      <div class="section-title">
+        Informasi Pengguna
+      </div>
+
+
+      <!-- USERNAME -->
+      <div class="form-group">
+
+        <label>
+          Username <span class="required">*</span>
+        </label>
+
+        <input
+          type="text"
+          id="username"
+          placeholder="Contoh: username1"
+          autocomplete="username"
+          maxlength="30"
+        >
+
+      </div>
+
+
+      <!-- PASSWORD -->
+      <div class="form-group">
+
+        <label>
+          Kata Sandi <span class="required">*</span>
+        </label>
+
+        <div class="input-wrap">
+
+          <input
+            type="password"
+            id="password"
+            class="password-input"
+            placeholder="Contoh: password1"
+            autocomplete="new-password"
+          >
+
+          <button
+            type="button"
+            class="toggle-password"
+            onclick="togglePassword('password',this)"
+          >
+            👁
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONFIRM PASSWORD -->
+      <div class="form-group">
+
+        <label>
+          Konfirmasi Kata Sandi <span class="required">*</span>
+        </label>
+
+        <div class="input-wrap">
+
+          <input
+            type="password"
+            id="confirmPassword"
+            class="password-input"
+            placeholder="Ulangi kata sandi"
+            autocomplete="new-password"
+          >
+
+          <button
+            type="button"
+            class="toggle-password"
+            onclick="togglePassword('confirmPassword',this)"
+          >
+            👁
+          </button>
+
+        </div>
+
+        <div id="passwordStatus" class="password-status"></div>
+
+      </div>
+
+
+      <!-- EMAIL -->
+      <div class="form-group">
+
+        <label>
+          Alamat Email <span class="required">*</span>
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Contoh: username1@gmail.com"
+          autocomplete="email"
+        >
+
+      </div>
+
+
+      <!-- TELEPON -->
+      <div class="form-group">
+
+        <label>
+          Nomor Telepon <span class="required">*</span>
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Contoh: 081234567890"
+          autocomplete="tel"
+          maxlength="20"
+        >
+
+      </div>
+
+
+      <!-- REFERRAL -->
+      <div class="form-group">
+
+        <label>
+          Kode Referral
+          <span class="optional">(Optional)</span>
+        </label>
+
+        <input
+          type="text"
+          id="referral"
+          placeholder="Masukkan kode referral jika ada"
+          maxlength="50"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- INFORMASI BANK -->
+    <!-- ========================= -->
+
+    <div class="section">
+
+      <div class="section-title">
+        Informasi Bank
+      </div>
+
+
+      <!-- METODE DANA -->
+      <div class="form-group">
+
+        <label>
+          Jenis Metode Dana
+        </label>
+
+        <select id="fundMethod">
+          <option value="Bank">Bank</option>
+        </select>
+
+      </div>
+
+
+      <div class="bank-row">
+
+        <!-- TIPE BANK -->
+        <div class="form-group">
+
+          <label>
+            Tipe Bank <span class="required">*</span>
+          </label>
+
+          <select id="bankType">
+
+            <option value="">
+              Tipe Bank
+            </option>
+
+            <option value="BCA">
+              BCA
+            </option>
+
+            <option value="BRI">
+              BRI
+            </option>
+
+            <option value="BNI">
+              BNI
+            </option>
+
+            <option value="Mandiri">
+              Mandiri
+            </option>
+
+            <option value="CIMB Niaga">
+              CIMB Niaga
+            </option>
+
+            <option value="Danamon">
+              Danamon
+            </option>
+
+            <option value="Permata">
+              Permata
+            </option>
+
+            <option value="BTN">
+              BTN
+            </option>
+
+            <option value="BSI">
+              BSI
+            </option>
+
+            <option value="Bank Jago">
+              Bank Jago
+            </option>
+
+            <option value="SeaBank">
+              SeaBank
+            </option>
+
+            <option value="Bank Neo">
+              Bank Neo
+            </option>
+
+            <option value="Lainnya">
+              Lainnya
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- NAMA REKENING -->
+        <div class="form-group">
+
+          <label>
+            Nama Rekening <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="accountName"
+            placeholder="Nama sesuai rekening"
+            autocomplete="name"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Nomor Rekening <span class="required">*</span>
+        </label>
+
+        <input
+          type="text"
+          id="accountNumber"
+          placeholder="Masukkan nomor rekening"
+          inputmode="numeric"
+          maxlength="30"
+        >
+
+        <div class="hint">
+          Silahkan isi nama sesuai dengan nama akun rekening bank.
+        </div>
+
+      </div>
+
+
+      <!-- CAPTCHA -->
+      <div class="form-group">
+
+        <label>
+          Verifikasi
+        </label>
+
+        <div class="captcha-box">
+
+          <label
+            style="
+              margin:0;
+              display:flex;
+              align-items:center;
+              color:#8b9992;
+              font-weight:500;
+              cursor:pointer;
+            "
+          >
+
+            <input
+              type="checkbox"
+              id="captcha"
+            >
+
+            Saya bukan robot
+
+          </label>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- AGREEMENT -->
+
+    <div class="agree">
+
+      <input
+        type="checkbox"
+        id="agree"
+      >
+
+      <div>
+        Saya menyetujui syarat dan ketentuan penggunaan
+        layanan MAC645.
+      </div>
+
+    </div>
+
+
+    <!-- BUTTON -->
+
+    <button
+      type="button"
+      id="registerBtn"
+      class="register-btn"
+      onclick="registerUser()"
+    >
+
+      <span id="registerText">
+        DAFTAR SEKARANG
+      </span>
+
+      <span
+        id="loading"
+        class="loading"
+      >
+        <span class="spinner"></span>
+        MEMPROSES...
+      </span>
+
+    </button>
+
+
+    <div class="bottom">
+
+      Sudah punya akun?
+
+      <a href="mac.html">
+        Login di sini
+      </a>
+
+    </div>
+
+
+    <a
+      href="index.html"
+      class="back-home"
+    >
+      ← Kembali ke Menu Utama
+    </a>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  // =========================================
+  // SUPABASE
+  // =========================================
+
+  const SUPABASE_URL =
+    "https://jblilyzqozodjslgylso.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  // =========================================
+  // ELEMENT
+  // =========================================
+
+  const messageEl =
+    document.getElementById("message");
+
+  const registerBtn =
+    document.getElementById("registerBtn");
+
+  const registerText =
+    document.getElementById("registerText");
+
+  const loadingEl =
+    document.getElementById("loading");
+
+
+  // =========================================
+  // MESSAGE
+  // =========================================
+
+  function showMessage(text,type="error"){
+
+    messageEl.textContent = text;
+
+    messageEl.className =
+      "message show " + type;
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+  }
+
+
+  function hideMessage(){
+
+    messageEl.className =
+      "message";
+
+    messageEl.textContent = "";
+
+  }
+
+
+  // =========================================
+  // PASSWORD SHOW / HIDE
+  // =========================================
+
+  function togglePassword(id,button){
+
+    const input =
+      document.getElementById(id);
+
+    if(input.type === "password"){
+
+      input.type = "text";
+
+      button.textContent = "🙈";
+
+    }else{
+
+      input.type = "password";
+
+      button.textContent = "👁";
+
+    }
+
+  }
+
+
+  // =========================================
+  // PASSWORD CHECK
+  // =========================================
+
+  const passwordInput =
+    document.getElementById("password");
+
+  const confirmPasswordInput =
+    document.getElementById("confirmPassword");
+
+  const passwordStatus =
+    document.getElementById("passwordStatus");
+
+
+  function checkPassword(){
+
+    const password =
+      passwordInput.value;
+
+    const confirm =
+      confirmPasswordInput.value;
+
+
+    if(!confirm){
+
+      passwordStatus.className =
+        "password-status";
+
+      passwordStatus.textContent = "";
+
+      return;
+
+    }
+
+
+    passwordStatus.classList.add("show");
+
+
+    if(password === confirm){
+
+      passwordStatus.classList.remove("bad");
+
+      passwordStatus.classList.add("good");
+
+      passwordStatus.textContent =
+        "✓ Kata sandi cocok";
+
+    }else{
+
+      passwordStatus.classList.remove("good");
+
+      passwordStatus.classList.add("bad");
+
+      passwordStatus.textContent =
+        "✕ Kata sandi tidak cocok";
+
+    }
+
+  }
+
+
+  passwordInput.addEventListener(
+    "input",
+    checkPassword
+  );
+
+  confirmPasswordInput.addEventListener(
+    "input",
+    checkPassword
+  );
+
+
+  // =========================================
+  // PHONE
+  // =========================================
+
+  document
+    .getElementById("phone")
+    .addEventListener("input",function(){
+
+      this.value =
+        this.value.replace(
+          /[^0-9+]/g,
+          ""
+        );
+
+    });
+
+
+  // =========================================
+  // ACCOUNT NUMBER
+  // =========================================
+
+  document
+    .getElementById("accountNumber")
+    .addEventListener("input",function(){
+
+      this.value =
+        this.value.replace(
+          /[^0-9]/g,
+          ""
+        );
+
+    });
+
+
+  // =========================================
+  // USERNAME
+  // =========================================
+
+  document
+    .getElementById("username")
+    .addEventListener("input",function(){
+
+      this.value =
+        this.value
+          .toLowerCase()
+          .replace(
+            /[^a-z0-9_.]/g,
+            ""
+          );
+
+    });
+
+
+  // =========================================
+  // REGISTER
+  // =========================================
+
+  async function registerUser(){
+
+    hideMessage();
+
+
+    // =========================
+    // GET DATA
+    // =========================
+
+    const username =
+      document
+        .getElementById("username")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+    const confirmPassword =
+      document
+        .getElementById("confirmPassword")
+        .value;
+
+    const email =
+      document
+        .getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const phone =
+      document
+        .getElementById("phone")
+        .value
+        .trim();
+
+    const referral =
+      document
+        .getElementById("referral")
+        .value
+        .trim();
+
+    const fundMethod =
+      document
+        .getElementById("fundMethod")
+        .value;
+
+    const bankType =
+      document
+        .getElementById("bankType")
+        .value;
+
+    const accountName =
+      document
+        .getElementById("accountName")
+        .value
+        .trim();
+
+    const accountNumber =
+      document
+        .getElementById("accountNumber")
+        .value
+        .trim();
+
+    const captcha =
+      document
+        .getElementById("captcha")
+        .checked;
+
+    const agree =
+      document
+        .getElementById("agree")
+        .checked;
+
+
+    // =========================
+    // VALIDATION
+    // =========================
+
+    if(!username){
+
+      showMessage(
+        "Username wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+    if(username.length < 4){
+
+      showMessage(
+        "Username minimal 4 karakter."
+      );
+
+      return;
+
+    }
+
+
+    if(!password){
+
+      showMessage(
+        "Kata sandi wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+    if(password.length < 6){
+
+      showMessage(
+        "Kata sandi minimal 6 karakter."
+      );
+
+      return;
+
+    }
+
+
+    if(!confirmPassword){
+
+      showMessage(
+        "Konfirmasi kata sandi wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+    if(password !== confirmPassword){
+
+      showMessage(
+        "Kata sandi dan konfirmasi kata sandi tidak sama."
+      );
+
+      return;
+
+    }
+
+
+    if(!email){
+
+      showMessage(
+        "Alamat email wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if(!emailRegex.test(email)){
+
+      showMessage(
+        "Format email tidak valid."
+      );
+
+      return;
+
+    }
+
+
+    if(!phone){
+
+      showMessage(
+        "Nomor telepon wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+    if(phone.replace(/\D/g,"").length < 8){
+
+      showMessage(
+        "Nomor telepon tidak valid."
+      );
+
+      return;
+
+    }
+
+
+    if(!bankType){
+
+      showMessage(
+        "Silahkan pilih tipe bank."
+      );
+
+      return;
+
+    }
+
+
+    if(!accountName){
+
+      showMessage(
+        "Nama rekening wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+    if(!accountNumber){
+
+      showMessage(
+        "Nomor rekening wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+    if(accountNumber.length < 5){
+
+      showMessage(
+        "Nomor rekening tidak valid."
+      );
+
+      return;
+
+    }
+
+
+    if(!captcha){
+
+      showMessage(
+        "Silahkan centang verifikasi."
+      );
+
+      return;
+
+    }
+
+
+    if(!agree){
+
+      showMessage(
+        "Kamu harus menyetujui syarat dan ketentuan."
+      );
+
+      return;
+
+    }
+
+
+    // =========================
+    // LOADING
+    // =========================
+
+    registerBtn.disabled = true;
+
+    registerText.style.display =
+      "none";
+
+    loadingEl.classList.add("show");
+
+
+    try{
+
+      // =========================
+      // CHECK USERNAME
+      // =========================
+
+      const {
+        data:existingUsername,
+        error:usernameError
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select("id")
+          .eq("username",username)
+          .maybeSingle();
+
+
+      if(usernameError){
+
+        console.error(
+          "Username check:",
+          usernameError
+        );
+
+        throw new Error(
+          "Tidak dapat memeriksa username."
+        );
+
+      }
+
+
+      if(existingUsername){
+
+        throw new Error(
+          "Username tersebut sudah digunakan."
+        );
+
+      }
+
+
+      // =========================
+      // CREATE AUTH ACCOUNT
+      // =========================
+
+      const {
+        data:authData,
+        error:authError
+      } =
+        await supabaseClient.auth.signUp({
+
+          email:email,
+
+          password:password,
+
+          options:{
+            data:{
+              username:username,
+              phone:phone
+            }
+          }
+
+        });
+
+
+      if(authError){
+
+        throw authError;
+
+      }
+
+
+      if(!authData.user){
+
+        throw new Error(
+          "Akun gagal dibuat."
+        );
+
+      }
+
+
+      const userId =
+        authData.user.id;
+
+
+      // =========================
+      // INSERT PROFILE
+      // =========================
+
+      const {
+        error:profileError
+      } =
+        await supabaseClient
+          .from("profiles")
+          .insert({
+
+            id:userId,
+
+            username:username,
+
+            phone:phone,
+
+            referral_code:
+              referral || null,
+
+            bank_type:bankType,
+
+            account_name:accountName,
+
+            account_number:accountNumber
+
+          });
+
+
+      if(profileError){
+
+        console.error(
+          "Profile error:",
+          profileError
+        );
+
+        throw new Error(
+          "Akun berhasil dibuat tetapi data pengguna gagal disimpan: "
+          + profileError.message
+        );
+
+      }
+
+
+      // =========================
+      // SUCCESS
+      // =========================
+
+      showMessage(
+        "Pendaftaran berhasil! Silahkan login menggunakan akun kamu.",
+        "success"
+      );
+
+
+      setTimeout(function(){
+
+        window.location.href =
+          "mac.html";
+
+      },1500);
+
+
+    }catch(error){
+
+      console.error(
+        "REGISTER ERROR:",
+        error
+      );
+
+
+      let text =
+        error?.message ||
+        "Pendaftaran gagal. Silahkan coba lagi.";
+
+
+      if(
+        text.toLowerCase().includes(
+          "already registered"
+        )
+      ){
+
+        text =
+          "Email tersebut sudah terdaftar.";
+
+      }
+
+
+      if(
+        text.toLowerCase().includes(
+          "duplicate"
+        )
+      ){
+
+        text =
+          "Username atau data tersebut sudah digunakan.";
+
+      }
+
+
+      showMessage(
+        text,
+        "error"
+      );
+
+
+    }finally{
+
+      registerBtn.disabled =
+        false;
+
+      registerText.style.display =
+        "inline";
+
+      loadingEl.classList.remove(
+        "show"
+      );
+
+    }
+
+  }
+
+
+  // =========================================
+  // ENTER KEY
+  // =========================================
+
+  document.addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key === "Enter"){
+
+        const active =
+          document.activeElement;
+
+        if(
+          active &&
+          active.tagName !== "BUTTON"
+        ){
+
+          event.preventDefault();
+
+          registerUser();
+
+        }
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
