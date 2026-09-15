@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>MAC645 - Deposit</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -38,13 +45,19 @@ header{
 .logo{
   font-size:25px;
   font-weight:900;
+  background:none;
+  color:white;
+  border:0;
 }
 
 .logo span{
   color:#b7ff3c;
 }
 
-/* TOMBOL MENU UTAMA */
+/* =========================
+   MENU UTAMA
+========================= */
+
 .back{
   color:white;
   text-decoration:none;
@@ -186,6 +199,22 @@ label{
 }
 
 /* =========================
+   OPTIONAL BADGE
+========================= */
+
+.optional-badge{
+  display:inline-block;
+  margin-left:6px;
+  padding:4px 8px;
+  border-radius:20px;
+  background:#edf7e5;
+  color:#4c702c;
+  font-size:11px;
+  font-weight:bold;
+  vertical-align:middle;
+}
+
+/* =========================
    SUBMIT
 ========================= */
 
@@ -307,6 +336,20 @@ label{
   font-size:13px;
 }
 
+.proof-btn:hover{
+  background:#1c3c29;
+}
+
+.no-proof{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 11px;
+  border-radius:9px;
+  background:#f2f4f3;
+  color:#7a877f;
+  font-size:12px;
+}
+
 .empty{
   color:#7c8981;
   text-align:center;
@@ -360,11 +403,16 @@ label{
     padding:9px 12px;
     font-size:13px;
   }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- =========================
      HEADER
@@ -372,27 +420,32 @@ label{
 
 <header>
 
-  <!-- LOGO MAC645 = KEMBALI KE MENU UTAMA -->
   <button
     type="button"
-    class="logo logo-button"
+    class="logo"
     onclick="kembaliMenu(event)"
   >
+
     MAC<span>645</span>
+
   </button>
 
-  <!-- TOMBOL MENU UTAMA -->
+
   <button
     type="button"
     class="back"
     onclick="kembaliMenu(event)"
   >
+
     ← Menu Utama
+
   </button>
 
 </header>
 
+
 <div class="container">
+
 
   <!-- =========================
        SALDO + REKENING
@@ -400,17 +453,25 @@ label{
 
   <div class="card">
 
-    <h1>💰 Deposit Saldo</h1>
+    <h1>
+      💰 Deposit Saldo
+    </h1>
+
 
     <p class="subtitle">
-      Tambahkan saldo MAC645 dengan melakukan transfer ke rekening tujuan.
+
+      Tambahkan saldo MAC645 dengan melakukan
+      transfer ke rekening tujuan.
+
     </p>
+
 
     <div class="balance">
 
       <small>
         Saldo Saat Ini
       </small>
+
 
       <strong id="saldo">
         Rp0
@@ -426,11 +487,13 @@ label{
 
     <div class="account">
 
+
       <div class="account-row">
 
         <div class="account-label">
           Bank
         </div>
+
 
         <div
           class="account-value"
@@ -448,6 +511,7 @@ label{
           Nomor Rekening
         </div>
 
+
         <div
           class="account-value"
           id="nomor"
@@ -464,6 +528,7 @@ label{
           Atas Nama
         </div>
 
+
         <div
           class="account-value"
           id="nama"
@@ -479,7 +544,9 @@ label{
         class="copy-btn"
         onclick="copyRekening()"
       >
+
         📋 Salin Nomor Rekening
+
       </button>
 
     </div>
@@ -499,7 +566,7 @@ label{
 
       <br>
 
-      • Setelah transfer, upload bukti pembayaran
+      • Bukti transfer <b>boleh diupload atau tidak</b>
 
       <br>
 
@@ -522,8 +589,11 @@ label{
 
 
     <label for="amount">
+
       Nominal Deposit
+
     </label>
+
 
     <input
       type="number"
@@ -534,8 +604,15 @@ label{
 
 
     <label for="proof">
+
       Bukti Transfer
+
+      <span class="optional-badge">
+        OPSIONAL
+      </span>
+
     </label>
+
 
     <input
       type="file"
@@ -551,7 +628,11 @@ label{
         color:#7b887f;
       "
     >
-      Format gambar JPG, JPEG, PNG. Maksimal 5 MB.
+
+      Jika memiliki bukti transfer,
+      kamu bisa mengupload JPG, JPEG, atau PNG.
+      Maksimal 5 MB.
+
     </small>
 
 
@@ -561,7 +642,9 @@ label{
       id="submitBtn"
       onclick="kirimDeposit()"
     >
+
       KIRIM DEPOSIT
+
     </button>
 
 
@@ -580,18 +663,24 @@ label{
   <div class="card">
 
     <h2 class="history-title">
+
       📋 Riwayat Deposit
+
     </h2>
+
 
     <div id="history">
 
       <div class="loading">
+
         Memuat riwayat...
+
       </div>
 
     </div>
 
   </div>
+
 
 </div>
 
@@ -605,8 +694,10 @@ label{
 const SUPABASE_URL =
   "https://jblilyzqozodjslgylso.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+
 
 const supabaseClient =
   supabase.createClient(
@@ -616,31 +707,24 @@ const supabaseClient =
 
 
 /* =====================================================
-   LINK MENU UTAMA MAC645
+   LINK MENU UTAMA
 ===================================================== */
-
-/*
-   INI BAGIAN PALING PENTING.
-
-   Kita tidak menggunakan:
-   href="index.html"
-
-   Kita juga tidak menggunakan:
-   dashboard.html
-
-   Langsung menuju halaman utama MAC645.
-*/
 
 function kembaliMenu(event){
 
   if(event){
+
     event.preventDefault();
+
     event.stopPropagation();
+
   }
+
 
   window.location.replace(
     "https://latiunglah-jpg.github.io/MAC645/index.html#beranda"
   );
+
 }
 
 
@@ -675,7 +759,9 @@ function rupiah(value){
       currency:"IDR",
       maximumFractionDigits:0
     }
-  ).format(value || 0);
+  ).format(
+    value || 0
+  );
 
 }
 
@@ -694,8 +780,10 @@ function showMessage(
       "message"
     );
 
+
   el.className =
     "message " + type;
+
 
   el.innerHTML =
     text;
@@ -721,16 +809,12 @@ async function cekLogin(){
 
   if(!session){
 
-    /*
-      Kalau belum login,
-      kembali ke halaman login.
-    */
-
     window.location.replace(
       "mac.html"
     );
 
     return null;
+
   }
 
 
@@ -775,26 +859,27 @@ async function loadRekening(){
       error
     );
 
-    /*
-      FALLBACK
-    */
 
     document.getElementById(
       "bank"
     ).textContent =
       rekening.bank;
 
+
     document.getElementById(
       "nomor"
     ).textContent =
       rekening.nomor;
+
 
     document.getElementById(
       "nama"
     ).textContent =
       rekening.nama;
 
+
     return;
+
   }
 
 
@@ -804,9 +889,11 @@ async function loadRekening(){
       data.bank ||
       rekening.bank;
 
+
     rekening.nomor =
       data.account_number ||
       rekening.nomor;
+
 
     rekening.nama =
       data.account_name ||
@@ -820,10 +907,12 @@ async function loadRekening(){
   ).textContent =
     rekening.bank;
 
+
   document.getElementById(
     "nomor"
   ).textContent =
     rekening.nomor;
+
 
   document.getElementById(
     "nama"
@@ -844,6 +933,7 @@ async function copyRekening(){
     await navigator.clipboard.writeText(
       rekening.nomor
     );
+
 
     alert(
       "Nomor rekening berhasil disalin!"
@@ -889,10 +979,12 @@ async function loadSaldo(
   if(error){
 
     console.log(
+      "Gagal mengambil saldo:",
       error
     );
 
     return;
+
   }
 
 
@@ -932,9 +1024,9 @@ async function kirimDeposit(){
     ).files[0];
 
 
-  /* =========================
+  /* ===================================================
      CEK NOMINAL
-  ========================= */
+  =================================================== */
 
   if(
     !amount ||
@@ -947,72 +1039,66 @@ async function kirimDeposit(){
     );
 
     return;
+
   }
 
 
-  /* =========================
-     CEK FILE
-  ========================= */
+  /* ===================================================
+     CEK FILE HANYA JIKA DIUPLOAD
+  =================================================== */
 
-  if(!file){
+  if(file){
 
-    showMessage(
-      "❌ Silakan pilih bukti transfer terlebih dahulu.",
-      "error"
-    );
+    if(
+      file.size >
+      5 * 1024 * 1024
+    ){
 
-    return;
+      showMessage(
+        "❌ Ukuran file maksimal 5 MB.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(
+      !file.type.startsWith(
+        "image/"
+      )
+    ){
+
+      showMessage(
+        "❌ Bukti transfer harus berupa gambar.",
+        "error"
+      );
+
+      return;
+
+    }
+
   }
 
 
-  /* =========================
-     CEK UKURAN
-  ========================= */
-
-  if(
-    file.size >
-    5 * 1024 * 1024
-  ){
-
-    showMessage(
-      "❌ Ukuran file maksimal 5 MB.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  /* =========================
-     CEK FORMAT
-  ========================= */
-
-  if(
-    !file.type.startsWith(
-      "image/"
-    )
-  ){
-
-    showMessage(
-      "❌ Bukti transfer harus berupa gambar.",
-      "error"
-    );
-
-    return;
-  }
-
+  /* ===================================================
+     TOMBOL
+  =================================================== */
 
   btn.disabled = true;
 
   btn.textContent =
-    "MENGUPLOAD...";
+    file
+      ? "MENGUPLOAD..."
+      : "MENYIMPAN DEPOSIT...";
 
 
   try{
 
-    /* =========================
+    /* =================================================
        CEK SESSION
-    ========================= */
+    ================================================= */
 
     const {
       data:{
@@ -1031,6 +1117,7 @@ async function kirimDeposit(){
       );
 
       return;
+
     }
 
 
@@ -1038,78 +1125,85 @@ async function kirimDeposit(){
       session.user;
 
 
-    /* =========================
-       NAMA FILE
-    ========================= */
+    /* =================================================
+       VARIABLE BUKTI
+    ================================================= */
 
-    const extension =
-      file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
+    let proofUrl = null;
 
 
-    const fileName =
-      "bukti-" +
-      Date.now() +
-      "-" +
-      Math.random()
-        .toString(36)
-        .substring(
-          2,
-          8
-        ) +
-      "." +
-      extension;
+    /* =================================================
+       UPLOAD BUKTI JIKA ADA
+    ================================================= */
+
+    if(file){
+
+      const extension =
+        file.name
+          .split(".")
+          .pop()
+          .toLowerCase();
 
 
-    /* =========================
-       PATH STORAGE
-    ========================= */
-
-    const filePath =
-      user.id +
-      "/" +
-      fileName;
-
-
-    /* =========================
-       UPLOAD
-    ========================= */
-
-    const {
-      error:
-      uploadError
-    } =
-      await supabaseClient
-        .storage
-        .from(
-          "deposit-bukti"
-        )
-        .upload(
-          filePath,
-          file,
-          {
-            cacheControl:"3600",
-            upsert:false
-          }
-        );
+      const fileName =
+        "bukti-" +
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(
+            2,
+            8
+          ) +
+        "." +
+        extension;
 
 
-    if(uploadError){
+      const filePath =
+        user.id +
+        "/" +
+        fileName;
 
-      throw uploadError;
+
+      const {
+        error:
+        uploadError
+      } =
+        await supabaseClient
+          .storage
+          .from(
+            "deposit-bukti"
+          )
+          .upload(
+            filePath,
+            file,
+            {
+              cacheControl:"3600",
+              upsert:false
+            }
+          );
+
+
+      if(uploadError){
+
+        throw uploadError;
+
+      }
+
+
+      proofUrl =
+        filePath;
 
     }
 
 
+    /* =================================================
+       SIMPAN DEPOSIT
+    ================================================= */
+
     btn.textContent =
       "MENYIMPAN DEPOSIT...";
 
-
-    /* =========================
-       SIMPAN DEPOSIT
-    ========================= */
 
     const {
       error:
@@ -1131,41 +1225,62 @@ async function kirimDeposit(){
             "pending",
 
           proof_url:
-            filePath
+            proofUrl
 
         });
 
 
+    /* =================================================
+       JIKA DATABASE GAGAL
+    ================================================= */
+
     if(depositError){
 
       /*
-        Kalau database gagal,
-        hapus file upload.
+        Kalau sebelumnya ada file yang
+        berhasil diupload, hapus kembali.
       */
 
-      await supabaseClient
-        .storage
-        .from(
-          "deposit-bukti"
-        )
-        .remove([
-          filePath
-        ]);
+      if(proofUrl){
+
+        await supabaseClient
+          .storage
+          .from(
+            "deposit-bukti"
+          )
+          .remove([
+            proofUrl
+          ]);
+
+      }
+
 
       throw depositError;
 
     }
 
 
-    /* =========================
+    /* =================================================
        BERHASIL
-    ========================= */
+    ================================================= */
 
-    showMessage(
-      "✅ Deposit berhasil dikirim!<br>" +
-      "Menunggu persetujuan admin.",
-      "success"
-    );
+    if(proofUrl){
+
+      showMessage(
+        "✅ Deposit berhasil dikirim!<br>" +
+        "Bukti transfer tersimpan dan deposit menunggu persetujuan admin.",
+        "success"
+      );
+
+    }else{
+
+      showMessage(
+        "✅ Deposit berhasil dikirim!<br>" +
+        "Bukti transfer tidak diupload. Deposit tetap menunggu persetujuan admin.",
+        "success"
+      );
+
+    }
 
 
     document.getElementById(
@@ -1184,6 +1299,7 @@ async function kirimDeposit(){
   }catch(error){
 
     console.error(
+      "DEPOSIT ERROR:",
       error
     );
 
@@ -1270,7 +1386,9 @@ async function loadHistory(){
       </div>
       `;
 
+
     console.error(
+      "HISTORY ERROR:",
       error
     );
 
@@ -1306,6 +1424,7 @@ async function loadHistory(){
 
     let statusClass =
       "pending";
+
 
     let statusText =
       "MENUNGGU";
@@ -1351,9 +1470,9 @@ async function loadHistory(){
       "";
 
 
-    /* =========================
-       SIGNED URL
-    ========================= */
+    /* =================================================
+       KALAU ADA BUKTI
+    ================================================= */
 
     if(
       item.proof_url
@@ -1395,7 +1514,31 @@ async function loadHistory(){
           </a>
           `;
 
+      }else{
+
+        proofButton =
+
+          `
+          <span class="no-proof">
+            Bukti tidak dapat dibuka
+          </span>
+          `;
+
       }
+
+    }else{
+
+      /* ===============================================
+         TANPA BUKTI
+      =============================================== */
+
+      proofButton =
+
+        `
+        <span class="no-proof">
+          📄 Tanpa bukti transfer
+        </span>
+        `;
 
     }
 
@@ -1408,14 +1551,22 @@ async function loadHistory(){
         <div class="deposit-top">
 
           <div class="amount">
+
             ${rupiah(item.amount)}
+
           </div>
 
-          <div class="status ${statusClass}">
+
+          <div
+            class="status ${statusClass}"
+          >
+
             ${statusText}
+
           </div>
 
         </div>
+
 
         <div
           style="
@@ -1423,8 +1574,11 @@ async function loadHistory(){
             font-size:13px;
           "
         >
+
           ${tanggal}
+
         </div>
+
 
         ${proofButton}
 
@@ -1474,5 +1628,7 @@ init();
 
 </script>
 
+
 </body>
+
 </html>
