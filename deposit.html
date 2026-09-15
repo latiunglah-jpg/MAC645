@@ -21,6 +21,10 @@ body{
   color:#17251d;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 header{
   background:#10251a;
   color:white;
@@ -40,6 +44,7 @@ header{
   color:#b7ff3c;
 }
 
+/* TOMBOL MENU UTAMA */
 .back{
   color:white;
   text-decoration:none;
@@ -47,7 +52,18 @@ header{
   padding:10px 16px;
   border-radius:10px;
   font-weight:bold;
+  cursor:pointer;
+  border:0;
+  font-size:14px;
 }
+
+.back:hover{
+  background:#294c36;
+}
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
   width:min(900px,92%);
@@ -71,6 +87,10 @@ h1{
   margin-bottom:25px;
 }
 
+/* =========================
+   SALDO
+========================= */
+
 .balance{
   background:#10251a;
   color:white;
@@ -89,6 +109,10 @@ h1{
   margin-top:7px;
   color:#b7ff3c;
 }
+
+/* =========================
+   REKENING
+========================= */
 
 .account{
   border:2px dashed #d9e3dc;
@@ -123,6 +147,10 @@ button{
   cursor:pointer;
 }
 
+/* =========================
+   COPY
+========================= */
+
 .copy-btn{
   margin-top:15px;
   width:100%;
@@ -132,6 +160,14 @@ button{
   color:#274019;
   font-weight:bold;
 }
+
+.copy-btn:hover{
+  background:#dcefcf;
+}
+
+/* =========================
+   INPUT
+========================= */
 
 input[type="number"],
 input[type="file"]{
@@ -148,6 +184,10 @@ label{
   font-weight:bold;
   margin-top:20px;
 }
+
+/* =========================
+   SUBMIT
+========================= */
 
 .submit{
   width:100%;
@@ -169,6 +209,10 @@ label{
   cursor:not-allowed;
 }
 
+/* =========================
+   INFO
+========================= */
+
 .info{
   background:#fff8df;
   border:1px solid #f0df9c;
@@ -178,6 +222,10 @@ label{
   line-height:1.6;
   color:#675719;
 }
+
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
   margin-top:15px;
@@ -198,6 +246,10 @@ label{
   background:#ffe9e9;
   color:#9b2525;
 }
+
+/* =========================
+   HISTORY
+========================= */
 
 .history-title{
   margin-bottom:15px;
@@ -267,7 +319,12 @@ label{
   color:#718078;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:600px){
+
   header{
     padding:15px 4%;
   }
@@ -298,75 +355,176 @@ label{
     flex-direction:column;
     gap:8px;
   }
+
+  .back{
+    padding:9px 12px;
+    font-size:13px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
-  <div class="logo">MAC<span>645</span></div>
-  <a
-  href="https://latiunglah-jpg.github.io/MAC645/index.html#beranda"
-  class="back"
->
-  ← Menu Utama
-</a>
+
+  <div class="logo">
+    MAC<span>645</span>
+  </div>
+
+  <!--
+    PENTING:
+    Tombol ini TIDAK menggunakan href.
+    Langsung menjalankan fungsi kembaliMenu().
+  -->
+
+  <button
+    type="button"
+    class="back"
+    onclick="kembaliMenu(event)"
+  >
+    ← Menu Utama
+  </button>
+
 </header>
+
 
 <div class="container">
 
+  <!-- =========================
+       SALDO + REKENING
+  ========================= -->
+
   <div class="card">
+
     <h1>💰 Deposit Saldo</h1>
+
     <p class="subtitle">
       Tambahkan saldo MAC645 dengan melakukan transfer ke rekening tujuan.
     </p>
 
     <div class="balance">
-      <small>Saldo Saat Ini</small>
-      <strong id="saldo">Rp0</strong>
+
+      <small>
+        Saldo Saat Ini
+      </small>
+
+      <strong id="saldo">
+        Rp0
+      </strong>
+
     </div>
 
-    <h3>🏦 Rekening Deposit</h3>
+
+    <h3>
+      🏦 Rekening Deposit
+    </h3>
+
 
     <div class="account">
 
       <div class="account-row">
-        <div class="account-label">Bank</div>
-        <div class="account-value" id="bank">Memuat...</div>
+
+        <div class="account-label">
+          Bank
+        </div>
+
+        <div
+          class="account-value"
+          id="bank"
+        >
+          Memuat...
+        </div>
+
       </div>
+
 
       <div class="account-row">
-        <div class="account-label">Nomor Rekening</div>
-        <div class="account-value" id="nomor">Memuat...</div>
+
+        <div class="account-label">
+          Nomor Rekening
+        </div>
+
+        <div
+          class="account-value"
+          id="nomor"
+        >
+          Memuat...
+        </div>
+
       </div>
+
 
       <div class="account-row">
-        <div class="account-label">Atas Nama</div>
-        <div class="account-value" id="nama">Memuat...</div>
+
+        <div class="account-label">
+          Atas Nama
+        </div>
+
+        <div
+          class="account-value"
+          id="nama"
+        >
+          Memuat...
+        </div>
+
       </div>
 
-      <button class="copy-btn" onclick="copyRekening()">
+
+      <button
+        type="button"
+        class="copy-btn"
+        onclick="copyRekening()"
+      >
         📋 Salin Nomor Rekening
       </button>
 
     </div>
 
+
     <div class="info">
-      <b>Perhatian:</b><br>
-      • Minimal deposit <b>Rp25.000</b><br>
-      • Transfer sesuai nominal yang dimasukkan<br>
-      • Setelah transfer, upload bukti pembayaran<br>
+
+      <b>Perhatian:</b>
+
+      <br>
+
+      • Minimal deposit <b>Rp25.000</b>
+
+      <br>
+
+      • Transfer sesuai nominal yang dimasukkan
+
+      <br>
+
+      • Setelah transfer, upload bukti pembayaran
+
+      <br>
+
       • Deposit akan diproses oleh admin MAC645
+
     </div>
+
   </div>
 
 
+  <!-- =========================
+       KIRIM DEPOSIT
+  ========================= -->
+
   <div class="card">
 
-    <h2>📤 Kirim Deposit</h2>
+    <h2>
+      📤 Kirim Deposit
+    </h2>
 
-    <label for="amount">Nominal Deposit</label>
+
+    <label for="amount">
+      Nominal Deposit
+    </label>
 
     <input
       type="number"
@@ -375,7 +533,10 @@ label{
       placeholder="Contoh: 50000"
     >
 
-    <label for="proof">Bukti Transfer</label>
+
+    <label for="proof">
+      Bukti Transfer
+    </label>
 
     <input
       type="file"
@@ -383,11 +544,20 @@ label{
       accept="image/*"
     >
 
-    <small style="display:block;margin-top:7px;color:#7b887f;">
+
+    <small
+      style="
+        display:block;
+        margin-top:7px;
+        color:#7b887f;
+      "
+    >
       Format gambar JPG, JPEG, PNG. Maksimal 5 MB.
     </small>
 
+
     <button
+      type="button"
       class="submit"
       id="submitBtn"
       onclick="kirimDeposit()"
@@ -395,17 +565,31 @@ label{
       KIRIM DEPOSIT
     </button>
 
-    <div id="message" class="message"></div>
+
+    <div
+      id="message"
+      class="message"
+    ></div>
 
   </div>
 
 
+  <!-- =========================
+       RIWAYAT
+  ========================= -->
+
   <div class="card">
 
-    <h2 class="history-title">📋 Riwayat Deposit</h2>
+    <h2 class="history-title">
+      📋 Riwayat Deposit
+    </h2>
 
     <div id="history">
-      <div class="loading">Memuat riwayat...</div>
+
+      <div class="loading">
+        Memuat riwayat...
+      </div>
+
     </div>
 
   </div>
@@ -415,33 +599,73 @@ label{
 
 <script>
 
+/* =====================================================
+   SUPABASE
+===================================================== */
+
 const SUPABASE_URL =
-"https://jblilyzqozodjslgylso.supabase.co";
+  "https://jblilyzqozodjslgylso.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
+  "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
 
 const supabaseClient =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-// ========================================
-// REKENING DEPOSIT
-// ========================================
+/* =====================================================
+   LINK MENU UTAMA MAC645
+===================================================== */
+
+/*
+   INI BAGIAN PALING PENTING.
+
+   Kita tidak menggunakan:
+   href="index.html"
+
+   Kita juga tidak menggunakan:
+   dashboard.html
+
+   Langsung menuju halaman utama MAC645.
+*/
+
+function kembaliMenu(event){
+
+  if(event){
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  window.location.replace(
+    "https://latiunglah-jpg.github.io/MAC645/index.html#beranda"
+  );
+}
+
+
+/* =====================================================
+   REKENING DEFAULT
+===================================================== */
 
 let rekening = {
-  bank: "BANK MAC645",
-  nomor: "1234567890",
-  nama: "MAC645 DIGITAL STORE"
+
+  bank:
+    "BANK MAC645",
+
+  nomor:
+    "1234567890",
+
+  nama:
+    "MAC645 DIGITAL STORE"
+
 };
 
 
-// ========================================
-// FORMAT RUPIAH
-// ========================================
+/* =====================================================
+   FORMAT RUPIAH
+===================================================== */
 
 function rupiah(value){
 
@@ -457,26 +681,32 @@ function rupiah(value){
 }
 
 
-// ========================================
-// PESAN
-// ========================================
+/* =====================================================
+   MESSAGE
+===================================================== */
 
-function showMessage(text,type){
+function showMessage(
+  text,
+  type
+){
 
   const el =
-    document.getElementById("message");
+    document.getElementById(
+      "message"
+    );
 
   el.className =
     "message " + type;
 
-  el.innerHTML = text;
+  el.innerHTML =
+    text;
 
 }
 
 
-// ========================================
-// CEK LOGIN
-// ========================================
+/* =====================================================
+   CEK LOGIN
+===================================================== */
 
 async function cekLogin(){
 
@@ -484,39 +714,60 @@ async function cekLogin(){
     data:{
       session
     }
-  } = await supabaseClient
-    .auth
-    .getSession();
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
+
 
   if(!session){
 
-    window.location.href =
-      "mac.html";
+    /*
+      Kalau belum login,
+      kembali ke halaman login.
+    */
+
+    window.location.replace(
+      "mac.html"
+    );
 
     return null;
   }
+
 
   return session;
 
 }
 
 
-// ========================================
-// LOAD REKENING
-// ========================================
+/* =====================================================
+   LOAD REKENING
+===================================================== */
 
 async function loadRekening(){
 
   const {
     data,
     error
-  } = await supabaseClient
-    .from("payment_accounts")
-    .select("*")
-    .eq("is_active",true)
-    .order("slot",{ascending:true})
-    .limit(1)
-    .maybeSingle();
+  } =
+    await supabaseClient
+      .from(
+        "payment_accounts"
+      )
+      .select("*")
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "slot",
+        {
+          ascending:true
+        }
+      )
+      .limit(1)
+      .maybeSingle();
+
 
   if(error){
 
@@ -525,47 +776,67 @@ async function loadRekening(){
       error
     );
 
-    // fallback
-    document.getElementById("bank").textContent =
+    /*
+      FALLBACK
+    */
+
+    document.getElementById(
+      "bank"
+    ).textContent =
       rekening.bank;
 
-    document.getElementById("nomor").textContent =
+    document.getElementById(
+      "nomor"
+    ).textContent =
       rekening.nomor;
 
-    document.getElementById("nama").textContent =
+    document.getElementById(
+      "nama"
+    ).textContent =
       rekening.nama;
 
     return;
   }
 
+
   if(data){
 
     rekening.bank =
-      data.bank || rekening.bank;
+      data.bank ||
+      rekening.bank;
 
     rekening.nomor =
-      data.account_number || rekening.nomor;
+      data.account_number ||
+      rekening.nomor;
 
     rekening.nama =
-      data.account_name || rekening.nama;
+      data.account_name ||
+      rekening.nama;
 
   }
 
-  document.getElementById("bank").textContent =
+
+  document.getElementById(
+    "bank"
+  ).textContent =
     rekening.bank;
 
-  document.getElementById("nomor").textContent =
+  document.getElementById(
+    "nomor"
+  ).textContent =
     rekening.nomor;
 
-  document.getElementById("nama").textContent =
+  document.getElementById(
+    "nama"
+  ).textContent =
     rekening.nama;
 
 }
 
 
-// ========================================
-// COPY REKENING
-// ========================================
+/* =====================================================
+   COPY REKENING
+===================================================== */
 
 async function copyRekening(){
 
@@ -590,56 +861,86 @@ async function copyRekening(){
 }
 
 
-// ========================================
-// LOAD SALDO
-// ========================================
+/* =====================================================
+   LOAD SALDO
+===================================================== */
 
-async function loadSaldo(userId){
+async function loadSaldo(
+  userId
+){
 
   const {
     data,
     error
-  } = await supabaseClient
-    .from("wallets")
-    .select("balance")
-    .eq("user_id",userId)
-    .maybeSingle();
+  } =
+    await supabaseClient
+      .from(
+        "wallets"
+      )
+      .select(
+        "balance"
+      )
+      .eq(
+        "user_id",
+        userId
+      )
+      .maybeSingle();
+
 
   if(error){
 
-    console.log(error);
+    console.log(
+      error
+    );
 
     return;
   }
 
-  document.getElementById("saldo")
-    .textContent =
-    rupiah(data?.balance || 0);
+
+  document.getElementById(
+    "saldo"
+  ).textContent =
+    rupiah(
+      data?.balance || 0
+    );
 
 }
 
 
-// ========================================
-// KIRIM DEPOSIT
-// ========================================
+/* =====================================================
+   KIRIM DEPOSIT
+===================================================== */
 
 async function kirimDeposit(){
 
   const btn =
-    document.getElementById("submitBtn");
+    document.getElementById(
+      "submitBtn"
+    );
+
 
   const amount =
     Number(
-      document.getElementById("amount").value
+      document.getElementById(
+        "amount"
+      ).value
     );
 
+
   const file =
-    document.getElementById("proof").files[0];
+    document.getElementById(
+      "proof"
+    ).files[0];
 
 
-  // CEK NOMINAL
+  /* =========================
+     CEK NOMINAL
+  ========================= */
 
-  if(!amount || amount < 25000){
+  if(
+    !amount ||
+    amount < 25000
+  ){
 
     showMessage(
       "❌ Minimal deposit adalah Rp25.000.",
@@ -650,7 +951,9 @@ async function kirimDeposit(){
   }
 
 
-  // CEK FILE
+  /* =========================
+     CEK FILE
+  ========================= */
 
   if(!file){
 
@@ -663,9 +966,14 @@ async function kirimDeposit(){
   }
 
 
-  // CEK UKURAN
+  /* =========================
+     CEK UKURAN
+  ========================= */
 
-  if(file.size > 5 * 1024 * 1024){
+  if(
+    file.size >
+    5 * 1024 * 1024
+  ){
 
     showMessage(
       "❌ Ukuran file maksimal 5 MB.",
@@ -676,9 +984,15 @@ async function kirimDeposit(){
   }
 
 
-  // CEK FORMAT
+  /* =========================
+     CEK FORMAT
+  ========================= */
 
-  if(!file.type.startsWith("image/")){
+  if(
+    !file.type.startsWith(
+      "image/"
+    )
+  ){
 
     showMessage(
       "❌ Bukti transfer harus berupa gambar.",
@@ -697,19 +1011,25 @@ async function kirimDeposit(){
 
   try{
 
+    /* =========================
+       CEK SESSION
+    ========================= */
+
     const {
       data:{
         session
       }
-    } = await supabaseClient
-      .auth
-      .getSession();
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
 
 
     if(!session){
 
-      window.location.href =
-        "mac.html";
+      window.location.replace(
+        "mac.html"
+      );
 
       return;
     }
@@ -719,9 +1039,9 @@ async function kirimDeposit(){
       session.user;
 
 
-    // ====================================
-    // NAMA FILE AMAN
-    // ====================================
+    /* =========================
+       NAMA FILE
+    ========================= */
 
     const extension =
       file.name
@@ -729,44 +1049,52 @@ async function kirimDeposit(){
         .pop()
         .toLowerCase();
 
+
     const fileName =
       "bukti-" +
       Date.now() +
       "-" +
       Math.random()
         .toString(36)
-        .substring(2,8) +
+        .substring(
+          2,
+          8
+        ) +
       "." +
       extension;
 
 
-    // ====================================
-    // PATH PRIVATE STORAGE
-    // USER ID / FILE
-    // ====================================
+    /* =========================
+       PATH STORAGE
+    ========================= */
 
     const filePath =
-      user.id + "/" + fileName;
+      user.id +
+      "/" +
+      fileName;
 
 
-    // ====================================
-    // UPLOAD
-    // ====================================
+    /* =========================
+       UPLOAD
+    ========================= */
 
     const {
       error:
       uploadError
-    } = await supabaseClient
-      .storage
-      .from("deposit-bukti")
-      .upload(
-        filePath,
-        file,
-        {
-          cacheControl:"3600",
-          upsert:false
-        }
-      );
+    } =
+      await supabaseClient
+        .storage
+        .from(
+          "deposit-bukti"
+        )
+        .upload(
+          filePath,
+          file,
+          {
+            cacheControl:"3600",
+            upsert:false
+          }
+        );
 
 
     if(uploadError){
@@ -780,43 +1108,59 @@ async function kirimDeposit(){
       "MENYIMPAN DEPOSIT...";
 
 
-    // ====================================
-    // SIMPAN DATA DEPOSIT
-    // ====================================
+    /* =========================
+       SIMPAN DEPOSIT
+    ========================= */
 
     const {
       error:
       depositError
-    } = await supabaseClient
-      .from("deposits")
-      .insert({
+    } =
+      await supabaseClient
+        .from(
+          "deposits"
+        )
+        .insert({
 
-        user_id:user.id,
+          user_id:
+            user.id,
 
-        amount:amount,
+          amount:
+            amount,
 
-        status:"pending",
+          status:
+            "pending",
 
-        // PRIVATE STORAGE PATH
-        proof_url:filePath
+          proof_url:
+            filePath
 
-      });
+        });
 
 
     if(depositError){
 
-      // Kalau database gagal,
-      // hapus file yang sudah terupload
+      /*
+        Kalau database gagal,
+        hapus file upload.
+      */
 
       await supabaseClient
         .storage
-        .from("deposit-bukti")
-        .remove([filePath]);
+        .from(
+          "deposit-bukti"
+        )
+        .remove([
+          filePath
+        ]);
 
       throw depositError;
 
     }
 
+
+    /* =========================
+       BERHASIL
+    ========================= */
 
     showMessage(
       "✅ Deposit berhasil dikirim!<br>" +
@@ -825,11 +1169,14 @@ async function kirimDeposit(){
     );
 
 
-    document.getElementById("amount")
-      .value = "";
+    document.getElementById(
+      "amount"
+    ).value = "";
 
-    document.getElementById("proof")
-      .value = "";
+
+    document.getElementById(
+      "proof"
+    ).value = "";
 
 
     await loadHistory();
@@ -837,11 +1184,17 @@ async function kirimDeposit(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     showMessage(
       "❌ Deposit gagal: " +
-      (error.message || "Terjadi kesalahan."),
+      (
+        error.message ||
+        "Terjadi kesalahan."
+      ),
       "error"
     );
 
@@ -856,79 +1209,101 @@ async function kirimDeposit(){
 }
 
 
-// ========================================
-// LOAD RIWAYAT
-// ========================================
+/* =====================================================
+   LOAD RIWAYAT
+===================================================== */
 
 async function loadHistory(){
 
   const history =
-    document.getElementById("history");
+    document.getElementById(
+      "history"
+    );
 
 
   const {
     data:{
       session
     }
-  } = await supabaseClient
-    .auth
-    .getSession();
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
 
 
   if(!session){
 
     return;
+
   }
 
 
   const {
     data,
     error
-  } = await supabaseClient
-    .from("deposits")
-    .select(
-      "id,amount,status,created_at,proof_url"
-    )
-    .eq(
-      "user_id",
-      session.user.id
-    )
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+  } =
+    await supabaseClient
+      .from(
+        "deposits"
+      )
+      .select(
+        "id,amount,status,created_at,proof_url"
+      )
+      .eq(
+        "user_id",
+        session.user.id
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     history.innerHTML =
-      `<div class="empty">
-        Gagal memuat riwayat deposit.
-      </div>`;
 
-    console.error(error);
+      `
+      <div class="empty">
+        Gagal memuat riwayat deposit.
+      </div>
+      `;
+
+    console.error(
+      error
+    );
 
     return;
+
   }
 
 
-  if(!data || data.length === 0){
+  if(
+    !data ||
+    data.length === 0
+  ){
 
     history.innerHTML =
-      `<div class="empty">
+
+      `
+      <div class="empty">
         Belum ada riwayat deposit.
-      </div>`;
+      </div>
+      `;
 
     return;
+
   }
 
 
   history.innerHTML = "";
 
 
-  for(const item of data){
+  for(
+    const item of data
+  ){
 
     let statusClass =
       "pending";
@@ -937,7 +1312,10 @@ async function loadHistory(){
       "MENUNGGU";
 
 
-    if(item.status === "approved"){
+    if(
+      item.status ===
+      "approved"
+    ){
 
       statusClass =
         "approved";
@@ -948,7 +1326,10 @@ async function loadHistory(){
     }
 
 
-    if(item.status === "rejected"){
+    if(
+      item.status ===
+      "rejected"
+    ){
 
       statusClass =
         "rejected";
@@ -960,33 +1341,41 @@ async function loadHistory(){
 
 
     const tanggal =
-      new Date(item.created_at)
-        .toLocaleString(
-          "id-ID"
-        );
+      new Date(
+        item.created_at
+      ).toLocaleString(
+        "id-ID"
+      );
 
 
-    let proofButton = "";
+    let proofButton =
+      "";
 
 
-    // ==================================
-    // SIGNED URL PRIVATE FILE
-    // ==================================
+    /* =========================
+       SIGNED URL
+    ========================= */
 
-    if(item.proof_url){
+    if(
+      item.proof_url
+    ){
 
       const {
         data:
         signedData,
+
         error:
         signedError
-      } = await supabaseClient
-        .storage
-        .from("deposit-bukti")
-        .createSignedUrl(
-          item.proof_url,
-          3600
-        );
+      } =
+        await supabaseClient
+          .storage
+          .from(
+            "deposit-bukti"
+          )
+          .createSignedUrl(
+            item.proof_url,
+            3600
+          );
 
 
       if(
@@ -995,21 +1384,26 @@ async function loadHistory(){
       ){
 
         proofButton =
-          `<a
-             class="proof-btn"
-             href="${signedData.signedUrl}"
-             target="_blank"
+
+          `
+          <a
+            class="proof-btn"
+            href="${signedData.signedUrl}"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-             🖼️ Lihat Bukti
-           </a>`;
+            🖼️ Lihat Bukti
+          </a>
+          `;
 
       }
 
     }
 
 
-    history.innerHTML += `
+    history.innerHTML +=
 
+      `
       <div class="deposit-item">
 
         <div class="deposit-top">
@@ -1024,49 +1418,58 @@ async function loadHistory(){
 
         </div>
 
-        <div style="
-          color:#7a877f;
-          font-size:13px;
-        ">
+        <div
+          style="
+            color:#7a877f;
+            font-size:13px;
+          "
+        >
           ${tanggal}
         </div>
 
         ${proofButton}
 
       </div>
-
-    `;
+      `;
 
   }
 
 }
 
 
-// ========================================
-// START
-// ========================================
+/* =====================================================
+   START
+===================================================== */
 
 async function init(){
 
   const session =
     await cekLogin();
 
+
   if(!session){
 
     return;
+
   }
 
 
   await loadRekening();
 
+
   await loadSaldo(
     session.user.id
   );
+
 
   await loadHistory();
 
 }
 
+
+/* =====================================================
+   JALANKAN
+===================================================== */
 
 init();
 
