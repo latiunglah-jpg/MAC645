@@ -120,6 +120,10 @@ input{
   font-size:15px;
 }
 
+input::placeholder{
+  color:#60756c;
+}
+
 input:focus{
   border-color:#f59e0b;
 
@@ -128,7 +132,13 @@ input:focus{
     rgba(245,158,11,.10);
 }
 
+
+/* =========================
+   TOMBOL LOGIN
+   ========================= */
+
 .login-btn{
+
   width:100%;
 
   height:50px;
@@ -153,18 +163,30 @@ input:focus{
   color:#111;
 
   margin-top:4px;
+
+  transition:.2s;
 }
 
 .login-btn:hover{
+
   filter:brightness(1.08);
 
   transform:translateY(-1px);
 }
 
+.login-btn:disabled{
 
-/* =================================
+  opacity:.6;
+
+  cursor:not-allowed;
+
+  transform:none;
+}
+
+
+/* =========================
    TOMBOL DAFTAR
-   ================================= */
+   ========================= */
 
 .register-btn{
 
@@ -197,7 +219,6 @@ input:focus{
   cursor:pointer;
 
   transition:.2s;
-
 }
 
 .register-btn:hover{
@@ -205,9 +226,12 @@ input:focus{
   background:#1b4b39;
 
   transform:translateY(-1px);
-
 }
 
+
+/* =========================
+   PESAN
+   ========================= */
 
 #pesan{
 
@@ -220,8 +244,12 @@ input:focus{
   font-size:14px;
 
   line-height:1.5;
-
 }
+
+
+/* =========================
+   KEMBALI
+   ========================= */
 
 .back{
 
@@ -239,8 +267,14 @@ input:focus{
 }
 
 .back:hover{
+
   color:#f59e0b;
 }
+
+
+/* =========================
+   FOOTER
+   ========================= */
 
 .footer{
 
@@ -253,14 +287,23 @@ input:focus{
   font-size:12px;
 }
 
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
 @media(max-width:480px){
 
   .login-box{
+
     padding:30px 22px;
+
   }
 
   .logo{
+
     font-size:36px;
+
   }
 
 }
@@ -276,107 +319,122 @@ input:focus{
 <div class="container">
 
 
-<div class="login-box">
+  <div class="login-box">
 
 
-<div class="logo">
+    <!-- LOGO -->
 
-MAC<span>645</span>
+    <div class="logo">
 
-</div>
+      MAC<span>645</span>
 
-
-<div class="subtitle">
-
-Login ke akun MAC645
-
-</div>
+    </div>
 
 
-<label for="email">
+    <!-- SUBTITLE -->
 
-Email
+    <div class="subtitle">
 
-</label>
+      Login ke akun MAC645
 
-
-<input
-  type="email"
-  id="email"
-  placeholder="Masukkan email"
-  autocomplete="email"
->
+    </div>
 
 
-<label for="password">
+    <!-- EMAIL -->
 
-Password
+    <label for="email">
 
-</label>
+      Email
 
-
-<input
-  type="password"
-  id="password"
-  placeholder="Masukkan password"
-  autocomplete="current-password"
->
+    </label>
 
 
-<!-- =========================
-     LOGIN
-     ========================= -->
-
-<button
-  type="button"
-  class="register-btn"
-  id="registerBtn"
-  onclick="window.location.href='register.html';"
->
-  DAFTAR AKUN BARU
-</button>
-
-</button>
+    <input
+      type="email"
+      id="email"
+      placeholder="Masukkan email"
+      autocomplete="email"
+    >
 
 
-<!-- =========================
-     DAFTAR
-     
-     INI LINK LANGSUNG.
-     TIDAK MEMANGGIL JAVASCRIPT.
-     ========================= -->
+    <!-- PASSWORD -->
 
-<a
-  href="register.html"
-  class="register-btn"
->
+    <label for="password">
 
-DAFTAR AKUN BARU
+      Password
 
-</a>
+    </label>
 
 
-<div id="pesan"></div>
+    <input
+      type="password"
+      id="password"
+      placeholder="Masukkan password"
+      autocomplete="current-password"
+    >
 
 
-<a
-  href="index.html"
-  class="back"
->
+    <!-- =========================
+         TOMBOL LOGIN
+         ========================= -->
 
-← Kembali ke halaman utama
+    <button
+      type="button"
+      class="login-btn"
+      id="loginBtn"
+      onclick="login()"
+    >
 
-</a>
+      LOGIN
+
+    </button>
 
 
-</div>
+    <!-- =========================
+         TOMBOL DAFTAR
+
+         LANGSUNG KE register.html
+         TANPA MENJALANKAN LOGIN
+         ========================= -->
+
+    <a
+      href="register.html"
+      class="register-btn"
+      id="registerBtn"
+    >
+
+      DAFTAR AKUN BARU
+
+    </a>
 
 
-<div class="footer">
+    <!-- PESAN LOGIN -->
 
-MAC645 ADITYA RAMZY 
+    <div id="pesan"></div>
 
-</div>
+
+    <!-- KEMBALI KE MENU UTAMA -->
+
+    <a
+      href="index.html"
+      class="back"
+    >
+
+      ← Kembali ke halaman utama
+
+    </a>
+
+
+  </div>
+
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    MAC645 ADITYA RAMZY
+
+  </div>
 
 
 </div>
@@ -384,10 +442,12 @@ MAC645 ADITYA RAMZY
 
 <script>
 
+/* ==========================================
+   SUPABASE
+   ========================================== */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
-
 
 const SUPABASE_KEY =
 "sb_publishable_57aR7W1u1hYUXEiuOmCthg_JBea5DqL";
@@ -400,21 +460,26 @@ window.supabase.createClient(
 );
 
 
+/* ==========================================
+   ELEMENT
+   ========================================== */
+
 const emailInput =
 document.getElementById("email");
-
 
 const passwordInput =
 document.getElementById("password");
 
-
 const pesan =
 document.getElementById("pesan");
-
 
 const loginBtn =
 document.getElementById("loginBtn");
 
+
+/* ==========================================
+   PESAN
+   ========================================== */
 
 function tampilPesan(text){
 
@@ -422,6 +487,10 @@ function tampilPesan(text){
 
 }
 
+
+/* ==========================================
+   LOGIN
+   ========================================== */
 
 async function login(){
 
@@ -431,6 +500,8 @@ async function login(){
   const password =
     passwordInput.value;
 
+
+  /* CEK INPUT */
 
   if(!email || !password){
 
@@ -443,29 +514,70 @@ async function login(){
   }
 
 
+  /* TOMBOL LOADING */
+
   loginBtn.disabled = true;
 
   loginBtn.innerText =
     "MEMPROSES...";
 
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.auth.signInWithPassword({
+  try{
 
-    email:email,
+    const {
+      data,
+      error
+    } =
+    await supabaseClient.auth.signInWithPassword({
 
-    password:password
+      email:email,
 
-  });
+      password:password
+
+    });
 
 
-  if(error){
+    /* LOGIN GAGAL */
+
+    if(error){
+
+      tampilPesan(
+        "Login gagal: " +
+        error.message
+      );
+
+      loginBtn.disabled = false;
+
+      loginBtn.innerText =
+        "LOGIN";
+
+      return;
+
+    }
+
+
+    /* LOGIN BERHASIL */
 
     tampilPesan(
-      "Login gagal: " +
+      "Login berhasil..."
+    );
+
+
+    setTimeout(() => {
+
+      window.location.replace(
+        "dashboard.html"
+      );
+
+    },500);
+
+
+  }catch(error){
+
+    console.error(error);
+
+    tampilPesan(
+      "Terjadi kesalahan: " +
       error.message
     );
 
@@ -474,28 +586,14 @@ async function login(){
     loginBtn.innerText =
       "LOGIN";
 
-    return;
-
   }
-
-
-  tampilPesan(
-    "Login berhasil..."
-  );
-
-
-  setTimeout(() => {
-
-    window.location.replace(
-      "dashboard.html"
-    );
-
-  },500);
 
 }
 
 
-/* ENTER = LOGIN */
+/* ==========================================
+   ENTER = LOGIN
+   ========================================== */
 
 passwordInput.addEventListener(
   "keydown",
@@ -511,28 +609,36 @@ passwordInput.addEventListener(
 );
 
 
-/*
+/* ==========================================
    CEK SESSION
-
-   Kalau sudah login,
-   masuk dashboard.
-*/
+   ========================================== */
 
 async function cekSession(){
 
-  const {
-    data
-  } =
-  await supabaseClient.auth.getSession();
+  try{
+
+    const {
+      data
+    } =
+    await supabaseClient.auth.getSession();
 
 
-  if(
-    data &&
-    data.session
-  ){
+    if(
+      data &&
+      data.session
+    ){
 
-    window.location.replace(
-      "dashboard.html"
+      window.location.replace(
+        "dashboard.html"
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Session error:",
+      error
     );
 
   }
@@ -541,7 +647,6 @@ async function cekSession(){
 
 
 cekSession();
-
 
 </script>
 
