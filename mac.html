@@ -16,288 +16,147 @@
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
   min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at top left,#164e3b 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#0f3d2e 0%,transparent 35%),
+    #07120e;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  background:
-    radial-gradient(
-      circle at top,
-      #173b29 0%,
-      #0b1510 45%,
-      #07100b 100%
-    );
-
   color:white;
 }
 
 .container{
   width:100%;
-  max-width:420px;
+  max-width:430px;
   padding:20px;
 }
 
 .login-box{
-  background:rgba(16,37,26,.96);
-
-  border:1px solid rgba(183,255,60,.15);
-
-  border-radius:22px;
-
-  padding:32px;
-
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.45);
+  background:rgba(13,32,25,.96);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  padding:35px 30px;
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
 }
 
 .logo{
   text-align:center;
-
-  font-size:34px;
-
+  font-size:42px;
   font-weight:900;
-
-  letter-spacing:-1px;
+  letter-spacing:-2px;
+  margin-bottom:8px;
 }
 
 .logo span{
-  color:#b7ff3c;
+  color:#f59e0b;
 }
 
 .subtitle{
   text-align:center;
-
-  color:#9caea3;
-
-  margin-top:8px;
-
-  margin-bottom:28px;
+  color:#a8b8b1;
+  margin-bottom:30px;
+  font-size:14px;
 }
 
 label{
   display:block;
-
-  margin-bottom:7px;
-
-  color:#dce6df;
-
+  margin:0 0 8px;
+  color:#d9e5df;
   font-size:14px;
-
-  font-weight:bold;
+  font-weight:700;
 }
 
 input{
   width:100%;
-
-  padding:14px;
-
-  margin-bottom:17px;
-
-  border:1px solid #304638;
-
-  border-radius:11px;
-
-  background:#0b1710;
-
+  height:50px;
+  padding:0 15px;
+  border-radius:12px;
+  border:1px solid #29443a;
+  background:#091a14;
   color:white;
-
   outline:none;
-
+  margin-bottom:18px;
   font-size:15px;
 }
 
-input::placeholder{
-  color:#68786e;
-}
-
 input:focus{
-  border-color:#b7ff3c;
-
-  box-shadow:
-    0 0 0 3px rgba(183,255,60,.08);
+  border-color:#f59e0b;
+  box-shadow:0 0 0 3px rgba(245,158,11,.10);
 }
 
 button{
   width:100%;
-
-  padding:14px;
-
+  height:50px;
   border:0;
-
-  border-radius:11px;
-
+  border-radius:12px;
   cursor:pointer;
-
   font-size:15px;
-
   font-weight:800;
-
   transition:.2s;
 }
 
 .login-btn{
-  background:#b7ff3c;
-
-  color:#12200f;
-
-  margin-bottom:12px;
+  background:linear-gradient(135deg,#f59e0b,#d97706);
+  color:#111;
+  margin-top:4px;
 }
 
 .login-btn:hover{
   transform:translateY(-1px);
-
-  background:#c4ff5d;
+  filter:brightness(1.08);
 }
 
 .register-btn{
-  background:transparent;
-
-  color:#b7ff3c;
-
-  border:1px solid #b7ff3c;
+  margin-top:12px;
+  background:#143b2d;
+  border:1px solid #2c604d;
+  color:#fff;
 }
 
 .register-btn:hover{
-  background:rgba(183,255,60,.08);
-
+  background:#1b4b39;
   transform:translateY(-1px);
 }
 
-button:disabled{
-  opacity:.55;
-
-  cursor:not-allowed;
-
-  transform:none;
-}
-
 #pesan{
-  min-height:45px;
-
+  min-height:20px;
   margin-top:18px;
-
   text-align:center;
-
   font-size:14px;
-
   line-height:1.5;
-
-  color:#aebdb4;
-}
-
-#pesan.success{
-  color:#b7ff3c;
-}
-
-#pesan.error{
-  color:#ff7272;
 }
 
 .back{
   display:block;
-
-  margin-top:20px;
-
   text-align:center;
-
-  color:#8d9e94;
-
+  margin-top:22px;
+  color:#aebdb6;
   text-decoration:none;
-
-  font-size:14px;
+  font-size:13px;
 }
 
 .back:hover{
-  color:#b7ff3c;
-}
-
-.divider{
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  margin:20px 0;
-
-  color:#65756b;
-
-  font-size:12px;
-}
-
-.divider::before,
-.divider::after{
-  content:"";
-
-  height:1px;
-
-  flex:1;
-
-  background:#2c4033;
+  color:#f59e0b;
 }
 
 .footer{
   text-align:center;
-
-  color:#596a60;
-
+  margin-top:18px;
+  color:#60756c;
   font-size:12px;
-
-  margin-top:22px;
-}
-
-.loading{
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:8px;
-}
-
-.loading.show{
-  display:flex;
-}
-
-.spinner{
-  width:16px;
-
-  height:16px;
-
-  border:2px solid rgba(18,32,15,.25);
-
-  border-top-color:#12200f;
-
-  border-radius:50%;
-
-  animation:spin .7s linear infinite;
-}
-
-@keyframes spin{
-
-  to{
-    transform:rotate(360deg);
-  }
-
 }
 
 @media(max-width:480px){
-
-  .container{
-    padding:15px;
-  }
-
   .login-box{
-    padding:25px 20px;
+    padding:30px 22px;
   }
 
   .logo{
-    font-size:30px;
+    font-size:36px;
   }
-
 }
 </style>
 </head>
@@ -308,8 +167,6 @@ button:disabled{
 
   <div class="login-box">
 
-    <!-- LOGO -->
-
     <div class="logo">
       MAC<span>645</span>
     </div>
@@ -318,12 +175,7 @@ button:disabled{
       Login ke akun MAC645
     </div>
 
-
-    <!-- EMAIL -->
-
-    <label for="email">
-      Email
-    </label>
+    <label for="email">Email</label>
 
     <input
       type="email"
@@ -332,12 +184,7 @@ button:disabled{
       autocomplete="email"
     >
 
-
-    <!-- PASSWORD -->
-
-    <label for="password">
-      Password
-    </label>
+    <label for="password">Password</label>
 
     <input
       type="password"
@@ -346,62 +193,32 @@ button:disabled{
       autocomplete="current-password"
     >
 
-
-    <!-- LOGIN -->
-
     <button
       type="button"
       class="login-btn"
       id="loginBtn"
       onclick="login()"
     >
-
-      <span id="loginText">
-        LOGIN
-      </span>
-
-      <span
-        id="loginLoading"
-        class="loading"
-      >
-
-        <span class="spinner"></span>
-
-        LOGIN...
-
-      </span>
-
+      LOGIN
     </button>
 
-
-    <!-- DAFTAR -->
-
+    <!-- INI YANG MENGARAH KE FORM PENDAFTARAN -->
     <button
       type="button"
       class="register-btn"
       id="registerBtn"
-      onclick="bukaRegister()"
+      onclick="window.location.href='register.html'"
     >
       DAFTAR AKUN BARU
     </button>
 
-
-    <!-- PESAN -->
-
     <div id="pesan"></div>
 
-
-    <!-- BACK -->
-
-    <a
-      href="index.html"
-      class="back"
-    >
+    <a href="index.html" class="back">
       ← Kembali ke halaman utama
     </a>
 
   </div>
-
 
   <div class="footer">
     MAC645 DIGITAL STORE
@@ -409,12 +226,7 @@ button:disabled{
 
 </div>
 
-
 <script>
-
-// ========================================
-// SUPABASE
-// ========================================
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -428,11 +240,6 @@ window.supabase.createClient(
   SUPABASE_KEY
 );
 
-
-// ========================================
-// ELEMENT
-// ========================================
-
 const emailInput =
 document.getElementById("email");
 
@@ -445,44 +252,11 @@ document.getElementById("pesan");
 const loginBtn =
 document.getElementById("loginBtn");
 
-const registerBtn =
-document.getElementById("registerBtn");
 
-const loginText =
-document.getElementById("loginText");
-
-const loginLoading =
-document.getElementById("loginLoading");
-
-
-// ========================================
-// PESAN
-// ========================================
-
-function tampilPesan(text,type=""){
-
+function tampilPesan(text){
   pesan.innerText = text;
-
-  pesan.className = type;
-
 }
 
-
-// ========================================
-// BUKA REGISTER
-// ========================================
-
-function bukaRegister(){
-
-  window.location.href =
-    "register.html";
-
-}
-
-
-// ========================================
-// LOGIN
-// ========================================
 
 async function login(){
 
@@ -492,231 +266,50 @@ async function login(){
   const password =
     passwordInput.value;
 
-
-  // ==============================
-  // VALIDASI
-  // ==============================
-
-  if(!email){
+  if(!email || !password){
 
     tampilPesan(
-      "Email wajib diisi.",
-      "error"
+      "Email dan password wajib diisi."
     );
-
-    emailInput.focus();
 
     return;
   }
-
-
-  if(!email.includes("@")){
-
-    tampilPesan(
-      "Masukkan email yang benar.",
-      "error"
-    );
-
-    emailInput.focus();
-
-    return;
-  }
-
-
-  if(!password){
-
-    tampilPesan(
-      "Password wajib diisi.",
-      "error"
-    );
-
-    passwordInput.focus();
-
-    return;
-  }
-
-
-  // ==============================
-  // LOADING
-  // ==============================
 
   loginBtn.disabled = true;
+  loginBtn.innerText = "MEMPROSES...";
 
-  registerBtn.disabled = true;
+  const {
+    data,
+    error
+  } = await supabaseClient.auth.signInWithPassword({
+    email:email,
+    password:password
+  });
 
-  loginText.style.display =
-    "none";
+  if(error){
 
-  loginLoading.classList.add(
-    "show"
-  );
+    tampilPesan(
+      "Login gagal: " + error.message
+    );
+
+    loginBtn.disabled = false;
+    loginBtn.innerText = "LOGIN";
+
+    return;
+  }
 
   tampilPesan(
-    "Sedang login..."
+    "Login berhasil. Mengarahkan..."
   );
 
+  setTimeout(() => {
 
-  try{
-
-    // ============================
-    // LOGIN SUPABASE
-    // ============================
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
-      .auth
-      .signInWithPassword({
-
-        email:email,
-
-        password:password
-
-      });
-
-
-    // ============================
-    // ERROR
-    // ============================
-
-    if(error){
-
-      console.error(
-        "LOGIN ERROR:",
-        error
-      );
-
-
-      let errorMessage =
-        error.message;
-
-
-      if(
-        errorMessage
-          .toLowerCase()
-          .includes("email not confirmed")
-      ){
-
-        errorMessage =
-          "Email belum dikonfirmasi. Silahkan cek email kamu.";
-      }
-
-
-      if(
-        errorMessage
-          .toLowerCase()
-          .includes("invalid login credentials")
-      ){
-
-        errorMessage =
-          "Email atau password salah.";
-      }
-
-
-      tampilPesan(
-        "Login gagal: " +
-        errorMessage,
-        "error"
-      );
-
-
-      return;
-    }
-
-
-    // ============================
-    // CEK SESSION
-    // ============================
-
-    if(!data || !data.session){
-
-      tampilPesan(
-        "Login gagal: sesi tidak ditemukan.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    // ============================
-    // LOGIN BERHASIL
-    // ============================
-
-    tampilPesan(
-      "Login berhasil! Membuka dashboard...",
-      "success"
+    window.location.replace(
+      "dashboard.html"
     );
 
-
-    // ============================
-    // MASUK DASHBOARD
-    // ============================
-
-    setTimeout(function(){
-
-      window.location.replace(
-        "dashboard.html"
-      );
-
-    },500);
-
-
-  }catch(error){
-
-    console.error(
-      "LOGIN ERROR:",
-      error
-    );
-
-
-    tampilPesan(
-      "Terjadi kesalahan: " +
-      error.message,
-      "error"
-    );
-
-
-  }finally{
-
-    loginBtn.disabled =
-      false;
-
-    registerBtn.disabled =
-      false;
-
-    loginText.style.display =
-      "inline";
-
-    loginLoading.classList.remove(
-      "show"
-    );
-
-  }
-
+  },500);
 }
-
-
-// ========================================
-// ENTER = LOGIN
-// ========================================
-
-emailInput.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-
-      event.preventDefault();
-
-      passwordInput.focus();
-
-    }
-
-  }
-);
 
 
 passwordInput.addEventListener(
@@ -724,63 +317,32 @@ passwordInput.addEventListener(
   function(event){
 
     if(event.key === "Enter"){
-
-      event.preventDefault();
-
       login();
-
     }
 
   }
 );
 
 
-// ========================================
-// CEK SESSION
-// ========================================
-
 async function cekSession(){
 
-  try{
+  const {
+    data
+  } = await supabaseClient.auth.getSession();
 
-    const {
-      data:{
-        session
-      }
-    } =
-    await supabaseClient
-      .auth
-      .getSession();
+  if(
+    data &&
+    data.session
+  ){
 
-
-    if(session){
-
-      /*
-        Kalau user sudah login,
-        tetap diarahkan ke dashboard.
-      */
-
-      window.location.replace(
-        "dashboard.html"
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "SESSION ERROR:",
-      error
+    window.location.replace(
+      "dashboard.html"
     );
 
   }
 
 }
 
-
-// ========================================
-// JALANKAN CEK SESSION
-// ========================================
 
 cekSession();
 
