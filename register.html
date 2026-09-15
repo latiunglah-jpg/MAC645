@@ -32,6 +32,7 @@ body{
     sans-serif;
 
   background:
+
     radial-gradient(
       circle at top left,
       #164e3b 0%,
@@ -49,6 +50,7 @@ body{
   color:white;
 
   padding:30px 15px;
+
 }
 
 
@@ -122,19 +124,12 @@ body{
   font-weight:900;
 
   margin:
-
-    25px
-
-    0
-
-    18px;
+    25px 0 18px;
 
   padding-bottom:10px;
 
   border-bottom:
-
     1px solid
-
     rgba(255,255,255,.08);
 
   color:#f59e0b;
@@ -178,18 +173,12 @@ select{
 
   height:50px;
 
-  padding:
-
-    0
-
-    15px;
+  padding:0 15px;
 
   border-radius:12px;
 
   border:
-
     1px solid
-
     #29443a;
 
   background:#091a14;
@@ -268,9 +257,7 @@ select option{
   border-radius:12px;
 
   border:
-
     1px solid
-
     #29443a;
 
   background:#091a14;
@@ -313,12 +300,7 @@ select option{
   gap:10px;
 
   margin:
-
-    8px
-
-    0
-
-    20px;
+    8px 0 20px;
 
 }
 
@@ -655,89 +637,20 @@ Bank
 
 </option>
 
-<option value="BCA">
-
-BCA
-
-</option>
-
-<option value="BNI">
-
-BNI
-
-</option>
-
-<option value="BRI">
-
-BRI
-
-</option>
-
-<option value="Mandiri">
-
-Mandiri
-
-</option>
-
-<option value="BSI">
-
-BSI
-
-</option>
-
-<option value="CIMB Niaga">
-
-CIMB Niaga
-
-</option>
-
-<option value="Danamon">
-
-Danamon
-
-</option>
-
-<option value="Permata">
-
-Permata
-
-</option>
-
-<option value="BTN">
-
-BTN
-
-</option>
-
-<option value="OCBC">
-
-OCBC
-
-</option>
-
-<option value="Maybank">
-
-Maybank
-
-</option>
-
-<option value="Bank Jago">
-
-Bank Jago
-
-</option>
-
-<option value="SeaBank">
-
-SeaBank
-
-</option>
-
-<option value="Bank Neo">
-
-Bank Neo
-
-</option>
+<option value="BCA">BCA</option>
+<option value="BNI">BNI</option>
+<option value="BRI">BRI</option>
+<option value="Mandiri">Mandiri</option>
+<option value="BSI">BSI</option>
+<option value="CIMB Niaga">CIMB Niaga</option>
+<option value="Danamon">Danamon</option>
+<option value="Permata">Permata</option>
+<option value="BTN">BTN</option>
+<option value="OCBC">OCBC</option>
+<option value="Maybank">Maybank</option>
+<option value="Bank Jago">Bank Jago</option>
+<option value="SeaBank">SeaBank</option>
+<option value="Bank Neo">Bank Neo</option>
 
 </select>
 
@@ -833,8 +746,7 @@ Saya bukan robot
 
 <label for="terms">
 
-Saya menyetujui syarat dan ketentuan
-MAC645.
+Saya menyetujui syarat dan ketentuan MAC645.
 
 </label>
 
@@ -878,6 +790,10 @@ MAC645 DIGITAL STORE
 
 <script>
 
+/* =========================================================
+   SUPABASE
+========================================================= */
+
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
 
@@ -891,12 +807,20 @@ window.supabase.createClient(
 );
 
 
+/* =========================================================
+   ELEMENT
+========================================================= */
+
 const pesan =
 document.getElementById("pesan");
 
 const submitBtn =
 document.getElementById("submitBtn");
 
+
+/* =========================================================
+   PESAN
+========================================================= */
 
 function tampilPesan(
   text,
@@ -912,6 +836,10 @@ function tampilPesan(
 
 }
 
+
+/* =========================================================
+   DAFTAR
+========================================================= */
 
 async function daftar(){
 
@@ -993,9 +921,9 @@ async function daftar(){
       .checked;
 
 
-  /* ===================== */
-  /* VALIDASI */
-  /* ===================== */
+  /* =====================================================
+     VALIDASI
+  ===================================================== */
 
   if(!username){
 
@@ -1011,6 +939,16 @@ async function daftar(){
 
     tampilPesan(
       "Username minimal 4 karakter."
+    );
+
+    return;
+  }
+
+
+  if(!/^[a-zA-Z0-9_]+$/.test(username)){
+
+    tampilPesan(
+      "Username hanya boleh menggunakan huruf, angka, dan underscore."
     );
 
     return;
@@ -1057,10 +995,30 @@ async function daftar(){
   }
 
 
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+    tampilPesan(
+      "Format email tidak valid."
+    );
+
+    return;
+  }
+
+
   if(!phone){
 
     tampilPesan(
       "Nomor telepon wajib diisi."
+    );
+
+    return;
+  }
+
+
+  if(!/^[0-9+\-\s]{8,20}$/.test(phone)){
+
+    tampilPesan(
+      "Nomor telepon tidak valid."
     );
 
     return;
@@ -1127,9 +1085,9 @@ async function daftar(){
   }
 
 
-  /* ===================== */
-  /* PROSES */
-  /* ===================== */
+  /* =====================================================
+     TOMBOL
+  ===================================================== */
 
   submitBtn.disabled = true;
 
@@ -1144,6 +1102,19 @@ async function daftar(){
 
 
   try{
+
+    /* ===================================================
+       REGISTER AUTH
+
+       SEMUA DATA PROFILE DIMASUKKAN KE METADATA.
+
+       TIDAK ADA INSERT KE profiles DARI BROWSER.
+
+       DATABASE TRIGGER YANG AKAN MEMBUAT:
+
+       profiles
+       wallets
+    =================================================== */
 
     const {
       data,
@@ -1161,7 +1132,19 @@ async function daftar(){
 
           username:username,
 
-          phone:phone
+          phone:phone,
+
+          referral_code:
+            referral || null,
+
+          bank_type:
+            bankType,
+
+          account_name:
+            accountName,
+
+          account_number:
+            accountNumber
 
         }
 
@@ -1177,7 +1160,7 @@ async function daftar(){
     }
 
 
-    if(!data.user){
+    if(!data || !data.user){
 
       throw new Error(
         "Akun gagal dibuat."
@@ -1186,58 +1169,27 @@ async function daftar(){
     }
 
 
-    /* ===================== */
-    /* SIMPAN PROFILE */
-    /* ===================== */
+    /* ===================================================
+       HASIL REGISTER
+    =================================================== */
 
-    const {
-      error:profileError
-    } =
-    await supabaseClient
-      .from("profiles")
-      .insert({
-
-        id:data.user.id,
-
-        username:username,
-
-        phone:phone,
-
-        referral_code:
-          referral || null,
-
-        bank_type:bankType,
-
-        account_name:accountName,
-
-        account_number:accountNumber
-
-      });
-
-
-    if(profileError){
-
-      console.error(
-        "PROFILE ERROR:",
-        profileError
-      );
-
-      /*
-       * Akun Auth sudah dibuat.
-       * Kalau profile gagal karena
-       * email confirmation aktif,
-       * tampilkan pesan yang jelas.
-       */
+    if(!data.session){
 
       tampilPesan(
-        "Akun berhasil dibuat, tetapi data profil belum tersimpan. Cek pengaturan Email Confirmation Supabase.",
-        false
+        "Akun berhasil dibuat! Silakan cek email kamu untuk verifikasi akun sebelum login.",
+        true
       );
 
-      submitBtn.disabled = false;
-
       submitBtn.innerText =
-        "DAFTAR SEKARANG";
+        "AKUN BERHASIL DIBUAT";
+
+      setTimeout(() => {
+
+        window.location.replace(
+          "mac.html"
+        );
+
+      },2500);
 
       return;
 
@@ -1245,9 +1197,13 @@ async function daftar(){
 
 
     tampilPesan(
-      "Pendaftaran berhasil!",
+      "Pendaftaran berhasil! Mengalihkan ke login...",
       true
     );
+
+
+    submitBtn.innerText =
+      "BERHASIL";
 
 
     setTimeout(() => {
@@ -1261,12 +1217,49 @@ async function daftar(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "REGISTER ERROR:",
+      error
+    );
+
+
+    let message =
+      error?.message ||
+      "Terjadi kesalahan saat membuat akun.";
+
+
+    /* ===================================================
+       PESAN ERROR SUPABASE
+    =================================================== */
+
+    if(
+      message
+        .toLowerCase()
+        .includes("user already registered")
+    ){
+
+      message =
+        "Email tersebut sudah terdaftar.";
+
+    }
+
+
+    if(
+      message
+        .toLowerCase()
+        .includes("password")
+    ){
+
+      message =
+        "Kata sandi tidak memenuhi ketentuan.";
+
+    }
+
 
     tampilPesan(
-      "Pendaftaran gagal: " +
-      error.message
+      "Pendaftaran gagal: " + message
     );
+
 
     submitBtn.disabled = false;
 
