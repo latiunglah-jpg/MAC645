@@ -11,6 +11,10 @@
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -365,112 +369,227 @@ header{
   overflow:hidden;
   border-radius:20px;
 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   background:
     radial-gradient(
       circle at center,
-      #1a603c 0%,
-      #10452b 35%,
-      #08291a 68%,
-      #03120a 100%
+      #216c43 0%,
+      #124d31 28%,
+      #082b1b 58%,
+      #020d08 100%
     );
 
-  border:1px solid rgba(95,220,140,.45);
+  border:2px solid rgba(95,220,140,.45);
 
   box-shadow:
     0 15px 45px rgba(0,0,0,.62),
     0 0 35px rgba(50,180,100,.17),
     inset 0 0 50px rgba(40,160,90,.12);
+
+  isolation:isolate;
 }
 
-.jackpot-bg{
+/* efek cahaya belakang jackpot */
+
+.jackpot-glow{
   position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  object-position:center;
 
-  filter:
-    hue-rotate(85deg)
-    saturate(.72)
-    brightness(.52)
-    contrast(1.08);
+  width:650px;
+  height:650px;
 
-  opacity:.82;
-  z-index:1;
-}
+  left:50%;
+  top:50%;
 
-.jackpot-section::after{
-  content:"";
-  position:absolute;
-  inset:0;
+  transform:translate(-50%,-50%);
 
   background:
-    linear-gradient(
-      135deg,
-      rgba(3,35,20,.75),
-      rgba(15,85,46,.38),
-      rgba(2,25,14,.78)
+    radial-gradient(
+      circle,
+      rgba(72,255,145,.30) 0%,
+      rgba(35,190,100,.15) 35%,
+      transparent 70%
     );
 
-  z-index:2;
+  filter:blur(12px);
+
+  z-index:1;
+
   pointer-events:none;
+
+  animation:
+    jackpotGlow 3s ease-in-out infinite;
 }
+
+@keyframes jackpotGlow{
+
+  0%{
+    opacity:.65;
+    transform:translate(-50%,-50%) scale(.95);
+  }
+
+  50%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.08);
+  }
+
+  100%{
+    opacity:.65;
+    transform:translate(-50%,-50%) scale(.95);
+  }
+
+}
+
+/* garis dekorasi */
 
 .jackpot-section::before{
   content:"";
+
   position:absolute;
-  z-index:3;
 
-  top:50%;
-  left:50%;
+  inset:15px;
 
-  width:min(720px,85%);
-  height:150px;
+  border:1px solid rgba(130,255,175,.20);
 
-  transform:translate(-50%,-50%);
+  border-radius:17px;
 
-  border-radius:100px;
-
-  background:rgba(46,170,95,.08);
-
-  border:1px solid rgba(110,235,155,.20);
-
-  box-shadow:
-    0 0 35px rgba(50,190,105,.20),
-    inset 0 0 30px rgba(60,200,110,.10);
+  z-index:2;
 
   pointer-events:none;
 }
 
-.jackpot-number{
+/* efek cahaya melintas */
+
+.jackpot-section::after{
+  content:"";
+
   position:absolute;
-  z-index:5;
 
-  top:50%;
-  left:50%;
+  width:70%;
+  height:180%;
 
-  transform:translate(-50%,-50%);
+  top:-40%;
+  left:-100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.055),
+      transparent
+    );
+
+  transform:rotate(15deg);
+
+  z-index:3;
+
+  pointer-events:none;
+
+  animation:
+    jackpotLight 5s linear infinite;
+}
+
+@keyframes jackpotLight{
+
+  0%{
+    left:-100%;
+  }
+
+  100%{
+    left:150%;
+  }
+
+}
+
+/* isi jackpot */
+
+.jackpot-content{
+  position:relative;
+
+  z-index:10;
 
   width:100%;
-  padding:0 20px;
 
   text-align:center;
 
-  color:#9ff1b8;
+  padding:35px 20px;
+}
 
-  font-size:64px;
+/* title */
+
+.jackpot-title{
+  font-size:34px;
+
   font-weight:1000;
-  line-height:1.1;
-  letter-spacing:2px;
-  white-space:nowrap;
+
+  color:#ffffff;
+
+  letter-spacing:5px;
 
   text-shadow:
-    0 2px 5px rgba(0,0,0,.95),
-    0 0 8px rgba(120,240,165,.62),
-    0 0 20px rgba(55,190,105,.48),
-    0 0 40px rgba(40,150,80,.23);
+    0 0 10px rgba(130,255,175,.75),
+    0 0 25px rgba(50,220,120,.55);
+
+  margin-bottom:8px;
+}
+
+/* subtitle */
+
+.jackpot-subtitle{
+  font-size:14px;
+
+  font-weight:900;
+
+  color:#9df3b9;
+
+  letter-spacing:4px;
+
+  margin-bottom:28px;
+}
+
+/* angka jackpot */
+
+.jackpot-number{
+  position:relative;
+
+  display:inline-block;
+
+  font-size:clamp(42px,7vw,82px);
+
+  font-weight:1000;
+
+  line-height:1;
+
+  letter-spacing:3px;
+
+  color:#baffca;
+
+  padding:20px 35px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.11),
+      rgba(255,255,255,.025)
+    );
+
+  border:1px solid rgba(140,255,180,.30);
+
+  box-shadow:
+    0 0 25px rgba(55,230,125,.25),
+    0 0 55px rgba(45,190,100,.12),
+    inset 0 0 30px rgba(70,255,140,.08);
+
+  text-shadow:
+    0 0 8px rgba(160,255,190,.95),
+    0 0 20px rgba(60,240,130,.85),
+    0 0 45px rgba(40,200,110,.55);
+
+  white-space:nowrap;
 
   transition:
     transform .12s ease,
@@ -478,9 +597,42 @@ header{
 }
 
 .jackpot-number.pop{
-  transform:
-    translate(-50%,-50%)
-    scale(1.035);
+  transform:scale(1.035);
+
+  text-shadow:
+    0 0 10px rgba(190,255,210,1),
+    0 0 25px rgba(80,255,145,.95),
+    0 0 55px rgba(50,220,120,.70);
+}
+
+/* bawah jackpot */
+
+.jackpot-bottom{
+  display:flex;
+
+  justify-content:center;
+
+  gap:12px;
+
+  margin-top:28px;
+
+  flex-wrap:wrap;
+}
+
+.jackpot-bottom span{
+  font-size:10px;
+
+  font-weight:900;
+
+  color:#b8eecb;
+
+  padding:9px 15px;
+
+  border-radius:999px;
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid rgba(120,255,170,.17);
 }
 
 /* =========================================================
@@ -739,7 +891,6 @@ header{
   width:36px;
   height:36px;
 
-  display:flex;
   align-items:center;
   justify-content:center;
 
@@ -1232,9 +1383,25 @@ footer{
     height:300px;
   }
 
+  .jackpot-content{
+    padding:25px 10px;
+  }
+
+  .jackpot-title{
+    font-size:25px;
+    letter-spacing:3px;
+  }
+
+  .jackpot-subtitle{
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:20px;
+  }
+
   .jackpot-number{
     font-size:38px;
     letter-spacing:1px;
+    padding:15px 14px;
   }
 
   .payment-services{
@@ -1308,7 +1475,24 @@ footer{
   .jackpot-number{
     font-size:29px;
     letter-spacing:0;
-    padding:0 10px;
+    padding:13px 8px;
+  }
+
+  .jackpot-title{
+    font-size:21px;
+  }
+
+  .jackpot-subtitle{
+    font-size:9px;
+  }
+
+  .jackpot-bottom{
+    margin-top:18px;
+  }
+
+  .jackpot-bottom span{
+    font-size:8px;
+    padding:7px 9px;
   }
 
   .service-card{
@@ -1347,9 +1531,17 @@ footer{
 
 <body>
 
+<!-- =======================================================
+     TOP ANNOUNCEMENT
+======================================================= -->
+
 <div class="top-announcement">
   📢 SELAMAT DATANG DI MAC645 — GACOR & TERPERCAYA
 </div>
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
 
 <header>
 
@@ -1439,9 +1631,17 @@ footer{
 
 </header>
 
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
 <main id="beranda">
 
 <div class="container">
+
+<!-- =======================================================
+     MAIN BANNER
+======================================================= -->
 
 <section class="banner-wrap">
 
@@ -1474,6 +1674,10 @@ footer{
 
 </section>
 
+<!-- =======================================================
+     GAME
+======================================================= -->
+
 <section id="game" class="section">
 
   <div class="section-header">
@@ -1489,127 +1693,253 @@ footer{
   <div class="game-scroll">
 
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="mahjong3.jpg" alt="Mahjong Wins 3">
+
+        <img
+          src="mahjong3.jpg"
+          alt="Mahjong Wins 3"
+        >
+
       </div>
+
       <div class="game-name">
         Mahjong Wins 3<br>
         Black Scatter
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="olympus 1000.jpg" alt="Gates of Olympus 1000">
+
+        <img
+          src="olympus 1000.jpg"
+          alt="Gates of Olympus 1000"
+        >
+
       </div>
+
       <div class="game-name">
         Gates of Olympus<br>
         1000
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="olympus aja.jpg" alt="Gates of Olympus Super Scatter">
+
+        <img
+          src="olympus aja.jpg"
+          alt="Gates of Olympus Super Scatter"
+        >
+
       </div>
+
       <div class="game-name">
         Gates of Olympus<br>
         Super Scatter
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="mahjong 2.jpg" alt="Mahjong Ways 2">
+
+        <img
+          src="mahjong 2.jpg"
+          alt="Mahjong Ways 2"
+        >
+
       </div>
+
       <div class="game-name">
         Mahjong Ways 2
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="mahjong ways.png" alt="Mahjong Ways">
+
+        <img
+          src="mahjong ways.png"
+          alt="Mahjong Ways"
+        >
+
       </div>
+
       <div class="game-name">
         Mahjong Ways
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="wild bounty.jpg" alt="Wild Bounty Showdown">
+
+        <img
+          src="wild bounty.jpg"
+          alt="Wild Bounty Showdown"
+        >
+
       </div>
+
       <div class="game-name">
         Wild Bounty<br>
         Showdown
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="lucky neko.jpg" alt="Lucky Neko">
+
+        <img
+          src="lucky neko.jpg"
+          alt="Lucky Neko"
+        >
+
       </div>
+
       <div class="game-name">
         Lucky Neko
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="Treasures of Aztec.jpg" alt="Treasures of Aztec">
+
+        <img
+          src="Treasures of Aztec.jpg"
+          alt="Treasures of Aztec"
+        >
+
       </div>
+
       <div class="game-name">
         Treasures of Aztec
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="Wild-Ape-3258.jpg" alt="Wild Ape 3258">
+
+        <img
+          src="Wild-Ape-3258.jpg"
+          alt="Wild Ape 3258"
+        >
+
       </div>
+
       <div class="game-name">
         Wild Ape #3258
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="Gates-of-Gatot-Kaca-1000.jpg" alt="Gates of Gatot Kaca 1000">
+
+        <img
+          src="Gates-of-Gatot-Kaca-1000.jpg"
+          alt="Gates of Gatot Kaca 1000"
+        >
+
       </div>
+
       <div class="game-name">
         Gates of Gatot Kaca<br>
         1000
       </div>
+
     </div>
 
+
     <div class="game-card" onclick="cekLogin()">
+
       <div class="game-image">
-        <img src="starlight princess super scatter.jpg" alt="Starlight Princess Super Scatter">
+
+        <img
+          src="starlight princess super scatter.jpg"
+          alt="Starlight Princess Super Scatter"
+        >
+
       </div>
+
       <div class="game-name">
         Starlight Princess<br>
         Super Scatter
       </div>
+
     </div>
 
   </div>
 
 </section>
 
+<!-- =======================================================
+     JACKPOT
+======================================================= -->
+
 <section id="jackpot" class="jackpot-section">
 
-  <img
-    class="jackpot-bg"
-    src="jackpot.gif"
-    alt="MAC645 Jackpot"
-  >
+  <div class="jackpot-glow"></div>
 
-  <div id="jackpotNumber" class="jackpot-number">
-    6,829,912,808
+  <div class="jackpot-content">
+
+    <div class="jackpot-title">
+      🎰 JACKPOT
+    </div>
+
+    <div class="jackpot-subtitle">
+      MAC645 MEGA JACKPOT
+    </div>
+
+    <div id="jackpotNumber" class="jackpot-number">
+      6,829,912,808
+    </div>
+
+    <div class="jackpot-bottom">
+
+      <span>
+        🔥 JACKPOT TERUS BERTAMBAH
+      </span>
+
+      <span>
+        💰 MENANG BESAR SETIAP HARI
+      </span>
+
+    </div>
+
   </div>
 
 </section>
+
+<!-- =======================================================
+     PRODUK / TRANSAKSI
+======================================================= -->
 
 <section id="produk" class="section payment-section">
 
@@ -1626,6 +1956,8 @@ footer{
   </div>
 
   <div class="payment-services">
+
+    <!-- DEPOSIT -->
 
     <div class="service-card">
 
@@ -1674,6 +2006,9 @@ footer{
       </button>
 
     </div>
+
+
+    <!-- WITHDRAW -->
 
     <div class="service-card">
 
@@ -1725,6 +2060,8 @@ footer{
 
   </div>
 
+  <!-- PAYMENT METHOD -->
+
   <div class="payment-method-section">
 
     <div class="payment-method-header">
@@ -1752,11 +2089,17 @@ footer{
 
 </main>
 
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
 <footer>
- MAC645 UDAH PASTI GACOR YA BOSKU^^ © 2026
+  MAC645 UDAH PASTI GACOR YA BOSKU^^ © 2026
 </footer>
 
-<!-- LOGIN -->
+<!-- =======================================================
+     LOGIN MODAL
+======================================================= -->
 
 <div id="loginModal" class="login-overlay">
 
@@ -1820,7 +2163,9 @@ footer{
 
 </div>
 
-<!-- WITHDRAW -->
+<!-- =======================================================
+     WITHDRAW MODAL
+======================================================= -->
 
 <div id="withdrawModal" class="withdraw-overlay">
 
@@ -1948,7 +2293,15 @@ footer{
 
 </div>
 
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
 <script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
 "https://jblilyzqozodjslgylso.supabase.co";
@@ -1962,41 +2315,69 @@ supabase.createClient(
   SUPABASE_KEY
 );
 
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
 function notif(message){
+
   alert(message);
+
 }
+
+/* =========================================================
+   BANNER ERROR
+========================================================= */
 
 function bannerError(){
 
   const banner =
-    document.getElementById("mainBanner");
+    document.getElementById(
+      "mainBanner"
+    );
 
   const error =
-    document.getElementById("bannerError");
+    document.getElementById(
+      "bannerError"
+    );
 
   if(banner){
-    banner.style.display="none";
+
+    banner.style.display =
+      "none";
+
   }
 
   if(error){
-    error.style.display="flex";
+
+    error.style.display =
+      "flex";
+
   }
 
 }
+
+/* =========================================================
+   LOGIN MODAL
+========================================================= */
 
 function bukaLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display="flex";
+  ).style.display =
+    "flex";
 
-  setTimeout(() => {
+  setTimeout(
+    () => {
 
-    document.getElementById(
-      "email"
-    ).focus();
+      document.getElementById(
+        "email"
+      ).focus();
 
-  },100);
+    },
+    100
+  );
 
 }
 
@@ -2004,7 +2385,8 @@ function tutupLogin(){
 
   document.getElementById(
     "loginModal"
-  ).style.display="none";
+  ).style.display =
+    "none";
 
 }
 
@@ -2027,15 +2409,22 @@ function registerUser(){
 async function loginUser(){
 
   const email =
-    document.getElementById("email")
+    document.getElementById(
+      "email"
+    )
     .value
     .trim();
 
   const password =
-    document.getElementById("password")
+    document.getElementById(
+      "password"
+    )
     .value;
 
-  if(!email || !password){
+  if(
+    !email ||
+    !password
+  ){
 
     notif(
       "Email dan password wajib diisi."
@@ -2052,8 +2441,11 @@ async function loginUser(){
 
   if(loginButton){
 
-    loginButton.disabled=true;
-    loginButton.textContent="MEMPROSES...";
+    loginButton.disabled =
+      true;
+
+    loginButton.textContent =
+      "MEMPROSES...";
 
   }
 
@@ -2086,7 +2478,10 @@ async function loginUser(){
 
     }
 
-    if(!data || !data.user){
+    if(
+      !data ||
+      !data.user
+    ){
 
       notif(
         "Login gagal. Data akun tidak ditemukan."
@@ -2108,7 +2503,9 @@ async function loginUser(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     notif(
       "Login gagal. Periksa koneksi dan data login."
@@ -2118,8 +2515,11 @@ async function loginUser(){
 
     if(loginButton){
 
-      loginButton.disabled=false;
-      loginButton.textContent="LOGIN";
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "LOGIN";
 
     }
 
@@ -2127,19 +2527,27 @@ async function loginUser(){
 
 }
 
+/* =========================================================
+   TAMPILKAN USER
+========================================================= */
+
 async function tampilkanUser(user){
 
   if(!user){
+
     return;
+
   }
 
   document.getElementById(
     "authArea"
-  ).style.display="none";
+  ).style.display =
+    "none";
 
   document.getElementById(
     "userArea"
-  ).style.display="flex";
+  ).style.display =
+    "flex";
 
   document.getElementById(
     "userEmail"
@@ -2151,6 +2559,10 @@ async function tampilkanUser(user){
   );
 
 }
+
+/* =========================================================
+   LOAD SALDO
+========================================================= */
 
 async function loadSaldo(userId){
 
@@ -2193,6 +2605,10 @@ async function loadSaldo(userId){
 
 }
 
+/* =========================================================
+   LOGOUT
+========================================================= */
+
 async function logoutUser(){
 
   const {
@@ -2202,7 +2618,9 @@ async function logoutUser(){
 
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     notif(
       "Logout gagal."
@@ -2214,11 +2632,13 @@ async function logoutUser(){
 
   document.getElementById(
     "authArea"
-  ).style.display="block";
+  ).style.display =
+    "block";
 
   document.getElementById(
     "userArea"
-  ).style.display="none";
+  ).style.display =
+    "none";
 
   document.getElementById(
     "saldoUser"
@@ -2226,6 +2646,10 @@ async function logoutUser(){
     "Saldo Rp0";
 
 }
+
+/* =========================================================
+   CEK LOGIN
+========================================================= */
 
 async function cekLogin(){
 
@@ -2237,7 +2661,9 @@ async function cekLogin(){
 
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     bukaLogin();
 
@@ -2257,13 +2683,19 @@ async function cekLogin(){
 
 }
 
+/* =========================================================
+   DEPOSIT
+========================================================= */
+
 async function bukaDeposit(){
 
   const login =
     await cekLogin();
 
   if(!login){
+
     return;
+
   }
 
   window.location.href =
@@ -2271,7 +2703,16 @@ async function bukaDeposit(){
 
 }
 
-let currentWithdrawBalance = 0;
+/* =========================================================
+   WITHDRAW
+========================================================= */
+
+let currentWithdrawBalance =
+  0;
+
+/* =========================================================
+   CURRENT SESSION
+========================================================= */
 
 async function getCurrentSession(){
 
@@ -2283,7 +2724,9 @@ async function getCurrentSession(){
 
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     return null;
 
@@ -2292,6 +2735,10 @@ async function getCurrentSession(){
   return data.session || null;
 
 }
+
+/* =========================================================
+   BUKA WITHDRAW
+========================================================= */
 
 async function bukaWithdraw(){
 
@@ -2312,7 +2759,8 @@ async function bukaWithdraw(){
 
   document.getElementById(
     "withdrawModal"
-  ).style.display="flex";
+  ).style.display =
+    "flex";
 
   await loadWithdrawBalance(
     session.user.id
@@ -2324,13 +2772,22 @@ async function bukaWithdraw(){
 
 }
 
+/* =========================================================
+   TUTUP WITHDRAW
+========================================================= */
+
 function tutupWithdraw(){
 
   document.getElementById(
     "withdrawModal"
-  ).style.display="none";
+  ).style.display =
+    "none";
 
 }
+
+/* =========================================================
+   LOAD SALDO WITHDRAW
+========================================================= */
 
 async function loadWithdrawBalance(userId){
 
@@ -2373,17 +2830,25 @@ async function loadWithdrawBalance(userId){
 
 }
 
+/* =========================================================
+   FORMAT WITHDRAW
+========================================================= */
+
 function formatWithdraw(input){
 
   let angka =
     String(
       input.value || ""
     )
-    .replace(/\D/g,"");
+    .replace(
+      /\D/g,
+      ""
+    );
 
   if(!angka){
 
-    input.value="";
+    input.value =
+      "";
 
     return;
 
@@ -2397,6 +2862,10 @@ function formatWithdraw(input){
     );
 
 }
+
+/* =========================================================
+   AJUKAN WITHDRAW
+========================================================= */
 
 async function ajukanWithdraw(){
 
@@ -2423,11 +2892,19 @@ async function ajukanWithdraw(){
       "withdrawAmount"
     )
     .value
-    .replace(/\./g,"")
-    .replace(/,/g,"");
+    .replace(
+      /\./g,
+      ""
+    )
+    .replace(
+      /,/g,
+      ""
+    );
 
   const amount =
-    Number(rawAmount);
+    Number(
+      rawAmount
+    );
 
   const bank =
     document.getElementById(
@@ -2437,12 +2914,16 @@ async function ajukanWithdraw(){
   const accountNumber =
     document.getElementById(
       "withdrawAccount"
-    ).value.trim();
+    )
+    .value
+    .trim();
 
   const accountName =
     document.getElementById(
       "withdrawName"
-    ).value.trim();
+    )
+    .value
+    .trim();
 
   if(
     !Number.isFinite(amount) ||
@@ -2500,8 +2981,11 @@ async function ajukanWithdraw(){
 
   }
 
-  button.disabled=true;
-  button.textContent="MEMPROSES...";
+  button.disabled =
+    true;
+
+  button.textContent =
+    "MEMPROSES...";
 
   try{
 
@@ -2540,19 +3024,23 @@ async function ajukanWithdraw(){
 
     document.getElementById(
       "withdrawAmount"
-    ).value="";
+    ).value =
+      "";
 
     document.getElementById(
       "withdrawBank"
-    ).value="";
+    ).value =
+      "";
 
     document.getElementById(
       "withdrawAccount"
-    ).value="";
+    ).value =
+      "";
 
     document.getElementById(
       "withdrawName"
-    ).value="";
+    ).value =
+      "";
 
     await loadWithdrawBalance(
       session.user.id
@@ -2568,14 +3056,19 @@ async function ajukanWithdraw(){
 
   }finally{
 
-    button.disabled=false;
+    button.disabled =
+      false;
 
-    button.textContent=
+    button.textContent =
       "AJUKAN WITHDRAW";
 
   }
 
 }
+
+/* =========================================================
+   RIWAYAT WITHDRAW
+========================================================= */
 
 async function loadWithdrawHistory(userId){
 
@@ -2736,7 +3229,7 @@ async function loadWithdrawHistory(userId){
 }
 
 /* =========================================================
-   PAYMENT METHOD
+   PAYMENT METHODS
 ========================================================= */
 
 const paymentMethods = [
@@ -3097,6 +3590,10 @@ const paymentMethods = [
 
 ];
 
+/* =========================================================
+   RENDER PAYMENT METHODS
+========================================================= */
+
 function renderPaymentMethods(){
 
   const grid =
@@ -3105,7 +3602,9 @@ function renderPaymentMethods(){
     );
 
   if(!grid){
+
     return;
+
   }
 
   grid.innerHTML =
@@ -3158,7 +3657,9 @@ const jackpotEl =
 function updateJackpot(){
 
   if(!jackpotEl){
+
     return;
+
   }
 
   const increase =
@@ -3229,6 +3730,10 @@ async function cekSessionAwal(){
 
 }
 
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
 supabaseClient.auth.onAuthStateChange(
   (
     event,
@@ -3245,11 +3750,13 @@ supabaseClient.auth.onAuthStateChange(
 
       document.getElementById(
         "authArea"
-      ).style.display="block";
+      ).style.display =
+        "block";
 
       document.getElementById(
         "userArea"
-      ).style.display="none";
+      ).style.display =
+        "none";
 
     }
 
@@ -3295,6 +3802,10 @@ document.addEventListener(
   }
 );
 
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
 document.addEventListener(
   "keydown",
   function(e){
@@ -3310,9 +3821,12 @@ document.addEventListener(
 
     }
 
-    if(e.key === "Escape"){
+    if(
+      e.key === "Escape"
+    ){
 
       tutupWithdraw();
+
       tutupLogin();
 
     }
