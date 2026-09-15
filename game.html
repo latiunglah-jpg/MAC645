@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MAC645 - Game</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(0, 255, 170, 0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(0, 180, 255, 0.08), transparent 30%),
+        #07110e;
+      color: white;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      background: rgba(5, 15, 12, 0.92);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #00e89b;
+    }
+
+    .logo span {
+      color: white;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 10px 17px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      transition: .2s;
+    }
+
+    .back-btn:hover {
+      background: rgba(0,232,155,0.12);
+      border-color: #00e89b;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 60px 6% 30px;
+      max-width: 1500px;
+      margin: auto;
+    }
+
+    .small-title {
+      color: #00e89b;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 60px);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: #00e89b;
+    }
+
+    .hero p {
+      color: #a8b6b1;
+      max-width: 700px;
+      line-height: 1.7;
+    }
+
+    /* TOOLBAR */
+
+    .toolbar {
+      max-width: 1500px;
+      margin: 10px auto 30px;
+      padding: 0 6%;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #0d1d18;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .search-box input:focus {
+      border-color: #00e89b;
+      box-shadow: 0 0 0 3px rgba(0,232,155,0.08);
+    }
+
+    .filter {
+      min-width: 200px;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #0d1d18;
+      color: white;
+      outline: none;
+    }
+
+    /* STATUS */
+
+    .status {
+      max-width: 1500px;
+      margin: 0 auto 20px;
+      padding: 0 6%;
+    }
+
+    .status-box {
+      padding: 14px 17px;
+      border-radius: 14px;
+      background: rgba(0,232,155,0.06);
+      border: 1px solid rgba(0,232,155,0.12);
+      color: #9fafa9;
+      font-size: 14px;
+    }
+
+    .status-box strong {
+      color: #00e89b;
+    }
+
+    /* GAME GRID */
+
+    .game-container {
+      max-width: 1500px;
+      margin: auto;
+      padding: 0 6% 60px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .game-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #10231c, #091510);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,232,155,0.45);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    }
+
+    .game-image {
+      width: 100%;
+      aspect-ratio: 1.25 / 1;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0,232,155,.25), transparent 35%),
+        linear-gradient(135deg, #132c23, #08110e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .game-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .game-placeholder {
+      text-align: center;
+      padding: 20px;
+      color: #00e89b;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .game-placeholder small {
+      display: block;
+      margin-top: 8px;
+      color: #83958e;
+      font-size: 11px;
+      font-weight: normal;
+    }
+
+    .game-info {
+      padding: 14px;
+    }
+
+    .game-name {
+      font-size: 15px;
+      font-weight: 800;
+      min-height: 40px;
+      line-height: 1.35;
+    }
+
+    .game-provider {
+      color: #879b94;
+      font-size: 12px;
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+
+    .play-btn {
+      width: 100%;
+      border: none;
+      border-radius: 11px;
+      padding: 12px;
+      background: linear-gradient(135deg, #00e89b, #00b878);
+      color: #04120d;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.02);
+      filter: brightness(1.08);
+    }
+
+    .play-btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    /* EMPTY */
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 70px 20px;
+      color: #91a29c;
+    }
+
+    .empty-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    /* LOADING */
+
+    .loading {
+      text-align: center;
+      padding: 80px 20px;
+      color: #84968f;
+    }
+
+    .loader {
+      width: 42px;
+      height: 42px;
+      border: 3px solid rgba(255,255,255,.1);
+      border-top-color: #00e89b;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 18px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* GAME VIEW */
+
+    .game-view {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: #000;
+    }
+
+    .game-view iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .game-close {
+      position: absolute;
+      z-index: 10;
+      top: 18px;
+      right: 18px;
+      border: none;
+      background: rgba(0,0,0,.75);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 22px;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1200px) {
+      .game-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .game-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .header {
+        padding: 0 20px;
+      }
+
+      .hero,
+      .toolbar,
+      .status,
+      .game-container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .game-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .game-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .game-name {
+        font-size: 13px;
+      }
+
+      .game-provider {
+        font-size: 10px;
+      }
+
+      .play-btn {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="logo">
+      MAC<span>645</span>
+    </div>
+
+    <a href="index.html" class="back-btn">
+      ← Kembali
+    </a>
+
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="small-title">
+      MAC645 GAME CENTER
+    </div>
+
+    <h1>
+      Pilih Game<br>
+      <span>Favorit Kamu</span>
+    </h1>
+
+    <p>
+      Game yang tersedia ditampilkan langsung dari katalog
+      BigBang Sandbox. Pilih game lalu tekan MAIN untuk
+      membuka versi demo.
+    </p>
+
+  </section>
+
+
+  <!-- SEARCH -->
+  <div class="toolbar">
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔎 Cari nama game..."
+      >
+
+    </div>
+
+    <select id="providerFilter" class="filter">
+
+      <option value="all">
+        Semua Provider
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- STATUS -->
+  <div class="status">
+
+    <div class="status-box" id="statusBox">
+      Menghubungkan ke BigBang...
+    </div>
+
+  </div>
+
+
+  <!-- GAMES -->
+  <main class="game-container">
+
+    <div id="loading" class="loading">
+
+      <div class="loader"></div>
+
+      Mengambil katalog game...
+
+    </div>
+
+
+    <div
+      id="gameGrid"
+      class="game-grid"
+    ></div>
+
+
+    <div
+      id="empty"
+      class="empty"
+    >
+
+      <div class="empty-icon">
+        🎮
+      </div>
+
+      <h3>
+        Game tidak ditemukan
+      </h3>
+
+      <p>
+        Coba gunakan nama game atau provider lain.
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- GAME FULLSCREEN -->
+  <div
+    id="gameView"
+    class="game-view"
+  >
+
+    <button
+      class="game-close"
+      onclick="closeGame()"
+    >
+      ×
+    </button>
+
+    <iframe
+      id="gameFrame"
+      allow="fullscreen"
+      allowfullscreen
+    ></iframe>
+
+  </div>
+
+
+<script>
+
+  /* =====================================================
+     MAC645 BIGBANG CONFIG
+     ===================================================== */
+
+  const BIGBANG_FUNCTION =
+    "https://jblilyzqozodjslgylso.supabase.co/functions/v1/bigbang-games";
+
+
+  /* =====================================================
+     GLOBAL
+     ===================================================== */
+
+  let allGames = [];
+  let filteredGames = [];
+
+
+  /* =====================================================
+     LOAD GAMES
+     ===================================================== */
+
+  async function loadGames() {
+
+    const loading =
+      document.getElementById("loading");
+
+    const status =
+      document.getElementById("statusBox");
+
+    try {
+
+      loading.style.display = "block";
+
+      status.innerHTML =
+        "Menghubungkan ke <strong>BigBang Sandbox...</strong>";
+
+
+      /*
+        Ambil game batch pertama.
+      */
+
+      const response =
+        await fetch(
+          BIGBANG_FUNCTION +
+          "?action=list&limit=100&offset=0"
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "HTTP " + response.status
+        );
+
+      }
+
+
+      const result =
+        await response.json();
+
+
+      console.log(
+        "BIGBANG RESULT:",
+        result
+      );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error ||
+          "Gagal mengambil game"
+        );
+
+      }
+
+
+      allGames =
+        Array.isArray(result.data)
+          ? result.data
+          : [];
+
+
+      filteredGames =
+        [...allGames];
+
+
+      loading.style.display =
+        "none";
+
+
+      status.innerHTML =
+        "Berhasil memuat <strong>" +
+        allGames.length +
+        "</strong> game dari BigBang Sandbox.";
+
+
+      createProviderFilter();
+
+      renderGames();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      loading.innerHTML = `
+
+        <div style="
+          font-size:45px;
+          margin-bottom:15px;
+        ">
+          ⚠️
+        </div>
+
+        <strong style="color:#ff6b6b;">
+          Gagal mengambil katalog game
+        </strong>
+
+        <p style="
+          margin-top:10px;
+          color:#879b94;
+        ">
+          ${escapeHtml(error.message)}
+        </p>
+
+        <button
+          onclick="loadGames()"
+          style="
+            margin-top:20px;
+            padding:12px 20px;
+            border:0;
+            border-radius:10px;
+            background:#00e89b;
+            cursor:pointer;
+            font-weight:bold;
+          "
+        >
+          Coba Lagi
+        </button>
+
+      `;
+
+      status.innerHTML =
+        "Koneksi ke BigBang gagal.";
+
+    }
+
+  }
+
+
+  /* =====================================================
+     PROVIDER FILTER
+     ===================================================== */
+
+  function createProviderFilter() {
+
+    const select =
+      document.getElementById(
+        "providerFilter"
+      );
+
+
+    const providers =
+      [
+        ...new Set(
+          allGames
+            .map(game =>
+              game.provider ||
+              game.provider_name ||
+              "Unknown"
+            )
+        )
+      ]
+      .sort();
+
+
+    providers.forEach(
+      provider => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          provider;
+
+        option.textContent =
+          provider;
+
+        select.appendChild(
+          option
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     RENDER
+     ===================================================== */
+
+  function renderGames() {
+
+    const grid =
+      document.getElementById(
+        "gameGrid"
+      );
+
+    const empty =
+      document.getElementById(
+        "empty"
+      );
+
+
+    grid.innerHTML = "";
+
+
+    if (!filteredGames.length) {
+
+      empty.style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    empty.style.display =
+      "none";
+
+
+    filteredGames.forEach(
+      game => {
+
+        const card =
+          createGameCard(game);
+
+        grid.appendChild(card);
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     GAME CARD
+     ===================================================== */
+
+  function createGameCard(game) {
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+    card.className =
+      "game-card";
+
+
+    const gameId =
+      game.id ??
+      game.game_id;
+
+
+    const gameName =
+      game.name ||
+      game.title ||
+      game.game_name ||
+      "Game";
+
+
+    const provider =
+      game.provider ||
+      game.provider_name ||
+      "Unknown";
+
+
+    /*
+      Coba beberapa kemungkinan
+      field gambar dari API.
+    */
+
+    const image =
+      game.image ||
+      game.image_url ||
+      game.thumbnail ||
+      game.thumbnail_url ||
+      game.cover ||
+      "";
+
+
+    let imageHTML = "";
+
+
+    if (image) {
+
+      imageHTML = `
+
+        <img
+          src="${escapeAttribute(image)}"
+          alt="${escapeAttribute(gameName)}"
+          loading="lazy"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+
+        <div
+          class="game-placeholder"
+          style="display:none;"
+        >
+          🎮
+          <small>
+            ${escapeHtml(provider)}
+          </small>
+        </div>
+
+      `;
+
+    } else {
+
+      imageHTML = `
+
+        <div class="game-placeholder">
+
+          🎮
+
+          <small>
+            ${escapeHtml(provider)}
+          </small>
+
+        </div>
+
+      `;
+
+    }
+
+
+    card.innerHTML = `
+
+      <div class="game-image">
+
+        ${imageHTML}
+
+      </div>
+
+
+      <div class="game-info">
+
+        <div class="game-name">
+
+          ${escapeHtml(gameName)}
+
+        </div>
+
+
+        <div class="game-provider">
+
+          ${escapeHtml(provider)}
+
+        </div>
+
+
+        <button
+          class="play-btn"
+          onclick="launchGame(${Number(gameId)})"
+        >
+
+          ▶ MAIN DEMO
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    return card;
+
+  }
+
+
+  /* =====================================================
+     SEARCH
+     ===================================================== */
+
+  document
+    .getElementById("searchInput")
+    .addEventListener(
+      "input",
+      applyFilter
+    );
+
+
+  document
+    .getElementById("providerFilter")
+    .addEventListener(
+      "change",
+      applyFilter
+    );
+
+
+  function applyFilter() {
+
+    const search =
+      document
+        .getElementById(
+          "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const provider =
+      document
+        .getElementById(
+          "providerFilter"
+        )
+        .value;
+
+
+    filteredGames =
+      allGames.filter(
+        game => {
+
+          const name =
+            (
+              game.name ||
+              game.title ||
+              game.game_name ||
+              ""
+            )
+            .toLowerCase();
+
+
+          const gameProvider =
+            game.provider ||
+            game.provider_name ||
+            "Unknown";
+
+
+          const matchSearch =
+            !search ||
+            name.includes(search);
+
+
+          const matchProvider =
+            provider === "all" ||
+            gameProvider === provider;
+
+
+          return (
+            matchSearch &&
+            matchProvider
+          );
+
+        }
+      );
+
+
+    renderGames();
+
+  }
+
+
+  /* =====================================================
+     LAUNCH GAME
+     ===================================================== */
+
+  async function launchGame(gameId) {
+
+    if (!gameId) {
+
+      alert(
+        "ID game tidak ditemukan."
+      );
+
+      return;
+
+    }
+
+
+    const button =
+      event?.target;
+
+
+    if (button) {
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        "MEMBUKA...";
+
+    }
+
+
+    try {
+
+      const response =
+        await fetch(
+          BIGBANG_FUNCTION +
+          "?action=launch",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+
+              game_id:
+                Number(gameId),
+
+              demo:
+                true,
+
+              language:
+                "id",
+
+              return_url:
+                window.location.href
+
+            })
+
+          }
+        );
+
+
+      const result =
+        await response.json();
+
+
+      console.log(
+        "LAUNCH RESULT:",
+        result
+      );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          result.error ||
+          "Gagal membuka game"
+        );
+
+      }
+
+
+      /*
+        BigBang bisa mengembalikan
+        URL dalam beberapa struktur.
+      */
+
+      const gameUrl =
+        result.url ||
+        result.game_url ||
+        result.launch_url ||
+        result.data?.url ||
+        result.data?.game_url ||
+        result.data?.launch_url;
+
+
+      if (!gameUrl) {
+
+        console.log(
+          "Response launch:",
+          result
+        );
+
+
+        alert(
+          "Game berhasil dipanggil, tetapi URL game tidak ditemukan. Cek Console browser."
+        );
+
+        return;
+
+      }
+
+
+      openGame(
+        gameUrl
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Gagal membuka game:\n\n" +
+        error.message
+      );
+
+    } finally {
+
+      if (button) {
+
+        button.disabled =
+          false;
+
+        button.textContent =
+          "▶ MAIN DEMO";
+
+      }
+
+    }
+
+  }
+
+
+  /* =====================================================
+     OPEN GAME
+     ===================================================== */
+
+  function openGame(url) {
+
+    const view =
+      document.getElementById(
+        "gameView"
+      );
+
+    const frame =
+      document.getElementById(
+        "gameFrame"
+      );
+
+
+    frame.src =
+      url;
+
+
+    view.style.display =
+      "block";
+
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+  /* =====================================================
+     CLOSE GAME
+     ===================================================== */
+
+  function closeGame() {
+
+    const view =
+      document.getElementById(
+        "gameView"
+      );
+
+    const frame =
+      document.getElementById(
+        "gameFrame"
+      );
+
+
+    frame.src =
+      "about:blank";
+
+
+    view.style.display =
+      "none";
+
+
+    document.body.style.overflow =
+      "";
+
+  }
+
+
+  /* =====================================================
+     SECURITY HELPERS
+     ===================================================== */
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+
+  function escapeAttribute(value) {
+
+    return escapeHtml(value);
+
+  }
+
+
+  /* =====================================================
+     START
+     ===================================================== */
+
+  loadGames();
+
+</script>
+
+</body>
+</html>
