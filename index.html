@@ -177,6 +177,11 @@ header{
   transform:translateY(-1px);
 }
 
+.login-top:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
 .user-area{
   display:none;
   align-items:center;
@@ -209,6 +214,11 @@ header{
   border-color:#91e968;
   color:#aaf47b;
   background:#16472c;
+}
+
+.logout:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 /* =========================================================
@@ -392,8 +402,6 @@ header{
   isolation:isolate;
 }
 
-/* efek cahaya belakang jackpot */
-
 .jackpot-glow{
   position:absolute;
 
@@ -442,8 +450,6 @@ header{
 
 }
 
-/* garis dekorasi */
-
 .jackpot-section::before{
   content:"";
 
@@ -459,8 +465,6 @@ header{
 
   pointer-events:none;
 }
-
-/* efek cahaya melintas */
 
 .jackpot-section::after{
   content:"";
@@ -503,8 +507,6 @@ header{
 
 }
 
-/* isi jackpot */
-
 .jackpot-content{
   position:relative;
 
@@ -516,8 +518,6 @@ header{
 
   padding:35px 20px;
 }
-
-/* title */
 
 .jackpot-title{
   font-size:34px;
@@ -535,8 +535,6 @@ header{
   margin-bottom:8px;
 }
 
-/* subtitle */
-
 .jackpot-subtitle{
   font-size:14px;
 
@@ -548,8 +546,6 @@ header{
 
   margin-bottom:28px;
 }
-
-/* angka jackpot */
 
 .jackpot-number{
   position:relative;
@@ -604,8 +600,6 @@ header{
     0 0 25px rgba(80,255,145,.95),
     0 0 55px rgba(50,220,120,.70);
 }
-
-/* bawah jackpot */
 
 .jackpot-bottom{
   display:flex;
@@ -1058,6 +1052,11 @@ header{
       #bdf891,
       #7ddd5d
     );
+}
+
+.login-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 .register-button{
@@ -1531,17 +1530,9 @@ footer{
 
 <body>
 
-<!-- =======================================================
-     TOP ANNOUNCEMENT
-======================================================= -->
-
 <div class="top-announcement">
   📢 SELAMAT DATANG DI MAC645 — GACOR & TERPERCAYA
 </div>
-
-<!-- =======================================================
-     HEADER
-======================================================= -->
 
 <header>
 
@@ -1631,17 +1622,9 @@ footer{
 
 </header>
 
-<!-- =======================================================
-     MAIN
-======================================================= -->
-
 <main id="beranda">
 
 <div class="container">
-
-<!-- =======================================================
-     MAIN BANNER
-======================================================= -->
 
 <section class="banner-wrap">
 
@@ -1674,10 +1657,6 @@ footer{
 
 </section>
 
-<!-- =======================================================
-     GAME
-======================================================= -->
-
 <section id="game" class="section">
 
   <div class="section-header">
@@ -1693,215 +1672,113 @@ footer{
   <div class="game-scroll">
 
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="mahjong3.jpg"
-          alt="Mahjong Wins 3"
-        >
-
+        <img src="mahjong3.jpg" alt="Mahjong Wins 3">
       </div>
-
       <div class="game-name">
         Mahjong Wins 3<br>
         Black Scatter
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="olympus 1000.jpg"
-          alt="Gates of Olympus 1000"
-        >
-
+        <img src="olympus 1000.jpg" alt="Gates of Olympus 1000">
       </div>
-
       <div class="game-name">
         Gates of Olympus<br>
         1000
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="olympus aja.jpg"
-          alt="Gates of Olympus Super Scatter"
-        >
-
+        <img src="olympus aja.jpg" alt="Gates of Olympus Super Scatter">
       </div>
-
       <div class="game-name">
         Gates of Olympus<br>
         Super Scatter
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="mahjong 2.jpg"
-          alt="Mahjong Ways 2"
-        >
-
+        <img src="mahjong 2.jpg" alt="Mahjong Ways 2">
       </div>
-
       <div class="game-name">
         Mahjong Ways 2
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="mahjong ways.png"
-          alt="Mahjong Ways"
-        >
-
+        <img src="mahjong ways.png" alt="Mahjong Ways">
       </div>
-
       <div class="game-name">
         Mahjong Ways
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="wild bounty.jpg"
-          alt="Wild Bounty Showdown"
-        >
-
+        <img src="wild bounty.jpg" alt="Wild Bounty Showdown">
       </div>
-
       <div class="game-name">
         Wild Bounty<br>
         Showdown
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="lucky neko.jpg"
-          alt="Lucky Neko"
-        >
-
+        <img src="lucky neko.jpg" alt="Lucky Neko">
       </div>
-
       <div class="game-name">
         Lucky Neko
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="Treasures of Aztec.jpg"
-          alt="Treasures of Aztec"
-        >
-
+        <img src="Treasures of Aztec.jpg" alt="Treasures of Aztec">
       </div>
-
       <div class="game-name">
         Treasures of Aztec
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="Wild-Ape-3258.jpg"
-          alt="Wild Ape 3258"
-        >
-
+        <img src="Wild-Ape-3258.jpg" alt="Wild Ape 3258">
       </div>
-
       <div class="game-name">
         Wild Ape #3258
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="Gates-of-Gatot-Kaca-1000.jpg"
-          alt="Gates of Gatot Kaca 1000"
-        >
-
+        <img src="Gates-of-Gatot-Kaca-1000.jpg" alt="Gates of Gatot Kaca 1000">
       </div>
-
       <div class="game-name">
         Gates of Gatot Kaca<br>
         1000
       </div>
-
     </div>
 
-
     <div class="game-card" onclick="cekLogin()">
-
       <div class="game-image">
-
-        <img
-          src="starlight princess super scatter.jpg"
-          alt="Starlight Princess Super Scatter"
-        >
-
+        <img src="starlight princess super scatter.jpg" alt="Starlight Princess Super Scatter">
       </div>
-
       <div class="game-name">
         Starlight Princess<br>
         Super Scatter
       </div>
-
     </div>
 
   </div>
 
 </section>
-
-<!-- =======================================================
-     JACKPOT
-======================================================= -->
 
 <section id="jackpot" class="jackpot-section">
 
@@ -1937,10 +1814,6 @@ footer{
 
 </section>
 
-<!-- =======================================================
-     PRODUK / TRANSAKSI
-======================================================= -->
-
 <section id="produk" class="section payment-section">
 
   <div class="section-header">
@@ -1956,8 +1829,6 @@ footer{
   </div>
 
   <div class="payment-services">
-
-    <!-- DEPOSIT -->
 
     <div class="service-card">
 
@@ -2006,9 +1877,6 @@ footer{
       </button>
 
     </div>
-
-
-    <!-- WITHDRAW -->
 
     <div class="service-card">
 
@@ -2060,8 +1928,6 @@ footer{
 
   </div>
 
-  <!-- PAYMENT METHOD -->
-
   <div class="payment-method-section">
 
     <div class="payment-method-header">
@@ -2089,17 +1955,9 @@ footer{
 
 </main>
 
-<!-- =======================================================
-     FOOTER
-======================================================= -->
-
 <footer>
   MAC645 UDAH PASTI GACOR YA BOSKU^^ © 2026
 </footer>
-
-<!-- =======================================================
-     LOGIN MODAL
-======================================================= -->
 
 <div id="loginModal" class="login-overlay">
 
@@ -2162,10 +2020,6 @@ footer{
   </div>
 
 </div>
-
-<!-- =======================================================
-     WITHDRAW MODAL
-======================================================= -->
 
 <div id="withdrawModal" class="withdraw-overlay">
 
@@ -2293,10 +2147,6 @@ footer{
 
 </div>
 
-<!-- =======================================================
-     JAVASCRIPT
-======================================================= -->
-
 <script>
 
 /* =========================================================
@@ -2316,43 +2166,89 @@ supabase.createClient(
 );
 
 /* =========================================================
-   NOTIFICATION
+   STATE
+========================================================= */
+
+let currentUser = null;
+let currentWithdrawBalance = 0;
+let withdrawProcessing = false;
+let loginProcessing = false;
+
+/* =========================================================
+   HELPER
 ========================================================= */
 
 function notif(message){
-
   alert(message);
+}
+
+function formatRupiah(value){
+
+  const number =
+    Number(value || 0);
+
+  return "Rp" +
+    number.toLocaleString("id-ID");
+
+}
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+function setAuthUI(loggedIn){
+
+  const authArea =
+    document.getElementById("authArea");
+
+  const userArea =
+    document.getElementById("userArea");
+
+  if(loggedIn){
+
+    authArea.style.display =
+      "none";
+
+    userArea.style.display =
+      "flex";
+
+  }else{
+
+    authArea.style.display =
+      "block";
+
+    userArea.style.display =
+      "none";
+
+  }
 
 }
 
 /* =========================================================
-   BANNER ERROR
+   BANNER
 ========================================================= */
 
 function bannerError(){
 
   const banner =
-    document.getElementById(
-      "mainBanner"
-    );
+    document.getElementById("mainBanner");
 
   const error =
-    document.getElementById(
-      "bannerError"
-    );
+    document.getElementById("bannerError");
 
   if(banner){
-
-    banner.style.display =
-      "none";
-
+    banner.style.display = "none";
   }
 
   if(error){
-
-    error.style.display =
-      "flex";
-
+    error.style.display = "flex";
   }
 
 }
@@ -2363,36 +2259,43 @@ function bannerError(){
 
 function bukaLogin(){
 
-  document.getElementById(
-    "loginModal"
-  ).style.display =
+  const modal =
+    document.getElementById("loginModal");
+
+  if(!modal){
+    return;
+  }
+
+  modal.style.display =
     "flex";
 
-  setTimeout(
-    () => {
+  setTimeout(() => {
 
-      document.getElementById(
-        "email"
-      ).focus();
+    const email =
+      document.getElementById("email");
 
-    },
-    100
-  );
+    if(email){
+      email.focus();
+    }
+
+  },100);
 
 }
 
 function tutupLogin(){
 
-  document.getElementById(
-    "loginModal"
-  ).style.display =
-    "none";
+  const modal =
+    document.getElementById("loginModal");
+
+  if(modal){
+    modal.style.display =
+      "none";
+  }
 
 }
 
 /* =========================================================
-   DAFTAR AKUN
-   LOGIN -> DAFTAR AKUN BARU -> register.html
+   REGISTER
 ========================================================= */
 
 function registerUser(){
@@ -2408,23 +2311,20 @@ function registerUser(){
 
 async function loginUser(){
 
+  if(loginProcessing){
+    return;
+  }
+
   const email =
-    document.getElementById(
-      "email"
-    )
-    .value
-    .trim();
+    document.getElementById("email")
+      .value
+      .trim();
 
   const password =
-    document.getElementById(
-      "password"
-    )
-    .value;
+    document.getElementById("password")
+      .value;
 
-  if(
-    !email ||
-    !password
-  ){
+  if(!email || !password){
 
     notif(
       "Email dan password wajib diisi."
@@ -2435,9 +2335,9 @@ async function loginUser(){
   }
 
   const loginButton =
-    document.querySelector(
-      ".login-button"
-    );
+    document.querySelector(".login-button");
+
+  loginProcessing = true;
 
   if(loginButton){
 
@@ -2451,16 +2351,17 @@ async function loginUser(){
 
   try{
 
-    const {
-      data,
-      error
-    } =
-    await supabaseClient.auth.signInWithPassword({
+    const result =
+      await supabaseClient.auth.signInWithPassword({
+        email:email,
+        password:password
+      });
 
-      email:email,
-      password:password
+    const data =
+      result.data;
 
-    });
+    const error =
+      result.error;
 
     if(error){
 
@@ -2469,19 +2370,42 @@ async function loginUser(){
         error
       );
 
+      let message =
+        error.message ||
+        "Login gagal.";
+
+      if(
+        String(message)
+          .toLowerCase()
+          .includes("email not confirmed")
+      ){
+
+        message =
+          "Email akun belum dikonfirmasi. Silakan konfirmasi email terlebih dahulu.";
+
+      }
+
+      if(
+        String(message)
+          .toLowerCase()
+          .includes("invalid login credentials")
+      ){
+
+        message =
+          "Email atau password salah.";
+
+      }
+
       notif(
-        "Login gagal: " +
-        error.message
+        "❌ " +
+        message
       );
 
       return;
 
     }
 
-    if(
-      !data ||
-      !data.user
-    ){
+    if(!data || !data.user){
 
       notif(
         "Login gagal. Data akun tidak ditemukan."
@@ -2490,6 +2414,9 @@ async function loginUser(){
       return;
 
     }
+
+    currentUser =
+      data.user;
 
     tutupLogin();
 
@@ -2504,14 +2431,17 @@ async function loginUser(){
   }catch(error){
 
     console.error(
+      "Login exception:",
       error
     );
 
     notif(
-      "Login gagal. Periksa koneksi dan data login."
+      "❌ Login gagal. Periksa koneksi internet."
     );
 
   }finally{
+
+    loginProcessing = false;
 
     if(loginButton){
 
@@ -2534,20 +2464,13 @@ async function loginUser(){
 async function tampilkanUser(user){
 
   if(!user){
-
     return;
-
   }
 
-  document.getElementById(
-    "authArea"
-  ).style.display =
-    "none";
+  currentUser =
+    user;
 
-  document.getElementById(
-    "userArea"
-  ).style.display =
-    "flex";
+  setAuthUI(true);
 
   document.getElementById(
     "userEmail"
@@ -2566,42 +2489,103 @@ async function tampilkanUser(user){
 
 async function loadSaldo(userId){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("wallets")
-    .select("balance")
-    .eq(
-      "user_id",
-      userId
-    )
-    .maybeSingle();
+  if(!userId){
+    return 0;
+  }
 
-  if(error){
+  try{
+
+    const result =
+      await supabaseClient
+        .from("wallets")
+        .select("balance")
+        .eq(
+          "user_id",
+          userId
+        )
+        .maybeSingle();
+
+    const data =
+      result.data;
+
+    const error =
+      result.error;
+
+    if(error){
+
+      console.error(
+        "Saldo error:",
+        error
+      );
+
+      return 0;
+
+    }
+
+    const saldo =
+      Number(
+        data?.balance || 0
+      );
+
+    const saldoElement =
+      document.getElementById(
+        "saldoUser"
+      );
+
+    if(saldoElement){
+
+      saldoElement.textContent =
+        "Saldo " +
+        formatRupiah(saldo);
+
+    }
+
+    return saldo;
+
+  }catch(error){
 
     console.error(
-      "Saldo:",
+      "Load saldo exception:",
       error
     );
 
-    return;
+    return 0;
 
   }
 
-  const saldo =
-    Number(
-      data?.balance || 0
+}
+
+/* =========================================================
+   REFRESH SALDO
+========================================================= */
+
+async function refreshUserBalance(){
+
+  const session =
+    await getCurrentSession();
+
+  if(!session){
+    return;
+  }
+
+  currentUser =
+    session.user;
+
+  await loadSaldo(
+    session.user.id
+  );
+
+  if(
+    document.getElementById(
+      "withdrawModal"
+    ).style.display === "flex"
+  ){
+
+    await loadWithdrawBalance(
+      session.user.id
     );
 
-  document.getElementById(
-    "saldoUser"
-  ).textContent =
-    "Saldo Rp" +
-    saldo.toLocaleString(
-      "id-ID"
-    );
+  }
 
 }
 
@@ -2611,39 +2595,126 @@ async function loadSaldo(userId){
 
 async function logoutUser(){
 
-  const {
-    error
-  } =
-  await supabaseClient.auth.signOut();
+  const logoutButton =
+    document.querySelector(".logout");
 
-  if(error){
+  if(logoutButton){
+
+    logoutButton.disabled =
+      true;
+
+    logoutButton.textContent =
+      "Keluar...";
+
+  }
+
+  try{
+
+    const {
+      error
+    } =
+      await supabaseClient.auth.signOut();
+
+    if(error){
+
+      console.error(
+        "Logout error:",
+        error
+      );
+
+      notif(
+        "❌ Logout gagal."
+      );
+
+      return;
+
+    }
+
+    currentUser =
+      null;
+
+    currentWithdrawBalance =
+      0;
+
+    setAuthUI(false);
+
+    tutupWithdraw();
+
+    const saldo =
+      document.getElementById(
+        "saldoUser"
+      );
+
+    if(saldo){
+
+      saldo.textContent =
+        "Saldo Rp0";
+
+    }
+
+  }catch(error){
 
     console.error(
       error
     );
 
     notif(
-      "Logout gagal."
+      "❌ Terjadi kesalahan saat logout."
     );
 
-    return;
+  }finally{
+
+    if(logoutButton){
+
+      logoutButton.disabled =
+        false;
+
+      logoutButton.textContent =
+        "Keluar";
+
+    }
 
   }
 
-  document.getElementById(
-    "authArea"
-  ).style.display =
-    "block";
+}
 
-  document.getElementById(
-    "userArea"
-  ).style.display =
-    "none";
+/* =========================================================
+   GET SESSION
+========================================================= */
 
-  document.getElementById(
-    "saldoUser"
-  ).textContent =
-    "Saldo Rp0";
+async function getCurrentSession(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(error){
+
+      console.error(
+        "Session error:",
+        error
+      );
+
+      return null;
+
+    }
+
+    return data?.session || null;
+
+  }catch(error){
+
+    console.error(
+      "Session exception:",
+      error
+    );
+
+    return null;
+
+  }
 
 }
 
@@ -2653,17 +2724,15 @@ async function logoutUser(){
 
 async function cekLogin(){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.auth.getSession();
+  const session =
+    await getCurrentSession();
 
-  if(error){
+  if(!session){
 
-    console.error(
-      error
-    );
+    currentUser =
+      null;
+
+    setAuthUI(false);
 
     bukaLogin();
 
@@ -2671,13 +2740,12 @@ async function cekLogin(){
 
   }
 
-  if(!data.session){
+  currentUser =
+    session.user;
 
-    bukaLogin();
-
-    return false;
-
-  }
+  await tampilkanUser(
+    session.user
+  );
 
   return true;
 
@@ -2693,9 +2761,7 @@ async function bukaDeposit(){
     await cekLogin();
 
   if(!login){
-
     return;
-
   }
 
   window.location.href =
@@ -2705,39 +2771,6 @@ async function bukaDeposit(){
 
 /* =========================================================
    WITHDRAW
-========================================================= */
-
-let currentWithdrawBalance =
-  0;
-
-/* =========================================================
-   CURRENT SESSION
-========================================================= */
-
-async function getCurrentSession(){
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.auth.getSession();
-
-  if(error){
-
-    console.error(
-      error
-    );
-
-    return null;
-
-  }
-
-  return data.session || null;
-
-}
-
-/* =========================================================
-   BUKA WITHDRAW
 ========================================================= */
 
 async function bukaWithdraw(){
@@ -2757,9 +2790,15 @@ async function bukaWithdraw(){
 
   }
 
-  document.getElementById(
-    "withdrawModal"
-  ).style.display =
+  currentUser =
+    session.user;
+
+  const modal =
+    document.getElementById(
+      "withdrawModal"
+    );
+
+  modal.style.display =
     "flex";
 
   await loadWithdrawBalance(
@@ -2772,61 +2811,92 @@ async function bukaWithdraw(){
 
 }
 
-/* =========================================================
-   TUTUP WITHDRAW
-========================================================= */
-
 function tutupWithdraw(){
 
-  document.getElementById(
-    "withdrawModal"
-  ).style.display =
-    "none";
+  const modal =
+    document.getElementById(
+      "withdrawModal"
+    );
+
+  if(modal){
+
+    modal.style.display =
+      "none";
+
+  }
 
 }
 
 /* =========================================================
-   LOAD SALDO WITHDRAW
+   LOAD WITHDRAW BALANCE
 ========================================================= */
 
 async function loadWithdrawBalance(userId){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("wallets")
-    .select("balance")
-    .eq(
-      "user_id",
-      userId
-    )
-    .maybeSingle();
+  if(!userId){
+    return 0;
+  }
 
-  if(error){
+  try{
+
+    const result =
+      await supabaseClient
+        .from("wallets")
+        .select("balance")
+        .eq(
+          "user_id",
+          userId
+        )
+        .maybeSingle();
+
+    const data =
+      result.data;
+
+    const error =
+      result.error;
+
+    if(error){
+
+      console.error(
+        "Saldo withdraw:",
+        error
+      );
+
+      return 0;
+
+    }
+
+    currentWithdrawBalance =
+      Number(
+        data?.balance || 0
+      );
+
+    const element =
+      document.getElementById(
+        "withdrawBalance"
+      );
+
+    if(element){
+
+      element.textContent =
+        formatRupiah(
+          currentWithdrawBalance
+        );
+
+    }
+
+    return currentWithdrawBalance;
+
+  }catch(error){
 
     console.error(
-      "Saldo withdraw:",
+      "Withdraw balance exception:",
       error
     );
 
-    return;
+    return 0;
 
   }
-
-  currentWithdrawBalance =
-    Number(
-      data?.balance || 0
-    );
-
-  document.getElementById(
-    "withdrawBalance"
-  ).textContent =
-    "Rp" +
-    currentWithdrawBalance.toLocaleString(
-      "id-ID"
-    );
 
 }
 
@@ -2836,11 +2906,14 @@ async function loadWithdrawBalance(userId){
 
 function formatWithdraw(input){
 
+  if(!input){
+    return;
+  }
+
   let angka =
     String(
       input.value || ""
-    )
-    .replace(
+    ).replace(
       /\D/g,
       ""
     );
@@ -2854,6 +2927,12 @@ function formatWithdraw(input){
 
   }
 
+  angka =
+    angka.replace(
+      /^0+(?=\d)/,
+      ""
+    );
+
   input.value =
     Number(
       angka
@@ -2864,10 +2943,46 @@ function formatWithdraw(input){
 }
 
 /* =========================================================
+   AMBIL NOMINAL
+========================================================= */
+
+function getWithdrawAmount(){
+
+  const input =
+    document.getElementById(
+      "withdrawAmount"
+    );
+
+  if(!input){
+    return 0;
+  }
+
+  const value =
+    String(
+      input.value || ""
+    )
+    .replace(
+      /\D/g,
+      ""
+    );
+
+  if(!value){
+    return 0;
+  }
+
+  return Number(value);
+
+}
+
+/* =========================================================
    AJUKAN WITHDRAW
 ========================================================= */
 
 async function ajukanWithdraw(){
+
+  if(withdrawProcessing){
+    return;
+  }
 
   const session =
     await getCurrentSession();
@@ -2878,6 +2993,9 @@ async function ajukanWithdraw(){
       "🔐 Silakan login terlebih dahulu."
     );
 
+    tutupWithdraw();
+    bukaLogin();
+
     return;
 
   }
@@ -2887,24 +3005,8 @@ async function ajukanWithdraw(){
       "withdrawSubmit"
     );
 
-  const rawAmount =
-    document.getElementById(
-      "withdrawAmount"
-    )
-    .value
-    .replace(
-      /\./g,
-      ""
-    )
-    .replace(
-      /,/g,
-      ""
-    );
-
   const amount =
-    Number(
-      rawAmount
-    );
+    getWithdrawAmount();
 
   const bank =
     document.getElementById(
@@ -2981,37 +3083,48 @@ async function ajukanWithdraw(){
 
   }
 
-  button.disabled =
+  withdrawProcessing =
     true;
 
-  button.textContent =
-    "MEMPROSES...";
+  if(button){
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      "MEMPROSES...";
+
+  }
 
   try{
 
-    const {
-      error
-    } =
-    await supabaseClient.rpc(
-      "request_withdrawal",
-      {
-        p_amount:amount,
-        p_bank:bank,
-        p_account_number:accountNumber,
-        p_account_name:accountName
-      }
-    );
+    const result =
+      await supabaseClient.rpc(
+        "request_withdrawal",
+        {
+          p_amount:amount,
+          p_bank:bank,
+          p_account_number:accountNumber,
+          p_account_name:accountName
+        }
+      );
+
+    const error =
+      result.error;
 
     if(error){
 
       console.error(
-        "Withdraw gagal:",
+        "Withdraw RPC error:",
         error
       );
 
       notif(
         "❌ Withdraw gagal: " +
-        error.message
+        (
+          error.message ||
+          "Terjadi kesalahan."
+        )
       );
 
       return;
@@ -3054,13 +3167,31 @@ async function ajukanWithdraw(){
       session.user.id
     );
 
+  }catch(error){
+
+    console.error(
+      "Withdraw exception:",
+      error
+    );
+
+    notif(
+      "❌ Withdraw gagal. Periksa koneksi atau konfigurasi Supabase."
+    );
+
   }finally{
 
-    button.disabled =
+    withdrawProcessing =
       false;
 
-    button.textContent =
-      "AJUKAN WITHDRAW";
+    if(button){
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "AJUKAN WITHDRAW";
+
+    }
 
   }
 
@@ -3077,154 +3208,187 @@ async function loadWithdrawHistory(userId){
       "withdrawHistory"
     );
 
+  if(!container){
+    return;
+  }
+
   container.innerHTML =
-    "Memuat riwayat...";
+    '<div class="withdraw-empty">Memuat riwayat...</div>';
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("withdrawals")
-    .select(
-      "id,amount,bank,account_number,account_name,status,created_at"
-    )
-    .eq(
-      "user_id",
-      userId
-    )
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    )
-    .limit(20);
+  try{
 
-  if(error){
+    const result =
+      await supabaseClient
+        .from("withdrawals")
+        .select(
+          "id,amount,bank,account_number,account_name,status,created_at"
+        )
+        .eq(
+          "user_id",
+          userId
+        )
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        )
+        .limit(20);
+
+    const data =
+      result.data;
+
+    const error =
+      result.error;
+
+    if(error){
+
+      console.error(
+        "Riwayat withdraw:",
+        error
+      );
+
+      container.innerHTML =
+        '<div class="withdraw-empty">Gagal mengambil riwayat.</div>';
+
+      return;
+
+    }
+
+    if(
+      !data ||
+      !data.length
+    ){
+
+      container.innerHTML =
+        '<div class="withdraw-empty">Belum ada pengajuan withdraw.</div>';
+
+      return;
+
+    }
+
+    container.innerHTML =
+      data.map(
+        item => {
+
+          const status =
+            String(
+              item.status || ""
+            ).toLowerCase();
+
+          let cls =
+            "status-pending";
+
+          let text =
+            "PENDING";
+
+          if(status === "approved"){
+
+            cls =
+              "status-approved";
+
+            text =
+              "BERHASIL";
+
+          }
+
+          if(status === "rejected"){
+
+            cls =
+              "status-rejected";
+
+            text =
+              "DITOLAK";
+
+          }
+
+          const amount =
+            Number(
+              item.amount || 0
+            );
+
+          const date =
+            item.created_at
+              ? new Date(
+                  item.created_at
+                ).toLocaleString(
+                  "id-ID"
+                )
+              : "-";
+
+          const bank =
+            escapeHTML(
+              item.bank || "-"
+            );
+
+          const account =
+            String(
+              item.account_number || ""
+            );
+
+          const masked =
+            account
+              ? "••••" +
+                escapeHTML(
+                  account.slice(-4)
+                )
+              : "••••";
+
+          return `
+
+            <div class="withdraw-item">
+
+              <div class="withdraw-item-top">
+
+                <strong>
+                  ${formatRupiah(amount)}
+                </strong>
+
+                <span
+                  class="withdraw-status ${cls}"
+                >
+                  ${text}
+                </span>
+
+              </div>
+
+              <div
+                style="
+                  margin-top:7px;
+                  color:#9caf9e;
+                "
+              >
+                ${bank}
+                ${masked}
+              </div>
+
+              <div
+                style="
+                  margin-top:5px;
+                  color:#708975;
+                "
+              >
+                ${escapeHTML(date)}
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      ).join("");
+
+  }catch(error){
 
     console.error(
-      "Riwayat withdraw:",
+      "Riwayat withdraw exception:",
       error
     );
 
     container.innerHTML =
       '<div class="withdraw-empty">Gagal mengambil riwayat.</div>';
 
-    return;
-
   }
-
-  if(
-    !data ||
-    !data.length
-  ){
-
-    container.innerHTML =
-      '<div class="withdraw-empty">Belum ada pengajuan withdraw.</div>';
-
-    return;
-
-  }
-
-  container.innerHTML =
-    data.map(
-      item => {
-
-        const status =
-          String(
-            item.status || ""
-          ).toLowerCase();
-
-        let cls =
-          "status-pending";
-
-        let text =
-          "PENDING";
-
-        if(
-          status ===
-          "approved"
-        ){
-
-          cls =
-            "status-approved";
-
-          text =
-            "BERHASIL";
-
-        }
-
-        if(
-          status ===
-          "rejected"
-        ){
-
-          cls =
-            "status-rejected";
-
-          text =
-            "DITOLAK";
-
-        }
-
-        const date =
-          new Date(
-            item.created_at
-          ).toLocaleString(
-            "id-ID"
-          );
-
-        const account =
-          String(
-            item.account_number || ""
-          );
-
-        return `
-
-          <div class="withdraw-item">
-
-            <div class="withdraw-item-top">
-
-              <strong>
-                Rp${Number(
-                  item.amount || 0
-                ).toLocaleString("id-ID")}
-              </strong>
-
-              <span
-                class="withdraw-status ${cls}"
-              >
-                ${text}
-              </span>
-
-            </div>
-
-            <div
-              style="
-                margin-top:7px;
-                color:#9caf9e;
-              "
-            >
-              ${item.bank || "-"}
-              ••••${account.slice(-4)}
-            </div>
-
-            <div
-              style="
-                margin-top:5px;
-                color:#708975;
-              "
-            >
-              ${date}
-            </div>
-
-          </div>
-
-        `;
-
-      }
-    ).join("");
 
 }
 
@@ -3602,9 +3766,7 @@ function renderPaymentMethods(){
     );
 
   if(!grid){
-
     return;
-
   }
 
   grid.innerHTML =
@@ -3613,13 +3775,13 @@ function renderPaymentMethods(){
 
         <div
           class="payment-method"
-          title="${item.name}"
+          title="${escapeHTML(item.name)}"
         >
 
           <img
             class="payment-logo"
             src="${item.logo}"
-            alt="${item.name}"
+            alt="${escapeHTML(item.name)}"
             loading="lazy"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
           >
@@ -3628,11 +3790,11 @@ function renderPaymentMethods(){
             class="payment-fallback"
             style="display:none"
           >
-            ${item.fallback}
+            ${escapeHTML(item.fallback)}
           </div>
 
           <span>
-            ${item.name}
+            ${escapeHTML(item.name)}
           </span>
 
         </div>
@@ -3657,9 +3819,7 @@ const jackpotEl =
 function updateJackpot(){
 
   if(!jackpotEl){
-
     return;
-
   }
 
   const increase =
@@ -3698,33 +3858,42 @@ setInterval(
 );
 
 /* =========================================================
-   SESSION
+   SESSION AWAL
 ========================================================= */
 
 async function cekSessionAwal(){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.auth.getSession();
+  try{
 
-  if(error){
+    const session =
+      await getCurrentSession();
+
+    if(session){
+
+      currentUser =
+        session.user;
+
+      await tampilkanUser(
+        session.user
+      );
+
+    }else{
+
+      currentUser =
+        null;
+
+      setAuthUI(false);
+
+    }
+
+  }catch(error){
 
     console.error(
-      "Session:",
+      "Session awal:",
       error
     );
 
-    return;
-
-  }
-
-  if(data.session){
-
-    await tampilkanUser(
-      data.session.user
-    );
+    setAuthUI(false);
 
   }
 
@@ -3735,30 +3904,106 @@ async function cekSessionAwal(){
 ========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
-  (
+  async (
     event,
     session
   ) => {
 
+    console.log(
+      "Auth event:",
+      event
+    );
+
     if(session){
 
-      tampilkanUser(
-        session.user
+      currentUser =
+        session.user;
+
+      setAuthUI(true);
+
+      document.getElementById(
+        "userEmail"
+      ).textContent =
+        session.user.email || "-";
+
+      /*
+       * Jangan melakukan operasi auth tambahan
+       * secara berlebihan di callback.
+       * Cukup refresh saldo.
+       */
+
+      setTimeout(
+        () => {
+
+          loadSaldo(
+            session.user.id
+          );
+
+        },
+        0
       );
 
     }else{
 
-      document.getElementById(
-        "authArea"
-      ).style.display =
-        "block";
+      currentUser =
+        null;
 
-      document.getElementById(
-        "userArea"
-      ).style.display =
-        "none";
+      currentWithdrawBalance =
+        0;
+
+      setAuthUI(false);
+
+      const saldo =
+        document.getElementById(
+          "saldoUser"
+        );
+
+      if(saldo){
+
+        saldo.textContent =
+          "Saldo Rp0";
+
+      }
 
     }
+
+  }
+);
+
+/* =========================================================
+   AUTO REFRESH SALDO SAAT KEMBALI KE TAB
+========================================================= */
+
+document.addEventListener(
+  "visibilitychange",
+  async function(){
+
+    if(
+      document.visibilityState ===
+      "visible"
+    ){
+
+      await refreshUserBalance();
+
+    }
+
+  }
+);
+
+window.addEventListener(
+  "focus",
+  async function(){
+
+    await refreshUserBalance();
+
+  }
+);
+
+window.addEventListener(
+  "pageshow",
+  async function(){
+
+    await refreshUserBalance();
 
   }
 );
@@ -3782,8 +4027,8 @@ document.addEventListener(
       );
 
     if(
-      e.target ===
-      withdraw
+      withdraw &&
+      e.target === withdraw
     ){
 
       tutupWithdraw();
@@ -3791,8 +4036,8 @@ document.addEventListener(
     }
 
     if(
-      e.target ===
-      login
+      login &&
+      e.target === login
     ){
 
       tutupLogin();
@@ -3817,7 +4062,22 @@ document.addEventListener(
       ).style.display === "flex"
     ){
 
-      loginUser();
+      const active =
+        document.activeElement;
+
+      if(
+        active &&
+        (
+          active.id === "email" ||
+          active.id === "password"
+        )
+      ){
+
+        e.preventDefault();
+
+        loginUser();
+
+      }
 
     }
 
