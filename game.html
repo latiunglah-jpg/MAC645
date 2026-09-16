@@ -1,2183 +1,1521 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<title>MAC645 - Game Center</title>
 
-  <title>MAC645 - GAME</title>
+<meta name="theme-color" content="#06140f">
 
-  <style>
+<style>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    body {
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+html{
+    scroll-behavior:smooth;
+}
 
-      background:
-        radial-gradient(
-          circle at top,
-          #123b2d 0%,
-          #071b14 45%,
-          #04100c 100%
-        );
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(24,217,138,.14), transparent 35%),
+        radial-gradient(circle at top right, rgba(212,175,55,.08), transparent 30%),
+        linear-gradient(135deg,#0b2b20 0%,#061812 45%,#020907 100%);
+    color:#fff;
+    min-height:100vh;
+}
 
-      color: #ffffff;
+/* =========================
+   HEADER
+========================= */
 
-      min-height: 100vh;
-    }
+.header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:72px;
 
-    /* =========================
-       HEADER
-    ========================= */
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    padding:0 32px;
 
-      width: 100%;
+    background:rgba(3,15,11,.92);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
-      background:
-        rgba(4, 20, 14, 0.94);
+    border-bottom:1px solid rgba(24,217,138,.15);
 
-      backdrop-filter: blur(15px);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
 
-      border-bottom:
-        1px solid rgba(255,255,255,0.08);
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
 
-      box-shadow:
-        0 10px 30px rgba(0,0,0,0.25);
-    }
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:1px;
+}
 
-    .header-inner {
-      max-width: 1400px;
-      margin: auto;
+.logo-main{
+    color:#18d98a;
+}
 
-      min-height: 72px;
+.logo-number{
+    color:#fff;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+.logo-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#d4af37;
 
-      gap: 20px;
+    box-shadow:
+        0 0 12px rgba(212,175,55,.8);
+}
 
-      padding:
-        12px 20px;
-    }
+.back-btn{
+    text-decoration:none;
+    color:#fff;
 
-    .logo {
-      text-decoration: none;
+    padding:11px 18px;
 
-      font-size: 27px;
-      font-weight: 900;
+    border-radius:12px;
 
-      letter-spacing: 1px;
+    border:1px solid rgba(255,255,255,.12);
 
-      color: #ffffff;
-    }
+    background:rgba(255,255,255,.05);
 
-    .logo span {
-      color: #18d98a;
-    }
+    font-size:13px;
+    font-weight:700;
 
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    transition:.25s;
+}
 
-      padding:
-        11px 18px;
+.back-btn:hover{
+    background:#18d98a;
+    color:#04120d;
+    border-color:#18d98a;
+    transform:translateY(-2px);
+}
 
-      border-radius: 12px;
+/* =========================
+   HERO
+========================= */
 
-      text-decoration: none;
+.hero{
+    max-width:1400px;
+    margin:auto;
 
-      color: #ffffff;
+    padding:55px 30px 25px;
 
-      font-size: 14px;
-      font-weight: 800;
+    text-align:center;
+}
 
-      background:
-        rgba(255,255,255,0.07);
+.hero-small{
+    display:inline-block;
 
-      border:
-        1px solid rgba(255,255,255,0.1);
+    padding:8px 15px;
 
-      transition:
-        0.2s ease;
-    }
+    border-radius:30px;
 
-    .back-btn:hover {
-      background:
-        rgba(24,217,138,0.15);
+    background:rgba(24,217,138,.08);
+    border:1px solid rgba(24,217,138,.2);
 
-      border-color:
-        rgba(24,217,138,0.35);
+    color:#18d98a;
 
-      transform:
-        translateY(-1px);
-    }
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
 
+    margin-bottom:18px;
+}
 
-    /* =========================
-       HERO
-    ========================= */
+.hero h1{
+    font-size:clamp(32px,5vw,58px);
+    line-height:1.05;
 
-    .hero {
-      max-width: 1400px;
+    font-weight:900;
 
-      margin: auto;
+    margin-bottom:15px;
 
-      padding:
-        50px 20px 25px;
-    }
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #18d98a,
+        #ffffff
+    );
 
-    .hero-small {
-      color: #18d98a;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-      font-size: 13px;
+.hero p{
+    max-width:680px;
+    margin:auto;
 
-      font-weight: 900;
+    color:#a9bbb5;
 
-      letter-spacing: 2px;
+    font-size:15px;
+    line-height:1.7;
+}
 
-      margin-bottom: 10px;
-    }
+/* =========================
+   CONTROLS
+========================= */
 
-    .hero h1 {
-      font-size:
-        clamp(30px, 5vw, 52px);
+.controls{
+    max-width:1250px;
+    margin:20px auto 35px;
 
-      line-height: 1.05;
+    padding:0 25px;
+}
 
-      font-weight: 900;
+.search-box{
+    position:relative;
+    margin-bottom:20px;
+}
 
-      margin-bottom: 15px;
-    }
+.search-icon{
+    position:absolute;
+    left:18px;
+    top:50%;
 
-    .hero h1 span {
-      color: #18d98a;
-    }
+    transform:translateY(-50%);
 
-    .hero p {
-      max-width: 700px;
+    font-size:18px;
+    opacity:.7;
+}
 
-      color:
-        rgba(255,255,255,0.66);
+#searchInput{
+    width:100%;
 
-      line-height: 1.7;
+    height:54px;
 
-      font-size: 15px;
-    }
+    padding:0 20px 0 50px;
 
+    border-radius:16px;
 
-    /* =========================
-       SEARCH
-    ========================= */
+    border:1px solid rgba(255,255,255,.1);
 
-    .search-area {
-      max-width: 1400px;
+    outline:none;
 
-      margin: auto;
+    background:rgba(255,255,255,.055);
 
-      padding:
-        15px 20px 30px;
-    }
+    color:#fff;
 
-    .search-box {
-      position: relative;
-    }
+    font-size:14px;
 
-    .search-icon {
-      position: absolute;
+    box-shadow:
+        inset 0 0 20px rgba(0,0,0,.1);
 
-      left: 18px;
-      top: 50%;
+    transition:.25s;
+}
 
-      transform:
-        translateY(-50%);
+#searchInput::placeholder{
+    color:#758c84;
+}
 
-      font-size: 19px;
+#searchInput:focus{
+    border-color:#18d98a;
 
-      opacity: 0.7;
+    box-shadow:
+        0 0 0 3px rgba(24,217,138,.08);
+}
 
-      pointer-events: none;
-    }
+/* FILTER */
 
-    #searchInput {
-      width: 100%;
+.filters{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
 
-      height: 58px;
+    flex-wrap:wrap;
+}
 
-      border-radius: 16px;
+.filter-btn{
+    cursor:pointer;
 
-      border:
-        1px solid rgba(255,255,255,0.1);
+    border:none;
+    outline:none;
 
-      outline: none;
+    padding:11px 21px;
 
-      padding:
-        0 20px 0 52px;
+    border-radius:12px;
 
-      background:
-        rgba(255,255,255,0.07);
+    color:#a8b8b2;
 
-      color: #ffffff;
+    background:rgba(255,255,255,.055);
 
-      font-size: 15px;
+    border:1px solid rgba(255,255,255,.08);
 
-      transition:
-        0.2s ease;
-    }
+    font-size:12px;
+    font-weight:800;
 
-    #searchInput::placeholder {
-      color:
-        rgba(255,255,255,0.45);
-    }
+    transition:.25s;
+}
 
-    #searchInput:focus {
-      border-color:
-        rgba(24,217,138,0.65);
+.filter-btn:hover{
+    color:#fff;
 
-      box-shadow:
-        0 0 0 4px
-        rgba(24,217,138,0.08);
+    border-color:rgba(24,217,138,.4);
 
-      background:
-        rgba(255,255,255,0.09);
-    }
+    transform:translateY(-2px);
+}
 
+.filter-btn.active{
+    color:#03130d;
 
-    /* =========================
-       FILTER
-    ========================= */
+    background:linear-gradient(
+        135deg,
+        #18d98a,
+        #0fb96f
+    );
 
-    .filter-area {
-      max-width: 1400px;
+    border-color:#18d98a;
 
-      margin: auto;
+    box-shadow:
+        0 5px 20px rgba(24,217,138,.2);
+}
 
-      padding:
-        0 20px 25px;
+/* =========================
+   GAME GRID
+========================= */
 
-      display: flex;
+.game-section{
+    max-width:1400px;
+    margin:auto;
 
-      align-items: center;
+    padding:0 25px 60px;
+}
 
-      gap: 10px;
+.game-grid{
+    display:grid;
 
-      flex-wrap: wrap;
-    }
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
 
-    .filter-btn {
-      border: none;
+    gap:20px;
+}
 
-      cursor: pointer;
+/* =========================
+   GAME CARD
+========================= */
 
-      padding:
-        10px 16px;
+.game-card{
+    position:relative;
 
-      border-radius: 999px;
+    overflow:hidden;
 
-      background:
-        rgba(255,255,255,0.07);
+    border-radius:18px;
 
-      color:
-        rgba(255,255,255,0.72);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      font-weight: 700;
-
-      font-size: 13px;
-
-      transition:
-        0.2s ease;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background:
-        #18d98a;
-
-      color:
-        #03120c;
-
-      border-color:
-        #18d98a;
-    }
-
-
-    /* =========================
-       GAME HEADER
-    ========================= */
-
-    .game-heading {
-      max-width: 1400px;
-
-      margin: auto;
-
-      padding:
-        0 20px 20px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 15px;
-    }
-
-    .game-heading h2 {
-      font-size: 22px;
-      font-weight: 900;
-    }
-
-    #gameCount {
-      color:
-        rgba(255,255,255,0.5);
-
-      font-size: 13px;
-    }
-
-
-    /* =========================
-       GAME GRID
-    ========================= */
-
-    .game-grid {
-      max-width: 1400px;
-
-      margin: auto;
-
-      padding:
-        0 20px 60px;
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(5, minmax(0, 1fr));
-
-      gap: 18px;
-    }
-
-
-    /* =========================
-       GAME CARD
-    ========================= */
-
-    .game-card {
-      position: relative;
-
-      overflow: hidden;
-
-      border-radius: 18px;
-
-      background:
+    background:
         linear-gradient(
-          145deg,
-          rgba(255,255,255,0.09),
-          rgba(255,255,255,0.035)
+            180deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
         );
 
-      border:
-        1px solid
-        rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,.09);
 
-      box-shadow:
-        0 12px 35px
-        rgba(0,0,0,0.25);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
 
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
+    transition:
+        transform .3s,
+        border-color .3s,
+        box-shadow .3s;
 
-      min-width: 0;
-    }
+    animation:cardIn .5s ease both;
+}
 
-    .game-card:hover {
-      transform:
-        translateY(-5px);
+.game-card:hover{
+    transform:translateY(-7px);
 
-      border-color:
-        rgba(24,217,138,0.35);
+    border-color:rgba(24,217,138,.55);
 
-      box-shadow:
-        0 18px 45px
-        rgba(0,0,0,0.4);
-    }
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.4),
+        0 0 25px rgba(24,217,138,.08);
+}
 
+/* IMAGE */
 
-    /* =========================
-       IMAGE
-    ========================= */
+.game-image-wrap{
+    position:relative;
 
-    .game-image {
-      position: relative;
+    width:100%;
 
-      width: 100%;
+    aspect-ratio:1/1;
 
-      aspect-ratio:
-        1 / 1;
+    overflow:hidden;
 
-      overflow: hidden;
+    background:#071810;
+}
 
-      background:
+.game-image{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.game-card:hover .game-image{
+    transform:scale(1.07);
+
+    filter:brightness(1.08);
+}
+
+/* image overlay */
+
+.image-overlay{
+    position:absolute;
+
+    inset:0;
+
+    background:
         linear-gradient(
-          135deg,
-          #123c2d,
-          #06150f
+            to top,
+            rgba(0,0,0,.65),
+            transparent 45%
         );
-    }
 
-    .game-image img {
-      width: 100%;
-      height: 100%;
+    pointer-events:none;
+}
 
-      display: block;
+/* PROVIDER */
 
-      object-fit: cover;
+.provider{
+    position:absolute;
 
-      transition:
-        transform 0.35s ease;
-    }
+    top:11px;
+    left:11px;
 
-    .game-card:hover
-    .game-image img {
-      transform:
-        scale(1.06);
-    }
+    padding:6px 9px;
 
+    border-radius:8px;
 
-    /* fallback image */
+    background:rgba(2,10,7,.8);
 
-    .image-fallback {
-      width: 100%;
-      height: 100%;
+    border:1px solid rgba(255,255,255,.13);
 
-      display: none;
+    backdrop-filter:blur(7px);
 
-      align-items: center;
-      justify-content: center;
+    font-size:9px;
 
-      text-align: center;
+    font-weight:900;
 
-      padding: 20px;
+    letter-spacing:.7px;
 
-      background:
+    color:#fff;
+}
+
+.provider.pgsoft{
+    color:#18d98a;
+}
+
+.provider.pragmatic{
+    color:#ffd76a;
+}
+
+/* CARD CONTENT */
+
+.game-info{
+    padding:15px;
+}
+
+.game-title{
+    min-height:42px;
+
+    font-size:14px;
+
+    line-height:1.35;
+
+    font-weight:800;
+
+    color:#fff;
+
+    margin-bottom:13px;
+}
+
+.game-title span{
+    display:block;
+
+    color:#a7b7b1;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    margin-top:2px;
+}
+
+/* PLAY */
+
+.play-btn{
+    width:100%;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:#03130d;
+
+    background:
         linear-gradient(
-          135deg,
-          #0f392b,
-          #06150f
+            135deg,
+            #18d98a,
+            #0fb96f
         );
-    }
 
-    .image-fallback .game-icon {
-      font-size: 45px;
+    font-size:11px;
 
-      margin-bottom: 8px;
-    }
+    font-weight:900;
 
-    .image-fallback strong {
-      display: block;
+    letter-spacing:1px;
 
-      font-size: 13px;
+    transition:.25s;
 
-      line-height: 1.4;
-    }
+    box-shadow:
+        0 7px 18px rgba(24,217,138,.12);
+}
 
+.play-btn:hover{
+    transform:translateY(-2px);
 
-    /* =========================
-       PROVIDER BADGE
-    ========================= */
+    box-shadow:
+        0 10px 25px rgba(24,217,138,.25);
+}
 
-    .provider-badge {
-      position: absolute;
+.play-btn:active{
+    transform:scale(.97);
+}
 
-      left: 10px;
-      top: 10px;
+/* =========================
+   EMPTY
+========================= */
 
-      padding:
-        6px 9px;
+.empty{
+    display:none;
 
-      border-radius: 8px;
+    text-align:center;
 
-      background:
-        rgba(0,0,0,0.72);
+    padding:60px 20px;
 
-      backdrop-filter:
-        blur(8px);
+    color:#789088;
+}
 
-      font-size: 10px;
+.empty-icon{
+    font-size:45px;
 
-      font-weight: 800;
+    margin-bottom:12px;
+}
 
-      color:
-        #ffffff;
+.empty h3{
+    color:#fff;
 
-      max-width: 80%;
+    margin-bottom:7px;
+}
 
-      white-space: nowrap;
+.empty p{
+    font-size:13px;
+}
 
-      overflow: hidden;
+/* =========================
+   FOOTER
+========================= */
 
-      text-overflow: ellipsis;
-    }
+.footer{
+    text-align:center;
 
+    padding:25px 20px 35px;
 
-    /* =========================
-       CARD INFO
-    ========================= */
+    border-top:1px solid rgba(255,255,255,.06);
 
-    .game-info {
-      padding:
-        14px;
-    }
+    color:#60756d;
 
-    .game-name {
-      min-height: 40px;
+    font-size:11px;
+}
 
-      font-size: 14px;
+.footer strong{
+    color:#18d98a;
+}
 
-      font-weight: 900;
+/* =========================
+   MODAL
+========================= */
 
-      line-height: 1.4;
+.modal{
+    display:none;
 
-      margin-bottom: 6px;
+    position:fixed;
 
-      display:
-        -webkit-box;
+    inset:0;
 
-      -webkit-line-clamp: 2;
+    z-index:9999;
 
-      -webkit-box-orient:
-        vertical;
+    align-items:center;
+    justify-content:center;
 
-      overflow: hidden;
-    }
+    padding:20px;
 
-    .game-provider {
-      color:
-        rgba(255,255,255,0.48);
+    background:rgba(0,0,0,.75);
 
-      font-size: 11px;
+    backdrop-filter:blur(8px);
+}
 
-      margin-bottom: 12px;
-    }
+.modal.show{
+    display:flex;
+}
 
+.modal-box{
+    width:100%;
+    max-width:420px;
 
-    /* =========================
-       MAIN BUTTON
-    ========================= */
+    padding:30px;
 
-    .main-btn {
-      width: 100%;
+    border-radius:22px;
 
-      min-height: 42px;
-
-      border: none;
-
-      border-radius: 11px;
-
-      cursor: pointer;
-
-      background:
+    background:
         linear-gradient(
-          135deg,
-          #18d98a,
-          #0fb96f
+            145deg,
+            #0c2d21,
+            #061710
         );
 
-      color:
-        #03120c;
+    border:1px solid rgba(24,217,138,.25);
 
-      font-size: 13px;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.55);
 
-      font-weight: 950;
+    text-align:center;
 
-      letter-spacing: 0.5px;
+    animation:modalIn .25s ease;
+}
 
-      transition:
-        0.2s ease;
+.modal-icon{
+    width:60px;
+    height:60px;
 
-      box-shadow:
-        0 8px 20px
-        rgba(24,217,138,0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0 auto 17px;
+
+    border-radius:18px;
+
+    background:rgba(24,217,138,.1);
+
+    border:1px solid rgba(24,217,138,.2);
+
+    font-size:28px;
+}
+
+.modal-box h2{
+    font-size:21px;
+
+    margin-bottom:10px;
+}
+
+.modal-box p{
+    color:#91a79e;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin-bottom:22px;
+}
+
+.modal-close{
+    width:100%;
+
+    height:43px;
+
+    border:none;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    color:#03130d;
+
+    background:#18d98a;
+
+    font-weight:900;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
     }
 
-    .main-btn:hover {
-      transform:
-        translateY(-1px);
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
-      box-shadow:
-        0 12px 25px
-        rgba(24,217,138,0.3);
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:scale(.94);
     }
 
-    .main-btn:active {
-      transform:
-        scale(0.98);
+    to{
+        opacity:1;
+        transform:scale(1);
     }
+}
 
-    .main-btn:disabled {
-      opacity: 0.55;
+/* =========================
+   RESPONSIVE
+========================= */
 
-      cursor:
-        wait;
+@media(max-width:1150px){
 
-      transform:
-        none;
-    }
-
-
-    /* =========================
-       LOADING
-    ========================= */
-
-    .loading {
-      max-width: 1400px;
-
-      margin: auto;
-
-      padding:
-        70px 20px;
-
-      text-align: center;
-
-      color:
-        rgba(255,255,255,0.65);
-    }
-
-    .spinner {
-      width: 42px;
-      height: 42px;
-
-      margin:
-        0 auto 15px;
-
-      border-radius: 50%;
-
-      border:
-        4px solid
-        rgba(255,255,255,0.1);
-
-      border-top-color:
-        #18d98a;
-
-      animation:
-        spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform:
-          rotate(360deg);
-      }
-    }
-
-
-    /* =========================
-       EMPTY
-    ========================= */
-
-    .empty {
-      max-width: 1400px;
-
-      margin: auto;
-
-      padding:
-        70px 20px;
-
-      text-align: center;
-
-      display: none;
-    }
-
-    .empty-icon {
-      font-size: 50px;
-
-      margin-bottom: 12px;
-    }
-
-    .empty h3 {
-      font-size: 20px;
-
-      margin-bottom: 8px;
-    }
-
-    .empty p {
-      color:
-        rgba(255,255,255,0.5);
-
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       ERROR
-    ========================= */
-
-    .error-box {
-      max-width: 800px;
-
-      margin:
-        25px auto;
-
-      padding:
-        18px 20px;
-
-      border-radius: 14px;
-
-      background:
-        rgba(255,60,60,0.08);
-
-      border:
-        1px solid
-        rgba(255,80,80,0.25);
-
-      color:
-        #ffb0b0;
-
-      display: none;
-
-      line-height: 1.6;
-
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      border-top:
-        1px solid
-        rgba(255,255,255,0.06);
-
-      padding:
-        30px 20px;
-
-      text-align: center;
-
-      color:
-        rgba(255,255,255,0.35);
-
-      font-size: 12px;
-    }
-
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 1100px) {
-
-      .game-grid {
+    .game-grid{
         grid-template-columns:
-          repeat(4, minmax(0, 1fr));
-      }
-
+            repeat(4,minmax(0,1fr));
     }
 
+}
 
-    @media (max-width: 850px) {
+@media(max-width:850px){
 
-      .game-grid {
+    .header{
+        height:65px;
+
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .hero{
+        padding:
+            40px 20px
+            20px;
+    }
+
+    .game-grid{
         grid-template-columns:
-          repeat(3, minmax(0, 1fr));
+            repeat(3,minmax(0,1fr));
 
-        gap: 13px;
-      }
-
-      .game-info {
-        padding: 11px;
-      }
-
-      .game-name {
-        font-size: 13px;
-      }
-
+        gap:15px;
     }
 
+    .game-section{
+        padding-left:15px;
+        padding-right:15px;
+    }
 
-    @media (max-width: 600px) {
+}
 
-      .header-inner {
-        min-height: 62px;
+@media(max-width:600px){
 
-        padding:
-          10px 14px;
-      }
+    .header{
+        padding:0 14px;
+    }
 
-      .logo {
-        font-size: 23px;
-      }
+    .back-btn{
+        padding:9px 12px;
 
-      .back-btn {
-        padding:
-          9px 12px;
+        font-size:11px;
+    }
 
-        font-size: 12px;
-      }
+    .hero h1{
+        font-size:34px;
+    }
 
-      .hero {
-        padding:
-          35px 14px 20px;
-      }
+    .hero p{
+        font-size:13px;
+    }
 
-      .search-area {
-        padding:
-          10px 14px 20px;
-      }
+    .controls{
+        padding:0 15px;
+    }
 
-      .filter-area {
-        padding:
-          0 14px 20px;
-      }
-
-      .game-heading {
-        padding:
-          0 14px 15px;
-      }
-
-      .game-grid {
-        padding:
-          0 14px 45px;
-
+    .game-grid{
         grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+            repeat(2,minmax(0,1fr));
 
-        gap: 11px;
-      }
-
-      .provider-badge {
-        font-size: 9px;
-
-        left: 7px;
-        top: 7px;
-      }
-
-      .game-info {
-        padding: 10px;
-      }
-
-      .game-name {
-        min-height: 37px;
-
-        font-size: 12px;
-      }
-
-      .game-provider {
-        font-size: 10px;
-
-        margin-bottom: 9px;
-      }
-
-      .main-btn {
-        min-height: 38px;
-
-        font-size: 11px;
-      }
-
+        gap:12px;
     }
 
-
-    @media (max-width: 370px) {
-
-      .game-grid {
-        gap: 8px;
-
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .game-info {
-        padding: 8px;
-      }
-
+    .game-info{
+        padding:11px;
     }
 
-  </style>
+    .game-title{
+        font-size:12px;
+
+        min-height:38px;
+
+        margin-bottom:10px;
+    }
+
+    .game-title span{
+        font-size:10px;
+    }
+
+    .play-btn{
+        height:36px;
+
+        font-size:10px;
+    }
+
+    .provider{
+        top:8px;
+        left:8px;
+
+        padding:5px 7px;
+
+        font-size:8px;
+    }
+
+}
+
+@media(max-width:380px){
+
+    .game-grid{
+        gap:9px;
+    }
+
+    .game-info{
+        padding:9px;
+    }
+
+    .game-title{
+        font-size:11px;
+    }
+
+}
+
+</style>
 </head>
-
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+<header class="header">
 
-  <header>
-
-    <div class="header-inner">
-
-      <a
-        href="index.html"
-        class="logo"
-      >
-        MAC<span>645</span>
-      </a>
-
-      <a
-        href="index.html"
-        class="back-btn"
-      >
-        ← KEMBALI
-      </a>
-
+    <div class="logo">
+        <span class="logo-main">MAC</span>
+        <span class="logo-number">645</span>
+        <span class="logo-dot"></span>
     </div>
 
-  </header>
+    <a href="index.html" class="back-btn">
+        ← KEMBALI
+    </a>
+
+</header>
 
 
-  <!-- =========================
-       HERO
-  ========================= -->
+<!-- =========================
+     HERO
+========================= -->
 
-  <section class="hero">
+<section class="hero">
 
     <div class="hero-small">
-      MAC645 GAME CENTER
+        MAC645 GAME CENTER
     </div>
 
     <h1>
-      Pilih Game
-      <span>Favorit Kamu</span>
+        Pilih Game Favorit Kamu
     </h1>
 
     <p>
-      Jelajahi berbagai game yang tersedia
-      dan klik tombol MAIN untuk langsung
-      membuka game.
+        Temukan berbagai game favorit dalam satu tempat
+        dengan tampilan MAC645 yang elegan dan nyaman
+        digunakan di HP maupun PC.
     </p>
 
-  </section>
+</section>
 
 
-  <!-- =========================
-       SEARCH
-  ========================= -->
+<!-- =========================
+     SEARCH + FILTER
+========================= -->
 
-  <section class="search-area">
+<section class="controls">
 
     <div class="search-box">
 
-      <div class="search-icon">
-        🔎
-      </div>
+        <span class="search-icon">
+            🔎
+        </span>
 
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Cari game... contoh: Mahjong, Gates, PGSoft"
-        autocomplete="off"
-      >
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari nama game..."
+            autocomplete="off"
+        >
 
     </div>
 
-  </section>
+
+    <div class="filters">
+
+        <button
+            class="filter-btn active"
+            data-filter="ALL"
+            onclick="setFilter('ALL', this)"
+        >
+            ALL
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="PGSOFT"
+            onclick="setFilter('PGSOFT', this)"
+        >
+            PGSOFT
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="PRAGMATIC"
+            onclick="setFilter('PRAGMATIC', this)"
+        >
+            PRAGMATIC
+        </button>
+
+    </div>
+
+</section>
 
 
-  <!-- =========================
-       FILTER
-  ========================= -->
+<!-- =========================
+     GAME SECTION
+========================= -->
 
-  <div class="filter-area">
+<section class="game-section">
 
-    <button
-      class="filter-btn active"
-      data-filter="all"
-      onclick="setFilter('all', this)"
-    >
-      SEMUA
-    </button>
+    <div id="gameGrid" class="game-grid">
+    </div>
 
-    <button
-      class="filter-btn"
-      data-filter="PGSoft"
-      onclick="setFilter('PGSoft', this)"
-    >
-      PGSOFT
-    </button>
+    <div id="emptyState" class="empty">
 
-    <button
-      class="filter-btn"
-      data-filter="Pragmatic"
-      onclick="setFilter('Pragmatic', this)"
-    >
-      PRAGMATIC
-    </button>
+        <div class="empty-icon">
+            🎮
+        </div>
 
-  </div>
+        <h3>
+            Game tidak ditemukan
+        </h3>
+
+        <p>
+            Coba gunakan kata pencarian yang berbeda.
+        </p>
+
+    </div>
+
+</section>
 
 
-  <!-- =========================
-       HEADING
-  ========================= -->
+<!-- =========================
+     MODAL
+========================= -->
 
-  <div class="game-heading">
+<div
+    id="gameModal"
+    class="modal"
+    onclick="closeModalOutside(event)"
+>
 
-    <h2>
-      🎮 Semua Game
-    </h2>
+    <div class="modal-box">
 
-    <span id="gameCount">
-      Memuat...
-    </span>
+        <div class="modal-icon">
+            🎮
+        </div>
 
-  </div>
+        <h2 id="modalTitle">
+            Game
+        </h2>
+
+        <p id="modalMessage">
+            URL game belum tersedia.
+        </p>
+
+        <button
+            class="modal-close"
+            onclick="closeModal()"
+        >
+            TUTUP
+        </button>
+
+    </div>
+
+</div>
 
 
-  <!-- =========================
-       ERROR
-  ========================= -->
+<!-- =========================
+     FOOTER
+========================= -->
 
-  <div
-    id="errorBox"
-    class="error-box"
-  ></div>
-
-
-  <!-- =========================
-       LOADING
-  ========================= -->
-
-  <div
-    id="loading"
-    class="loading"
-  >
-
-    <div class="spinner"></div>
+<footer class="footer">
 
     <div>
-      Mengambil daftar game...
+        © 2026 <strong>MAC645</strong>
     </div>
 
-  </div>
-
-
-  <!-- =========================
-       GAME GRID
-  ========================= -->
-
-  <main
-    id="gameGrid"
-    class="game-grid"
-  ></main>
-
-
-  <!-- =========================
-       EMPTY
-  ========================= -->
-
-  <div
-    id="empty"
-    class="empty"
-  >
-
-    <div class="empty-icon">
-      🎮
+    <div style="margin-top:7px;">
+        MAC645 GAME CENTER
     </div>
 
-    <h3>
-      Game tidak ditemukan
-    </h3>
+</footer>
 
-    <p>
-      Coba gunakan kata pencarian lain.
-    </p>
 
-  </div>
+<script>
 
+/* =====================================================
+   MAC645 GAME CENTER
+===================================================== */
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
+console.log("MAC645 GAME JS AKTIF");
 
-  <footer>
 
-    © 2026 MAC645 DIGITAL STORE
+/* =====================================================
+   DATA GAME
+===================================================== */
 
-  </footer>
+const games = [
 
-
-  <script>
-
-    /* =====================================================
-       SUPABASE EDGE FUNCTION
-       ===================================================== */
-
-    const API_URL =
-      "https://jblilyzqozodjslgylso.supabase.co/functions/v1/bigbang-games";
-
-
-    /* =====================================================
-       DATA
-       ===================================================== */
-
-    let allGames = [];
-
-    let currentFilter = "all";
-
-    let currentSearch = "";
-
-
-    /* =====================================================
-       ELEMENT
-       ===================================================== */
-
-    const gameGrid =
-      document.getElementById("gameGrid");
-
-    const searchInput =
-      document.getElementById("searchInput");
-
-    const loading =
-      document.getElementById("loading");
-
-    const empty =
-      document.getElementById("empty");
-
-    const errorBox =
-      document.getElementById("errorBox");
-
-    const gameCount =
-      document.getElementById("gameCount");
-
-
-    /* =====================================================
-       ESCAPE HTML
-       ===================================================== */
-
-    function escapeHTML(value) {
-
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-    }
-
-
-    /* =====================================================
-       GET GAME ID
-       ===================================================== */
-
-    function getGameId(game) {
-
-      return (
-        game.game_id ??
-        game.id ??
-        game.gameId ??
-        game.gameID ??
-        null
-      );
-
-    }
-
-
-    /* =====================================================
-       GET GAME NAME
-       ===================================================== */
-
-    function getGameName(game) {
-
-      return (
-        game.name ??
-        game.title ??
-        game.game_name ??
-        game.gameName ??
-        "Game"
-      );
-
-    }
-
-
-    /* =====================================================
-       GET PROVIDER
-       ===================================================== */
-
-    function getProvider(game) {
-
-      return (
-        game.provider ??
-        game.provider_name ??
-        game.providerName ??
-        "Unknown"
-      );
-
-    }
-
-
-    /* =====================================================
-       GET IMAGE
-       ===================================================== */
-
-    function getGameImage(game) {
-
-      return (
-        game.image ??
-        game.image_url ??
-        game.imageUrl ??
-        game.thumbnail ??
-        game.thumbnail_url ??
-        game.thumbnailUrl ??
-        game.cover ??
-        game.cover_url ??
-        game.coverUrl ??
-        game.banner ??
-        game.banner_url ??
-        ""
-      );
-
-    }
-
-
-    /* =====================================================
-       IMAGE FALLBACK
-       ===================================================== */
-
-    function imageError(img) {
-
-      img.style.display = "none";
-
-      const fallback =
-        img.parentElement.querySelector(
-          ".image-fallback"
-        );
-
-      if (fallback) {
-        fallback.style.display = "flex";
-      }
-
-    }
-
-
-    /* =====================================================
-       LOAD ALL GAMES
-       ===================================================== */
-
-    async function loadGames() {
-
-      loading.style.display = "block";
-
-      gameGrid.innerHTML = "";
-
-      empty.style.display = "none";
-
-      errorBox.style.display = "none";
-
-      gameCount.textContent =
-        "Memuat...";
-
-
-      try {
-
-        const response =
-          await fetch(
-            API_URL + "?action=all",
-            {
-              method: "GET",
-
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              cache: "no-store"
-            }
-          );
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            "Server game mengembalikan HTTP " +
-            response.status
-          );
-
-        }
-
-
-        const result =
-          await response.json();
-
-
-        console.log(
-          "BIGBANG GAMES:",
-          result
-        );
-
-
-        if (!result.success) {
-
-          throw new Error(
-            result.error ||
-            "Gagal mengambil daftar game."
-          );
-
-        }
-
+    {
+        id: "mahjong-wins-3",
+        name: "Mahjong Wins 3",
+        subtitle: "Black Scatter",
+        provider: "PGSOFT",
+        image: "https://latiunglah-jpg.github.io/MAC645/mahjong3.jpg",
 
         /*
-          Mendukung beberapa bentuk response
-        */
+         * Masukkan URL launch game di sini jika
+         * provider/API sudah memberikan URL.
+         */
+        launchUrl: ""
+    },
 
-        if (Array.isArray(result.data)) {
+    {
+        id: "gates-of-olympus-1000",
+        name: "Gates of Olympus",
+        subtitle: "1000",
+        provider: "PRAGMATIC",
+        image: "https://latiunglah-jpg.github.io/MAC645/olympus%201000.jpg",
+        launchUrl: ""
+    },
 
-          allGames =
-            result.data;
+    {
+        id: "gates-of-olympus-super-scatter",
+        name: "Gates of Olympus",
+        subtitle: "Super Scatter",
+        provider: "PRAGMATIC",
+        image: "https://latiunglah-jpg.github.io/MAC645/olympus%20aja.jpg",
+        launchUrl: ""
+    },
 
-        } else if (
-          Array.isArray(
-            result.games
-          )
-        ) {
+    {
+        id: "mahjong-ways-2",
+        name: "Mahjong Ways 2",
+        subtitle: "",
+        provider: "PGSOFT",
+        image: "https://latiunglah-jpg.github.io/MAC645/mahjong%202.jpg",
+        launchUrl: ""
+    },
 
-          allGames =
-            result.games;
+    {
+        id: "mahjong-ways",
+        name: "Mahjong Ways",
+        subtitle: "",
+        provider: "PGSOFT",
+        image: "https://latiunglah-jpg.github.io/MAC645/mahjong%20ways.png",
+        launchUrl: ""
+    },
 
-        } else if (
-          Array.isArray(
-            result.data?.games
-          )
-        ) {
+    {
+        id: "wild-bounty-showdown",
+        name: "Wild Bounty",
+        subtitle: "Showdown",
+        provider: "PRAGMATIC",
+        image: "https://latiunglah-jpg.github.io/MAC645/wild%20bounty.jpg",
+        launchUrl: ""
+    },
 
-          allGames =
-            result.data.games;
+    {
+        id: "lucky-neko",
+        name: "Lucky Neko",
+        subtitle: "",
+        provider: "PGSOFT",
+        image: "https://latiunglah-jpg.github.io/MAC645/lucky%20neko.jpg",
+        launchUrl: ""
+    },
 
-        } else {
+    {
+        id: "treasures-of-aztec",
+        name: "Treasures of Aztec",
+        subtitle: "",
+        provider: "PGSOFT",
+        image: "https://latiunglah-jpg.github.io/MAC645/Treasures%20of%20Aztec.jpg",
+        launchUrl: ""
+    },
 
-          allGames = [];
+    {
+        id: "wild-ape-3258",
+        name: "Wild Ape #3258",
+        subtitle: "",
+        provider: "PGSOFT",
+        image: "https://latiunglah-jpg.github.io/MAC645/Wild-Ape-3258.jpg",
+        launchUrl: ""
+    },
 
-        }
+    {
+        id: "gates-of-gatot-kaca-1000",
+        name: "Gates of Gatot Kaca",
+        subtitle: "1000",
+        provider: "PRAGMATIC",
+        image: "https://latiunglah-jpg.github.io/MAC645/Gates-of-Gatot-Kaca-1000.jpg",
+        launchUrl: ""
+    },
 
-
-        /*
-          Hapus game yang tidak mempunyai ID
-        */
-
-        allGames =
-          allGames.filter(
-            game =>
-              getGameId(game) !== null
-          );
-
-
-        loading.style.display = "none";
-
-
-        gameCount.textContent =
-          allGames.length +
-          " game";
-
-
-        renderGames();
-
-
-      } catch (error) {
-
-        console.error(
-          "LOAD GAME ERROR:",
-          error
-        );
-
-
-        loading.style.display = "none";
-
-
-        errorBox.style.display =
-          "block";
-
-
-        errorBox.innerHTML =
-          `
-          <strong>Game gagal dimuat.</strong>
-          <br>
-          ${escapeHTML(error.message)}
-          <br><br>
-          Pastikan Supabase Edge Function
-          <b>bigbang-games</b> sudah aktif.
-          `;
-
-
-        gameCount.textContent =
-          "Gagal memuat";
-
-      }
-
+    {
+        id: "starlight-princess-super-scatter",
+        name: "Starlight Princess",
+        subtitle: "Super Scatter",
+        provider: "PRAGMATIC",
+        image: "https://latiunglah-jpg.github.io/MAC645/starlight%20princess%20super%20scatter.jpg",
+        launchUrl: ""
     }
 
-
-    /* =====================================================
-       RENDER GAME
-       ===================================================== */
-
-    function renderGames() {
-
-      const search =
-        currentSearch
-          .trim()
-          .toLowerCase();
+];
 
 
-      const filtered =
-        allGames.filter(
-          game => {
+/* =====================================================
+   STATE
+===================================================== */
 
-            const name =
-              getGameName(game)
-                .toLowerCase();
-
-            const provider =
-              getProvider(game)
-                .toLowerCase();
+let currentFilter = "ALL";
 
 
-            const matchSearch =
-              !search ||
-              name.includes(search) ||
-              provider.includes(search);
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+const gameGrid =
+    document.getElementById("gameGrid");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+const searchInput =
+    document.getElementById("searchInput");
 
 
-            const matchProvider =
-              currentFilter === "all" ||
-              providerMatches(
-                provider,
-                currentFilter
-              );
+/* =====================================================
+   RENDER GAME
+===================================================== */
 
+function renderGames(){
+
+    const keyword =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    const filteredGames =
+        games.filter(game => {
+
+            const matchesFilter =
+                currentFilter === "ALL" ||
+                game.provider === currentFilter;
+
+            const fullName =
+                (
+                    game.name +
+                    " " +
+                    game.subtitle +
+                    " " +
+                    game.provider
+                ).toLowerCase();
+
+            const matchesSearch =
+                fullName.includes(keyword);
 
             return (
-              matchSearch &&
-              matchProvider
+                matchesFilter &&
+                matchesSearch
             );
 
-          }
-        );
+        });
 
 
-      gameGrid.innerHTML = "";
+    gameGrid.innerHTML = "";
 
 
-      gameCount.textContent =
-        filtered.length +
-        " game";
+    if(filteredGames.length === 0){
 
-
-      if (!filtered.length) {
-
-        empty.style.display =
-          "block";
+        emptyState.style.display = "block";
 
         return;
 
-      }
+    }
 
 
-      empty.style.display =
-        "none";
+    emptyState.style.display = "none";
 
 
-      const fragment =
-        document.createDocumentFragment();
+    filteredGames.forEach(
+        (game,index) => {
 
-
-      filtered.forEach(
-        game => {
-
-          const card =
-            createGameCard(game);
-
-          fragment.appendChild(card);
+            gameGrid.appendChild(
+                createGameCard(game,index)
+            );
 
         }
-      );
+    );
+
+}
 
 
-      gameGrid.appendChild(
-        fragment
-      );
+/* =====================================================
+   CREATE GAME CARD
+===================================================== */
 
-    }
+function createGameCard(game,index){
 
-
-    /* =====================================================
-       PROVIDER FILTER
-       ===================================================== */
-
-    function providerMatches(
-      provider,
-      filter
-    ) {
-
-      const p =
-        provider.toLowerCase();
-
-      const f =
-        filter.toLowerCase();
-
-
-      if (p === f) {
-        return true;
-      }
-
-
-      if (
-        p.includes(f)
-      ) {
-        return true;
-      }
-
-
-      return false;
-
-    }
-
-
-    /* =====================================================
-       CREATE GAME CARD
-       ===================================================== */
-
-    function createGameCard(game) {
-
-      const card =
+    const card =
         document.createElement("article");
 
+    card.className = "game-card";
 
-      card.className =
-        "game-card";
-
-
-      const gameId =
-        getGameId(game);
+    card.style.animationDelay =
+        `${index * 0.04}s`;
 
 
-      const name =
-        getGameName(game);
+    const providerClass =
+        game.provider.toLowerCase();
 
 
-      const provider =
-        getProvider(game);
+    card.innerHTML = `
 
+        <div class="game-image-wrap">
 
-      const image =
-        getGameImage(game);
-
-
-      card.dataset.gameId =
-        gameId;
-
-
-      card.innerHTML =
-        `
-
-        <div class="game-image">
-
-          ${
-            image
-              ?
-              `
-              <img
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(name)}"
+            <img
+                class="game-image"
+                src="${game.image}"
+                alt="${escapeHtml(game.name)}"
                 loading="lazy"
-                referrerpolicy="no-referrer"
-                onerror="imageError(this)"
-              >
-              `
-              :
-              ""
-          }
+                onerror="this.style.display='none'; this.parentElement.classList.add('image-error');"
+            >
 
-          <div
-            class="image-fallback"
-            style="${
-              image
-                ? "display:none"
-                : "display:flex"
-            }"
-          >
+            <div class="image-overlay"></div>
 
-            <div>
-
-              <div class="game-icon">
-                🎮
-              </div>
-
-              <strong>
-                ${escapeHTML(name)}
-              </strong>
-
+            <div class="provider ${providerClass}">
+                ${game.provider}
             </div>
-
-          </div>
-
-
-          <div class="provider-badge">
-
-            ${escapeHTML(provider)}
-
-          </div>
 
         </div>
 
 
         <div class="game-info">
 
-          <div class="game-name">
+            <div class="game-title">
 
-            ${escapeHTML(name)}
+                ${escapeHtml(game.name)}
 
-          </div>
+                ${
+                    game.subtitle
+                    ? `<span>${escapeHtml(game.subtitle)}</span>`
+                    : ""
+                }
+
+            </div>
 
 
-          <div class="game-provider">
-
-            ${escapeHTML(provider)}
-
-          </div>
-
-
-          <button
-            type="button"
-            class="main-btn"
-            onclick="launchGame('${escapeHTML(gameId)}', this)"
-          >
-            MAIN
-          </button>
+            <button
+                class="play-btn"
+                onclick="launchGame('${game.id}')"
+            >
+                MAIN
+            </button>
 
         </div>
 
-        `;
+    `;
 
 
-      return card;
+    return card;
 
-    }
+}
 
 
-    /* =====================================================
-       LAUNCH GAME
-       ===================================================== */
+/* =====================================================
+   SEARCH
+===================================================== */
 
-    async function launchGame(
-      gameId,
-      button
-    ) {
+searchInput.addEventListener(
+    "input",
+    renderGames
+);
 
-      if (!gameId) {
 
-        alert(
-          "ID game tidak ditemukan."
+/* =====================================================
+   FILTER
+===================================================== */
+
+function setFilter(
+    filter,
+    button
+){
+
+    currentFilter = filter;
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    renderGames();
+
+}
+
+
+/* =====================================================
+   LAUNCH GAME
+===================================================== */
+
+function launchGame(gameId){
+
+    const game =
+        games.find(
+            item => item.id === gameId
+        );
+
+
+    if(!game){
+
+        showModal(
+            "Game tidak ditemukan",
+            "Data game tidak ditemukan."
         );
 
         return;
 
-      }
+    }
 
 
-      const originalText =
-        button
-          ? button.innerHTML
-          : "MAIN";
+    /*
+     * Kalau launchUrl sudah diisi,
+     * tombol MAIN akan membuka URL tersebut.
+     */
 
-
-      if (button) {
-
-        button.disabled =
-          true;
-
-        button.innerHTML =
-          "MEMBUKA...";
-
-      }
-
-
-      try {
-
-        console.log(
-          "LAUNCH GAME ID:",
-          gameId
-        );
-
-
-        const response =
-          await fetch(
-            API_URL +
-            "?action=launch",
-            {
-
-              method: "POST",
-
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              body:
-                JSON.stringify({
-
-                  game_id:
-                    Number(gameId),
-
-                  demo:
-                    true,
-
-                  language:
-                    "id",
-
-                  return_url:
-                    window.location.href
-
-                })
-
-            }
-          );
-
-
-        const result =
-          await response.json();
-
-
-        console.log(
-          "BIGBANG LAUNCH:",
-          result
-        );
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            result.error ||
-            "Server gagal membuat link game."
-          );
-
-        }
-
-
-        if (!result.success) {
-
-          throw new Error(
-            result.error ||
-            "Game gagal diluncurkan."
-          );
-
-        }
-
-
-        /*
-          Ambil URL game dari berbagai kemungkinan
-          struktur response BigBang
-        */
-
-        const gameUrl =
-          findGameUrl(result);
-
-
-        if (!gameUrl) {
-
-          console.error(
-            "URL GAME TIDAK DITEMUKAN:",
-            result
-          );
-
-
-          throw new Error(
-            "URL game tidak ditemukan dari response BigBang."
-          );
-
-        }
-
-
-        console.log(
-          "GAME URL:",
-          gameUrl
-        );
-
-
-        /*
-          INI BAGIAN PENTING.
-
-          Jangan iframe.
-
-          Langsung pindahkan browser
-          ke halaman game.
-        */
+    if(
+        game.launchUrl &&
+        isHttpUrl(game.launchUrl)
+    ){
 
         window.location.href =
-          gameUrl;
+            game.launchUrl;
 
-
-      } catch (error) {
-
-        console.error(
-          "LAUNCH ERROR:",
-          error
-        );
-
-
-        alert(
-          "Game gagal dibuka.\n\n" +
-          error.message
-        );
-
-
-        if (button) {
-
-          button.disabled =
-            false;
-
-          button.innerHTML =
-            originalText;
-
-        }
-
-      }
+        return;
 
     }
 
 
-    /* =====================================================
-       FIND GAME URL
-       ===================================================== */
-
-    function findGameUrl(data) {
-
-      if (!data) {
-        return null;
-      }
-
-
-      /*
-        URL yang biasanya digunakan
-      */
-
-      const directKeys = [
-
-        "launch_url",
-
-        "launchUrl",
-
-        "game_url",
-
-        "gameUrl",
-
-        "url"
-
-      ];
-
-
-      /*
-        Cek object utama
-      */
-
-      for (
-        const key of directKeys
-      ) {
-
-        if (
-          typeof data[key] ===
-          "string" &&
-          isHttpUrl(data[key])
-        ) {
-
-          return data[key];
-
-        }
-
-      }
-
-
-      /*
-        Cek data
-      */
-
-      if (
-        data.data &&
-        typeof data.data ===
-        "object"
-      ) {
-
-        for (
-          const key of directKeys
-        ) {
-
-          if (
-            typeof data.data[key] ===
-            "string" &&
-            isHttpUrl(
-              data.data[key]
-            )
-          ) {
-
-            return data.data[key];
-
-          }
-
-        }
-
-      }
-
-
-      /*
-        Kalau struktur response
-        lebih dalam, cari secara recursive.
-      */
-
-      return recursiveFindUrl(
-        data
-      );
-
-    }
-
-
-    /* =====================================================
-       RECURSIVE URL SEARCH
-       ===================================================== */
-
-    function recursiveFindUrl(
-      object
-    ) {
-
-      if (
-        !object ||
-        typeof object !==
-        "object"
-      ) {
-
-        return null;
-
-      }
-
-
-      if (
-        Array.isArray(object)
-      ) {
-
-        for (
-          const item of object
-        ) {
-
-          const found =
-            recursiveFindUrl(
-              item
-            );
-
-          if (found) {
-            return found;
-          }
-
-        }
-
-        return null;
-
-      }
-
-
-      for (
-        const key of
-        Object.keys(object)
-      ) {
-
-        const value =
-          object[key];
-
-
-        if (
-          typeof value ===
-          "string" &&
-          isHttpUrl(value)
-        ) {
-
-          const lower =
-            key.toLowerCase();
-
-
-          /*
-            Prioritaskan URL
-            yang berhubungan dengan game.
-          */
-
-          if (
-            lower.includes("url") ||
-            lower.includes("launch") ||
-            lower.includes("game")
-          ) {
-
-            return value;
-
-          }
-
-        }
-
-      }
-
-
-      for (
-        const key of
-        Object.keys(object)
-      ) {
-
-        const value =
-          object[key];
-
-
-        if (
-          value &&
-          typeof value ===
-          "object"
-        ) {
-
-          const found =
-            recursiveFindUrl(
-              value
-            );
-
-          if (found) {
-            return found;
-          }
-
-        }
-
-      }
-
-
-      return null;
-
-    }
-
-
-    /* =====================================================
-       CHECK URL
-       ===================================================== */
-
-    function isHttpUrl(
-      value
-    ) {
-
-      return (
-        typeof value ===
-        "string" &&
-        /^https?:\/\//i.test(
-          value
-        )
-      );
-
-    }
-
-
-    /* =====================================================
-       FILTER BUTTON
-       ===================================================== */
-
-    function setFilter(
-      filter,
-      button
-    ) {
-
-      currentFilter =
-        filter;
-
-
-      document
-        .querySelectorAll(
-          ".filter-btn"
-        )
-        .forEach(
-          btn => {
-
-            btn.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-
-      if (button) {
-
-        button.classList.add(
-          "active"
-        );
-
-      }
-
-
-      renderGames();
-
-    }
-
-
-    /* =====================================================
-       SEARCH
-       ===================================================== */
-
-    searchInput.addEventListener(
-      "input",
-      function () {
-
-        currentSearch =
-          this.value;
-
-
-        renderGames();
-
-      }
+    /*
+     * Karena URL launch provider belum
+     * diberikan, jangan mengarang URL.
+     */
+
+    showModal(
+        game.name,
+        "URL untuk memainkan game ini belum tersedia dari provider. Gambar yang tampil di kartu hanya merupakan gambar/thumbnail game."
     );
 
+}
 
-    /* =====================================================
-       ENTER
-       ===================================================== */
 
-    searchInput.addEventListener(
-      "keydown",
-      function (event) {
+/* =====================================================
+   MODAL
+===================================================== */
 
-        if (
-          event.key ===
-          "Escape"
-        ) {
+function showModal(
+    title,
+    message
+){
 
-          this.value = "";
+    document.getElementById(
+        "modalTitle"
+    ).textContent = title;
 
-          currentSearch = "";
 
-          renderGames();
+    document.getElementById(
+        "modalMessage"
+    ).textContent = message;
+
+
+    document.getElementById(
+        "gameModal"
+    ).classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById(
+        "gameModal"
+    ).classList.remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+    if(
+        event.target.id === "gameModal"
+    ){
+
+        closeModal();
+
+    }
+
+}
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeModal();
 
         }
 
-      }
-    );
+    }
+);
 
 
-    /* =====================================================
-       START
-       ===================================================== */
+/* =====================================================
+   URL VALIDATION
+===================================================== */
 
-    loadGames();
+function isHttpUrl(url){
 
-  </script>
+    try{
+
+        const parsed =
+            new URL(url);
+
+        return (
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
+        );
+
+    }catch(error){
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderGames();
+
+console.log(
+    "MAC645:",
+    games.length,
+    "game berhasil dimuat."
+);
+
+</script>
 
 </body>
 </html>
